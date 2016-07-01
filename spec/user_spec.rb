@@ -1,10 +1,8 @@
-require 'test_helper'
 
-class UserTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
-    let(:user) { User.new(id: 1, email: 'email@gmail.com', encrypted_password: "pass", reset_password_token: "pass", address: "1234 Main St", username: "Wolfy858")}
+
+describe "User model" do
+
+  let(:user) { User.new(id: 1, email: 'email@gmail.com', encrypted_password: "pass", reset_password_token: "pass", address: "1234 Main St", username: "Wolfy858")}
 
     describe "Gets initialized with basic attributes" do
       it "has a username" do
@@ -18,5 +16,5 @@ class UserTest < ActiveSupport::TestCase
       it "has an address" do
         expect(user.address).to eq("1234 Main St")
       end
-
-end
+    end
+  end
