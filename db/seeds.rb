@@ -5,3 +5,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+tool = Tool.new(base_price: 3)
+tool2 = Tool.new(base_price: 5)
+user = User.new
+user.tools << tool
+user.tools << tool2
+user.sum_all_tools

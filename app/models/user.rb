@@ -10,7 +10,12 @@ class User < ActiveRecord::Base
   # has_many :line_items, through: :rentals
 
   def sum_all_tools
-    this.tools.each { |curr, prev| curr.base_price + prev.base_price } 
+    tool_prices = []
+    tools.each do |tool|
+      tool_prices << tool.base_price
+    end
+    tool_prices.reduce(:+)
+
   end
 
   def sum_rented_tools
