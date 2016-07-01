@@ -1,22 +1,22 @@
 ################################### users ############################################
 # user 1 is demo user
-User.create!(username:              'a',
-               email:               'a',
-               encrypted_password:  'a',
-               address:             'A Street #8, Ayville, AA 88888')
+User.create!(
+  # username:              'a',
+             email:               'a@a.com',
+             password:  'aaaaaaaa')
 
 18.times do
-  User.create!(username:            Faker::Internet.user_name,
+  User.create!(
+    # username:            Faker::Internet.user_name,
                email:               Faker::Internet.email,
-               encrypted_password:  'password',
-               address:             Faker::Internet.address)
+              password:  'password')
 end
 
 # user 20 will only have a basic profile to test UX of a new user
-User.create!(username:              'z',
-               email:               'z',
-               encrypted_password:  'z',
-               address:             'z')
+User.create!(
+  # username:              'z',
+             email:               'z@z.com',
+             password:  'zzzzzzzzz')
 
 
 ################################### abstract tools ###################################
