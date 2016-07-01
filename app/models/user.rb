@@ -15,13 +15,22 @@ class User < ActiveRecord::Base
       tool_prices << tool.base_price
     end
     tool_prices.reduce(:+)
-
   end
 
   def sum_rented_tools
+    tool_prices = []
+    tools.each do |tool|
+      tool_prices << tool.base_price if tool.available == false
+    end
+    tool_prices.reduce(:+)
   end
 
   def sum_inactive_tools
+    tool_prices = []
+    tools.each do |tool|
+      tool_prices << tool.base_price if tool.available == true
+    end
+    tool_prices.reduce(:+)
   end
          
 end
