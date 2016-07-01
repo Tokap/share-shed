@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160701011948) do
+ActiveRecord::Schema.define(version: 20160701035106) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,14 +38,18 @@ ActiveRecord::Schema.define(version: 20160701011948) do
     t.integer  "rental_price"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.datetime "pickup_time"
+    t.datetime "dropoff_time"
   end
 
   create_table "tools", force: :cascade do |t|
-    t.integer  "base_price",                null: false
-    t.boolean  "available",  default: true, null: false
-    t.integer  "owner_id",                  null: false
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.integer  "base_price",                  null: false
+    t.boolean  "available",    default: true, null: false
+    t.integer  "owner_id",                    null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.text     "description"
+    t.string   "model_number"
   end
 
   create_table "users", force: :cascade do |t|
@@ -61,6 +65,8 @@ ActiveRecord::Schema.define(version: 20160701011948) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "address",                             null: false
+    t.string   "username",                            null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
