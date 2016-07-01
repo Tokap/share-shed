@@ -4,11 +4,28 @@
   <title>ShareShed</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <meta name=viewport content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
   <%= csrf_meta_tags %>
 </head>
 <body>
 
+<header>
+  <h1>ShareShed</h1>
+  <nav>
+    <ul>
+      <li><a href="/users/sign_up">Sign Up</a></li>
+      <li><a href="/users/sign_in">Login</a></li>
+      <li><a href="/users/edit">Edit Profile</a></li>
+      <li><a href="/">Dashboard</a></li>
+    </ul>
+  </nav>
+</header>
+
 <%= yield %>
+
+<footer>
+  <h3>@copyright ShareShed Inc.</h3>
+</footer>
 
 </body>
 </html>

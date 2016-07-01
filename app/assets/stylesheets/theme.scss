@@ -17,25 +17,28 @@ header, footer, article, section, aside {
 }
 
 article, section, aside {
-  background-color: #fff;
+  /* background-color: #fff; */
 }
 
-header h1 {
-  float: left;
-}
-
-nav {
-  float: right;
-  ul {
-    vertical-align: center;
-    list-style-type: none;
-    li {
-      float: left;
-      margin: 5px;
-      padding: 5px;
+header {
+  h1 {
+    float: left;
+  }
+  nav {
+    float: right;
+    ul {
+      vertical-align: center;
+      list-style-type: none;
+      li {
+        float: left;
+        margin: 5px;
+        padding: 5px;
+      }
     }
   }
 }
+
+
 
 
 

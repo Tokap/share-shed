@@ -1,5 +1,5 @@
 //
-// RESPONSIVE STYLES
+// SCAFFOLD FOR APPLICATION
 // --------------------------------------------------
 
 body {
@@ -18,27 +18,70 @@ article {
   order: 2;
 }
 
-aside, section {
+section, aside {
    /* 12em is the width of the columns */
   flex: 0 0 12em;
-}
-
-aside {
-  order: 3;
 }
 
 section {
   order: 1;
 }
 
+aside {
+  order: 3;
+}
+
+
+//
+// RESPONSIVE STYLES
+// --------------------------------------------------
+
 @media (max-width: 768px) {
+
+  body {
+    margin: 0;
+    padding: 0;
+  }
 
   main {
     flex-direction: column;
+    flex: 0;
   }
 
-  section {
-    order: 1;
+  section, aside {
+    flex: 0 0 0em;
+  }
+
+  header, footer, article, section, aside {
+    border-radius: 10px;
+    margin: 5px;
+    padding: 5px;
+    background-color: #efefef;
+  }
+
+
+  //
+  // RESPONSIVE GLOBAL HELPER STYLES
+  // --------------------------------------------------
+
+  /*
+  main.template {
+    section { background-color: #efefef;}
+    article { background-color: #efefef;}
+    aside   { background-color: #efefef;}
+  }
+  */
+
+  main.section-article-fifty,
+  main.section-aside-fifty,
+  main.article-aside-fifty,
+  main.section-hidden,
+  main.aside-hidden {
+    flex-direction: column;
+  }
+
+  main.section-aside-hidden {
+    section, aside { display: none; }
   }
 
 }

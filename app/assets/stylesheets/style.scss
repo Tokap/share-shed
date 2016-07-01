@@ -2,12 +2,6 @@
 // MAIN PAGE STYLES
 // --------------------------------------------------
 
-main.section-aside-hidden {
-  section, aside {
-    display: none;
-  }
-}
-
 main.password-pages {
   section, aside {
     display: none;
@@ -20,6 +14,11 @@ main.login {
   }
 }
 
+main.about {
+  section {
+    display: none;
+  }
+}
 
 //
 // GLOBAL HELPER STYLES
