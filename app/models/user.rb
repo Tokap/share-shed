@@ -8,8 +8,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :tools, foreign_key: :owner_id
-  has_many :owned_rentals, foreign_key: :owner_id
-  has_many :owned_line_items, through: :owned_rentals
+  has_many :owned_rentals, foreign_key: :owner_id, source: :rental
+  has_many :owned_line_items, through: :owned_rental, source: :line_item
 
   has_many :rented_rentals, foreign_key: :renter_id
   has_many :rented_line_items, through: :rented_rentals
