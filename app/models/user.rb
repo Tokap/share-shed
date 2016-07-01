@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 
   has_many :rented_rentals, foreign_key: :renter_id
   has_many :rented_line_items, through: :rented_rentals
-  has_many :rented_tools, through: :renter_line_items
+  has_many :rented_tools, through: :rented_line_items
 
  
 
