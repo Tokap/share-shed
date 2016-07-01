@@ -12,7 +12,7 @@ devise_for :users
   # Console: bundle
   # Console: rails generate devise:install
   # Console: rails generate devise MODEL (MODEL = User, or Admin, or Member, etc.)
-  # Routes.rb: config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  # config/environments/development.rb: config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   ### THE ABOVE IS A PLACEHOLDER FOR EMAIL VERIFICATION SENDS ###
   # Routes.rb: Add some kind of root_path. Devise will rely on this sometimes. 
 
