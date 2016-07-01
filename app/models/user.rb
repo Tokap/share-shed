@@ -8,12 +8,12 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :tools, foreign_key: :owner_id
-  has_many :owned_rentals, foreign_key: :owner_id
-  has_many :owned_line_items, through: :owned_rentals
+  has_many :owned_rentals, class_name: :Rental, foreign_key: :owner_id
+  has_many :owned_line_items, through: :owned_rentals, source: :line_items
 
-  has_many :rented_rentals, foreign_key: :renter_id
-  has_many :rented_line_items, through: :rented_rentals
-  has_many :rented_tools, through: :rented_line_items
+  has_many :rented_rentals, class_name: :Rental, foreign_key: :renter_id
+  has_many :rented_line_items, through: :rented_rentals, source: :line_items
+  has_many :rented_tools, through: :rented_line_items, source: :tool
 
  
 
@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
 # Once logic is implimented to determine the duration of the rental,
 # a multiplyer should be added
 
-  def sum_all_tools
+  def owner_sum_all_tools
     tool_prices = []
     tools.each do |tool|
       tool_prices << tool.base_price
@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
     tool_prices.reduce(:+)
   end
 
-  def sum_rented_tools
+  def owner_sum_rented_tools
     tool_prices = []
     tools.each do |tool|
       tool_prices << tool.base_price if tool.available == false
@@ -37,10 +37,18 @@ class User < ActiveRecord::Base
     tool_prices.reduce(:+)
   end
 
-  def sum_inactive_tools
+  def owner_sum_inactive_tools
     tool_prices = []
     tools.each do |tool|
       tool_prices << tool.base_price if tool.available == true
+    end
+    tool_prices.reduce(:+)
+  end
+
+  def renter_sum_rented_tools
+    tool_prices = []
+    rented_tools.each do |tool|
+      tool_prices << tool.base_price
     end
     tool_prices.reduce(:+)
   end
