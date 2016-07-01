@@ -3,5 +3,5 @@ class Tool < ActiveRecord::Base
 
   belongs_to :abstract_tool
   belongs_to :line_item
-  belongs_to :owner, class_name: :user
+  belongs_to :owner, class_name: "User"
 end
