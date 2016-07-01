@@ -1,0 +1,44 @@
+//
+// RESPONSIVE STYLES
+// --------------------------------------------------
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+
+article {
+  flex: 1;
+  order: 2;
+}
+
+aside, section {
+   /* 12em is the width of the columns */
+  flex: 0 0 12em;
+}
+
+aside {
+  order: 3;
+}
+
+section {
+  order: 1;
+}
+
+@media (max-width: 768px) {
+
+  main {
+    flex-direction: column;
+  }
+
+  section {
+    order: 1;
+  }
+
+}
