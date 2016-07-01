@@ -43,6 +43,14 @@ ActiveRecord::Schema.define(version: 20160701035106) do
   end
 
   create_table "tools", force: :cascade do |t|
+<<<<<<< HEAD
+    t.integer  "base_price",                      null: false
+    t.boolean  "available",        default: true, null: false
+    t.integer  "owner_id",                        null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.integer  "abstract_tool_id",                null: false
+=======
     t.integer  "base_price",                  null: false
     t.boolean  "available",    default: true, null: false
     t.integer  "owner_id",                    null: false
@@ -50,6 +58,7 @@ ActiveRecord::Schema.define(version: 20160701035106) do
     t.datetime "updated_at",                  null: false
     t.text     "description"
     t.string   "model_number"
+>>>>>>> 44dc6314f6bb9ae6c62e072cd77eb10d25fe01b5
   end
 
   create_table "users", force: :cascade do |t|
