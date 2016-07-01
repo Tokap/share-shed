@@ -78,8 +78,17 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
+
+staging:
+  <<: *default
+  url: <%= ENV['DATABASE_URL_STAGE'] %>
+
 production:
   <<: *default
-  database: share-shed_production
-  username: share-shed
-  password: <%= ENV['SHARE-SHED_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
+
+# production:
+#   <<: *default
+#   database: share-shed_production
+#   username: share-shed
+#   password: <%= ENV['SHARE-SHED_DATABASE_PASSWORD'] %>
