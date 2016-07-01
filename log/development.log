@@ -1,0 +1,402 @@
+  [1m[36m (3.0ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL) [0m
+  [1m[35m (1.1ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to DeviseCreateUsers (20160701010551)
+  [1m[35m (0.1ms)[0m  BEGIN
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /Users/apprentice/gabriel/share-shed/db/migrate/20160701010551_devise_create_users.rb:34)
+  [1m[36m (3.2ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" inet, "last_sign_in_ip" inet, "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35m (0.8ms)[0m  CREATE UNIQUE INDEX  "index_users_on_email" ON "users"  ("email")
+  [1m[36m (0.8ms)[0m  [1mCREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users"  ("reset_password_token")[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160701010551"]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+Migrating to CreateRentals (20160701011628)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (2.8ms)[0m  [1mCREATE TABLE "rentals" ("id" serial primary key, "renter_id" integer NOT NULL, "owner_id" integer NOT NULL, "status" character varying NOT NULL, "checkout_date" timestamp, "return_date" timestamp, "rental_price" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160701011628"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Migrating to CreateTools (20160701011649)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (1.8ms)[0m  [1mCREATE TABLE "tools" ("id" serial primary key, "base_price" integer NOT NULL, "available" boolean DEFAULT 't' NOT NULL, "owner_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160701011649"]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+Migrating to CreateLineItems (20160701011742)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (1.6ms)[0m  [1mCREATE TABLE "line_items" ("id" serial primary key, "tool_id" integer NOT NULL, "rental_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160701011742"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Migrating to CreateAbstractTools (20160701011948)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (2.0ms)[0m  [1mCREATE TABLE "abstract_tools" ("id" serial primary key, "name" character varying NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160701011948"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+Migrating to AddPickupTimeAndDropoffTimeToRentals (20160701033814)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "rentals" ADD "pickup_time" timestamp[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "rentals" ADD "dropoff_time" timestamp
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20160701033814"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+Migrating to AddDescriptionAndModelToTools (20160701034504)
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (1.1ms)[0m  ALTER TABLE "tools" ADD "description" text
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "tools" ADD "model_number" character varying[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160701034504"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Migrating to AddAddressAndUsernameToUsers (20160701035106)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "users" ADD "address" character varying NOT NULL[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "users" ADD "username" character varying NOT NULL
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20160701035106"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+Migrating to AddAbstractToolIdToTools (20160701062923)
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  ALTER TABLE "tools" ADD "abstract_tool_id" integer NOT NULL
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20160701062923"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (1.9ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'abstract_tools'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (1.6ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'line_items'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.5ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'rentals'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (1.5ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'tools'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (1.5ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.7ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'a@a.com' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("username", "email", "encrypted_password", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["username", "a"], ["email", "a@a.com"], ["encrypted_password", "$2a$10$sRqIX0zhHjU6/ryLcKfSC.94xpyxgcgjvn4OYe7EkP.7OUjlrJ1qS"], ["address", "A Street and 8th, Ayville, AA 98888"], ["created_at", "2016-07-01 18:16:22.341765"], ["updated_at", "2016-07-01 18:16:22.341765"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'trey.bahringer@gaylordtillman.net' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("username", "email", "encrypted_password", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["username", "dorthy"], ["email", "trey.bahringer@gaylordtillman.net"], ["encrypted_password", "$2a$10$hXz/7nYboGab4JxhT7TGquIjoWuD1tqPDpt/rhyIdDtEcnm.YQB4."], ["address", "123 Main St., Springville, CA"], ["created_at", "2016-07-01 18:16:22.714731"], ["updated_at", "2016-07-01 18:16:22.714731"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'constance@steuber.co' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("username", "email", "encrypted_password", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["username", "angelica.ko"], ["email", "constance@steuber.co"], ["encrypted_password", "$2a$10$Z4wIPDaaRclPnx6iyx.GsOfv5Hb3GAfZ13MtNyudzcgormc/l.Zze"], ["address", "123 Main St., Springville, CA"], ["created_at", "2016-07-01 18:16:22.784864"], ["updated_at", "2016-07-01 18:16:22.784864"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'adelle_west@kutch.info' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("username", "email", "encrypted_password", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["username", "bernie.dibbert"], ["email", "adelle_west@kutch.info"], ["encrypted_password", "$2a$10$gK3Rgf7MISNdyr6kZ8sEG.Hmrpsa32/ktqpek16YZSIbUIaHKA.ji"], ["address", "123 Main St., Springville, CA"], ["created_at", "2016-07-01 18:16:22.854396"], ["updated_at", "2016-07-01 18:16:22.854396"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'jack@bergstrom.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("username", "email", "encrypted_password", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["username", "janea.will"], ["email", "jack@bergstrom.com"], ["encrypted_password", "$2a$10$eac76dPMdk.I3m5j3cqr7uypw87C6x4XNJGwkmdXSOwYMQGmQCM6."], ["address", "123 Main St., Springville, CA"], ["created_at", "2016-07-01 18:16:22.924349"], ["updated_at", "2016-07-01 18:16:22.924349"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'buck_reinger@raynor.info' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("username", "email", "encrypted_password", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["username", "rhiannon_buckridge"], ["email", "buck_reinger@raynor.info"], ["encrypted_password", "$2a$10$0/dM9MqFGT.QhEJZ4G6FquWykigF3YfwUR5Iswp9G8gHq.y9kcOGq"], ["address", "123 Main St., Springville, CA"], ["created_at", "2016-07-01 18:16:22.993776"], ["updated_at", "2016-07-01 18:16:22.993776"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'willy@koelpin.co' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("username", "email", "encrypted_password", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["username", "anika"], ["email", "willy@koelpin.co"], ["encrypted_password", "$2a$10$Xlb129ur8a32z/c6gpGmN.FieavHDA3pC0u7wux2YckShhXn0QBUi"], ["address", "123 Main St., Springville, CA"], ["created_at", "2016-07-01 18:16:23.063306"], ["updated_at", "2016-07-01 18:16:23.063306"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'berry.sauer@gibson.biz' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("username", "email", "encrypted_password", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["username", "shaylee_hermiston"], ["email", "berry.sauer@gibson.biz"], ["encrypted_password", "$2a$10$U6fxhDyS4zwPartUjqNMbuw0pEPntO4.OI4xe6uh71zkPY8bSjq4a"], ["address", "123 Main St., Springville, CA"], ["created_at", "2016-07-01 18:16:23.133139"], ["updated_at", "2016-07-01 18:16:23.133139"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'jannie@dubuqueweinat.io' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("username", "email", "encrypted_password", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["username", "helmer"], ["email", "jannie@dubuqueweinat.io"], ["encrypted_password", "$2a$10$6/rOktfjkH7sjzrwUkj0h.lyqLOhNydyfebk94Ndw1BZjl7MM/OvK"], ["address", "123 Main St., Springville, CA"], ["created_at", "2016-07-01 18:16:23.202747"], ["updated_at", "2016-07-01 18:16:23.202747"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'una@dickenswaelchi.io' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("username", "email", "encrypted_password", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["username", "jaylan.schmeler"], ["email", "una@dickenswaelchi.io"], ["encrypted_password", "$2a$10$9rbS3WnnI8fHIrQ8rdxcjeRGKQMTnr20Kf3XQ2mTkPlN56FCPxOfK"], ["address", "123 Main St., Springville, CA"], ["created_at", "2016-07-01 18:16:23.272463"], ["updated_at", "2016-07-01 18:16:23.272463"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'erica@durgan.biz' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("username", "email", "encrypted_password", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["username", "easter_schaden"], ["email", "erica@durgan.biz"], ["encrypted_password", "$2a$10$uWHgEuhiG2FRGEIqviFlIOQmiltx9.YH5Z535xULvGW//EJB.eL96"], ["address", "123 Main St., Springville, CA"], ["created_at", "2016-07-01 18:16:23.341938"], ["updated_at", "2016-07-01 18:16:23.341938"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'brielle@okeefe.name' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("username", "email", "encrypted_password", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["username", "yvette_boyer"], ["email", "brielle@okeefe.name"], ["encrypted_password", "$2a$10$BsHAovlmPI11SaiqPe/.G.bPlf.dwFe0IvQ.FOusuNBLuEwca5dly"], ["address", "123 Main St., Springville, CA"], ["created_at", "2016-07-01 18:16:23.411395"], ["updated_at", "2016-07-01 18:16:23.411395"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'joseph.murphy@reinger.com' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("username", "email", "encrypted_password", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["username", "chester_kuhic"], ["email", "joseph.murphy@reinger.com"], ["encrypted_password", "$2a$10$dZ8kvpW9P0e0nrg5YqL6z.NkBb6D/xeV2Oj8U16MepSJpODFsLRYe"], ["address", "123 Main St., Springville, CA"], ["created_at", "2016-07-01 18:16:23.480894"], ["updated_at", "2016-07-01 18:16:23.480894"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'ettie@bradtkekozey.co' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("username", "email", "encrypted_password", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["username", "cristobal_lowe"], ["email", "ettie@bradtkekozey.co"], ["encrypted_password", "$2a$10$pkdXT4RO0Di8JQtSUq0jEe3ZTlKuRmsaEz00ek7VKJ784EP1N7E2K"], ["address", "123 Main St., Springville, CA"], ["created_at", "2016-07-01 18:16:23.550569"], ["updated_at", "2016-07-01 18:16:23.550569"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'kayla@hickle.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("username", "email", "encrypted_password", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["username", "tania_rolfson"], ["email", "kayla@hickle.com"], ["encrypted_password", "$2a$10$g1N17rC./AkooKqfwXBPO.R.Ia8F0x75PnUFLpWGiUZsGpdFsIwGS"], ["address", "123 Main St., Springville, CA"], ["created_at", "2016-07-01 18:16:23.620014"], ["updated_at", "2016-07-01 18:16:23.620014"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'enrique@bruenturner.name' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("username", "email", "encrypted_password", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["username", "coralie"], ["email", "enrique@bruenturner.name"], ["encrypted_password", "$2a$10$k.2Vn94KViUyIHLa7r022.GeKb4TQwI7ZsYapMXwKGQHDU4wCVFoa"], ["address", "123 Main St., Springville, CA"], ["created_at", "2016-07-01 18:16:23.689532"], ["updated_at", "2016-07-01 18:16:23.689532"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'carley@lockman.name' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("username", "email", "encrypted_password", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["username", "dudley"], ["email", "carley@lockman.name"], ["encrypted_password", "$2a$10$Jsh7/E/bEBomVFboKwgi3OHA.bdWjj3fB6Y/ZEcpnpj7Y3DckjzmK"], ["address", "123 Main St., Springville, CA"], ["created_at", "2016-07-01 18:16:23.759209"], ["updated_at", "2016-07-01 18:16:23.759209"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'major@heaney.name' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("username", "email", "encrypted_password", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["username", "tevin_lynch"], ["email", "major@heaney.name"], ["encrypted_password", "$2a$10$6JtbLJ/zySSRWCuqV9urPu5ereIlR30Zn25aEMEYrVxsmzmPqbDlO"], ["address", "123 Main St., Springville, CA"], ["created_at", "2016-07-01 18:16:23.829384"], ["updated_at", "2016-07-01 18:16:23.829384"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'candida_hermann@gutkowski.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("username", "email", "encrypted_password", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["username", "moie_ankunding"], ["email", "candida_hermann@gutkowski.com"], ["encrypted_password", "$2a$10$RqIrjxBK69CcHLa3fPYaLewTdwS5050e8msgwHD2wyTGnwzA1j6qm"], ["address", "123 Main St., Springville, CA"], ["created_at", "2016-07-01 18:16:23.899254"], ["updated_at", "2016-07-01 18:16:23.899254"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'z@z.com' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("username", "email", "encrypted_password", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["username", "z"], ["email", "z@z.com"], ["encrypted_password", "$2a$10$iLXYvNJ2MpyFiUNHXebvrOLN.VAG9nmZgJUDaoGc7o/hbrvRxJLE2"], ["address", "9876 Random Ave., Randomville, XX 95826 "], ["created_at", "2016-07-01 18:16:23.968454"], ["updated_at", "2016-07-01 18:16:23.968454"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "abstract_tools" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "metal detector"], ["created_at", "2016-07-01 18:16:23.976155"], ["updated_at", "2016-07-01 18:16:23.976155"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "abstract_tools" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "wheel barrow"], ["created_at", "2016-07-01 18:16:23.978628"], ["updated_at", "2016-07-01 18:16:23.978628"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "abstract_tools" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "shovel"], ["created_at", "2016-07-01 18:16:23.980260"], ["updated_at", "2016-07-01 18:16:23.980260"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "abstract_tools" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "pitchfork"], ["created_at", "2016-07-01 18:16:23.981973"], ["updated_at", "2016-07-01 18:16:23.981973"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "abstract_tools" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "post hole digger"], ["created_at", "2016-07-01 18:16:23.983487"], ["updated_at", "2016-07-01 18:16:23.983487"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "abstract_tools" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "rake"], ["created_at", "2016-07-01 18:16:23.984811"], ["updated_at", "2016-07-01 18:16:23.984811"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "abstract_tools" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "axe"], ["created_at", "2016-07-01 18:16:23.986164"], ["updated_at", "2016-07-01 18:16:23.986164"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "abstract_tools" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "table saw"], ["created_at", "2016-07-01 18:16:23.987518"], ["updated_at", "2016-07-01 18:16:23.987518"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "abstract_tools" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "pickaxe"], ["created_at", "2016-07-01 18:16:23.988850"], ["updated_at", "2016-07-01 18:16:23.988850"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "abstract_tools" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "wrench"], ["created_at", "2016-07-01 18:16:23.990179"], ["updated_at", "2016-07-01 18:16:23.990179"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "abstract_tools" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "broom"], ["created_at", "2016-07-01 18:16:23.991539"], ["updated_at", "2016-07-01 18:16:23.991539"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "abstract_tools" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "sledge hammer"], ["created_at", "2016-07-01 18:16:23.992863"], ["updated_at", "2016-07-01 18:16:23.992863"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "abstract_tools" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "tape measure"], ["created_at", "2016-07-01 18:16:23.994155"], ["updated_at", "2016-07-01 18:16:23.994155"]]
+  [1m[35m (0.7ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "abstract_tools" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "bolt cutters"], ["created_at", "2016-07-01 18:16:23.995930"], ["updated_at", "2016-07-01 18:16:23.995930"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "abstract_tools" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "screwdriver"], ["created_at", "2016-07-01 18:16:23.997214"], ["updated_at", "2016-07-01 18:16:23.997214"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "abstract_tools" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "hammer"], ["created_at", "2016-07-01 18:16:23.998513"], ["updated_at", "2016-07-01 18:16:23.998513"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "abstract_tools" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "hand grinder"], ["created_at", "2016-07-01 18:16:23.999848"], ["updated_at", "2016-07-01 18:16:23.999848"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "abstract_tools" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "ladder"], ["created_at", "2016-07-01 18:16:24.001196"], ["updated_at", "2016-07-01 18:16:24.001196"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "abstract_tools" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "paintbrush"], ["created_at", "2016-07-01 18:16:24.002524"], ["updated_at", "2016-07-01 18:16:24.002524"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "abstract_tools" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["name", "jackhammer"], ["created_at", "2016-07-01 18:16:24.003860"], ["updated_at", "2016-07-01 18:16:24.003860"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+DEPRECATION WARNING: You attempted to assign a value which is not explicitly `true` or `false` ("available") to a boolean column. Currently this value casts to `false`. This will change to match Ruby's semantics, and will cast to `true` in Rails 5. If you would like to maintain the current behavior, you should explicitly handle the values you would like cast to `false`. (called from block in <top (required)> at /Users/apprentice/gabriel/share-shed/db/seeds.rb:34)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mAbstractTool Load (0.2ms)[0m  [1mSELECT  "abstract_tools".* FROM "abstract_tools" WHERE "abstract_tools"."id" = $1 LIMIT 1[0m  [["id", 20]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "tools" ("abstract_tool_id", "base_price", "available", "owner_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["abstract_tool_id", 20], ["base_price", 35], ["available", "f"], ["owner_id", 1], ["created_at", "2016-07-01 18:16:24.068300"], ["updated_at", "2016-07-01 18:16:24.068300"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+DEPRECATION WARNING: You attempted to assign a value which is not explicitly `true` or `false` ("available") to a boolean column. Currently this value casts to `false`. This will change to match Ruby's semantics, and will cast to `true` in Rails 5. If you would like to maintain the current behavior, you should explicitly handle the values you would like cast to `false`. (called from block in <top (required)> at /Users/apprentice/gabriel/share-shed/db/seeds.rb:34)
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mAbstractTool Load (0.2ms)[0m  SELECT  "abstract_tools".* FROM "abstract_tools" WHERE "abstract_tools"."id" = $1 LIMIT 1  [["id", 18]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "tools" ("abstract_tool_id", "base_price", "available", "owner_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["abstract_tool_id", 18], ["base_price", 14], ["available", "f"], ["owner_id", 1], ["created_at", "2016-07-01 18:16:24.072613"], ["updated_at", "2016-07-01 18:16:24.072613"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+DEPRECATION WARNING: You attempted to assign a value which is not explicitly `true` or `false` ("available") to a boolean column. Currently this value casts to `false`. This will change to match Ruby's semantics, and will cast to `true` in Rails 5. If you would like to maintain the current behavior, you should explicitly handle the values you would like cast to `false`. (called from block in <top (required)> at /Users/apprentice/gabriel/share-shed/db/seeds.rb:34)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mAbstractTool Load (0.2ms)[0m  [1mSELECT  "abstract_tools".* FROM "abstract_tools" WHERE "abstract_tools"."id" = $1 LIMIT 1[0m  [["id", 16]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "tools" ("abstract_tool_id", "base_price", "available", "owner_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["abstract_tool_id", 16], ["base_price", 38], ["available", "f"], ["owner_id", 1], ["created_at", "2016-07-01 18:16:24.076166"], ["updated_at", "2016-07-01 18:16:24.076166"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+DEPRECATION WARNING: You attempted to assign a value which is not explicitly `true` or `false` ("available") to a boolean column. Currently this value casts to `false`. This will change to match Ruby's semantics, and will cast to `true` in Rails 5. If you would like to maintain the current behavior, you should explicitly handle the values you would like cast to `false`. (called from block in <top (required)> at /Users/apprentice/gabriel/share-shed/db/seeds.rb:34)
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mAbstractTool Load (0.2ms)[0m  SELECT  "abstract_tools".* FROM "abstract_tools" WHERE "abstract_tools"."id" = $1 LIMIT 1  [["id", 14]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "tools" ("abstract_tool_id", "base_price", "available", "owner_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["abstract_tool_id", 14], ["base_price", 43], ["available", "f"], ["owner_id", 1], ["created_at", "2016-07-01 18:16:24.079687"], ["updated_at", "2016-07-01 18:16:24.079687"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+DEPRECATION WARNING: You attempted to assign a value which is not explicitly `true` or `false` ("available") to a boolean column. Currently this value casts to `false`. This will change to match Ruby's semantics, and will cast to `true` in Rails 5. If you would like to maintain the current behavior, you should explicitly handle the values you would like cast to `false`. (called from block in <top (required)> at /Users/apprentice/gabriel/share-shed/db/seeds.rb:42)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mAbstractTool Load (0.2ms)[0m  [1mSELECT  "abstract_tools".* FROM "abstract_tools" WHERE "abstract_tools"."id" = $1 LIMIT 1[0m  [["id", 5]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "tools" ("abstract_tool_id", "base_price", "available", "owner_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["abstract_tool_id", 5], ["base_price", 7], ["available", "f"], ["owner_id", 2], ["created_at", "2016-07-01 18:16:24.083398"], ["updated_at", "2016-07-01 18:16:24.083398"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+DEPRECATION WARNING: You attempted to assign a value which is not explicitly `true` or `false` ("available") to a boolean column. Currently this value casts to `false`. This will change to match Ruby's semantics, and will cast to `true` in Rails 5. If you would like to maintain the current behavior, you should explicitly handle the values you would like cast to `false`. (called from block in <top (required)> at /Users/apprentice/gabriel/share-shed/db/seeds.rb:42)
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mAbstractTool Load (0.2ms)[0m  SELECT  "abstract_tools".* FROM "abstract_tools" WHERE "abstract_tools"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "tools" ("abstract_tool_id", "base_price", "available", "owner_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["abstract_tool_id", 1], ["base_price", 27], ["available", "f"], ["owner_id", 3], ["created_at", "2016-07-01 18:16:24.086806"], ["updated_at", "2016-07-01 18:16:24.086806"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+DEPRECATION WARNING: You attempted to assign a value which is not explicitly `true` or `false` ("available") to a boolean column. Currently this value casts to `false`. This will change to match Ruby's semantics, and will cast to `true` in Rails 5. If you would like to maintain the current behavior, you should explicitly handle the values you would like cast to `false`. (called from block in <top (required)> at /Users/apprentice/gabriel/share-shed/db/seeds.rb:42)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mAbstractTool Load (0.1ms)[0m  [1mSELECT  "abstract_tools".* FROM "abstract_tools" WHERE "abstract_tools"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 18]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "tools" ("abstract_tool_id", "base_price", "available", "owner_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["abstract_tool_id", 1], ["base_price", 39], ["available", "f"], ["owner_id", 18], ["created_at", "2016-07-01 18:16:24.090173"], ["updated_at", "2016-07-01 18:16:24.090173"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+DEPRECATION WARNING: You attempted to assign a value which is not explicitly `true` or `false` ("available") to a boolean column. Currently this value casts to `false`. This will change to match Ruby's semantics, and will cast to `true` in Rails 5. If you would like to maintain the current behavior, you should explicitly handle the values you would like cast to `false`. (called from block in <top (required)> at /Users/apprentice/gabriel/share-shed/db/seeds.rb:42)
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mAbstractTool Load (0.1ms)[0m  SELECT  "abstract_tools".* FROM "abstract_tools" WHERE "abstract_tools"."id" = $1 LIMIT 1  [["id", 11]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 13]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "tools" ("abstract_tool_id", "base_price", "available", "owner_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["abstract_tool_id", 11], ["base_price", 22], ["available", "f"], ["owner_id", 13], ["created_at", "2016-07-01 18:16:24.093094"], ["updated_at", "2016-07-01 18:16:24.093094"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+DEPRECATION WARNING: You attempted to assign a value which is not explicitly `true` or `false` ("available") to a boolean column. Currently this value casts to `false`. This will change to match Ruby's semantics, and will cast to `true` in Rails 5. If you would like to maintain the current behavior, you should explicitly handle the values you would like cast to `false`. (called from <top (required)> at /Users/apprentice/gabriel/share-shed/db/seeds.rb:49)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mAbstractTool Load (0.1ms)[0m  [1mSELECT  "abstract_tools".* FROM "abstract_tools" WHERE "abstract_tools"."id" = $1 LIMIT 1[0m  [["id", 12]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "tools" ("abstract_tool_id", "base_price", "available", "owner_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["abstract_tool_id", 12], ["base_price", 45], ["available", "f"], ["owner_id", 2], ["created_at", "2016-07-01 18:16:24.095966"], ["updated_at", "2016-07-01 18:16:24.095966"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 18]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "rentals" ("renter_id", "owner_id", "status", "checkout_date", "return_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["renter_id", 1], ["owner_id", 18], ["status", "pending"], ["checkout_date", "2016-07-02 00:00:00.000000"], ["return_date", "2016-07-15 00:00:00.000000"], ["created_at", "2016-07-01 18:16:24.112709"], ["updated_at", "2016-07-01 18:16:24.112709"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 10]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "rentals" ("renter_id", "owner_id", "status", "checkout_date", "return_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["renter_id", 1], ["owner_id", 10], ["status", "scheduled"], ["checkout_date", "2016-07-02 00:00:00.000000"], ["return_date", "2016-07-10 00:00:00.000000"], ["created_at", "2016-07-01 18:16:24.116775"], ["updated_at", "2016-07-01 18:16:24.116775"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "rentals" ("renter_id", "owner_id", "status", "checkout_date", "return_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["renter_id", 1], ["owner_id", 4], ["status", "in progress"], ["checkout_date", "2016-06-27 00:00:00.000000"], ["return_date", "2016-07-03 00:00:00.000000"], ["created_at", "2016-07-01 18:16:24.119980"], ["updated_at", "2016-07-01 18:16:24.119980"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35mTool Load (0.2ms)[0m  SELECT  "tools".* FROM "tools" WHERE "tools"."id" = $1 LIMIT 1  [["id", 3]]
+DEPRECATION WARNING: You attempted to assign a value which is not explicitly `true` or `false` ("unavailable") to a boolean column. Currently this value casts to `false`. This will change to match Ruby's semantics, and will cast to `true` in Rails 5. If you would like to maintain the current behavior, you should explicitly handle the values you would like cast to `false`. (called from <top (required)> at /Users/apprentice/gabriel/share-shed/db/seeds.rb:75)
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 18]]
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "rentals" ("renter_id", "owner_id", "status", "checkout_date", "return_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["renter_id", 1], ["owner_id", 18], ["status", "closed"], ["checkout_date", "2016-06-10 00:00:00.000000"], ["return_date", "2016-06-30 00:00:00.000000"], ["created_at", "2016-07-01 18:16:24.127157"], ["updated_at", "2016-07-01 18:16:24.127157"]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 16]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "rentals" ("renter_id", "owner_id", "status", "checkout_date", "return_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["renter_id", 16], ["owner_id", 1], ["status", "pending"], ["checkout_date", "2016-07-02 00:00:00.000000"], ["return_date", "2016-07-05 00:00:00.000000"], ["created_at", "2016-07-01 18:16:24.131245"], ["updated_at", "2016-07-01 18:16:24.131245"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 11]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "rentals" ("renter_id", "owner_id", "status", "checkout_date", "return_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"  [["renter_id", 11], ["owner_id", 1], ["status", "scheduled"], ["checkout_date", "2016-07-02 00:00:00.000000"], ["return_date", "2016-07-10 00:00:00.000000"], ["created_at", "2016-07-01 18:16:24.134660"], ["updated_at", "2016-07-01 18:16:24.134660"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "rentals" ("renter_id", "owner_id", "status", "checkout_date", "return_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["renter_id", 4], ["owner_id", 1], ["status", "in progress"], ["checkout_date", "2016-06-26 00:00:00.000000"], ["return_date", "2016-07-07 00:00:00.000000"], ["created_at", "2016-07-01 18:16:24.138003"], ["updated_at", "2016-07-01 18:16:24.138003"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36mTool Load (0.2ms)[0m  [1mSELECT  "tools".* FROM "tools" WHERE "tools"."id" = $1 LIMIT 1[0m  [["id", 7]]
+DEPRECATION WARNING: You attempted to assign a value which is not explicitly `true` or `false` ("unavailable") to a boolean column. Currently this value casts to `false`. This will change to match Ruby's semantics, and will cast to `true` in Rails 5. If you would like to maintain the current behavior, you should explicitly handle the values you would like cast to `false`. (called from <top (required)> at /Users/apprentice/gabriel/share-shed/db/seeds.rb:101)
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 6]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "rentals" ("renter_id", "owner_id", "status", "checkout_date", "return_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["renter_id", 6], ["owner_id", 1], ["status", "closed"], ["checkout_date", "2016-06-03 00:00:00.000000"], ["return_date", "2016-06-30 00:00:00.000000"], ["created_at", "2016-07-01 18:16:24.142638"], ["updated_at", "2016-07-01 18:16:24.142638"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mTool Load (0.2ms)[0m  SELECT  "tools".* FROM "tools" WHERE "tools"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mRental Load (0.2ms)[0m  [1mSELECT  "rentals".* FROM "rentals" WHERE "rentals"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "line_items" ("tool_id", "rental_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["tool_id", 1], ["rental_id", 1], ["created_at", "2016-07-01 18:16:24.154522"], ["updated_at", "2016-07-01 18:16:24.154522"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mTool Load (0.2ms)[0m  [1mSELECT  "tools".* FROM "tools" WHERE "tools"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mRental Load (0.1ms)[0m  SELECT  "rentals".* FROM "rentals" WHERE "rentals"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "line_items" ("tool_id", "rental_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["tool_id", 2], ["rental_id", 2], ["created_at", "2016-07-01 18:16:24.158091"], ["updated_at", "2016-07-01 18:16:24.158091"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mTool Load (0.2ms)[0m  SELECT  "tools".* FROM "tools" WHERE "tools"."id" = $1 LIMIT 1  [["id", 3]]
+  [1m[36mRental Load (0.1ms)[0m  [1mSELECT  "rentals".* FROM "rentals" WHERE "rentals"."id" = $1 LIMIT 1[0m  [["id", 3]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "line_items" ("tool_id", "rental_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["tool_id", 3], ["rental_id", 3], ["created_at", "2016-07-01 18:16:24.161232"], ["updated_at", "2016-07-01 18:16:24.161232"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mTool Load (0.2ms)[0m  [1mSELECT  "tools".* FROM "tools" WHERE "tools"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mRental Load (0.1ms)[0m  SELECT  "rentals".* FROM "rentals" WHERE "rentals"."id" = $1 LIMIT 1  [["id", 4]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "line_items" ("tool_id", "rental_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["tool_id", 4], ["rental_id", 4], ["created_at", "2016-07-01 18:16:24.164169"], ["updated_at", "2016-07-01 18:16:24.164169"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mTool Load (0.1ms)[0m  SELECT  "tools".* FROM "tools" WHERE "tools"."id" = $1 LIMIT 1  [["id", 5]]
+  [1m[36mRental Load (0.2ms)[0m  [1mSELECT  "rentals".* FROM "rentals" WHERE "rentals"."id" = $1 LIMIT 1[0m  [["id", 5]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "line_items" ("tool_id", "rental_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["tool_id", 5], ["rental_id", 5], ["created_at", "2016-07-01 18:16:24.166871"], ["updated_at", "2016-07-01 18:16:24.166871"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mTool Load (0.1ms)[0m  [1mSELECT  "tools".* FROM "tools" WHERE "tools"."id" = $1 LIMIT 1[0m  [["id", 6]]
+  [1m[35mRental Load (0.2ms)[0m  SELECT  "rentals".* FROM "rentals" WHERE "rentals"."id" = $1 LIMIT 1  [["id", 6]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "line_items" ("tool_id", "rental_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["tool_id", 6], ["rental_id", 6], ["created_at", "2016-07-01 18:16:24.169529"], ["updated_at", "2016-07-01 18:16:24.169529"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mTool Load (0.1ms)[0m  SELECT  "tools".* FROM "tools" WHERE "tools"."id" = $1 LIMIT 1  [["id", 7]]
+  [1m[36mRental Load (0.1ms)[0m  [1mSELECT  "rentals".* FROM "rentals" WHERE "rentals"."id" = $1 LIMIT 1[0m  [["id", 7]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "line_items" ("tool_id", "rental_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["tool_id", 7], ["rental_id", 7], ["created_at", "2016-07-01 18:16:24.172101"], ["updated_at", "2016-07-01 18:16:24.172101"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mTool Load (0.1ms)[0m  [1mSELECT  "tools".* FROM "tools" WHERE "tools"."id" = $1 LIMIT 1[0m  [["id", 8]]
+  [1m[35mRental Load (0.1ms)[0m  SELECT  "rentals".* FROM "rentals" WHERE "rentals"."id" = $1 LIMIT 1  [["id", 8]]
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "line_items" ("tool_id", "rental_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["tool_id", 8], ["rental_id", 8], ["created_at", "2016-07-01 18:16:24.174696"], ["updated_at", "2016-07-01 18:16:24.174696"]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mTool Load (0.1ms)[0m  SELECT  "tools".* FROM "tools" WHERE "tools"."id" = $1 LIMIT 1  [["id", 9]]
+  [1m[36mRental Load (0.1ms)[0m  [1mSELECT  "rentals".* FROM "rentals" WHERE "rentals"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "line_items" ("tool_id", "rental_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["tool_id", 9], ["rental_id", 1], ["created_at", "2016-07-01 18:16:24.177332"], ["updated_at", "2016-07-01 18:16:24.177332"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[36mLineItem Load (0.4ms)[0m  [1mSELECT "line_items".* FROM "line_items"[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mTool Load (0.2ms)[0m  [1mSELECT "tools".* FROM "tools" WHERE "tools"."owner_id" = $1[0m  [["owner_id", 1]]

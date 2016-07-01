@@ -1,22 +1,22 @@
 ################################### users ############################################
 # user 1 is demo user
-User.create!(
-  # username:              'a',
-             email:               'a@a.com',
-             password:  'aaaaaaaa')
+User.create!(username:    'a',
+             email:       'a@a.com',
+             password:    'aaaaaaaa',
+             address:     'A Street and 8th, Ayville, AA 98888')
 
 18.times do
-  User.create!(
-    # username:            Faker::Internet.user_name,
-               email:               Faker::Internet.email,
-              password:  'password')
+  User.create!(username:  Faker::Internet.user_name,
+               email:     Faker::Internet.email,
+               password:  'password',
+               address:   '123 Main St., Springville, CA')
 end
 
 # user 20 will only have a basic profile to test UX of a new user
-User.create!(
-  # username:              'z',
-             email:               'z@z.com',
-             password:  'zzzzzzzzz')
+User.create!(username:   'z',
+             email:      'z@z.com',
+             password:   'zzzzzzzzz',
+             address:    '9876 Random Ave., Randomville, XX 95826 ')
 
 
 ################################### abstract tools ###################################
@@ -45,14 +45,11 @@ end
                owner_id:          rand(2..19))
 end
 
-
-
 # create tool_id 9 to pad line_item
 Tool.create!(abstract_tool_id:  rand(1..20),
                base_price:      rand(5..50),
                available:       'available',
                owner_id:        2)
-
 
 
 ################################### rentals ################################################
@@ -108,6 +105,7 @@ Rental.create!(renter_id:       rand(2..19),
                status:          'closed',
                checkout_date:   Faker::Date.backward(30),
                return_date:     Faker::Date.backward(2))
+
 
 ################################### line items #########################################
 # create first 4 line_items for demo user to lend tools
