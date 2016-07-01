@@ -1,11 +1,12 @@
 <h2>Rent this <%= @tool.abstract_tool.name %></h2>
 
-Price: <%= @tool.base_price %>
-Description: <%= @tool.description %>
-Model number: <%= @tool.model_number %>
+<p>Price: $<%= @tool.base_price %></p>
+<p>Description: <%= @tool.description %></p>
+<p>Model number: <%= @tool.model_number %></p>
 
 
 <% if session[:open_rental_owner_id].nil? %>
+<% if current_user.rentals.
   <%= button_to "Rent this tool", rentals_path %>
 <% elsif session[:open_rental_owner_id]== @tool.owner.id %>
   <%= button_to "Add this tool to your rental from #{@tool.owner.username}", line_items_path %>
