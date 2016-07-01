@@ -1,0 +1,23 @@
+.shareshed,
+.shareshed-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.shareshed-nav {
+  order: -1;
+}
+
+@media (min-width: 768px) {
+  .shareshed-body {
+    flex-direction: row;
+    flex: 1;
+  }
+  .shareshed-content {
+    flex: 1;
+  }
+  .shareshed-nav, .shareshed-ads {
+    /* 12em is the width of the columns */
+    flex: 0 0 12em;
+  }
+}
