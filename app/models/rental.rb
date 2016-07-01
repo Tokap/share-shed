@@ -18,5 +18,6 @@ class Rental < ActiveRecord::Base
   def pending?
     status == "pending"
   end
+  #add boolean producing verifications for rest of status possibilities if group approves
 
 end
