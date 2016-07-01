@@ -5,11 +5,12 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :tools, foreign_key: :owner_id
-  has_many :owned_rental_agreements, foreign_key: :owner_id
+  has_many :owned_rentals, foreign_key: :owner_id
+  has_many :owned_line_items, through: :owned_rentals
 
-  has_many :submitted_rental_agreement, foreign_key: :renter_id
-  has_many :line_items, through: :rentals
-  has_many :rented_tools, through: :line_items
+  has_many :rented_rentals, foreign_key: :renter_id
+  has_many :rented_line_items, through: :rented_rentals
+  has_many :rented_tools, through: :renter_line_items
 
  
 
