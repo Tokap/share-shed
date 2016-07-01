@@ -5,4 +5,12 @@ class Rental < ActiveRecord::Base
   belongs_to :owner, class_name: "User"
   has_many :line_items
 
+  def total_price
+    #figure out date-time logic
+  end
+
+  def pending?
+    status == "pending"
+  end
+
 end
