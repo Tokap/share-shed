@@ -9,11 +9,11 @@ class User < ActiveRecord::Base
 
   has_many :tools, foreign_key: :owner_id
   has_many :owned_rentals, class_name: :Rental, foreign_key: :owner_id
-  has_many :owned_line_items, through: :owned_rentals
+  has_many :owned_line_items, through: :owned_rentals, source: :line_items
 
   has_many :rented_rentals, class_name: :Rental, foreign_key: :renter_id
-  has_many :rented_line_items, through: :rented_rentals
-  has_many :rented_tools, through: :rented_line_items
+  has_many :rented_line_items, through: :rented_rentals, source: :line_items
+  has_many :rented_tools, through: :rented_line_items, source: :tools
 
  
 
