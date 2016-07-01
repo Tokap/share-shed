@@ -46,18 +46,6 @@ end
 end
 
 
-################################### line items #########################################
-# create first 4 line_items for demo user to lend tools
-for i in 1..4 do
-  LineItem.create!(tool_id:    i,
-                   rental_id:  i)
-end
-
-# create next four line_items for other users to lend tools to demo user
-for i in 5..8 do
-  LineItem.create!(tool_id:    i,
-                   rental_id:  i)
-end
 
 # create tool_id 9 to pad line_item
 Tool.create!(abstract_tool_id:  rand(1..20),
@@ -65,9 +53,6 @@ Tool.create!(abstract_tool_id:  rand(1..20),
                available:       'available',
                owner_id:        2)
 
-# pad rentals number 1 with an extra item to test multiple line_item functionality
-LineItem.create!(tool_id:    9,
-                 rental_id:  1)
 
 
 ################################### rentals ################################################
@@ -90,7 +75,7 @@ Rental.create!(renter_id:       1,
                checkout_date:   Faker::Date.backward(7),
                return_date:     Faker::Date.forward(7))
 
-Tool.find(3).status = 'unavailable'
+Tool.find(3).available = 'unavailable'
 
 Rental.create!(renter_id:       1,
                owner_id:        rand(2..19),
@@ -116,7 +101,7 @@ Rental.create!(renter_id:       rand(2..19),
                checkout_date:   Faker::Date.backward(7),
                return_date:     Faker::Date.forward(7))
 
-Tool.find(7).status = 'unavailable'
+Tool.find(7).available = 'unavailable'
 
 Rental.create!(renter_id:       rand(2..19),
                owner_id:        1,
@@ -124,4 +109,19 @@ Rental.create!(renter_id:       rand(2..19),
                checkout_date:   Faker::Date.backward(30),
                return_date:     Faker::Date.backward(2))
 
+################################### line items #########################################
+# create first 4 line_items for demo user to lend tools
+for i in 1..4 do
+  LineItem.create!(tool_id:    i,
+                   rental_id:  i)
+end
 
+# create next four line_items for other users to lend tools to demo user
+for i in 5..8 do
+  LineItem.create!(tool_id:    i,
+                   rental_id:  i)
+end
+
+# pad rentals number 1 with an extra item to test multiple line_item functionality
+LineItem.create!(tool_id:    9,
+                 rental_id:  1)
