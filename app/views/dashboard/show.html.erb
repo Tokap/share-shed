@@ -1,0 +1,31 @@
+<h1> This is a show page </h1>
+
+<h2>The Tools you Own</h2>
+<% @user.tools.each do |tool| %>
+	<p> <%= tool.abstract_tool.name.split.map(&:capitalize).join(' ') %> | $<%= tool.base_price %> </p>
+<% end %>
+<p> Total: $<%= @user.owner_sum_all_tools || 0 %></p>
+
+
+<h2>Tools Actively Rented</h2>
+<% @user.tools.each do |tool| %>
+	<% if tool.available == false %>
+		<p> <%= tool.abstract_tool.name.split.map(&:capitalize).join(' ') %> | $<%= tool.base_price %> </p>
+	<% end %>
+	<% end %>
+<p> Total: $<%= @user.owner_sum_rented_tools  || 0 %></p>
+
+<h2>Tools Not Currently Being Rented</h2>
+<% @user.tools.each do |tool| %>
+	<% if tool.available == true %>
+		<p> <%= tool.abstract_tool.name.split.map(&:capitalize).join(' ')%> | $<%= tool.base_price %> </p>
+	<% end %>
+<% end %>
+<p> Total: $<%= @user.owner_sum_inactive_tools || 0 %></p>
+
+
+<h3> Temp Links </h3>
+
+<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+
+<%= link_to('Login', new_user_session_path)  %>        
