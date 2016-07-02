@@ -7,8 +7,6 @@
 
     <% if @tool.image.present? %>
       <%= link_to image_tag(@tool.image.url(:med)), @tool.image.url %>
-    <% else %>
-      NO IMAGE
     <% end %>
 
     <p>Price: $<%= @tool.base_price %></p>
