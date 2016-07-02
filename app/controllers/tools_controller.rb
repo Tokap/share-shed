@@ -38,7 +38,9 @@ class ToolsController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
+    Tool.find(params[:id]).destroy
+    redirect_to "/dashboard/#{current_user.id}"
   end
 
   def tool_params
