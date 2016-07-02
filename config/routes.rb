@@ -24,6 +24,8 @@ root to: "root#index"
 get "/about" => "static#about"
 get "/help" => "static#help"
 get "/template" => "static#template"
+get "/terms" => "static#terms"
+get "/faq" => "static#faq"
 # get "/dashboard" => "static#dashboard"
 
 resources :abstract_tools

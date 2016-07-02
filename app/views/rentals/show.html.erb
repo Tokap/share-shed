@@ -4,8 +4,8 @@
   <article>
     <h2>Your rental from <%= @rental.owner.username %>:</h2>
 
-  <p> The current status for this rental is: <%= @rental.status %>
-  <p><%= @rental.checkout_date.to_date %> - <%= @rental.return_date.to_date %></p>
+  <p> The current status for this rental is: <%= @rental.status %></p>
+  <p>Rental period: <%= @rental.checkout_date.to_date %> - <%= @rental.return_date.to_date %></p>
   <p><%= @rental.duration %> Days</p>
   <table class="rental-table">
     <tr>
@@ -25,6 +25,9 @@
       <td><strong>Total:</strong></td>
       <td><strong>$<%= @rental.total_tool_price * @rental.duration %></strong></td>
     </tr>
+    <% case @rental.status %>
+      <% when "draft" %>
+    <% end %>
   </table>
   </article>
   <aside>

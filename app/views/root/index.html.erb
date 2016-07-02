@@ -1,13 +1,18 @@
-<main class="section-article-fifty">
+<main class="landing-page">
+
   <section>
     <div class='landing-page-div'>
-      <button class='landing-page-btn btn-left'>Share your shed with others!</button>
+      <% if user_signed_in? %>
+        <a href="/dashboard/<%= current_user.id %> "><button class='landing-page-btn btn-left'>Share your shed with others!</button></a>
+      <% else %>
+        <a href="/users/sign_in"><button class='landing-page-btn btn-left'>Share your shed with others!</button></a>
+      <% end %>
     </div>
   </section>
 
   <article>
     <div class='landing-page-div'>
-       <button class='landing-page-btn btn-right'>Need tools to finish a project?</button>
+      <a href="/abstract_tools"><button class='landing-page-btn btn-right'>Need tools to finish a project?</button></a>
     </div>
   </article>
 

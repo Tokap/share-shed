@@ -21,6 +21,8 @@ class ToolsController < ApplicationController
     @tool = Tool.find(params[:id])
     @rental = Rental.new
     @line_item = LineItem.new
+    @distance = GoogleDirections.new('3966 Cleveland Ave, San Diego', '707 Broadway, San Diego')
+
   end
 
   def edit
@@ -38,11 +40,13 @@ class ToolsController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
+    Tool.find(params[:id]).destroy
+    redirect_to "/dashboard/#{current_user.id}"
   end
 
   def tool_params
-    params.require(:tool).permit(:model_number, :description, :base_price, :abstract_tool_id)
+    params.require(:tool).permit(:model_number, :description, :base_price, :abstract_tool_id, :image)
   end
 
 end
