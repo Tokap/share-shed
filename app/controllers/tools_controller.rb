@@ -21,6 +21,8 @@ class ToolsController < ApplicationController
     @tool = Tool.find(params[:id])
     @rental = Rental.new
     @line_item = LineItem.new
+    @distance = GoogleDirections.new('3966 Cleveland Ave, San Diego', '707 Broadway, San Diego')
+
   end
 
   def edit
