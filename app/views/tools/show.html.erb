@@ -11,13 +11,27 @@
 
     <% if current_user %>
       <% if current_user.has_draft_rental? %>
-        <% if current_user.draft.owner == @tool.owner %>
-          <%= button_to "Add this tool to your rental from #{@tool.owner.username}", line_items_path %>
+        <% if current_user.rented_rentals.draft.first.owner == @tool.owner %>
+          <% if current_user.rented_line_items.any?{ |item| item.tool == @tool }%>
+            You have already requested to rent this item.
+          <% else %>
+            <%= form_for @line_item do |f| %>
+              <%= f.hidden_field :tool_id, value: @tool.id %>
+              <%= f.submit "Add this tool to your rental from #{@tool.owner.username}" %>
+            <% end %>
+          <% end %>
         <% else %>
           You already have an open rental request with another owner. Please complete this transaction before renting this tool.
         <% end %>
       <% else %>
-        <%= button_to "Rent this tool", rentals_path %>
+        <%= form_for @rental do |f|%>
+          <%= f.label "checkout_date" %>
+          <%= f.datetime_local_field "checkout_date" %><br>
+          <%= f.label "return date" %>
+          <%= f.datetime_local_field "return_date" %><br>
+          <%= f.hidden_field :tool_id, value: @tool.id %>
+          <%= f.submit "Rent this tool" %>
+        <% end %>
       <% end %>
     <% else %>
       Login to rent this item

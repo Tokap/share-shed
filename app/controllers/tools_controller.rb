@@ -19,6 +19,8 @@ class ToolsController < ApplicationController
 
   def show
     @tool = Tool.find(params[:id])
+    @rental = Rental.new
+    @line_item = LineItem.new
   end
 
   def edit
