@@ -16,6 +16,9 @@ gem 'coffee-rails', '~> 4.1.0'
 
 gem 'faker'
 gem 'pry'
+gem 'paperclip'
+gem 'aws-sdk'
+gem 'figaro'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
