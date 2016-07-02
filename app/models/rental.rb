@@ -1,13 +1,13 @@
 class Rental < ActiveRecord::Base
   validates :renter, :owner, :status, presence: true
-  validates :renter, uniqueness: true, conditions: ->{ drafts }
+  validates_uniqueness_of :renter, conditions: -> { draft }
+
+  enum status: { draft: 0, pending: 1, scheduled: 2, in_progress: 3, returned: 4, closed: 5}
 
   belongs_to :renter, class_name: "User"
   belongs_to :owner, class_name: "User"
   has_many :line_items
   has_many :tools, through: :line_items
-
-  scope :drafts, ->{ where(status: "draft") }
 
   def total_tool_price
     #figure out date-time logic and add multiplyer

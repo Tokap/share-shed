@@ -1,19 +1,24 @@
+User.destroy_all
+Tool.destroy_all
+Rental.destroy_all
+LineItem.destroy_all
+
 ################################### users ############################################
 # user 1 is demo user
-User.create!(username:    'a',
+first_user = User.create!(username:    'a',
              email:       'a@a.com',
              password:    'aaaaaaaa',
              address:     'A Street and 8th, Ayville, AA 98888')
-
+users = []
 18.times do
-  User.create!(username:  Faker::Internet.user_name,
+ users << User.create!(username:  Faker::Internet.user_name,
                email:     Faker::Internet.email,
                password:  'password',
                address:   '123 Main St., Springville, CA')
 end
 
 # user 20 will only have a basic profile to test UX of a new user
-User.create!(username:   'z',
+last_user = User.create!(username:   'z',
              email:      'z@z.com',
              password:   'zzzzzzzzz',
              address:    '9876 Random Ave., Randomville, XX 95826 ')
@@ -34,7 +39,7 @@ end
   Tool.create!(abstract_tool_id:  rand(1..20),
                base_price:        rand(5..50),
                available:         true,
-               owner_id:          1)
+               owner:             first_user)
 end
 
 # create tools for demo user to rent/borrow
@@ -42,66 +47,66 @@ end
   Tool.create!(abstract_tool_id:  rand(1..20),
                base_price:        rand(5..50),
                available:         true,
-               owner_id:          rand(2..19))
+               owner:             users.sample)
 end
 
 # create tool_id 9 to pad line_item
 Tool.create!(abstract_tool_id:  rand(1..20),
                base_price:      rand(5..50),
                available:       true,
-               owner_id:        2)
+               owner:           users[0])
 
 
 ################################### rentals ################################################
 # create 8 rentals for user 1, two of each possible stage of rental life-cycle, one as an owner and one as a renter
-Rental.create!(renter_id:       1,
-               owner_id:        rand(2..19),
+Rental.create!(renter:          first_user,
+               owner:           users.sample,
                status:          'pending',
                checkout_date:   Faker::Date.forward(1),
                return_date:     Faker::Date.forward(15))
 
-Rental.create!(renter_id:       1,
-               owner_id:        rand(2..19),
+Rental.create!(renter:          first_user,
+               owner:           users.sample,
                status:          'scheduled',
                checkout_date:   Faker::Date.forward(1),
                return_date:     Faker::Date.forward(15))
 
-Rental.create!(renter_id:       1,
-               owner_id:        rand(2..19),
-               status:          'in progress',
+Rental.create!(renter:          first_user,
+               owner:           users.sample,
+               status:          'in_progress',
                checkout_date:   Faker::Date.backward(7),
                return_date:     Faker::Date.forward(7))
 
 Tool.find(3).available = false
 
-Rental.create!(renter_id:       1,
-               owner_id:        rand(2..19),
+Rental.create!(renter:          first_user,
+               owner:           users.sample,
                status:          'closed',
                checkout_date:   Faker::Date.backward(30),
                return_date:     Faker::Date.backward(2))
 
-Rental.create!(renter_id:       rand(2..19),
-               owner_id:        1,
+Rental.create!(renter:          users.sample,
+               owner:           first_user,
                status:          'pending',
                checkout_date:   Faker::Date.forward(1),
                return_date:     Faker::Date.forward(15))
 
-Rental.create!(renter_id:       rand(2..19),
-               owner_id:        1,
+Rental.create!(renter:          users.sample,
+               owner:           first_user,
                status:          'scheduled',
                checkout_date:   Faker::Date.forward(1),
                return_date:     Faker::Date.forward(15))
 
-Rental.create!(renter_id:       rand(2..19),
-               owner_id:        1,
-               status:          'in progress',
+Rental.create!(renter:          users.sample,
+               owner:           first_user,
+               status:          'in_progress',
                checkout_date:   Faker::Date.backward(7),
                return_date:     Faker::Date.forward(7))
 
 Tool.find(7).available = false
 
-Rental.create!(renter_id:       rand(2..19),
-               owner_id:        1,
+Rental.create!(renter:          users.sample,
+               owner:           first_user,
                status:          'closed',
                checkout_date:   Faker::Date.backward(30),
                return_date:     Faker::Date.backward(2))

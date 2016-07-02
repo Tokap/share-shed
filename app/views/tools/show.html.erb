@@ -4,12 +4,16 @@
 <p>Description: <%= @tool.description %></p>
 <p>Model number: <%= @tool.model_number %></p>
 
-
-<% if session[:open_rental_owner_id].nil? %>
-<% if current_user.rentals.
-  <%= button_to "Rent this tool", rentals_path %>
-<% elsif session[:open_rental_owner_id]== @tool.owner.id %>
-  <%= button_to "Add this tool to your rental from #{@tool.owner.username}", line_items_path %>
+<% if current_user %>
+  <% if current_user.has_draft_rental? %>
+    <% if current_user.draft.owner == @tool.owner %>
+      <%= button_to "Add this tool to your rental from #{@tool.owner.username}", line_items_path %>
+    <% else %>
+      You already have an open rental request with another owner. Please complete this transaction before renting this tool.
+    <% end %>
+  <% else %>
+    <%= button_to "Rent this tool", rentals_path %>
+  <% end %>
 <% else %>
-  You already have an open rental request with another owner. Please complete this transaction before renting this tool.
+  Login to rent this item
 <% end %>
