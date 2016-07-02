@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-devise_for :users
+# devise_for :users
+devise_for :users, :controllers => { registrations: 'registrations' }
 # Run rake routes to see what this added.
 # DEVISE HELPERS WORTH NOTING:
   # before_action :authenticate_user! (for CONTROLLER)
