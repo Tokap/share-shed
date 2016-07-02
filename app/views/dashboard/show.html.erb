@@ -1,4 +1,20 @@
 <h1> User Dashboard AKA Mission Control AKA The Toolbelt </h1>
+  <h3>You have a rental request from:</h3>
+ <% if @owned_rentals.any? %>
+  <ul>
+  <% @owned_rentals.each do |o_rental|  %>
+    <li><%= link_to o_rental.renter.username, rental_path(o_rental) %></li>
+  <% end %>
+</ul>
+<% end %>
+<h3>You have open rental requests with:</h3>
+<% if @rented_rentals.any? %>
+<ul>
+  <% @rented_rentals.each do |r_rental|  %>
+    <li><%= link_to r_rental.owner.username, rental_path(r_rental) %></li>
+  <% end %>
+</ul>
+<% end %>
 
 <h2>The Tools you Own</h2>
 <% @user.tools.each do |tool| %>
