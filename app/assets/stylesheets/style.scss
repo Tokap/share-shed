@@ -77,14 +77,34 @@ main.about {
   }
 }
 
+main.rental-show {
+  section {
+
+  }
+  article {
+    .rental-table {
+      padding: 0;
+      margin: 0;
+      td {
+        border: 1px solid black;
+        margin: 0;
+      }
+      td.bottom-line {
+        border-top: 3px solid black;
+      }
+    }
+
+  }
+  aside {
+
+  }
+}
+
 main.sign-up {
   section {
     display: none;
   }
 }
-
-
-
 
 //
 // GLOBAL HELPER STYLES
