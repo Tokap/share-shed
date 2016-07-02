@@ -33,7 +33,7 @@ end
 4.times do
   Tool.create!(abstract_tool_id:  rand(1..20),
                base_price:        rand(5..50),
-               available:         'available',
+               available:         true,
                owner_id:          1)
 end
 
@@ -41,14 +41,14 @@ end
 4.times do
   Tool.create!(abstract_tool_id:  rand(1..20),
                base_price:        rand(5..50),
-               available:         'available',
+               available:         true,
                owner_id:          rand(2..19))
 end
 
 # create tool_id 9 to pad line_item
 Tool.create!(abstract_tool_id:  rand(1..20),
                base_price:      rand(5..50),
-               available:       'available',
+               available:       true,
                owner_id:        2)
 
 
@@ -72,7 +72,7 @@ Rental.create!(renter_id:       1,
                checkout_date:   Faker::Date.backward(7),
                return_date:     Faker::Date.forward(7))
 
-Tool.find(3).available = 'unavailable'
+Tool.find(3).available = false
 
 Rental.create!(renter_id:       1,
                owner_id:        rand(2..19),
@@ -98,7 +98,7 @@ Rental.create!(renter_id:       rand(2..19),
                checkout_date:   Faker::Date.backward(7),
                return_date:     Faker::Date.forward(7))
 
-Tool.find(7).available = 'unavailable'
+Tool.find(7).available = false
 
 Rental.create!(renter_id:       rand(2..19),
                owner_id:        1,

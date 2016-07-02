@@ -16,11 +16,16 @@ devise_for :users
   ### THE ABOVE IS A PLACEHOLDER FOR EMAIL VERIFICATION SENDS ###
   # Routes.rb: Add some kind of root_path. Devise will rely on this sometimes.
 
-root to: "home#index"
+root to: "root#index"
 
 get "/about" => "static#about"
 get "/help" => "static#help"
 get "/template" => "static#template"
+
+resources :abstract_tools
+resources :tools
+resources :rentals
+resources :line_items
 
 # This is a placeholder. Devise requires a root path as an option.
 # Update to proper static homepage when available.
