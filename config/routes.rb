@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-devise_for :users
+# devise_for :users
+devise_for :users, :controllers => { registrations: 'registrations' }
 # Run rake routes to see what this added.
 # DEVISE HELPERS WORTH NOTING:
   # before_action :authenticate_user! (for CONTROLLER)
@@ -16,8 +17,11 @@ devise_for :users
   ### THE ABOVE IS A PLACEHOLDER FOR EMAIL VERIFICATION SENDS ###
   # Routes.rb: Add some kind of root_path. Devise will rely on this sometimes.
 
-
 root to: "root#index"
+
+get "/about" => "static#about"
+get "/help" => "static#help"
+get "/template" => "static#template"
 
 resources :abstract_tools
 resources :tools

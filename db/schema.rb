@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160701062923) do
+ActiveRecord::Schema.define(version: 20160701234003) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,16 +30,16 @@ ActiveRecord::Schema.define(version: 20160701062923) do
   end
 
   create_table "rentals", force: :cascade do |t|
-    t.integer  "renter_id",     null: false
-    t.integer  "owner_id",      null: false
-    t.string   "status",        null: false
+    t.integer  "renter_id",                 null: false
+    t.integer  "owner_id",                  null: false
     t.datetime "checkout_date"
     t.datetime "return_date"
     t.integer  "rental_price"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.datetime "pickup_time"
     t.datetime "dropoff_time"
+    t.integer  "status",        default: 0, null: false
   end
 
   create_table "tools", force: :cascade do |t|
