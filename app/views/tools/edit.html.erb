@@ -1,0 +1,12 @@
+<div class='new-tool white-div'>
+  <h1>Edit a tool</h1>
+  <% if @tool.errors.any? %>
+    <% @tool.errors.full_messages.each do |error| %>
+      <ul>
+        <li class='error-msg'><%= error %></li>
+      </ul>
+    <% end %>
+  <% end  %>
+  <%= render 'form' %>
+
+</div>

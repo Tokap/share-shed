@@ -1,11 +1,5 @@
 class ToolsController < ApplicationController
 
-  def show
-    @tool = Tool.find(params[:id])
-    @rental = Rental.new
-    @line_item = LineItem.new
-  end
-
   def new
     @tool = Tool.new
     @abstract_tools_options = AbstractTool.all.map { |ab_tool| [ab_tool.name, ab_tool.id]}
@@ -21,6 +15,30 @@ class ToolsController < ApplicationController
       @abstract_tools_options = AbstractTool.all.map { |ab_tool| [ab_tool.name, ab_tool.id]}
       render 'new'
     end
+  end
+
+  def show
+    @tool = Tool.find(params[:id])
+    @rental = Rental.new
+    @line_item = LineItem.new
+  end
+
+  def edit
+    @tool = Tool.find(params[:id])
+    @abstract_tools_options = AbstractTool.all.map { |ab_tool| [ab_tool.name, ab_tool.id]}
+  end
+
+  def update
+    @tool = Tool.find(params[:id])
+    if @tool.update(tool_params)
+      redirect_to(@tool)
+    else
+      @abstract_tools_options = AbstractTool.all.map { |ab_tool| [ab_tool.name, ab_tool.id]}
+      render 'edit'
+    end
+  end
+
+  def delete
   end
 
   def tool_params
