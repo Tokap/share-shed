@@ -27,7 +27,7 @@
 <h2>Tools Your Renting</h2>
 <% @user.rented_line_items.each do |li| %>
     <p> <%= li.tool.abstract_tool.name.split.map(&:capitalize).join(' ')%> | $<%= li.tool.base_price %> </p>
-    <p> Picked Up: <%= li.rental.checkout_date %> | Due Back: <%= li.rental.return_date %> </p>
+    <p> Picked Up: <%= li.checkout_date %> | Due Back: <%= li.return_date %> </p>
   <% end %>
 
 
