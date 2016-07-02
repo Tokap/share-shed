@@ -1,0 +1,9 @@
+<h2>Pick a Tool to Rent </h2>
+
+<ul>
+  <% @abstract_tools.each do |ab_tool| %>
+    <article>
+      <li><%= link_to ab_tool.name, abstract_tool_path(ab_tool) %></li>
+    </article>
+  <% end %>
+</ul>
