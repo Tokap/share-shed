@@ -1,24 +1,59 @@
-<h1> User Dashboard AKA Mission Control AKA The Toolbelt </h1>
+<hgroup class="dashboard">
 
-<h2>The Tools you Own</h2>
-<% @user.tools.each do |tool| %>
-	<a href="<%= tool_path(tool) %>"><p> <%= tool.abstract_tool.name.split.map(&:capitalize).join(' ') %></a> | $<%= tool.base_price %> <%= link_to 'Show', tool_path(tool) %> <%= link_to 'Edit', edit_tool_path(tool) %> <%= link_to 'Destroy', tool, method: :delete, data: { confirm: 'Are you sure?' } %> </p>
-<% end %>
-<p> Total: $<%= @user.owner_sum_all_tools || 0 %></p>
+  <h2>User Dashboard</h2>
+  <div class="owner-renter-toggle">
+    <button id="dashboard_button_summary">Summary</button>
+    <button id="dashboard_button_owner">Owner</button>
+    <button id="dashboard_button_renter">Renter</button>
+  </div>
 
+</hgroup>
 
-<h2>Tools Actively Rented</h2>
-<% @user.tools.each do |tool| %>
-	<% if tool.available == false %>
-		<p> <a href="<%= tool_path(tool) %>"><%= tool.abstract_tool.name.split.map(&:capitalize).join(' ') %></a> | $<%= tool.base_price %> <%= link_to 'Show', tool_path(tool) %> <%= link_to 'Edit', edit_tool_path(tool) %> <%= link_to 'Destroy', tool, method: :delete, data: { confirm: 'Are you sure?' } %> </p>
-	<% end %>
-<% end %>
-<p> Total: $<%= @user.owner_sum_rented_tools  || 0 %></p>
+<main class="dashboard">
 
-<h2>Tools Not Currently Being Rented</h2>
-<% @user.tools.each do |tool| %>
-	<% if tool.available == true %>
-		<p> <a href="<%= tool_path(tool) %>"><%= tool.abstract_tool.name.split.map(&:capitalize).join(' ')%></a> | $<%= tool.base_price %> <%= link_to 'Show', tool_path(tool) %> <%= link_to 'Edit', edit_tool_path(tool) %> <%= link_to 'Destroy', tool, method: :delete, data: { confirm: 'Are you sure?' } %> </p>
-	<% end %>
-<% end %>
-<p> Total: $<%= @user.owner_sum_inactive_tools || 0 %></p>
+  <section>
+    <h2>The Tools you Own</h2>
+    <% @user.tools.each do |tool| %>
+      <a href="<%= tool_path(tool) %>"><p> <%= tool.abstract_tool.name.split.map(&:capitalize).join(' ') %></a> | $<%= tool.base_price %> <%= link_to 'Show', tool_path(tool) %> <%= link_to 'Edit', edit_tool_path(tool) %> <%= link_to 'Destroy', tool, method: :delete, data: { confirm: 'Are you sure?' } %> </p>
+    <% end %>
+    <p> Total: $<%= @user.owner_sum_all_tools || 0 %></p>
+
+    <h2>Tools Not Currently Being Rented</h2>
+    <% @user.tools.each do |tool| %>
+      <% if tool.available == true %>
+        <p> <a href="<%= tool_path(tool) %>"><%= tool.abstract_tool.name.split.map(&:capitalize).join(' ')%></a> | $<%= tool.base_price %> <%= link_to 'Show', tool_path(tool) %> <%= link_to 'Edit', edit_tool_path(tool) %> <%= link_to 'Destroy', tool, method: :delete, data: { confirm: 'Are you sure?' } %> </p>
+      <% end %>
+    <% end %>
+    <p> Total: $<%= @user.owner_sum_inactive_tools || 0 %></p>
+
+    <h2>Tools Actively Rented</h2>
+    <% @user.tools.each do |tool| %>
+      <% if tool.available == false %>
+        <p> <a href="<%= tool_path(tool) %>"><%= tool.abstract_tool.name.split.map(&:capitalize).join(' ') %></a> | $<%= tool.base_price %> <%= link_to 'Show', tool_path(tool) %> <%= link_to 'Edit', edit_tool_path(tool) %> <%= link_to 'Destroy', tool, method: :delete, data: { confirm: 'Are you sure?' } %> </p>
+      <% end %>
+    <% end %>
+    <p> Total: $<%= @user.owner_sum_rented_tools  || 0 %></p>
+  </section>
+
+  <article>
+    <!-- Or logic for the idea we discussed: -->
+    <h2>Rental Agreements</h2>
+    <% @user.rented_rentals.each do |rental| %>
+      <p> <a href="<%= rental_path(rental) %>">Transaction ID: <%= rental.id %></a> | with User: <%= rental.owner.username %> </p>
+      <p> Picked Up: <%= rental.checkout_date %> | Due Back: <%= rental.return_date %> </p>
+     <% end %>
+
+    <h2 id="dashboard_all_tools">Tools You're Renting</h2>
+    <div class="hidden">
+      <% @user.rented_line_items.each do |li| %>
+        <p> <a href="<%= tool_path(li.tool) %>"><%= li.tool.abstract_tool.name.split.map(&:capitalize).join(' ')%></a> | $<%= li.tool.base_price %> | Status: <%= li.rental.status %> </p>
+        <p> Picked Up: <%= li.checkout_date %> | Due Back: <%= li.return_date %> </p>
+      <% end %>
+    </div>
+  </article>
+
+  <aside>
+  </aside>
+
+</main>
+
