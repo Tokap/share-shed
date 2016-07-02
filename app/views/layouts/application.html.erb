@@ -25,7 +25,9 @@
     </ul>
   </nav>
 </header>
-
+<% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, :class => "flash_#{name}" %>
+<% end %>
 <%= yield %>
 
 <footer>

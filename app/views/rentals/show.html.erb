@@ -25,10 +25,11 @@
       <td><strong>Total:</strong></td>
       <td><strong>$<%= @rental.total_tool_price * @rental.duration %></strong></td>
     </tr>
+  </table>
     <% case @rental.status %>
       <% when "draft" %>
+        <%= button_to "Submit request", @rental, method: :patch %>
     <% end %>
-  </table>
   </article>
   <aside>
   </aside>

@@ -3,7 +3,7 @@
  <% if @owned_rentals.any? %>
   <ul>
   <% @owned_rentals.each do |o_rental|  %>
-    <li><%= link_to o_rental.renter.username, rental_path(o_rental) %></li>
+    <% unless o_rental.status == "draft" %><li><%= link_to "#{o_rental.renter.username} -- #{o_rental.status}", rental_path(o_rental) %></li><% end %>
   <% end %>
 </ul>
 <% end %>
@@ -11,7 +11,7 @@
 <% if @rented_rentals.any? %>
 <ul>
   <% @rented_rentals.each do |r_rental|  %>
-    <li><%= link_to r_rental.owner.username, rental_path(r_rental) %></li>
+    <li><%= link_to "#{r_rental.owner.username} -- #{r_rental.status}", rental_path(r_rental) %></li>
   <% end %>
 </ul>
 <% end %>

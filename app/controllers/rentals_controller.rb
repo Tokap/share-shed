@@ -9,7 +9,7 @@ class RentalsController < ApplicationController
       line_item = LineItem.new(tool: @tool)
       @rental.line_items << line_item
       @rental.save
-      flash[:notice]= "Your rental request has been successfully submitted."
+      flash[:notice]= "This tool has been added to your rental request with #{@rental.owner.username}"
       redirect_to tool_path(@tool)
     else
       render "tools/show"
@@ -18,6 +18,16 @@ class RentalsController < ApplicationController
 
   def show
     @rental = Rental.find(params[:id])
+  end
+
+  def update
+    @rental = Rental.find(params[:id])
+    if @rental.status == "draft"
+      @rental.status = "pending"
+      flash[:notice] = "Your request has been submitted for approval"
+    end
+    @rental.save
+    redirect_to dashboard_path(current_user)
   end
 
 
