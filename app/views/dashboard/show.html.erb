@@ -1,0 +1,10 @@
+<h1> This is a show page </h1>
+
+<%= @user.username %>
+
+<h2>The Tools you Own</h2>
+<% @user.tools.each do |tool| %>
+	<p> <%= tool.abstract_tool.name.split.map(&:capitalize).join(' ') %> | $<%= tool.base_price %> </p>
+<% end %>
+<p> Total: $<%= @user.owner_sum_all_tools %></p>
+
