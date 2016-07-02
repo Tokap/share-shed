@@ -22,10 +22,3 @@
 	<% end %>
 <% end %>
 <p> Total: $<%= @user.owner_sum_inactive_tools || 0 %></p>
-
-
-<h3> Temp Links </h3>
-
-<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-
-<%= link_to('Login', new_user_session_path)  %>
