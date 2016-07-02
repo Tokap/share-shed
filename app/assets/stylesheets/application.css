@@ -14,6 +14,7 @@
  *= require_self
  */
 
+/*
 body {
   background-image: url(background-img.jpg);
   background-size: cover;
@@ -35,7 +36,6 @@ h2 {
 }
 
 .container {
-/*  border: black solid 1px;*/
   display: flex;
   margin: auto;
   width: 80%;
@@ -89,3 +89,4 @@ h2 {
   width: 140px;
   position: inline-block;
 }
+*/
