@@ -38,7 +38,23 @@ header {
   }
 }
 
-
+footer {
+  p {
+    float: left;
+  }
+  nav {
+    float: right;
+    ul {
+      vertical-align: center;
+      list-style-type: none;
+      li {
+        float: left;
+        margin: 5px;
+        padding: 5px;
+      }
+    }
+  }
+}
 
 
 

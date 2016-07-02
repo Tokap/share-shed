@@ -12,15 +12,16 @@
 <body>
 
 <header>
-  <!-- <img class='logo' src="assets/images/logo.jpg"> -->
-  <h1>ShareShed</h1>
+  <a href="/"><img class='logo' src="/assets/logo.jpg"></a>
   <nav>
     <ul>
       <li><%= link_to "Dashboard", root_path %></li>
-      <li><%= link_to "Log in", new_user_session_path %></li>
-      <li><%= link_to "Sign up", new_user_registration_path %></li>
-      <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
-      <li><a href="/about">About Us</a></li>
+      <% if user_signed_in? %>
+        <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+      <% else %>
+        <li><%= link_to "Log in", new_user_session_path %></li>
+        <li><%= link_to "Sign up", new_user_registration_path %></li>
+      <% end %>
     </ul>
   </nav>
 </header>
@@ -29,6 +30,13 @@
 
 <footer>
   <p>&copy;ShareShed 2016</p>
+  <nav>
+    <ul>
+      <li><a href="/faq">FAQ</a></li>
+      <li><a href="/terms">Terms and Conditions</a></li>
+      <li><a href="/about">About Us</a></li>
+    </ul>
+  </nav>
 </footer>
 
 </body>
