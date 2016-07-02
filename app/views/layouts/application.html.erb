@@ -2,6 +2,8 @@
 <html>
 <head>
   <title>ShareShed</title>
+  <%= stylesheet_link_tag    '//cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css'%>
+  <%= stylesheet_link_tag    '//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'%>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <meta name=viewport content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
@@ -10,7 +12,17 @@
 <body>
 
 <header>
-  <a href="/"><img class='logo' src="/assets/logo.jpg"></a>
+  <!-- <a href="/"><img class='logo' src="/assets/logo.jpg"></a> -->
+  <h1>ShareShed</h1>
+  <nav>
+    <ul>
+      <li><%= link_to "Dashboard", root_path %></li>
+      <li><%= link_to "Log in", new_user_session_path %></li>
+      <li><%= link_to "Sign up", new_user_registration_path %></li>
+      <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+      <li><a href="/about">About Us</a></li>
+    </ul>
+  </nav>
 </header>
 
 <%= yield %>
