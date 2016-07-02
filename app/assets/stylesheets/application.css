@@ -89,3 +89,8 @@ h2 {
   width: 140px;
   position: inline-block;
 }
+
+.white-div {
+  background-color: #ffffff;
+  opacity: 0.6;
+}

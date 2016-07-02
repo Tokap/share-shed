@@ -1,5 +1,5 @@
 class Tool < ActiveRecord::Base
-  validates :abstract_tool, :owner, presence: true
+  validates :abstract_tool, :owner, :base_price, presence: true
 
   belongs_to :abstract_tool
 
