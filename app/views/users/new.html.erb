@@ -12,12 +12,12 @@
 
       <div class="field">
         <%= f.label :username %><br />
-        <%= f.text_field :username, autocomplete: "off" %>
+        <%= f.text_field :username, autofocus: true %>
       </div>
 
       <div class="field">
         <%= f.label :address %><br />
-        <%= f.text_field :address, autocomplete: "off" %>
+        <%= f.text_field :address, autofocus: true %>
       </div>
 
       <div class="field">
@@ -32,6 +32,8 @@
         <%= f.label :password_confirmation %><br />
         <%= f.password_field :password_confirmation, autocomplete: "off" %>
       </div>
+
+
 
       <div class="actions">
         <%= f.submit "Sign up" %>
