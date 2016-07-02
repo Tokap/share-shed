@@ -18,6 +18,10 @@ class Rental < ActiveRecord::Base
     tool_prices.reduce(:+)
   end
 
+  def duration
+    ((return_date - checkout_date)/ 86400).ceil
+  end
+
   def pending?
     status == "pending"
   end

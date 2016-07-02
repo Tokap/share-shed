@@ -14,6 +14,14 @@ class LineItemsController < ApplicationController
     end
   end
 
+
+  def destroy
+    @line_item = LineItem.find(params[:id])
+    @rental = @line_item.rental
+    @line_item.destroy
+    redirect_to rental_path(@rental)
+  end
+
   def line_item_params
     params.require(:line_item).permit(:tool_id)
   end

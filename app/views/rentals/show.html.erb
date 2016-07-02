@@ -1,0 +1,32 @@
+<main class="rental-show">
+  <section>
+  </section>
+  <article>
+    <h2>Your rental from <%= @rental.owner.username %>:</h2>
+
+  <p> The current status for this rental is: <%= @rental.status %>
+  <p><%= @rental.checkout_date.to_date %> - <%= @rental.return_date.to_date %></p>
+  <p><%= @rental.duration %> Days</p>
+  <table class="rental-table">
+    <tr>
+      <th>Tool</th>
+      <th>Total price</th>
+    <tr>
+    <% @rental.line_items.each do |line_item| %>
+      <tr>
+        <td><%= line_item.tool.abstract_tool.name %></td>
+        <td>$<%= line_item.tool.base_price * @rental.duration %>
+        <td><%= button_to "Destroy", line_item, method: :delete, data: { confirm: 'Are you sure?'} %></td>
+        </td>
+      </tr>
+    <% end %>
+    <tr><td colspan=2 class="bottom-line"></td></tr>
+    <tr>
+      <td><strong>Total:</strong></td>
+      <td><strong>$<%= @rental.total_tool_price * @rental.duration %></strong></td>
+    </tr>
+  </table>
+  </article>
+  <aside>
+  </aside>
+</main>
