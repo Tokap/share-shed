@@ -38,12 +38,12 @@ hgroup.dashboard {
     margin-top: 20px;
   }
 }
-section, article {
-  flex: 1 1em;
-}
 
 main.dashboard {
-
+  section, article {
+      flex: 1 1em;
+  }
+  aside { display: none; }
 }
 
 main.landing-page {
@@ -143,6 +143,8 @@ main.sign-up {
 //
 // GLOBAL HELPER STYLES
 // --------------------------------------------------
+
+.hidden { display: none; }
 
 main.template {
   section { background-color: #efefef;}
