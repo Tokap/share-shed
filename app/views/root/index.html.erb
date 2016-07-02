@@ -2,7 +2,11 @@
 
   <section>
     <div class='landing-page-div'>
-      <a href="/users/sign_in"><button class='landing-page-btn btn-left'>Share your shed with others!</button></a>
+      <% if user_signed_in? %>
+        <a href="/dashboard/<%= current_user.id %> "><button class='landing-page-btn btn-left'>Share your shed with others!</button></a>
+      <% else %>
+        <a href="/users/sign_in"><button class='landing-page-btn btn-left'>Share your shed with others!</button></a>
+      <% end %>
     </div>
   </section>
 
