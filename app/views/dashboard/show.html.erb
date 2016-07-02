@@ -22,3 +22,19 @@
 	<% end %>
 <% end %>
 <p> Total: $<%= @user.owner_sum_inactive_tools || 0 %></p>
+
+<!-- Don't be alarmed by the similarity in data. This is due to seed file. --> 
+<!-- If we like tools listed here: -->
+
+<h2>Tools You're Renting or wish to Rent</h2>
+<% @user.rented_line_items.each do |li| %>
+    <p> <%= li.tool.abstract_tool.name.split.map(&:capitalize).join(' ')%> | $<%= li.tool.base_price %> </p>
+    <p> Picked Up: <%= li.checkout_date %> | Due Back: <%= li.return_date %> </p>
+ <% end %> 
+
+ <!-- Or logic for the idea we discussed: -->
+ <h2>Rental Agreements</h2>
+<% @user.rented_rentals.each do |rental| %>
+    <p> Transaction ID: <%= rental.id %> | with User: <%= rental.owner.username %> </p>
+    <p> Picked Up: <%= rental.checkout_date %> | Due Back: <%= rental.return_date %> </p>
+ <% end %> 
