@@ -1,14 +1,24 @@
-<h2>Rent this <%= @tool.abstract_tool.name %></h2>
+<main class="tool-show">
+  <section>
+  </section>
 
-Price: <%= @tool.base_price %>
-Description: <%= @tool.description %>
-Model number: <%= @tool.model_number %>
+  <article>
+    <h2>Rent this <%= @tool.abstract_tool.name %></h2>
+
+    Price: <%= @tool.base_price %>
+    Description: <%= @tool.description %>
+    Model number: <%= @tool.model_number %>
 
 
-<% if session[:open_rental_owner_id].nil? %>
-  <%= button_to "Rent this tool", rentals_path %>
-<% elsif session[:open_rental_owner_id]== @tool.owner.id %>
-  <%= button_to "Add this tool to your rental from #{@tool.owner.username}", line_items_path %>
-<% else %>
-  You already have an open rental request with another owner. Please complete this transaction before renting this tool.
-<% end %>
+    <% if session[:open_rental_owner_id].nil? %>
+      <%= button_to "Rent this tool", rentals_path %>
+    <% elsif session[:open_rental_owner_id]== @tool.owner.id %>
+      <%= button_to "Add this tool to your rental from #{@tool.owner.username}", line_items_path %>
+    <% else %>
+      You already have an open rental request with another owner. Please complete this transaction before renting this tool.
+    <% end %>
+  </article>
+
+  <aside>
+  </aside>
+</main>
