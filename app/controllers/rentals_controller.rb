@@ -25,7 +25,11 @@ class RentalsController < ApplicationController
     if @rental.status == "draft"
       @rental.status = "pending"
       flash[:notice] = "Your request has been submitted for approval"
+    elsif @rental.status == "pending"
+      @rental.update(rental_params)
+      @rental.status = "scheduled"
     end
+    puts "Update got called!"
     @rental.save
     redirect_to dashboard_path(current_user)
   end
@@ -35,7 +39,7 @@ class RentalsController < ApplicationController
   private
 
   def rental_params
-    params.require(:rental).permit(:checkout_date, :return_date)
+    params.require(:rental).permit(:checkout_date, :return_date, :pickup_time, :pickup_end_time)
   end
 
 end

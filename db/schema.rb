@@ -30,16 +30,16 @@ ActiveRecord::Schema.define(version: 20160702065744) do
   end
 
   create_table "rentals", force: :cascade do |t|
-    t.integer  "renter_id",                 null: false
-    t.integer  "owner_id",                  null: false
+    t.integer  "renter_id",                   null: false
+    t.integer  "owner_id",                    null: false
     t.datetime "checkout_date"
     t.datetime "return_date"
     t.integer  "rental_price"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.datetime "pickup_time"
-    t.datetime "dropoff_time"
-    t.integer  "status",        default: 0, null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.time     "pickup_time"
+    t.time     "pickup_end_time"
+    t.integer  "status",          default: 0, null: false
   end
 
   create_table "tools", force: :cascade do |t|
