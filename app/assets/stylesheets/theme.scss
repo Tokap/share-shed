@@ -1,0 +1,44 @@
+//
+// SHARESHED THEME CSS
+// --------------------------------------------------
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  margin: 0 auto;
+  padding: 5px;
+  max-width: 1000px;
+}
+
+header, footer, article, section, aside {
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
+  background-color: #efefef;
+}
+
+article, section, aside {
+  /* background-color: #fff; */
+}
+
+header {
+  h1 {
+    float: left;
+  }
+  nav {
+    float: right;
+    ul {
+      vertical-align: center;
+      list-style-type: none;
+      li {
+        float: left;
+        margin: 5px;
+        padding: 5px;
+      }
+    }
+  }
+}
+
+
+
+
+

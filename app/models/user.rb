@@ -16,7 +16,6 @@ class User < ActiveRecord::Base
   has_many :rented_tools, through: :rented_line_items, source: :tool
 
 
-
 # These sums currently work as if the base_price is a flat rate.
 # Once logic is implimented to determine the duration of the rental,
 # a multiplyer should be added

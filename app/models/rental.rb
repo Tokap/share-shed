@@ -27,5 +27,20 @@ class Rental < ActiveRecord::Base
   end
 
   #add boolean producing verifications for rest of status possibilities if group approves
+  def scheduled?
+    status == "scheduled"
+  end
+
+  def in_progress?
+    status == "in_progress"
+  end
+
+  def returned?
+    status == "returned"
+  end
+
+  def closed?
+    status == "closed"
+  end
 
 end
