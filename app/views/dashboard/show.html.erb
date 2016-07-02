@@ -30,27 +30,6 @@
     <p> Picked Up: <%= li.checkout_date %> | Due Back: <%= li.return_date %> </p>
   <% end %>
 
-
-
-
-<h2>Test Area</h2>
-<% @user.rented_line_items.each do |li| %>
-
-<p> LI-rental-renter: <%= li.rental.renter_id %></p>
-<p> LI-rental-owner: <%= li.rental.owner_id %></p>
-
-<h3> Renter's Tools | ID <%= li.rental.renter_id %></h3>
-<% li.rental.renter.tools.each do |tool| %>
-<p> ID: <%= tool.id %> Price: <%= tool.base_price %> </p>
-<% end %>
-
-<h3> Owner's Tools | ID <%= li.rental.owner_id %> </h3>
-<% li.rental.owner.tools.each do |tool| %>
-<p> ID: <%= tool.id %> Price: <%= tool.base_price %> </p>
-<% end %>
-
-<% end %>
-
 <h3> Temp Links </h3>
 
 <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
