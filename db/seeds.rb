@@ -8,20 +8,103 @@ LineItem.destroy_all
 first_user = User.create!(username:    'a',
              email:       'a@a.com',
              password:    'aaaaaaaa',
-             address:     'A Street and 8th, Ayville, AA 98888')
-users = []
-18.times do
- users << User.create!(username:  Faker::Internet.user_name,
-               email:     Faker::Internet.email,
-               password:  'password',
-               address:   '123 Main St., Springville, CA')
-end
+             address:     '707 Broadway, San Diego, CA')
+
+User.create!(username:  Faker::Internet.user_name,
+             email:     Faker::Internet.email,
+             password:  'password',
+             address:   '1048 Seventh Ave, San Diego, CA')
+
+User.create!(username:  Faker::Internet.user_name,
+             email:     Faker::Internet.email,
+             password:  'password',
+             address:   '2920 Zoo Dr, San Diego, CA')
+
+User.create!(username:  Faker::Internet.user_name,
+             email:     Faker::Internet.email,
+             password:  'password',
+             address:   '222 Island Ave, San Diego, CA')
+
+User.create!(username:  Faker::Internet.user_name,
+             email:     Faker::Internet.email,
+             password:  'password',
+             address:   '100 Park Blvd, San Diego, CA')
+
+User.create!(username:  Faker::Internet.user_name,
+             email:     Faker::Internet.email,
+             password:  'password',
+             address:   '1788 El Prado, San Diego, CA')
+
+User.create!(username:  Faker::Internet.user_name,
+             email:     Faker::Internet.email,
+             password:  'password',
+             address:   '1492 N Harbor Dr, San Diego, CA')
+
+User.create!(username:  Faker::Internet.user_name,
+             email:     Faker::Internet.email,
+             password:  'password',
+             address:   '1451 Washington St, San Diego, CA')
+
+User.create!(username:  Faker::Internet.user_name,
+             email:     Faker::Internet.email,
+             password:  'password',
+             address:   '950 Sixth Ave, San Diego, CA')
+
+User.create!(username:  Faker::Internet.user_name,
+             email:     Faker::Internet.email,
+             password:  'password',
+             address:   '880 Harbor Island Dr, San Diego, CA')
+
+User.create!(username:  Faker::Internet.user_name,
+             email:     Faker::Internet.email,
+             password:  'password',
+             address:   '1717 University Ave, San Diego, CA')
+
+User.create!(username:  Faker::Internet.user_name,
+             email:     Faker::Internet.email,
+             password:  'password',
+             address:   '5680 Mission Center Rd, San Diego, CA')
+
+User.create!(username:  Faker::Internet.user_name,
+             email:     Faker::Internet.email,
+             password:  'password',
+             address:   '500 Sea World Dr, San Diego, CA')
+
+User.create!(username:  Faker::Internet.user_name,
+             email:     Faker::Internet.email,
+             password:  'password',
+             address:   '2345 Fenton Pkwy, San Diego, CA')
+
+User.create!(username:  Faker::Internet.user_name,
+             email:     Faker::Internet.email,
+             password:  'password',
+             address:   '650 Gateway Center Dr, San Diego, CA')
+
+User.create!(username:  Faker::Internet.user_name,
+             email:     Faker::Internet.email,
+             password:  'password',
+             address:   '2100 Costa Del Mar Rd, Carlsbad, CA')
+
+User.create!(username:  Faker::Internet.user_name,
+             email:     Faker::Internet.email,
+             password:  'password',
+             address:   '425 Santa Fe Dr, Encinitas, CA')
+
+User.create!(username:  Faker::Internet.user_name,
+             email:     Faker::Internet.email,
+             password:  'password',
+             address:   '2260 Jimmy Durante Blvd, Del Mar, CA')
+
+User.create!(username:  Faker::Internet.user_name,
+             email:     Faker::Internet.email,
+             password:  'password',
+             address:   '8302 Camino Del Oro, La Jolla, CA')
 
 # user 20 will only have a basic profile to test UX of a new user
 last_user = User.create!(username:   'z',
              email:      'z@z.com',
              password:   'zzzzzzzzz',
-             address:    '9876 Random Ave., Randomville, XX 95826 ')
+             address:    '3966 Cleveland Ave, San Diego, CA')
 
 
 ################################### abstract tools ###################################
@@ -139,7 +222,7 @@ first_user_renting_out_4 = Rental.create!(renter:          last_user,
                    rental:  first_user_borrowing_3)
 
   LineItem.create!(tool:    last_user.tools[3],
-                   rental:  first_user_borrowing_4)                     
+                   rental:  first_user_borrowing_4)
 
 # pad rentals number 1 with an extra item to test multiple line_item functionality
 LineItem.create!(tool:    first_user.tools[4],
