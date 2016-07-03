@@ -9,6 +9,27 @@ class Rental < ActiveRecord::Base
   has_many :line_items
   has_many :tools, through: :line_items
 
+  has_many :line_item_logs
+
+  def save_line_items
+    @stored_line_item_data = []
+    line_items.each do |li|
+     @stored_line_item_data << { name: li.tool.abstract_tool.name }
+     @stored_line_item_data << { base_price: li.tool.base_price }
+   end
+   p @stored_line_item_data
+  end
+
+  def stored_line_item_data
+    @stored_line_item_data
+  end
+
+  def log_line_items
+    line_items.each do |li|
+      LineItemLog.create(name: li.tool.abstract_tool.name, base_price: li.tool.base_price, rental: li.rental)
+    end
+  end
+
   def total_tool_price
     #figure out date-time logic and add multiplyer
     tool_prices = []
@@ -17,14 +38,6 @@ class Rental < ActiveRecord::Base
     end
     tool_prices << 0
     tool_prices.reduce(:+)
-  end
-
-  def clone_line_item(id)
-    clone_li = ""
-    line_items.each do |li|
-      clone_li = li.clone if li.id == id
-    end
-    return clone_li
   end
 
   def set_tools_availability(availability)
