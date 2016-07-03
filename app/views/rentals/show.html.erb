@@ -57,21 +57,24 @@
       <% when "draft" %>
         <%= button_to "Submit request", @rental, method: :patch %>
       <% when "pending" %>
-        <% if current_user == @rental.owner %>
-          <%= form_for @rental do |f| %>
-            <p class='time-range-p'>Time range you will be available for the <%= pluralize(@rental.line_items.count, 'tool') %> to be picked up:</p>
-            <span class='form-label'><%= f.label "From" %></span>
-            <%= f.time_select "pickup_time", prompt: {hour: '11', minute: '00'} %>
-            <span class='form-label'><%= f.label :to, "to" %></span>
-            <%= f.time_select "pickup_end_time", prompt: {hour: '13', minute: '00'} %><br>
-            <div class='flex-btn-box'>
-              <div class='approve-btn rental-request-btn'><%= f.submit "Approve this rental" %></div>
-              <% if @rental.pending? || @rental.draft? %>
-                <div class='cancel-btn rental-request-btn'><%= button_to "Cancel this Rental Request", @rental, method: :delete, data: { confirm: 'Are you sure?'} %></div>
+        <div class='flex-btn-box'>
+          <% if current_user == @rental.owner %>
+            <div>
+              <%= form_for @rental do |f| %>
+                <p class='time-range-p'>Time range you will be available for the <%= pluralize(@rental.line_items.count, 'tool') %> to be picked up:</p>
+                <span class='form-label'><%= f.label "From" %></span>
+                <%= f.time_select "pickup_time", prompt: {hour: '11', minute: '00'} %>
+                <span class='form-label'><%= f.label :to, "to" %></span>
+                <%= f.time_select "pickup_end_time", prompt: {hour: '13', minute: '00'} %><br>
+                <%= f.submit "Approve this rental", class: 'approve-btn rental-request-btn' %>
               <% end %>
             </div>
-          <% end %>
+          </div>
         <% end %>
+        <% if @rental.pending? || @rental.draft? %>
+            <%= button_to "Cancel this Rental Request", @rental, method: :delete, data: { confirm: 'Are you sure?' }, class: 'cancel-btn rental-request-btn' %>
+        <% end %>
+        </div>
       <% when "scheduled" %>
     <% end %>
   </article>
