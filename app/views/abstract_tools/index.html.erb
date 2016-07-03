@@ -1,6 +1,6 @@
 <h2>Pick a Tool to Rent </h2>
 
-<%= link_to "Sign Up to start renting tools", new_user_session_path if !user_signed_in? %>
+<%= link_to "Sign Up to start renting tools", new_user_registration_path if !user_signed_in? %>
 
 <ul>
   <% @available_abstract_tools.each do |ab_tool| %>
