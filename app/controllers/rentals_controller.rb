@@ -18,6 +18,11 @@ class RentalsController < ApplicationController
 
   def show
     @rental = Rental.find(params[:id])
+    if @rental.owner == current_user || @rental.renter == current_user
+      #will populate normally with nothing here
+    else
+      redirect_to root_path #if you're not involved in the rental, go to root
+    end
   end
 
   def update
