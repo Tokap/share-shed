@@ -26,7 +26,9 @@
       <tr>
         <td><%= line_item.tool.abstract_tool.name %></td>
         <td>$<%= line_item.tool.base_price * @rental.duration %>
-        <td><%= button_to "Destroy", line_item, method: :delete, data: { confirm: 'Are you sure?'} %></td>
+        <% if line_item.rental.draft? %>
+          <td><%= button_to "Destroy", line_item, method: :delete, data: { confirm: 'Are you sure?'}  %></td>
+        <% end %>
         </td>
       </tr>
     <% end %>
