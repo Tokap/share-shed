@@ -4,8 +4,8 @@ class CreateRentals < ActiveRecord::Migration
       t.integer   :renter_id, null: false
       t.integer   :owner_id, null: false
       t.string    :status, null: false
-      t.datetime  :checkout_date
-      t.datetime  :return_date
+      t.date      :checkout_date
+      t.date      :return_date
       t.integer   :rental_price
 
       t.timestamps(null: false)

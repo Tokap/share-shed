@@ -42,4 +42,5 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   # Added for Devise email generation feature. Should be updated to real information
   # if we use email resets in final product.
+  Paperclip.options[:command_path] = "/usr/local/bin/"
 end

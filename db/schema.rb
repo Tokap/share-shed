@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160702065744) do
+ActiveRecord::Schema.define(version: 20160703005058) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,16 +30,20 @@ ActiveRecord::Schema.define(version: 20160702065744) do
   end
 
   create_table "rentals", force: :cascade do |t|
-    t.integer  "renter_id",                 null: false
-    t.integer  "owner_id",                  null: false
-    t.datetime "checkout_date"
-    t.datetime "return_date"
+    t.integer  "renter_id",                                   null: false
+    t.integer  "owner_id",                                    null: false
+    t.date     "checkout_date"
+    t.date     "return_date"
     t.integer  "rental_price"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.datetime "pickup_time"
-    t.datetime "dropoff_time"
-    t.integer  "status",        default: 0, null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+    t.time     "pickup_time"
+    t.time     "pickup_end_time"
+    t.integer  "status",                      default: 0,     null: false
+    t.boolean  "owner_pick_up_confirmation",  default: false
+    t.boolean  "renter_pick_up_confirmation", default: false
+    t.boolean  "owner_return_confirmation",   default: false
+    t.boolean  "renter_return_confirmation",  default: false
   end
 
   create_table "tools", force: :cascade do |t|
