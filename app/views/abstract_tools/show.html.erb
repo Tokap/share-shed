@@ -1,16 +1,25 @@
-<h2>Select a <%= @abstract_tool.name %> to view its details</h2>
+<main>
+  <section>
+  </section>
 
-<ul>
-  <% @tools.each do |tool| %>
-    <article>
-      <% if tool.available %>
-        <% if current_user %>
-          <li><%= link_to "$#{tool.base_price}/per day, only #{pluralize(GoogleDirections.new(current_user.address, tool.owner.address).distance_in_miles, 'mile')} away", tool_path(tool) %> </li>
-        <% else %>
-          <li><%= link_to "$#{tool.base_price}/per day, located in #{tool.owner.address.split(',')[1]}", tool_path(tool) %></li>
-        <% end %>
+  <article>
+  <h2>Select a <%= @abstract_tool.name %> to view its details</h2>
+    <ul>
+      <% @tools.each do |tool| %>
+        <article>
+          <% if tool.available %>
+            <% if current_user %>
+              <li><%= link_to "$#{tool.base_price}/per day, only #{pluralize(GoogleDirections.new(current_user.address, tool.owner.address).distance_in_miles, 'mile')} away", tool_path(tool) %> </li>
+            <% else %>
+              <li><%= link_to "$#{tool.base_price}/per day, located in #{tool.owner.address.split(',')[1]}", tool_path(tool) %></li>
+            <% end %>
+          <% end %>
+        </article>
       <% end %>
-    </article>
-  <% end %>
-</ul>
+    </ul>
+  </article>
 
+  <aside>
+  </aside>
+
+</main>

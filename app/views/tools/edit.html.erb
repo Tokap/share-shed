@@ -1,16 +1,26 @@
-<div class='new-tool white-div'>
-  <h1>Edit a tool</h1>
-  <% if @tool.errors.any? %>
-    <% @tool.errors.full_messages.each do |error| %>
-      <ul>
-        <li class='error-msg'><%= error %></li>
-      </ul>
-    <% end %>
-  <% end  %>
-  <%= render 'form' %>
+<main>
+  <section>
+  </section>
 
-  <% if @tool.available %>
-    <%= button_to 'Destroy', @tool, method: :delete%>
-  <% end %>
+  <article>
+    <div class='new-tool white-div'>
+      <h1>Edit a tool</h1>
+      <% if @tool.errors.any? %>
+        <% @tool.errors.full_messages.each do |error| %>
+          <ul>
+            <li class='error-msg'><%= error %></li>
+          </ul>
+        <% end %>
+      <% end  %>
+      <%= render 'form' %>
 
-</div>
+      <% if @tool.available %>
+        <%= button_to 'Destroy', @tool, method: :delete%>
+      <% end %>
+
+    </div>
+  </article>
+
+  <aside>
+  </aside>
+</main>
