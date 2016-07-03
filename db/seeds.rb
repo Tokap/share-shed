@@ -260,3 +260,5 @@ dummmy_users.each do |user|
                available:         true,
                owner:             user)
 end
+
+Rental.all.each {|rental| rental.log_line_items }
