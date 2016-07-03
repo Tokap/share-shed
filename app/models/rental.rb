@@ -6,7 +6,7 @@ class Rental < ActiveRecord::Base
 
   belongs_to :renter, class_name: "User"
   belongs_to :owner, class_name: "User"
-  has_many :line_items
+  has_many :line_items, dependent: :destroy
   has_many :tools, through: :line_items
 
   has_many :line_item_logs
