@@ -41,7 +41,17 @@ class ToolsController < ApplicationController
   end
 
   def destroy
-    Tool.find(params[:id]).destroy
+    target_tool = Tool.find(params[:id])
+    related_line_items = LineItem.where(tool: target_tool)
+    # @rentals_where_tool_is_only_item = []
+    
+    related_line_items.each do |li|
+      li.rental.destroy if li.rental.status != "closed" && li.rental.line_items.length == 1
+    end
+    # @rentals_where_tool_is_only_item.each do |rental|
+    #   rental.destroy
+    # end
+    target_tool.destroy
     redirect_to "/dashboard/#{current_user.id}"
   end
 
