@@ -5,7 +5,8 @@ class RentalsController < ApplicationController
     @rental = Rental.new(rental_params)
     @rental.owner = @tool.owner
     @rental.renter = current_user
-    if @rental.valid?
+    if @rental.valid? && @rental.renter != @tool.owner
+    # second condition added to keep tool owner from renting from himself.
       line_item = LineItem.new(tool: @tool)
       @rental.line_items << line_item
       @rental.save
@@ -18,6 +19,12 @@ class RentalsController < ApplicationController
 
   def show
     @rental = Rental.find(params[:id])
+    redirect_to root_path unless @rental.owner == current_user || @rental.renter == current_user
+    # if @rental.owner == current_user || @rental.renter == current_user
+    #   #will populate normally with nothing here
+    # else
+    #   redirect_to root_path #if you're not involved in the rental, go to root
+    # end
   end
 
   def update
@@ -28,19 +35,24 @@ class RentalsController < ApplicationController
     elsif @rental.status == "pending"
       @rental.update(rental_params)
       @rental.status = "scheduled"
+      @rental.log_line_items #added to save line item data when info has become permanent
       @rental.set_tools_availability(false)
     elsif @rental.status == "scheduled"
       if current_user == @rental.owner
         @rental.update(owner_pick_up_confirmation: true)
+        flash[:notice]="You have confirmed the renter picked up the tool(s)"
       elsif current_user == @rental.renter
         @rental.update(renter_pick_up_confirmation: true)
+        flash[:notice]="You have confirmed your pickup of the tool(s)"
       end
       @rental.status = "in_progress" if @rental.owner_pick_up_confirmation && @rental.renter_pick_up_confirmation
     elsif @rental.status == "in_progress"
       if current_user == @rental.owner
         @rental.update(owner_return_confirmation: true)
+        flash[:notice]="You have confirmed the tool(s) has been returned to you."
       elsif current_user == @rental.renter
         @rental.update(renter_return_confirmation: true)
+        flash[:notice]="You have confirmed your return of the tool(s)"
       end
       if @rental.owner_return_confirmation && @rental.renter_return_confirmation
         @rental.status = "returned"

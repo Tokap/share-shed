@@ -9,7 +9,11 @@ class AbstractToolsController < ApplicationController
 
   def show
     @abstract_tool = AbstractTool.find(params[:id])
-    @tools = @abstract_tool.tools
+    @all_tools = @abstract_tool.tools
+    @tools = []
+    @all_tools.each do |tool|
+    	@tools << tool if tool.owner != current_user
+    end
   end
 
 end
