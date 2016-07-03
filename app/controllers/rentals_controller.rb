@@ -34,6 +34,7 @@ class RentalsController < ApplicationController
     elsif @rental.status == "pending"
       @rental.update(rental_params)
       @rental.status = "scheduled"
+      @rental.set_tools_availability(false)
     elsif @rental.status == "scheduled"
       if current_user == @rental.owner
         @rental.update(owner_pick_up_confirmation: true)
@@ -41,6 +42,16 @@ class RentalsController < ApplicationController
         @rental.update(renter_pick_up_confirmation: true)
       end
       @rental.status = "in_progress" if @rental.owner_pick_up_confirmation && @rental.renter_pick_up_confirmation
+    elsif @rental.status == "in_progress"
+      if current_user == @rental.owner
+        @rental.update(owner_return_confirmation: true)
+      elsif current_user == @rental.renter
+        @rental.update(renter_return_confirmation: true)
+      end
+      if @rental.owner_return_confirmation && @rental.renter_return_confirmation
+        @rental.status = "returned"
+        @rental.set_tools_availability(true)
+      end
     end
     @rental.save
     redirect_to dashboard_path(current_user)
