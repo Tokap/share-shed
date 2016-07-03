@@ -3,8 +3,10 @@
   </section>
   <article>
 
-    <h2>Rental agreement: Owner <%= @rental.owner.username %> is renting to <%= @rental.renter.username %></h2>
-
+  <h2>Rental agreement: Owner <%= @rental.owner.username %> is renting to <%= @rental.renter.username %></h2>
+  <% if @rental.pending? %>
+    <p> <%= button_to "Cancel this Rental Request", @rental, method: :delete, data: { confirm: 'Are you sure?'}  %> </p>
+  <% end %> 
   <p> The current status for this rental is: <%= @rental.status %></p>
   <p>Rental period: <%= @rental.checkout_date %> - <%= @rental.return_date %></p>
   <p><%= @rental.duration %> Day(s)</p>
