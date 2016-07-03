@@ -32,15 +32,19 @@ class RentalsController < ApplicationController
     elsif @rental.status == "scheduled"
       if current_user == @rental.owner
         @rental.update(owner_pick_up_confirmation: true)
+        flash[:notice]="You have confirmed the renter picked up the tool(s)"
       elsif current_user == @rental.renter
         @rental.update(renter_pick_up_confirmation: true)
+        flash[:notice]="You have confirmed your pickup of the tool(s)"
       end
       @rental.status = "in_progress" if @rental.owner_pick_up_confirmation && @rental.renter_pick_up_confirmation
     elsif @rental.status == "in_progress"
       if current_user == @rental.owner
         @rental.update(owner_return_confirmation: true)
+        flash[:notice]="You have confirmed the tool(s) has been returned to you."
       elsif current_user == @rental.renter
         @rental.update(renter_return_confirmation: true)
+        flash[:notice]="You have confirmed your return of the tool(s)"
       end
       if @rental.owner_return_confirmation && @rental.renter_return_confirmation
         @rental.status = "returned"

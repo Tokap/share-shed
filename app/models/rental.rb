@@ -15,6 +15,7 @@ class Rental < ActiveRecord::Base
     tools.each do |tool|
       tool_prices << tool.base_price
     end
+    tool_prices << 0
     tool_prices.reduce(:+)
   end
 
