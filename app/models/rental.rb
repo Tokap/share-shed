@@ -19,6 +19,14 @@ class Rental < ActiveRecord::Base
     tool_prices.reduce(:+)
   end
 
+  def clone_line_item(id)
+    clone_li = ""
+    line_items.each do |li|
+      clone_li = li.clone if li.id == id
+    end
+    return clone_li
+  end
+
   def set_tools_availability(availability)
     line_items.each do |line_item|
       line_item.tool.available = availability
