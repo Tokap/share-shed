@@ -26,7 +26,7 @@ class Rental < ActiveRecord::Base
 
   def log_line_items
     line_items.each do |li|
-      LineItemLog.create(name: li.tool.abstract_tool.name, base_price: li.tool.base_price, rental: li.rental)
+      LineItemLog.create(name: li.tool.abstract_tool.name, price: li.tool.base_price, rental: li.rental)
     end
   end
 
@@ -59,7 +59,6 @@ class Rental < ActiveRecord::Base
     status == 'draft'
   end
 
-  #add boolean producing verifications for rest of status possibilities if group approves
   def scheduled?
     status == "scheduled"
   end
