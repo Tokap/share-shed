@@ -15,9 +15,10 @@
 //= require turbolinks
 //= require_tree .
 
-// brad's code for teacher profile
+
 $(document).ready(function(){
 
+  // Dashboard owner renter buttons
   $("hgroup.dashboard").on("click", "#dashboard_button_owner", function() {
     $("main.dashboard").find("article").addClass('hidden');
     $("main.dashboard").find("section").removeClass('hidden');
