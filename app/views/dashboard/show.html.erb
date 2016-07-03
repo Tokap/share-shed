@@ -33,6 +33,7 @@
       <% end %>
     <% end %>
     <p> Total: $<%= @user.owner_sum_rented_tools  || 0 %></p>
+    <p><%= link_to "Add Tool to your Owner's Shed", new_tool_path  %> </p>
   </section>
 
   <article>
