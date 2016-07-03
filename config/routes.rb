@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
-devise_for :users
+# devise_for :users
+devise_for :users, :controllers => { registrations: 'registrations' }
+
+resources :dashboard, only: [:show, :index]
 # Run rake routes to see what this added.
 # DEVISE HELPERS WORTH NOTING:
   # before_action :authenticate_user! (for CONTROLLER)
@@ -21,6 +24,9 @@ root to: "root#index"
 get "/about" => "static#about"
 get "/help" => "static#help"
 get "/template" => "static#template"
+get "/terms" => "static#terms"
+get "/faq" => "static#faq"
+# get "/dashboard" => "static#dashboard"
 
 resources :abstract_tools
 resources :tools

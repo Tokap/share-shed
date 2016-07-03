@@ -16,6 +16,16 @@ gem 'coffee-rails', '~> 4.1.0'
 
 gem 'faker'
 gem 'pry'
+gem 'paperclip'
+gem 'aws-sdk'
+gem 'figaro'
+
+# tried and failed
+# gem 'google_maps_service'
+# gem 'google_distance_matrix', '~> 0.1.3'
+# gem "httparty"
+# gem 'google-distance-ruby'
+gem 'google_directions'  #success!
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

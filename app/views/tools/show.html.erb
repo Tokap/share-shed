@@ -1,21 +1,45 @@
-<main class="tool-show">
+<main class="section-aside-hidden">
   <section>
   </section>
 
   <article>
     <h2>Rent this <%= @tool.abstract_tool.name %></h2>
 
-    Price: <%= @tool.base_price %>
-    Description: <%= @tool.description %>
-    Model number: <%= @tool.model_number %>
+    <% if @tool.image.present? %>
+      <%= link_to image_tag(@tool.image.url(:med)), @tool.image.url %>
+    <% end %>
 
+    <p>Price: $<%= @tool.base_price %></p>
+    <p>Owner: <%= @tool.owner.username %></p>
+    <p>Description: <%= @tool.description %></p>
+    <p>Model number: <%= @tool.model_number %></p>
 
-    <% if session[:open_rental_owner_id].nil? %>
-      <%= button_to "Rent this tool", rentals_path %>
-    <% elsif session[:open_rental_owner_id]== @tool.owner.id %>
-      <%= button_to "Add this tool to your rental from #{@tool.owner.username}", line_items_path %>
+    <% if current_user %>
+      <% if current_user.has_draft_rental? %>
+        <% if current_user.rented_rentals.draft.first.owner == @tool.owner %>
+          <% if current_user.rented_line_items.any?{ |item| item.tool == @tool }%>
+            You have already requested to rent this item.
+          <% else %>
+            <%= form_for @line_item do |f| %>
+              <%= f.hidden_field :tool_id, value: @tool.id %>
+              <%= f.submit "Add this tool to your rental from #{@tool.owner.username}" %>
+            <% end %>
+          <% end %>
+        <% else %>
+          You already have an open rental request with another owner. Please complete this transaction before renting this tool.
+        <% end %>
+      <% else %>
+        <%= form_for @rental do |f|%>
+          <%= f.label "checkout_date" %>
+          <%= f.datetime_local_field "checkout_date" %><br>
+          <%= f.label "return date" %>
+          <%= f.datetime_local_field "return_date" %><br>
+          <%= f.hidden_field :tool_id, value: @tool.id %>
+          <%= f.submit "Rent this tool"%>
+        <% end %>
+      <% end %>
     <% else %>
-      You already have an open rental request with another owner. Please complete this transaction before renting this tool.
+      <%= link_to "Log In to start renting tools", new_user_session_path %>
     <% end %>
   </article>
 

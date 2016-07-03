@@ -1,9 +1,12 @@
 class Tool < ActiveRecord::Base
-  validates :abstract_tool, :owner, presence: true
+  validates :abstract_tool, :owner, :base_price, presence: true
 
   belongs_to :abstract_tool
 
   has_many :line_items
   belongs_to :owner, class_name: "User"
+
+  has_attached_file :image, styles: { small: "64x64", med: "100x100", large: "200x200" }
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
 end

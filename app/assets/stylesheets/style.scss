@@ -1,6 +1,97 @@
 //
+// HEADER STYLES
+// --------------------------------------------------
+// Global HEADER style for the entire application
+
+header {
+  .logo {
+    height: 100px;
+    width: 140px;
+    position: inline-block;
+  }
+}
+
+
+//
 // MAIN PAGE STYLES
 // --------------------------------------------------
+// Each page has an HGROUP and MAIN element, for page specific styling.
+// MAIN is required!
+//
+// HGROUP is optional... and can be used for adding a page title or
+// a page specific horizontal menu bar or breadcrumb.
+//
+// Copy and page the template below, along with the template.html.erb file.
+
+hgroup.template { }
+main.template {
+  hgroup  { }
+  section { }
+  article { }
+  aside   { }
+}
+
+hgroup.dashboard {
+  h2 { float: left; }
+  .owner-renter-toggle {
+    float: right;
+    margin-top: 20px;
+  }
+}
+
+main.dashboard {
+  section, article {
+      flex: 1 1em;
+  }
+  aside { display: none; }
+}
+
+main.landing-page {
+  section, article {
+    flex: 1 1em;
+  }
+  aside { display: none; }
+  @media (max-width: 768px) {
+    section, article {
+      flex: 1 0em;
+      .landing-page-btn {
+        height: 10vh;
+      }
+    }
+  }
+
+  .landing-pic {
+    background-size: contain;
+    position: absolute;
+    top: 0px;
+    z-index: -100;
+    width: 100%;
+    height: 100%;
+  }
+
+  .landing-page-btn {
+    width: 100%;
+    height: 50vh;
+    background-color: rgba(85,196,115,.6);
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    border-radius: 5px;
+  }
+
+  .btn-right {
+    background-color: rgba(78,183,205,.6);
+  }
+
+  .landing-page-btn:hover {
+    background-color: white;
+    color: green;
+  }
+}
 
 main.password-pages {
   section, aside {
@@ -20,9 +111,40 @@ main.about {
   }
 }
 
+main.rental-show {
+  section {
+
+  }
+  article {
+    .rental-table {
+      padding: 0;
+      margin: 0;
+      td {
+        border: 1px solid black;
+        margin: 0;
+      }
+      td.bottom-line {
+        border-top: 3px solid black;
+      }
+    }
+
+  }
+  aside {
+
+  }
+}
+
+main.sign-up {
+  section {
+    display: none;
+  }
+}
+
 //
 // GLOBAL HELPER STYLES
 // --------------------------------------------------
+
+.hidden { display: none; }
 
 main.template {
   section { background-color: #efefef;}
