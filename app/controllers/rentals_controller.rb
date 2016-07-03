@@ -34,6 +34,7 @@ class RentalsController < ApplicationController
     elsif @rental.status == "pending"
       @rental.update(rental_params)
       @rental.status = "scheduled"
+      @rental.log_line_items #added to save line item data when info has become permanent
       @rental.set_tools_availability(false)
     elsif @rental.status == "scheduled"
       if current_user == @rental.owner

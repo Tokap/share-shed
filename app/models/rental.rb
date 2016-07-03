@@ -9,6 +9,24 @@ class Rental < ActiveRecord::Base
   has_many :line_items
   has_many :tools, through: :line_items
 
+  has_many :line_item_logs
+
+  def log_line_items
+    line_items.each do |li|
+      LineItemLog.create(name: li.tool.abstract_tool.name, price: (li.tool.base_price * li.rental.duration), rental: li.rental)
+    end
+  end
+
+  def sum_logs
+    if line_item_logs.nil?
+      return 0
+    elsif line_item_logs.length == 0
+      return line_item_logs.first.price
+    else
+      line_item_logs.map { |prev| prev.price }[0]
+    end
+  end
+
   def total_tool_price
     #figure out date-time logic and add multiplyer
     tool_prices = []
@@ -38,7 +56,6 @@ class Rental < ActiveRecord::Base
     status == 'draft'
   end
 
-  #add boolean producing verifications for rest of status possibilities if group approves
   def scheduled?
     status == "scheduled"
   end

@@ -144,3 +144,5 @@ first_user_renting_out_4 = Rental.create!(renter:          last_user,
 # pad rentals number 1 with an extra item to test multiple line_item functionality
 LineItem.create!(tool:    first_user.tools[4],
                  rental:  first_user_renting_out_1)
+
+Rental.all.each {|rental| rental.log_line_items }
