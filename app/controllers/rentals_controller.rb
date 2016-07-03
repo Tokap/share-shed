@@ -28,8 +28,14 @@ class RentalsController < ApplicationController
     elsif @rental.status == "pending"
       @rental.update(rental_params)
       @rental.status = "scheduled"
+    elsif @rental.status == "scheduled"
+      if current_user == @rental.owner
+        @rental.update(owner_pick_up_confirmation: true)
+      elsif current_user == @rental.renter
+        @rental.update(renter_pick_up_confirmation: true)
+      end
+      @rental.status = "in_progress" if @rental.owner_pick_up_confirmation && @rental.renter_pick_up_confirmation
     end
-    puts "Update got called!"
     @rental.save
     redirect_to dashboard_path(current_user)
   end

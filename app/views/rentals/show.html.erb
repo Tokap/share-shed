@@ -2,12 +2,21 @@
   <section>
   </section>
   <article>
-    <h2>Your rental from <%= @rental.owner.username %>:</h2>
+
+    <h2>Rental agreement: Owner <%= @rental.owner.username %> is renting to <%= @rental.renter.username %></h2>
 
   <p> The current status for this rental is: <%= @rental.status %></p>
-  <p>Rental period: <%= @rental.checkout_date.to_date %> - <%= @rental.return_date.to_date %></p>
-  <p><%= @rental.duration %> Days</p>
+  <p>Rental period: <%= @rental.checkout_date %> - <%= @rental.return_date %></p>
+  <p><%= @rental.duration %> Day(s)</p>
   <% if @rental.pickup_time %><p>Pickup time: <%= @rental.pickup_time.strftime("%I:%M%p") %> - <%= @rental.pickup_end_time.strftime("%I:%M%p") %></p><% end %>
+
+  <% if @rental.owner_pick_up_confirmation %><p>Owner has confirmed pickup of tool.</p><% end %>
+  <% if @rental.renter_pick_up_confirmation %><p>Renter has confirmed pickup of tool.</p><% end %>
+
+  <% if @rental.status == "scheduled" %>
+    <%= button_to "Confirm pickup", @rental, method: :patch %>
+  <% end %>
+
   <table class="rental-table">
     <tr>
       <th>Tool</th>
