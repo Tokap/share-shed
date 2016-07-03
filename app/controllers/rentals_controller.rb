@@ -5,7 +5,8 @@ class RentalsController < ApplicationController
     @rental = Rental.new(rental_params)
     @rental.owner = @tool.owner
     @rental.renter = current_user
-    if @rental.valid?
+    if @rental.valid? && @rental.renter != @tool.owner 
+    # second condition added to keep tool owner from renting from himself.
       line_item = LineItem.new(tool: @tool)
       @rental.line_items << line_item
       @rental.save
@@ -18,6 +19,11 @@ class RentalsController < ApplicationController
 
   def show
     @rental = Rental.find(params[:id])
+    if @rental.owner == current_user || @rental.renter == current_user
+      #will populate normally with nothing here
+    else
+      redirect_to root_path #if you're not involved in the rental, go to root
+    end
   end
 
   def update
