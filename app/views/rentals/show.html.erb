@@ -15,8 +15,15 @@
   <% if @rental.owner_pick_up_confirmation %><p>Owner has confirmed pickup of tool.</p><% end %>
   <% if @rental.renter_pick_up_confirmation %><p>Renter has confirmed pickup of tool.</p><% end %>
 
+   <% if @rental.owner_return_confirmation %><p>Owner has confirmed return of tool.</p><% end %>
+  <% if @rental.renter_return_confirmation %><p>Renter has confirmed return of tool.</p><% end %>
+
   <% if @rental.status == "scheduled" %>
     <%= button_to "Confirm pickup", @rental, method: :patch %>
+  <% end %>
+
+   <% if @rental.status == "in_progress" %>
+    <%= button_to "Confirm return", @rental, method: :patch %>
   <% end %>
 
   <table class="rental-table">
