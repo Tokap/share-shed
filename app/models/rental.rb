@@ -17,6 +17,16 @@ class Rental < ActiveRecord::Base
     end
   end
 
+  def sum_logs
+    if line_item_logs.nil?
+      return 0
+    elsif line_item_logs.length == 0
+      return line_item_logs.first.price
+    else
+      line_item_logs.map { |prev| prev.price }[0]
+    end
+  end
+
   def total_tool_price
     #figure out date-time logic and add multiplyer
     tool_prices = []

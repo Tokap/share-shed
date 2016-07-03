@@ -40,7 +40,7 @@
             <td><%= button_to "Destroy", line_item, method: :delete, data: { confirm: 'Are you sure?'}  %></td>
           <% end %>
       <% end %>    
-    <% else %>
+    <% else %> <!-- Transaction is permanent and LI info is logged -->
       <% @rental.line_item_logs.each do |line_item_log| %>
         <td><%= line_item_log.name %></td>
         <td>$<%= line_item_log.price %></td>
@@ -52,7 +52,11 @@
     <tr><td colspan=2 class="bottom-line"></td></tr>
     <tr>
       <td><strong>Total:</strong></td>
+    <% if @rental.pending? || @rental.draft? %> <!-- Data hasn't been saved yet -->
       <td><strong>$<%= @rental.total_tool_price * @rental.duration %></strong></td>
+    <% else %> <!-- Transaction is permanent and LI info is logged -->
+      <td><strong>$<%= @rental.sum_logs %></strong></td>
+    <% end %>  
     </tr>
   </table>
     <% case @rental.status %>
@@ -70,15 +74,6 @@
         <% end %>
       <% when "scheduled" %>
     <% end %>
-    <div>
-    <h3>Test</h3>
-    <% if !@rental.line_item_logs.nil? %>
-    <% @rental.line_item_logs.each do |lil| %>
-    <% p lil %>
-    <p> Name: <%=  lil.name %> | Price: $<%= lil.price %> </p>
-    <% end %>
-    <% end %>
-    </div>
   </article>
   <aside>
   </aside>
