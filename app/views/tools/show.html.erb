@@ -34,12 +34,11 @@
           <%= f.label "return date" %>
           <%= f.datetime_local_field "return_date" %><br>
           <%= f.hidden_field :tool_id, value: @tool.id %>
-          <%= f.submit "Rent this tool" if user_signed_in? %>
-          <%= link_to root_path if !user_signed_in? %>
+          <%= f.submit "Rent this tool"%>
         <% end %>
       <% end %>
     <% else %>
-      Login to rent this item
+      <%= link_to "Sign In to start renting tools", new_user_session_path %>
     <% end %>
   </article>
 
