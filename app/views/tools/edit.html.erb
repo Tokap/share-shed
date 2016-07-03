@@ -9,6 +9,8 @@
   <% end  %>
   <%= render 'form' %>
 
-  <%= button_to 'Destroy', @tool, method: :delete%>
+  <% if @tool.available %>
+    <%= button_to 'Destroy', @tool, method: :delete%>
+  <% end %>
 
 </div>

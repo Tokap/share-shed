@@ -60,10 +60,14 @@ class RentalsController < ApplicationController
       end
     end
     @rental.save
-    redirect_to dashboard_path(current_user)
+    redirect_to rental_path(@rental)
   end
 
-
+  def destroy
+    @rental = Rental.find(params[:id])
+    @rental.destroy
+    redirect_to dashboard_path(current_user)
+  end
 
   private
 

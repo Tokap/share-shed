@@ -16,9 +16,17 @@
   <% if @rental.renter_return_confirmation %><p>Renter has confirmed return of tool.</p><% end %>
 
   <% if @rental.status == "scheduled" %>
-    <%= button_to "Confirm pickup", @rental, method: :patch %>
+    <% if current_user == @rental.owner && !@rental.owner_pick_up_confirmation %>
+      <%= button_to "Confirm renter has picked up your tool(s)", @rental, method: :patch %>
+    <% elsif current_user == @rental.renter && !@rental.renter_pick_up_confirmation %>
+      <%= button_to "Confirm that you have picked up the tool(s)", @rental, method: :patch %>
+    <% end %>
   <% elsif @rental.status == "in_progress" %>
-    <%= button_to "Confirm return", @rental, method: :patch %>
+    <% if current_user == @rental.owner && !@rental.owner_return_confirmation %>
+      <%= button_to "Confirm that your tool(s) as been returned", @rental, method: :patch %>
+    <% elsif current_user == @rental.renter && !@rental.renter_return_confirmation %>
+      <%= button_to "Confirm that you have returned the tool(s)", @rental, method: :patch %>
+    <% end %>
   <% end %>
 
   <table class="rental-table">
@@ -30,15 +38,18 @@
       <% @rental.line_items.each do |line_item| %>
         <tr>
           <td><%= line_item.tool.abstract_tool.name %></td>
-          <td class='align-right'>$<%= line_item.tool.base_price * @rental.duration %>
+          <td class='align-right'>$<%= line_item.tool.base_price * @rental.duration %></td>
           <% if line_item.rental.draft? %>
             <td><%= button_to "Destroy", line_item, method: :delete, data: { confirm: 'Are you sure?'}  %></td>
           <% end %>
+        </tr>
       <% end %>
     <% else %> <!-- Transaction is permanent and LI info is logged -->
       <% @rental.line_item_logs.each do |line_item_log| %>
+      <tr>
         <td><%= line_item_log.name %></td>
-        <td>$<%= line_item_log.price %></td>
+        <td class='align-right'>$<%= line_item_log.price %></td>
+      </tr>
       <% end %>
     <% end %>
         </td>
@@ -49,7 +60,7 @@
     <% if @rental.pending? || @rental.draft? %> <!-- Data hasn't been saved yet -->
       <td class='align-right'><strong>$<%= @rental.total_tool_price * @rental.duration %></strong></td>
     <% else %> <!-- Transaction is permanent and LI info is logged -->
-      <td><strong>$<%= @rental.sum_logs %></strong></td>
+      <td class='align-right'><strong>$<%= @rental.sum_logs %></strong></td>
     <% end %>
     </tr>
   </table>
