@@ -4,4 +4,12 @@ class LineItem < ActiveRecord::Base
   belongs_to :tool
   belongs_to :rental
 
+  def checkout_date
+    rental.checkout_date
+  end
+
+  def return_date
+    rental.return_date
+  end
+
 end

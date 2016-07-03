@@ -1,5 +1,9 @@
 /log
 /tmp
+/public/assets
 
 .DS_Store
 .env
+
+# Ignore application configuration
+/config/application.yml
