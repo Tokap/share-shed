@@ -11,22 +11,10 @@ class Rental < ActiveRecord::Base
 
   has_many :line_item_logs
 
-  def save_line_items
-    @stored_line_item_data = []
-    line_items.each do |li|
-     @stored_line_item_data << { name: li.tool.abstract_tool.name }
-     @stored_line_item_data << { base_price: li.tool.base_price }
-   end
-   p @stored_line_item_data
-  end
-
-  def stored_line_item_data
-    @stored_line_item_data
-  end
-
   def log_line_items
     line_items.each do |li|
-      LineItemLog.create(name: li.tool.abstract_tool.name, price: li.tool.base_price, rental: li.rental)
+      p li.rental.duration
+      LineItemLog.create(name: li.tool.abstract_tool.name, price: (li.tool.base_price * li.rental.duration), rental: li.rental)
     end
   end
 
