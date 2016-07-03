@@ -35,7 +35,7 @@ end
 
 ################################### tools ############################################
 # create tools for demo user to own/lend
-4.times do
+5.times do
   Tool.create!(abstract_tool_id:  rand(1..20),
                base_price:        rand(5..50),
                available:         true,
@@ -47,57 +47,57 @@ end
   Tool.create!(abstract_tool_id:  rand(1..20),
                base_price:        rand(5..50),
                available:         true,
-               owner:             users.sample)
+               owner:             last_user)
 end
 
 # create tool_id 9 to pad line_item
 Tool.create!(abstract_tool_id:  rand(1..20),
                base_price:      rand(5..50),
                available:       true,
-               owner:           users[0])
+               owner:           last_user)
 
 
 ################################### rentals ################################################
 # create 8 rentals for user 1, two of each possible stage of rental life-cycle, one as an owner and one as a renter
-Rental.create!(renter:          first_user,
-               owner:           users.sample,
+first_user_borrowing_1 = Rental.create!(renter:          first_user,
+               owner:           last_user,
                status:          'pending',
                checkout_date:   Faker::Date.forward(1),
                return_date:     Faker::Date.forward(15))
 
-Rental.create!(renter:          first_user,
-               owner:           users.sample,
+first_user_borrowing_2 = Rental.create!(renter:          first_user,
+               owner:           last_user,
                status:          'scheduled',
                checkout_date:   Faker::Date.forward(1),
                return_date:     Faker::Date.forward(15))
 
-Rental.create!(renter:          first_user,
-               owner:           users.sample,
+first_user_borrowing_3 = Rental.create!(renter:          first_user,
+               owner:           last_user,
                status:          'in_progress',
                checkout_date:   Faker::Date.backward(7),
                return_date:     Faker::Date.forward(7))
 
 Tool.find(3).available = false
 
-Rental.create!(renter:          first_user,
-               owner:           users.sample,
+first_user_borrowing_4 = Rental.create!(renter:          first_user,
+               owner:           last_user,
                status:          'closed',
                checkout_date:   Faker::Date.backward(30),
                return_date:     Faker::Date.backward(2))
 
-Rental.create!(renter:          users.sample,
+first_user_renting_out_1 = Rental.create!(renter:          last_user,
                owner:           first_user,
                status:          'pending',
                checkout_date:   Faker::Date.forward(1),
                return_date:     Faker::Date.forward(15))
 
-Rental.create!(renter:          users.sample,
+first_user_renting_out_2 = Rental.create!(renter:          last_user,
                owner:           first_user,
                status:          'scheduled',
                checkout_date:   Faker::Date.forward(1),
                return_date:     Faker::Date.forward(15))
 
-Rental.create!(renter:          users.sample,
+first_user_renting_out_3 = Rental.create!(renter:          last_user,
                owner:           first_user,
                status:          'in_progress',
                checkout_date:   Faker::Date.backward(7),
@@ -105,7 +105,7 @@ Rental.create!(renter:          users.sample,
 
 Tool.find(7).available = false
 
-Rental.create!(renter:          users.sample,
+first_user_renting_out_4 = Rental.create!(renter:          last_user,
                owner:           first_user,
                status:          'closed',
                checkout_date:   Faker::Date.backward(30),
@@ -114,17 +114,33 @@ Rental.create!(renter:          users.sample,
 
 ################################### line items #########################################
 # create first 4 line_items for demo user to lend tools
-for i in 1..4 do
-  LineItem.create!(tool_id:    i,
-                   rental_id:  i)
-end
+  LineItem.create!(tool:    first_user.tools[0],
+                   rental:  first_user_renting_out_1)
+
+  LineItem.create!(tool:    first_user.tools[1],
+                   rental:  first_user_renting_out_2)
+
+  LineItem.create!(tool:    first_user.tools[2],
+                   rental:  first_user_renting_out_3)
+
+  LineItem.create!(tool:    first_user.tools[3],
+                   rental:  first_user_renting_out_4)
+
 
 # create next four line_items for other users to lend tools to demo user
-for i in 5..8 do
-  LineItem.create!(tool_id:    i,
-                   rental_id:  i)
-end
+
+  LineItem.create!(tool:    last_user.tools[0],
+                   rental:  first_user_borrowing_1)
+
+  LineItem.create!(tool:    last_user.tools[1],
+                   rental:  first_user_borrowing_2)
+
+  LineItem.create!(tool:    last_user.tools[2],
+                   rental:  first_user_borrowing_3)
+
+  LineItem.create!(tool:    last_user.tools[3],
+                   rental:  first_user_borrowing_4)                     
 
 # pad rentals number 1 with an extra item to test multiple line_item functionality
-LineItem.create!(tool_id:    9,
-                 rental_id:  1)
+LineItem.create!(tool:    first_user.tools[4],
+                 rental:  first_user_renting_out_1)
