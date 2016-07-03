@@ -18,12 +18,12 @@ class Rental < ActiveRecord::Base
   end
 
   def sum_logs
-    if line_item_logs.nil?
+    if line_item_logs.empty?
       return 0
-    elsif line_item_logs.length == 0
+    elsif line_item_logs.length == 1
       return line_item_logs.first.price
     else
-      line_item_logs.map { |prev| prev.price }[0]
+      line_item_logs.sum(:price)
     end
   end
 

@@ -60,7 +60,7 @@ class RentalsController < ApplicationController
       end
     end
     @rental.save
-    redirect_to dashboard_path(current_user)
+    redirect_to rental_path(@rental)
   end
 
 
