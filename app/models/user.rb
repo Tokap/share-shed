@@ -15,11 +15,14 @@ class User < ActiveRecord::Base
   has_many :rented_line_items, through: :rented_rentals, source: :line_items
   has_many :rented_tools, through: :rented_line_items, source: :tool
 
- 
 
 # These sums currently work as if the base_price is a flat rate.
 # Once logic is implimented to determine the duration of the rental,
 # a multiplyer should be added
+
+  def has_draft_rental?
+    rented_rentals.draft.any?
+  end
 
   def owner_sum_all_tools
     tool_prices = []
@@ -52,5 +55,5 @@ class User < ActiveRecord::Base
     end
     tool_prices.reduce(:+)
   end
-         
+
 end
