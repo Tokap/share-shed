@@ -10,7 +10,7 @@
   <%= render 'form' %>
 
   <% if @tool.available %>
-    <%= button_to 'Destroy', @tool, method: :delete%>
+    <%= button_to 'Destroy', @tool, method: :delete, data: { confirm: 'Are you sure?'} %>
   <% end %>
 
 </div>

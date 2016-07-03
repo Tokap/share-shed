@@ -5,6 +5,9 @@
 
   <h2><%= @rental.owner.username.titleize %> (owner) sharing their shed with <%= @rental.renter.username.titleize %></h2>
   <p>Current status: <span class='rental-status'><%= @rental.status %></span></p>
+  <% if @rental.scheduled? || @rental.in_progress? %>
+  <p>Owner Address: <%= @rental.owner.address %></p>
+  <% end %>
   <p>Rental period: <%= @rental.checkout_date %> to <%= @rental.return_date %> (<%= pluralize(@rental.duration, 'day') %>)</p>
 
   <% if @rental.pickup_time %><p>Pickup time: <%= @rental.pickup_time.strftime("%I:%M%p") %> - <%= @rental.pickup_end_time.strftime("%I:%M%p") %></p><% end %>
@@ -32,7 +35,7 @@
   <table class="rental-table">
     <tr>
       <th>Tool</th>
-      <th>Daily price * <%= @rental.duration %></th>
+      <th>Price</th>
     <tr>
     <% if @rental.pending? || @rental.draft? %> <!-- Data hasn't been saved yet -->
       <% @rental.line_items.each do |line_item| %>
@@ -67,6 +70,7 @@
     <% case @rental.status %>
       <% when "draft" %>
         <%= button_to "Submit request", @rental, method: :patch %>
+        <%= button_to "Cancel this Rental Request", @rental, method: :delete, data: { confirm: 'Are you sure?' }, class: 'cancel-btn rental-request-btn' %>
       <% when "pending" %>
         <div class='flex-btn-box'>
           <% if current_user == @rental.owner %>
@@ -82,9 +86,9 @@
             </div>
           </div>
         <% end %>
-        <% if @rental.pending? || @rental.draft? %>
+
             <%= button_to "Cancel this Rental Request", @rental, method: :delete, data: { confirm: 'Are you sure?' }, class: 'cancel-btn rental-request-btn' %>
-        <% end %>
+
         </div>
       <% when "scheduled" %>
     <% end %>
