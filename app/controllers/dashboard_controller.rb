@@ -1,9 +1,16 @@
 class DashboardController < ApplicationController
 
+  before_action :authenticate_user!
+
   def show
   	@user = User.find(params[:id])
-    @owned_rentals = @user.owned_rentals
-    @rented_rentals = @user.rented_rentals
+    if @user == current_user
+      @owned_rentals = @user.owned_rentals
+    	@rented_rentals = Rental.where(renter: @user).order('status DESC')
+    	#rentals ordered by status
+    else
+    	redirect_to root_path
+    end
   end
 
   def index

@@ -10,6 +10,7 @@
     <% end %>
 
     <p>Price: $<%= @tool.base_price %></p>
+    <p>Owner: <%= @tool.owner.username %></p>
     <p>Description: <%= @tool.description %></p>
     <p>Model number: <%= @tool.model_number %></p>
 
@@ -34,11 +35,11 @@
           <%= f.label "return date" %>
           <%= f.datetime_local_field "return_date" %><br>
           <%= f.hidden_field :tool_id, value: @tool.id %>
-          <%= f.submit "Rent this tool" %>
+          <%= f.submit "Rent this tool"%>
         <% end %>
       <% end %>
     <% else %>
-      Login to rent this item
+      <%= link_to "Log In to start renting tools", new_user_session_path %>
     <% end %>
   </article>
 
