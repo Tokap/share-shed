@@ -67,6 +67,7 @@
     <% case @rental.status %>
       <% when "draft" %>
         <%= button_to "Submit request", @rental, method: :patch %>
+        <%= button_to "Cancel this Rental Request", @rental, method: :delete, data: { confirm: 'Are you sure?' }, class: 'cancel-btn rental-request-btn' %>
       <% when "pending" %>
         <div class='flex-btn-box'>
           <% if current_user == @rental.owner %>
@@ -82,9 +83,9 @@
             </div>
           </div>
         <% end %>
-        <% if @rental.pending? || @rental.draft? %>
+
             <%= button_to "Cancel this Rental Request", @rental, method: :delete, data: { confirm: 'Are you sure?' }, class: 'cancel-btn rental-request-btn' %>
-        <% end %>
+
         </div>
       <% when "scheduled" %>
     <% end %>
