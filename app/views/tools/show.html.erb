@@ -34,7 +34,8 @@
           <%= f.label "return date" %>
           <%= f.datetime_local_field "return_date" %><br>
           <%= f.hidden_field :tool_id, value: @tool.id %>
-          <%= f.submit "Rent this tool" %>
+          <%= f.submit "Rent this tool" if user_signed_in? %>
+          <%= link_to root_path if !user_signed_in? %>
         <% end %>
       <% end %>
     <% else %>
