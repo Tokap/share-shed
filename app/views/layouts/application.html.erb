@@ -6,7 +6,6 @@
   <%= stylesheet_link_tag    '//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'%>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <meta name=viewport content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -42,6 +41,6 @@
     </ul>
   </nav>
 </footer>
-
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 </body>
 </html>
