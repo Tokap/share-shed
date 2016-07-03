@@ -43,4 +43,8 @@ Rails.application.configure do
   # Added for Devise email generation feature. Should be updated to real information
   # if we use email resets in final product.
   Paperclip.options[:command_path] = "/usr/local/bin/"
+
+  # Compress JavaScripts and CSS.
+  # config.assets.js_compressor = :uglifier
+  # config.assets.css_compressor = :sass
 end
