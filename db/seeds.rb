@@ -145,8 +145,4 @@ first_user_renting_out_4 = Rental.create!(renter:          last_user,
 LineItem.create!(tool:    first_user.tools[4],
                  rental:  first_user_renting_out_1)
 
-
-
-
-        <td><%= line_item_log.name %></td>
-        <td>$<%= line_item_log.price %>
+Rental.all.each {|rental| rental.log_line_items }

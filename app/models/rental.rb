@@ -13,7 +13,6 @@ class Rental < ActiveRecord::Base
 
   def log_line_items
     line_items.each do |li|
-      p li.rental.duration
       LineItemLog.create(name: li.tool.abstract_tool.name, price: (li.tool.base_price * li.rental.duration), rental: li.rental)
     end
   end
