@@ -4,7 +4,7 @@
   <article>
 
   <h2>Rental agreement: Owner <%= @rental.owner.username %> is renting to <%= @rental.renter.username %></h2>
-  <% if @rental.pending? %>
+  <% if @rental.pending? || @rental.draft? %>
     <p> <%= button_to "Cancel this Rental Request", @rental, method: :delete, data: { confirm: 'Are you sure?'}  %> </p>
   <% end %> 
   <p> The current status for this rental is: <%= @rental.status %></p>
