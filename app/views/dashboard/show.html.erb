@@ -38,16 +38,17 @@
   <article>
     <!-- Or logic for the idea we discussed: -->
     <h2>Rental Agreements</h2>
-    <% @user.rented_rentals.each do |rental| %>
+    <% @rented_rentals.each do |rental| %>
       <p> <a href="<%= rental_path(rental) %>">Transaction ID: <%= rental.id %></a> | with User: <%= rental.owner.username %> </p>
-      <p> Picked Up: <%= rental.checkout_date %> | Due Back: <%= rental.return_date %> </p>
+      <p> Status: <%= rental.status.capitalize %></p>
+      <p> Picked Up: <%= rental.checkout_date.strftime("%m/%d/%y") %> | Due Back: <%= rental.return_date.strftime("%m/%d/%y") %> </p>
      <% end %>
 
     <h2 id="dashboard_all_tools">Tools You're Renting</h2>
     <div class="hidden">
       <% @user.rented_line_items.each do |li| %>
         <p> <a href="<%= tool_path(li.tool) %>"><%= li.tool.abstract_tool.name.split.map(&:capitalize).join(' ')%></a> | $<%= li.tool.base_price %> | Status: <%= li.rental.status %> </p>
-        <p> Picked Up: <%= li.checkout_date %> | Due Back: <%= li.return_date %> </p>
+        <p> Picked Up: <%= li.checkout_date.strftime("%m/%d/%y") %> | Due Back: <%= li.return_date.strftime("%m/%d/%y") %> </p>
       <% end %>
     </div>
   </article>
