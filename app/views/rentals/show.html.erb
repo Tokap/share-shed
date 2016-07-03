@@ -3,43 +3,38 @@
   </section>
   <article>
 
-  <h2>Rental agreement: Owner <%= @rental.owner.username %> is renting to <%= @rental.renter.username %></h2>
-  <% if @rental.pending? || @rental.draft? %>
-    <p> <%= button_to "Cancel this Rental Request", @rental, method: :delete, data: { confirm: 'Are you sure?'}  %> </p>
-  <% end %> 
-  <p> The current status for this rental is: <%= @rental.status %></p>
-  <p>Rental period: <%= @rental.checkout_date %> - <%= @rental.return_date %></p>
-  <p><%= @rental.duration %> Day(s)</p>
+  <h2><%= @rental.owner.username.titleize %> (owner) sharing their shed with <%= @rental.renter.username.titleize %></h2>
+  <p>Current status: <span class='rental-status'><%= @rental.status %></span></p>
+  <p>Rental period: <%= @rental.checkout_date %> to <%= @rental.return_date %> (<%= pluralize(@rental.duration, 'day') %>)</p>
+
   <% if @rental.pickup_time %><p>Pickup time: <%= @rental.pickup_time.strftime("%I:%M%p") %> - <%= @rental.pickup_end_time.strftime("%I:%M%p") %></p><% end %>
 
   <% if @rental.owner_pick_up_confirmation %><p>Owner has confirmed pickup of tool.</p><% end %>
   <% if @rental.renter_pick_up_confirmation %><p>Renter has confirmed pickup of tool.</p><% end %>
 
-   <% if @rental.owner_return_confirmation %><p>Owner has confirmed return of tool.</p><% end %>
+  <% if @rental.owner_return_confirmation %><p>Owner has confirmed return of tool.</p><% end %>
   <% if @rental.renter_return_confirmation %><p>Renter has confirmed return of tool.</p><% end %>
 
   <% if @rental.status == "scheduled" %>
     <%= button_to "Confirm pickup", @rental, method: :patch %>
-  <% end %>
-
-   <% if @rental.status == "in_progress" %>
+  <% elsif @rental.status == "in_progress" %>
     <%= button_to "Confirm return", @rental, method: :patch %>
   <% end %>
 
   <table class="rental-table">
     <tr>
       <th>Tool</th>
-      <th>Total price</th>
+      <th>Daily price * <%= @rental.duration %></th>
     <tr>
     <% if @rental.pending? || @rental.draft? %> <!-- Data hasn't been saved yet -->
       <% @rental.line_items.each do |line_item| %>
         <tr>
           <td><%= line_item.tool.abstract_tool.name %></td>
-          <td>$<%= line_item.tool.base_price * @rental.duration %>
+          <td class='align-right'>$<%= line_item.tool.base_price * @rental.duration %>
           <% if line_item.rental.draft? %>
             <td><%= button_to "Destroy", line_item, method: :delete, data: { confirm: 'Are you sure?'}  %></td>
           <% end %>
-      <% end %>    
+      <% end %>
     <% else %> <!-- Transaction is permanent and LI info is logged -->
       <% @rental.line_item_logs.each do |line_item_log| %>
         <td><%= line_item_log.name %></td>
@@ -48,15 +43,14 @@
     <% end %>
         </td>
       </tr>
-    
     <tr><td colspan=2 class="bottom-line"></td></tr>
     <tr>
       <td><strong>Total:</strong></td>
     <% if @rental.pending? || @rental.draft? %> <!-- Data hasn't been saved yet -->
-      <td><strong>$<%= @rental.total_tool_price * @rental.duration %></strong></td>
+      <td class='align-right'><strong>$<%= @rental.total_tool_price * @rental.duration %></strong></td>
     <% else %> <!-- Transaction is permanent and LI info is logged -->
       <td><strong>$<%= @rental.sum_logs %></strong></td>
-    <% end %>  
+    <% end %>
     </tr>
   </table>
     <% case @rental.status %>
@@ -65,11 +59,17 @@
       <% when "pending" %>
         <% if current_user == @rental.owner %>
           <%= form_for @rental do |f| %>
-           <%= f.label "pickup_time" %>
-           <%= f.time_select "pickup_time" %><br>
-           <%= f.label "pickup_end_time" %>
-           <%= f.time_select "pickup_end_time" %>
-           <%= f.submit "Approve this rental" %>
+            <p class='time-range-p'>Time range you will be available for the <%= pluralize(@rental.line_items.count, 'tool') %> to be picked up:</p>
+            <span class='form-label'><%= f.label "From" %></span>
+            <%= f.time_select "pickup_time", prompt: {hour: '11', minute: '00'} %>
+            <span class='form-label'><%= f.label :to, "to" %></span>
+            <%= f.time_select "pickup_end_time", prompt: {hour: '13', minute: '00'} %><br>
+            <div class='flex-btn-box'>
+              <div class='approve-btn rental-request-btn'><%= f.submit "Approve this rental" %></div>
+              <% if @rental.pending? || @rental.draft? %>
+                <div class='cancel-btn rental-request-btn'><%= button_to "Cancel this Rental Request", @rental, method: :delete, data: { confirm: 'Are you sure?'} %></div>
+              <% end %>
+            </div>
           <% end %>
         <% end %>
       <% when "scheduled" %>

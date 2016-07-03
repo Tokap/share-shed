@@ -4,8 +4,13 @@
   <% @tools.each do |tool| %>
     <article>
       <% if tool.available %>
-        <li><%= link_to "$#{tool.base_price} - #{tool.owner.address}" , tool_path(tool) %> </li>
+        <% if current_user %>
+          <li><%= link_to "$#{tool.base_price}/per day, only #{pluralize(GoogleDirections.new(current_user.address, tool.owner.address).distance_in_miles, 'mile')} away", tool_path(tool) %> </li>
+        <% else %>
+          <li><%= link_to "$#{tool.base_price}/per day, located in #{tool.owner.address.split(',')[1]}", tool_path(tool) %></li>
+        <% end %>
       <% end %>
     </article>
   <% end %>
 </ul>
+

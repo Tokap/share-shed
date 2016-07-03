@@ -117,21 +117,35 @@ main.rental-show {
   }
   article {
     .rental-table {
-      padding: 0;
-      margin: 0;
+      padding: 15px;
+      margin: 5px auto 20px auto;
+      border: 1px solid black;
+      box-shadow: -2px 2px 2px black;
       td {
-        border: 1px solid black;
-        margin: 0;
+        margin: 0px;
+        padding: 5px;
       }
       td.bottom-line {
         border-top: 3px solid black;
       }
+      td.align-right {
+        text-align: right;
+      }
+      th {
+      text-align: left;
+      }
     }
-
+    p.time-range-p {
+      margin-bottom: 0px;
+    }
+    .flex-btn-box {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      margin-top: 20px;
+    }
   }
-  aside {
-
-  }
+  aside { }
 }
 
 main.sign-up {
