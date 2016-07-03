@@ -18,8 +18,15 @@ class Rental < ActiveRecord::Base
     tool_prices.reduce(:+)
   end
 
+  def set_tools_availability(availability)
+    line_items.each do |line_item|
+      line_item.tool.available = availability
+      line_item.tool.save
+    end
+  end
+
   def duration
-    ((return_date - checkout_date)/ 86400).ceil
+    (return_date - checkout_date).to_i
   end
 
   def pending?
