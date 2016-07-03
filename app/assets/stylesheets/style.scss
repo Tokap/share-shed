@@ -140,9 +140,19 @@ main.rental-show {
     }
     .flex-btn-box {
       width: 100%;
-      display: flex;
-      justify-content: space-around;
       margin-top: 20px;
+      position: relative;
+    }
+    .cancel-btn {
+      background-color: red;
+      margin-left: 60%;
+      margin-top: -28px;
+      float: right;
+    }
+    .approve-btn {
+      background-color: green;
+      margin-top: 15px;
+      float: left;
     }
   }
   aside { }
