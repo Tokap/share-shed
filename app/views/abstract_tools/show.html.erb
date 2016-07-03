@@ -4,7 +4,7 @@
   <% @tools.each do |tool| %>
     <article>
       <% if tool.available %>
-        <li><%= link_to "$#{tool.base_price} - #{GoogleDirections.new(current_user.address, tool.owner.address).drive_time_in_minutes}" , tool_path(tool) %> </li>
+        <li><%= link_to "$#{tool.base_price}/per day, only #{GoogleDirections.new(current_user.address, tool.owner.address).distance_in_miles} miles away", tool_path(tool) %> </li>
       <% end %>
     </article>
   <% end %>
