@@ -4,6 +4,7 @@
   <title>ShareShed</title>
   <%= stylesheet_link_tag    '//cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css'%>
   <%= stylesheet_link_tag    '//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'%>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <meta name=viewport content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
   <%= csrf_meta_tags %>
@@ -42,6 +43,5 @@
   </nav>
 </footer>
 
-<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 </body>
 </html>
