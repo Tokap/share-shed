@@ -5,7 +5,8 @@ class RentalsController < ApplicationController
     @rental = Rental.new(rental_params)
     @rental.owner = @tool.owner
     @rental.renter = current_user
-    if @rental.valid? && @rental.renter != @tool.owner
+    if @rental.valid? && @rental.renter != @tool.owner 
+    # second condition added to keep tool owner from renting from himself.
       line_item = LineItem.new(tool: @tool)
       @rental.line_items << line_item
       @rental.save
