@@ -261,4 +261,4 @@ dummmy_users.each do |user|
                owner:             user)
 end
 
-Rental.all.each {|rental| rental.log_line_items if (!rental.draft? && !rental.pending?) }
+Rental.all.each {|rental| rental.log_line_items if ( !rental.draft? && !rental.pending?) }
