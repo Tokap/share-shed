@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-  default from: "Shed@Sharing.com"
+  default from: "admin@ShedSharing.com"
 
   def schedule_tool_pickup(rental)
     @rental = rental
