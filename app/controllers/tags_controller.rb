@@ -12,4 +12,8 @@ class TagsController < ApplicationController
 	 redirect_to(@tool) 
 	end
 
+	def index
+
+	end
+
 end
