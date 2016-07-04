@@ -93,7 +93,10 @@ main.dashboard {
     z-index: 50
   }
   .tile p {
-    padding: 10px;
+    margin: 0px;
+  }
+  .tile-info {
+    padding: 5px;
   }
   .tile h4 {
     z-index: 100;
