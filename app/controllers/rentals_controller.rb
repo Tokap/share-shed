@@ -37,6 +37,8 @@ class RentalsController < ApplicationController
       @rental.status = "scheduled"
       @rental.log_line_items #added to save line item data when info has become permanent
       @rental.set_tools_availability(false)
+      email = UserMailer.schedule_tool_pickup(@rental)
+      email.deliver
     elsif @rental.status == "scheduled"
       if current_user == @rental.owner
         @rental.update(owner_pick_up_confirmation: true)
