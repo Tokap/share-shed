@@ -26,6 +26,7 @@ class ToolsController < ApplicationController
   end
 
   def edit
+    @tag = Tag.new
     @tool = Tool.find(params[:id])
     @abstract_tools_options = AbstractTool.all.map { |ab_tool| [ab_tool.name, ab_tool.id]}
   end
@@ -36,11 +37,6 @@ class ToolsController < ApplicationController
 
     @tool = Tool.find(params[:id])
     if @tool.update(tool_params)
-      # RUN THROUGH ALL TAGS AND ASSIGN
-      tag_names.each do |tag_name|
-        Tag.create(name: tag_name, tool: @tool)
-      end
-      #REDIRECT
       redirect_to(@tool)
     else
       @abstract_tools_options = AbstractTool.all.map { |ab_tool| [ab_tool.name, ab_tool.id]}
