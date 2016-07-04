@@ -28,6 +28,13 @@ class Rental < ActiveRecord::Base
     end
   end
 
+  def sum_line_items
+    total_prices = line_items.map do |li|
+      li.tool.base_price * duration
+    end
+    total_prices.inject(:+)
+  end
+
   def total_tool_price
     #figure out date-time logic and add multiplyer
     tool_prices = []

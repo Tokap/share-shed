@@ -7,4 +7,10 @@ class UserMailer < ApplicationMailer
 
     mail(to: @renter.email, subject: "Your rental has been confirmed")
   end
+
+  def alert_owner_of_new_request(rental)
+    @rental = rental
+
+    mail(to: @rental.owner.email, subject: "#{@rental.renter.username} wants to rent your tools")
+  end
 end
