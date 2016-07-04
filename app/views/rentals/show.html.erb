@@ -85,6 +85,7 @@
               <% end %>
               <% if @rental.owner == current_user %>
               <%= form_tag charges_path do %>
+              <%= hidden_field_tag "amount", "#{(@rental.total_tool_price * @rental.duration)}" %>
                 <div>
                   <% if flash[:error].present? %>
                     <div id="error_explanation">

@@ -1,3 +1,4 @@
+<% if current_user == "boat" %> <!-- HERE FOR STRIPE FORM EXAMPLE. HIDE FROM VIEW. -->
 <%= form_tag charges_path do %>
   <article>
     <% if flash[:error].present? %>
@@ -15,4 +16,5 @@
           data-description="A month's subscription"
           data-amount="500"
           data-locale="auto"></script>
+<% end %>
 <% end %>
