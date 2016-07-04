@@ -122,28 +122,28 @@ user_2_tool = Tool.create!(abstract_tool_id:  rand(1..20),
              base_price:        rand(5..50),
              available:         true,
              owner:             user_2,
-             model:             Faker::Company.ein,
+             model_number:      Faker::Company.ein,
              description:       Faker::Hipster.paragraph)
 
 user_3_tool = Tool.create!(abstract_tool_id:  rand(1..20),
              base_price:        rand(5..50),
              available:         true,
              owner:             user_3,
-             model:             Faker::Company.ein,
+             model_number:      Faker::Company.ein,
              description:       Faker::Hipster.paragraph)
 
 user_4_tool = Tool.create!(abstract_tool_id:  rand(1..20),
              base_price:        rand(5..50),
              available:         true,
              owner:             user_4,
-             model:             Faker::Company.ein,
+             model_number:      Faker::Company.ein,
              description:       Faker::Hipster.paragraph)
 
 user_5_tool = Tool.create!(abstract_tool_id:  rand(1..20),
              base_price:        rand(5..50),
              available:         true,
              owner:             user_5,
-             model:             Faker::Company.ein,
+             model_number:      Faker::Company.ein,
              description:       Faker::Hipster.paragraph)
 
 # create tools for demo user to own/lend
@@ -151,28 +151,28 @@ demo_user_tool_1 = Tool.create!(abstract_tool_id:  rand(1..20),
                base_price:        rand(5..50),
                available:         true,
                owner:             demo_user,
-               model:             Faker::Company.ein,
+               model_number:      Faker::Company.ein,
                description:       Faker::Hipster.paragraph)
 
 demo_user_tool_2 = Tool.create!(abstract_tool_id:  rand(1..20),
                base_price:        rand(5..50),
                available:         true,
                owner:             demo_user,
-               model:             Faker::Company.ein,
+               model_number:      Faker::Company.ein,
                description:       Faker::Hipster.paragraph)
 
 demo_user_tool_3 = Tool.create!(abstract_tool_id:  rand(1..20),
                base_price:        rand(5..50),
                available:         true,
                owner:             demo_user,
-               model:             Faker::Company.ein,
+               model_number:      Faker::Company.ein,
                description:       Faker::Hipster.paragraph)
 
 demo_user_tool_4 = Tool.create!(abstract_tool_id:  rand(1..20),
                base_price:        rand(5..50),
                available:         true,
                owner:             demo_user,
-               model:             Faker::Company.ein,
+               model_number:      Faker::Company.ein,
                description:       Faker::Hipster.paragraph)
 
 # another tool to test double line item on a rental request
@@ -180,7 +180,7 @@ demo_user_tool_5 = Tool.create!(abstract_tool_id:  rand(1..20),
                base_price:      rand(5..50),
                available:       true,
                owner:           demo_user,
-               model:           Faker::Company.ein,
+               model_number:    Faker::Company.ein,
                description:     Faker::Hipster.paragraph)
 
 ################################### rentals ################################################
@@ -279,7 +279,7 @@ dummmy_users.each do |user|
                base_price:        rand(5..50),
                available:         true,
                owner:             user,
-               model:             Faker::Company.ein,
+               model_number:      Faker::Company.ein,
                description:       Faker::Hipster.paragraph)
 end
 
