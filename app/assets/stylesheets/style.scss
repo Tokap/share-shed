@@ -84,12 +84,27 @@ main.dashboard {
     justify: space-between;
   }
   .tool-card {
+    background-color: white;
+    background: url("../assets/shovel.png");
     border: solid black 1px;
     height: 150px;
     width: 150px;
     display: inline-block;
     margin: 10px;
     box-shadow: -3px 3px 3px gray;
+    z-index: 50
+  }
+  .tool-card h4 {
+    z-index: 100;
+  }
+  .tool-pic {
+    z-index: 10;
+    height: 150px;
+    width: 150px;
+    position: absolute;
+  }
+  .unavailable {
+    opacity: 0.6;
   }
   aside {}
 }

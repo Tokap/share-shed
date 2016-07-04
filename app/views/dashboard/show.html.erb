@@ -16,9 +16,25 @@
       <div class='flex-container'>
         <% @owned_tools.each do |tool| %>
           <a href="/tools/<%= tool.id %>">
+          <% if tool.available %>
             <div class='tool-card'>
+              <% if tool.image.file? %>
+                <img class='tool-pic' src="<%= tool.image.url %>">
+              <% else %>
+                <img class='tool-pic' src="/assets/shovel.png">
+              <% end %>
               <h4><%= tool.abstract_tool.name %></h4>
             </div>
+          <% else %>
+            <div class='tool-card unavailable'>
+              <% if tool.image.file? %>
+                <img class='tool-pic unavailable' src="<%= tool.image.url %>">
+              <% else %>
+                <img class='tool-pic unavailable' src="/assets/shovel.png">
+              <% end %>
+              <h4 class="unavailable"><%= tool.abstract_tool.name %></h4>
+            </div>
+          <% end %>
           </a>
         <% end %>
       </div>

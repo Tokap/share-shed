@@ -186,6 +186,7 @@ demo_user_borrowing_3 = Rental.create!(renter:          demo_user,
                return_date:     Faker::Date.forward(7))
 
 user_3_tool.available = false
+user_3_tool.save
 
 demo_user_borrowing_4 = Rental.create!(renter:          demo_user,
                owner:           user_5,
@@ -213,6 +214,7 @@ demo_user_renting_out_3 = Rental.create!(renter:          user_4,
                return_date:     Faker::Date.forward(7))
 
 demo_user_tool_3.available = false
+demo_user_tool_3.save
 
 demo_user_renting_out_4 = Rental.create!(renter:          user_5,
                owner:           demo_user,
