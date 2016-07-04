@@ -38,4 +38,8 @@ $(document).ready(function(){
     $(this).next().toggleClass('hidden');
   });
 
+
+  // STRIPE JS BELOW ///
+  Stripe.setPublishableKey(' pk_test_eNf41km4qob9JPZmiA9C6iyt');
+
 });
