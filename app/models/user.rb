@@ -20,6 +20,12 @@ class User < ActiveRecord::Base
 # Once logic is implimented to determine the duration of the rental,
 # a multiplyer should be added
 
+  def zip_code
+    regex = /^\d{5}(?:[-\s]\d{4})?$/
+    zip = regex.match(address)
+    return zip.to_s
+  end
+
   def has_draft_rental?
     rented_rentals.draft.any?
   end
