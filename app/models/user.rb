@@ -20,6 +20,16 @@ class User < ActiveRecord::Base
 # Once logic is implimented to determine the duration of the rental,
 # a multiplyer should be added
 
+  def zip_code
+    regex = /\d{5}/i
+    regex2 = /\s\d{5}/i #looks for leading whitespace followed by 5 digits
+    zip = regex2.match(address)
+    return zip.to_s.to_i
+    # believe it or not, you need to turn
+    # the match data to a string before you can
+    # turn it into an integer
+  end
+
   def has_draft_rental?
     rented_rentals.draft.any?
   end
