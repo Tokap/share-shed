@@ -32,6 +32,8 @@ class RentalsController < ApplicationController
     if @rental.status == "draft"
       @rental.status = "pending"
       flash[:notice] = "Your request has been submitted for approval"
+      email = UserMailer.alert_owner_of_new_request(@rental)
+      email.deliver
     elsif @rental.status == "pending"
       @rental.update(rental_params)
       @rental.status = "scheduled"
