@@ -38,4 +38,21 @@ $(document).ready(function(){
     $(this).next().toggleClass('hidden');
   });
 
+  // Dashboard tabs
+  $('a.tabLinks').on('click', function(e) {
+    e.preventDefault();
+
+    var tabName = $(this).attr('href');
+    var tabContent = $(".tabContent");
+    var tabLinks = $(".tabLinks");
+
+    var i;
+    for (i = 0; i < tabContent.length; i++) {
+      tabContent[i].style.display = "none";
+    }
+
+    $('#'+tabName)[0].style.display = "block";
+    $(this).className += " active";
+  });
+
 });
