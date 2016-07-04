@@ -5,10 +5,14 @@
   <article>
     <% if @tool.owner == current_user %>
       <h2>Your <%= @tool.abstract_tool.name %></h2>
+      <h3>Your Tags: </h3>
     <% else %>
       <h2>Rent this <%= @tool.abstract_tool.name %></h2>
+      <h3>Tags: </h3>
     <% end %>
-
+    <% @tool.tags.each do |tag| %>
+      <p class="tags-display"><%= tag.name %></p>
+    <% end %>
     <% if @tool.image.present? %>
       <%= link_to image_tag(@tool.image.url(:med)), @tool.image.url %>
     <% end %>
