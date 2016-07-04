@@ -2,7 +2,7 @@
   <script type="text/javascript">
     Stripe.setPublishableKey('pk_test_eNf41km4qob9JPZmiA9C6iyt');
   </script>
-  
+
   <section>
   </section>
 
@@ -87,6 +87,11 @@
                 <%= f.time_select "pickup_end_time", prompt: {hour: '13', minute: '00'} %><br>
                 <%= f.submit "Approve this rental", class: 'approve-btn rental-request-btn' %>
               <% end %>
+              <% if @rental.errors.any? %>
+                <% @rental.errors.full_messages.each do |msg| %>
+                  <%= msg %>
+                <% end %>
+              <% end %>
             <% end %>
               <% if @rental.renter == current_user %>
                 <%= form_tag charges_path, :class => "stripe-form" do %>
@@ -108,7 +113,6 @@
              <% end %>
             </div>
           </div>
-    
 
             <%= button_to "Cancel this Rental Request", @rental, method: :delete, data: { confirm: 'Are you sure?' }, class: 'cancel-btn rental-request-btn', form_class: 'cancel-form' %>
 
