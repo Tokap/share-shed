@@ -41,16 +41,19 @@ $(document).ready(function(){
   // Dashboard tabs
   $('a.tabLinks').on('click', function(e) {
     e.preventDefault();
-
-    var tabName = $(this).attr('href');
-    var tabContent = $(".tabContent");
-    var tabLinks = $(".tabLinks");
-
     var i;
+
+    var tabContent = $(".tabContent");
     for (i = 0; i < tabContent.length; i++) {
       tabContent[i].style.display = "none";
     }
 
+    var tabLinks = $(".tabLinks");
+    for (i = 0; i < tabLinks.length; i++) {
+      tabLinks[i].className = tabLinks[i].className.replace(" active", "");
+    }
+
+    var tabName = $(this).attr('href');
     $('#'+tabName)[0].style.display = "block";
     $(this).className += " active";
   });
