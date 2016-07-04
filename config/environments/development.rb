@@ -19,6 +19,7 @@ Rails.application.configure do
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
+
   # Raise an error on page load if there are pending migrations.
   config.active_record.migration_error = :page_load
 
@@ -43,8 +44,16 @@ Rails.application.configure do
   # Added for Devise email generation feature. Should be updated to real information
   # if we use email resets in final product.
   Paperclip.options[:command_path] = "/usr/local/bin/"
+  # config.action_mailer.delivery_method = :letter_opener
 
-  # Compress JavaScripts and CSS.
-  # config.assets.js_compressor = :uglifier
-  # config.assets.css_compressor = :sass
+  config.action_mailer.delivery_method = :letter_opener
+
+  # ActionMailer::Base.smtp_settings = {
+  #   port: 587,
+  #   address: "smtp.mailgun.org",
+  #   domain: ENV['domain'],
+  #   user_name: ENV['username'],
+  #   password: ENV['password'],
+  #   authentication: :plain
+  # }
 end

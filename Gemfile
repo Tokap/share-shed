@@ -44,6 +44,8 @@ gem 'better_errors'
 # Heroku deploy config for asset pipeline
 gem 'rails_12factor'
 
+gem 'stripe'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -58,6 +60,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'pry-rails'
+  gem 'letter_opener'
 end
 
 group :development do

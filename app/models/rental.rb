@@ -14,6 +14,7 @@ class Rental < ActiveRecord::Base
   def log_line_items
     line_items.each do |li|
       LineItemLog.create(name: li.tool.abstract_tool.name, price: (li.tool.base_price * li.rental.duration), rental: li.rental)
+      puts "THIS METHOD HAS BEEN CALLED!"
     end
   end
 
@@ -25,6 +26,13 @@ class Rental < ActiveRecord::Base
     else
       line_item_logs.sum(:price)
     end
+  end
+
+  def sum_line_items
+    total_prices = line_items.map do |li|
+      li.tool.base_price * duration
+    end
+    total_prices.inject(:+)
   end
 
   def total_tool_price

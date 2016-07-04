@@ -3,17 +3,30 @@
   </section>
 
   <article>
-    <h2>Rent this <%= @tool.abstract_tool.name %></h2>
+    <% if @tool.owner == current_user %>
+      <h2><%= @tool.abstract_tool.name.titleize %></h2>
+      <% if @tool.available %>
+        <p>Current Status: Available</p>
+      <% else %>
+        <p>Current Status: Unavailable, rented to <%= @tool.line_items.first.rental.renter.username.titleize %> until <%= @tool.line_items.first.rental.return_date %></p>
+      <% end %>
+    <% else %>
+      <h2>Rent this <%= @tool.abstract_tool.name %></h2>
+    <% end %>
 
     <% if @tool.image.present? %>
       <%= link_to image_tag(@tool.image.url(:med)), @tool.image.url %>
     <% end %>
-
     <p>Price: $<%= @tool.base_price %></p>
-    <p>Owner: <%= @tool.owner.username %></p>
+    <% if @tool.owner != current_user %>
+      <p>Owner: <%= @tool.owner.username %></p>
+    <% end %>
     <p>Description: <%= @tool.description %></p>
     <p>Model number: <%= @tool.model_number %></p>
-
+    <% if current_user == @tool.owner %>
+      <%= link_to 'Edit this tool\'s details', edit_tool_path(@tool) %>
+      <%= button_to 'Remove this tool from your Shed', @tool, action: "delete", method: :delete, data: { confirm: "Are you sure?" } %>
+    <% end %>
     <% if current_user %>
       <% if current_user.has_draft_rental? %>
         <% if current_user.rented_rentals.draft.first.owner == @tool.owner %>

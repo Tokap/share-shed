@@ -38,4 +38,27 @@ $(document).ready(function(){
     $(this).next().toggleClass('hidden');
   });
 
+  // Dashboard tabs
+  $('a[href="#"]').on('click', function(e) {
+    e.preventDefault();
+    var i;
+
+    var tabContent = $(".tabContent");
+    for (i = 0; i < tabContent.length; i++) {
+      tabContent[i].style.display = "none";
+    }
+
+    var tabLinks = $(".tabLinks");
+    for (i = 0; i < tabLinks.length; i++) {
+      tabLinks[i].className = tabLinks[i].className.replace(" active", "");
+    }
+
+    tabName = $(this).attr('class').split(" ")[0]
+    $('#'+tabName)[0].style.display = "block";
+    $(this).className += " active";
+  });
+
+  // STRIPE JS BELOW ///
+  Stripe.setPublishableKey(' pk_test_eNf41km4qob9JPZmiA9C6iyt');
+
 });

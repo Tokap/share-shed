@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 # devise_for :users
 devise_for :users, :controllers => { registrations: 'registrations'}
 
+resources :charges
+
 resources :dashboard, only: [:show, :index]
 # Run rake routes to see what this added.
 # DEVISE HELPERS WORTH NOTING:

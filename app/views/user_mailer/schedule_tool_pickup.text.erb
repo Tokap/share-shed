@@ -1,0 +1,14 @@
+Your rental with <%= @rental.owner.username %> has been confirmed!
+
+  Rental period: <%= @rental.checkout_date %> - <%= @rental.return_date %>
+
+  Please plan to pick up your tool(s) between <%= @rental.pickup_time.strftime("%I:%M%p") %> and <%= @rental.pickup_end_time.strftime("%I:%M%p") %> on <%= @rental.checkout_date %>. The address is <%= @rental.owner.address %>
+
+Rental summary:
+
+  <% @rental.line_item_logs.each do |log| %>
+  <%= log.name %> for $<%= log.price %>
+  <% end %>
+Total: $<%= @rental.sum_logs %>
+
+Thank you for using ShedSharing!

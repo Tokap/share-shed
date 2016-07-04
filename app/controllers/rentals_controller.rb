@@ -32,11 +32,15 @@ class RentalsController < ApplicationController
     if @rental.status == "draft"
       @rental.status = "pending"
       flash[:notice] = "Your request has been submitted for approval"
+      email = UserMailer.alert_owner_of_new_request(@rental)
+      email.deliver
     elsif @rental.status == "pending"
       @rental.update(rental_params)
       @rental.status = "scheduled"
       @rental.log_line_items #added to save line item data when info has become permanent
       @rental.set_tools_availability(false)
+      email = UserMailer.schedule_tool_pickup(@rental)
+      email.deliver
     elsif @rental.status == "scheduled"
       if current_user == @rental.owner
         @rental.update(owner_pick_up_confirmation: true)

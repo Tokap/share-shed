@@ -1,58 +1,123 @@
 <hgroup class="dashboard">
 
-  <h2>User Dashboard</h2>
-  <div class="owner-renter-toggle">
-    <button id="dashboard_button_summary">Summary</button>
-    <button id="dashboard_button_owner">Owner</button>
-    <button id="dashboard_button_renter">Renter</button>
-  </div>
-
 </hgroup>
 
 <main class="dashboard">
 
   <section>
-    <h2>The Tools you Own</h2>
-    <% @user.tools.each do |tool| %>
-      <a href="<%= tool_path(tool) %>"><p> <%= tool.abstract_tool.name.split.map(&:capitalize).join(' ') %></a> | $<%= tool.base_price %> <%= link_to 'Show', tool_path(tool) %> <%= link_to 'Edit', edit_tool_path(tool) %></p>
-    <% end %>
-    <p> Total: $<%= @user.owner_sum_all_tools || 0 %></p>
+    <ul class="tab">
+      <li><a href="#" class="toolshed tabLinks active">Your Toolshed</a></li>
+      <li><a href="#" class="rentals tabLinks">Open Rentals</a></li>
+      <li><a href="#" class="feedback tabLinks">Feedback</a></li>
+      <li><a href="#" class="history tabLinks">Rental History</a></li>
+    </ul>
 
-    <h2>Tools Not Currently Being Rented</h2>
-    <% @user.tools.each do |tool| %>
-      <% if tool.available == true %>
-        <p> <a href="<%= tool_path(tool) %>"><%= tool.abstract_tool.name.split.map(&:capitalize).join(' ')%></a> | $<%= tool.base_price %> <%= link_to 'Show', tool_path(tool) %> <%= link_to 'Edit', edit_tool_path(tool) %> </p>
-      <% end %>
-    <% end %>
-    <p> Total: $<%= @user.owner_sum_inactive_tools || 0 %></p>
+    <div id="toolshed" class="tabContent">
+      <div class='flex-container'>
+        <% if @owned_tools.any? %>
+          <% @owned_tools.each do |tool| %>
+            <a href="/tools/<%= tool.id %>">
+            <% if tool.available %>
+              <div class='tile'>
+                <% if tool.image.file? %>
+                  <img class='tile-pic' src="<%= tool.image.url %>">
+                <% else %>
+                  <img class='tile-pic' src="/assets/shovel.png">
+                <% end %>
+                <h4><%= tool.abstract_tool.name %></h4>
+              </div>
+            <% else %>
+              <div class='tile unavailable'>
+                <% if tool.image.file? %>
+                  <img class='tile-pic unavailable' src="<%= tool.image.url %>">
+                <% else %>
+                  <img class='tile-pic unavailable' src="/assets/shovel.png">
+                <% end %>
+                <h4 class="unavailable"><%= tool.abstract_tool.name %></h4>
+              </div>
+            <% end %>
+            </a>
+          <% end %>
+        <% end %>
+      </div>
+      <p><%= link_to "Add a tool to your Shed", new_tool_path  %> </p>
+    </div>
 
-    <h2>Tools Actively Rented</h2>
-    <% @user.tools.each do |tool| %>
-      <% if tool.available == false %>
-        <p> <a href="<%= tool_path(tool) %>"><%= tool.abstract_tool.name.split.map(&:capitalize).join(' ') %></a> | $<%= tool.base_price %> <%= link_to 'Show', tool_path(tool) %> <%= link_to 'Edit', edit_tool_path(tool) %> </p>
-      <% end %>
-    <% end %>
-    <p> Total: $<%= @user.owner_sum_rented_tools  || 0 %></p>
-    <p><%= link_to "Add Tool to your Owner's Shed", new_tool_path  %> </p>
-  </section>
+    <div id="rentals" class="tabContent">
+      <div class="flex-container rentals-left">
+        <div class='tile p'>
+          <p>You are the renter --------></p>
+        </div>
+        <% if @open_rented_rentals.any? %>
+          <% @open_rented_rentals.each do |rental| %>
+            <a href="/rentals/<%= rental.id %>">
+              <div class='tile'>
+                <p class='tile-info'>Owner: <%= rental.owner.username %></p>
+                <p class='tile-info'>Total: $<%= rental.sum_logs %></p>
+                <p class='tile-info'>Status: <%= rental.status %></p>
+              </div>
+            </a>
+          <% end %>
+        <% end %>
+      </div>
 
-  <article>
-    <!-- Or logic for the idea we discussed: -->
-    <h2>Rental Agreements</h2>
-    <% @rented_rentals.each do |rental| %>
-      <p> <a href="<%= rental_path(rental) %>">Transaction ID: <%= rental.id %></a> | with User: <%= rental.owner.username %> </p>
-      <p> Status: <%= rental.status.capitalize %></p>
-      <p> Picked Up: <%= rental.checkout_date.strftime("%m/%d/%y") %> | Due Back: <%= rental.return_date.strftime("%m/%d/%y") %> </p>
-     <% end %>
+      <div class="horiz-line"></div>
 
-    <h2 id="dashboard_all_tools">Tools You're Renting</h2>
-    <div class="hidden">
-      <% @user.rented_line_items.each do |li| %>
-        <p> <a href="<%= tool_path(li.tool) %>"><%= li.tool.abstract_tool.name.split.map(&:capitalize).join(' ')%></a> | $<%= li.tool.base_price %> | Status: <%= li.rental.status %> </p>
-        <p> Picked Up: <%= li.checkout_date.strftime("%m/%d/%y") %> | Due Back: <%= li.return_date.strftime("%m/%d/%y") %> </p>
+      <div class="flex-container rentals-right">
+      <div class='tile p'>
+        <p>You are the owner of the tool(s) --------></p>
+      </div>
+        <% if @open_owned_rentals.any? %>
+          <% @open_owned_rentals.each do |rental| %>
+            <a href="/rentals/<%= rental.id %>">
+              <div class='tile'>
+                <p class='tile-info'>Renter: <%= rental.renter.username %></p>
+                <p class='tile-info'>Total: $<%= rental.sum_logs %></p>
+              </div>
+            </a>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <div id="feedback" class="tabContent">
+      <p>Here will be feedback that has been submitted about you, and feedback that you have submitted about other people</p>
+    </div>
+
+    <div id="history" class="tabContent">
+      <% if @all_closed_rentals.any? %>
+        <% @all_closed_rentals.each do |rental| %>
+          <a href="/rentals/<%= rental.id %>">
+            <div class='tile'>
+              <p class='tile-info'>Owner: <%= rental.owner.username %></p>
+              <p class='tile-info'>Renter: <%= rental.renter.username %></p>
+              <p class='tile-info'>Total: $<%= rental.sum_logs %></p>
+            </div>
+          </a>
+        <% end %>
       <% end %>
     </div>
-  </article>
+  </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   <aside>
      <h3>You have a rental request from:</h3>
