@@ -4,6 +4,7 @@
   <title>ShareShed</title>
   <%= stylesheet_link_tag    '//cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css'%>
   <%= stylesheet_link_tag    '//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'%>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <meta name=viewport content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -18,7 +19,7 @@
         <li><%= link_to "Find a Tool to Rent", abstract_tools_path %></li>
       <% if user_signed_in? %>
         <li>Hello, <%= current_user.username %></li>
-        <li><%= link_to "Dashboard", dashboard_path(current_user) %></li>
+        <li><%= link_to "Dashboard", dashboard_path(current_user), method: :get %></li>
         <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
       <% else %>
         <li><%= link_to "Log in", new_user_session_path %></li>

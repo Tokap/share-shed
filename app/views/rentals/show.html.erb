@@ -1,72 +1,76 @@
 <main class="rental-show">
   <section>
   </section>
+
   <article>
-
-  <h2><%= @rental.owner.username.titleize %> (owner) sharing their shed with <%= @rental.renter.username.titleize %></h2>
-  <p>Current status: <span class='rental-status'><%= @rental.status %></span></p>
-  <p>Rental period: <%= @rental.checkout_date %> to <%= @rental.return_date %> (<%= pluralize(@rental.duration, 'day') %>)</p>
-
-  <% if @rental.pickup_time %><p>Pickup time: <%= @rental.pickup_time.strftime("%I:%M%p") %> - <%= @rental.pickup_end_time.strftime("%I:%M%p") %></p><% end %>
-
-  <% if @rental.owner_pick_up_confirmation %><p>Owner has confirmed pickup of tool.</p><% end %>
-  <% if @rental.renter_pick_up_confirmation %><p>Renter has confirmed pickup of tool.</p><% end %>
-
-  <% if @rental.owner_return_confirmation %><p>Owner has confirmed return of tool.</p><% end %>
-  <% if @rental.renter_return_confirmation %><p>Renter has confirmed return of tool.</p><% end %>
-
-  <% if @rental.status == "scheduled" %>
-    <% if current_user == @rental.owner && !@rental.owner_pick_up_confirmation %>
-      <%= button_to "Confirm renter has picked up your tool(s)", @rental, method: :patch %>
-    <% elsif current_user == @rental.renter && !@rental.renter_pick_up_confirmation %>
-      <%= button_to "Confirm that you have picked up the tool(s)", @rental, method: :patch %>
+    <h2><%= @rental.owner.username.titleize %> (owner) sharing their shed with <%= @rental.renter.username.titleize %></h2>
+    <p>Current status: <span class='rental-status'><%= @rental.status %></span></p>
+    <% if @rental.scheduled? || @rental.in_progress? %>
+    <p>Owner Address: <%= @rental.owner.address %></p>
     <% end %>
-  <% elsif @rental.status == "in_progress" %>
-    <% if current_user == @rental.owner && !@rental.owner_return_confirmation %>
-      <%= button_to "Confirm that your tool(s) as been returned", @rental, method: :patch %>
-    <% elsif current_user == @rental.renter && !@rental.renter_return_confirmation %>
-      <%= button_to "Confirm that you have returned the tool(s)", @rental, method: :patch %>
-    <% end %>
-  <% end %>
+    <p>Rental period: <%= @rental.checkout_date %> to <%= @rental.return_date %> (<%= pluralize(@rental.duration, 'day') %>)</p>
 
-  <table class="rental-table">
-    <tr>
-      <th>Tool</th>
-      <th>Daily price * <%= @rental.duration %></th>
-    </tr>
-    <% if @rental.pending? || @rental.draft? %> <!-- Data hasn't been saved yet -->
-      <% @rental.line_items.each do |line_item| %>
-        <tr>
-          <td><%= line_item.tool.abstract_tool.name %></td>
-          <td class='align-right'>$<%= line_item.tool.base_price * @rental.duration %></td>
-          <% if line_item.rental.draft? %>
-            <td><%= button_to "Destroy", line_item, method: :delete, data: { confirm: 'Are you sure?'}  %></td>
-          <% end %>
-        </tr>
+    <% if @rental.pickup_time %><p>Pickup time: <%= @rental.pickup_time.strftime("%I:%M%p") %> - <%= @rental.pickup_end_time.strftime("%I:%M%p") %></p><% end %>
+
+    <% if @rental.owner_pick_up_confirmation %><p>Owner has confirmed pickup of tool.</p><% end %>
+    <% if @rental.renter_pick_up_confirmation %><p>Renter has confirmed pickup of tool.</p><% end %>
+
+    <% if @rental.owner_return_confirmation %><p>Owner has confirmed return of tool.</p><% end %>
+    <% if @rental.renter_return_confirmation %><p>Renter has confirmed return of tool.</p><% end %>
+
+    <% if @rental.status == "scheduled" %>
+      <% if current_user == @rental.owner && !@rental.owner_pick_up_confirmation %>
+        <%= button_to "Confirm renter has picked up your tool(s)", @rental, method: :patch %>
+      <% elsif current_user == @rental.renter && !@rental.renter_pick_up_confirmation %>
+        <%= button_to "Confirm that you have picked up the tool(s)", @rental, method: :patch %>
       <% end %>
-    <% else %> <!-- Transaction is permanent and LI info is logged -->
-      <% @rental.line_item_logs.each do |line_item_log| %>
+    <% elsif @rental.status == "in_progress" %>
+      <% if current_user == @rental.owner && !@rental.owner_return_confirmation %>
+        <%= button_to "Confirm that your tool(s) as been returned", @rental, method: :patch %>
+      <% elsif current_user == @rental.renter && !@rental.renter_return_confirmation %>
+        <%= button_to "Confirm that you have returned the tool(s)", @rental, method: :patch %>
+      <% end %>
+    <% end %>
+
+    <table class="rental-table">
       <tr>
-        <td><%= line_item_log.name %></td>
-        <td class='align-right'>$<%= line_item_log.price %></td>
+        <th>Tool</th>
+        <th>Price</th>
       </tr>
+      <% if @rental.pending? || @rental.draft? %> <!-- Data hasn't been saved yet -->
+        <% @rental.line_items.each do |line_item| %>
+          <tr>
+            <td><%= line_item.tool.abstract_tool.name %></td>
+            <td class='align-right'>$<%= line_item.tool.base_price * @rental.duration %></td>
+            <% if line_item.rental.draft? %>
+              <td><%= button_to "Destroy", line_item, method: :delete, data: { confirm: 'Are you sure?'}  %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      <% else %> <!-- Transaction is permanent and LI info is logged -->
+        <% @rental.line_item_logs.each do |line_item_log| %>
+        <tr>
+          <td><%= line_item_log.name %></td>
+          <td class='align-right'>$<%= line_item_log.price %></td>
+        </tr>
+        <% end %>
       <% end %>
-    <% end %>
-        </td>
+          </td>
+        </tr>
+      <tr><td colspan=2 class="bottom-line"></td></tr>
+      <tr>
+        <td><strong>Total:</strong></td>
+          <% if @rental.pending? || @rental.draft? %> <!-- Data hasn't been saved yet -->
+            <td class='align-right'><strong>$<%= @rental.total_tool_price * @rental.duration %></strong></td>
+          <% else %> <!-- Transaction is permanent and LI info is logged -->
+            <td class='align-right'><strong>$<%= @rental.sum_logs %></strong></td>
+          <% end %>
       </tr>
-    <tr><td colspan=2 class="bottom-line"></td></tr>
-    <tr>
-      <td><strong>Total:</strong></td>
-    <% if @rental.pending? || @rental.draft? %> <!-- Data hasn't been saved yet -->
-      <td class='align-right'><strong>$<%= @rental.total_tool_price * @rental.duration %></strong></td>
-    <% else %> <!-- Transaction is permanent and LI info is logged -->
-      <td class='align-right'><strong>$<%= @rental.sum_logs %></strong></td>
-    <% end %>
-    </tr>
-  </table>
+    </table>
     <% case @rental.status %>
       <% when "draft" %>
         <%= button_to "Submit request", @rental, method: :patch %>
+        <%= button_to "Cancel this Rental Request", @rental, method: :delete, data: { confirm: 'Are you sure?' }, class: 'cancel-btn rental-request-btn' %>
       <% when "pending" %>
         <div class='flex-btn-box'>
           <% if current_user == @rental.owner %>
@@ -82,13 +86,14 @@
             </div>
           </div>
         <% end %>
-        <% if @rental.pending? || @rental.draft? %>
+
             <%= button_to "Cancel this Rental Request", @rental, method: :delete, data: { confirm: 'Are you sure?' }, class: 'cancel-btn rental-request-btn' %>
-        <% end %>
+
         </div>
       <% when "scheduled" %>
     <% end %>
   </article>
+
   <aside>
   </aside>
 </main>

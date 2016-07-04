@@ -1,11 +1,20 @@
-<h2>Pick a Tool to Rent </h2>
+<main>
+  <section>
+  </section>
 
-<%= link_to "Sign Up to start renting tools", new_user_registration_path if !user_signed_in? %>
+  <article>
+    <h2>Pick a Tool to Rent </h2>
+    <%= link_to "Sign Up to start renting tools", new_user_registration_path if !user_signed_in? %>
 
-<ul>
-  <% @available_abstract_tools.each do |ab_tool| %>
-    <article>
-      <li><%= link_to ab_tool.name, abstract_tool_path(ab_tool) %></li>
-    </article>
-  <% end %>
-</ul>
+    <ul>
+      <% @available_abstract_tools.each do |ab_tool| %>
+        <article>
+          <li><%= link_to ab_tool.name, abstract_tool_path(ab_tool) %></li>
+        </article>
+      <% end %>
+    </ul>
+  </article>
+
+  <aside>
+  </aside>
+</main>
