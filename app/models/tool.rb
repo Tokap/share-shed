@@ -6,7 +6,8 @@ class Tool < ActiveRecord::Base
   has_many :line_items, dependent: :destroy
   belongs_to :owner, class_name: "User"
 
-  has_many :tags
+  has_many :tool_tags
+  has_many :tags, through: :tool_tags
 
   has_attached_file :image, styles: { small: "64x64", med: "100x100", large: "200x200" }
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/

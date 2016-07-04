@@ -4,10 +4,18 @@ class TagsController < ApplicationController
 	end
 
 	def create
+		# check to see if tag exists first...
+		# creates tag new tag if it doesn't exist
 		@tool = Tool.find(params[:tool])
 		tag_names = params[:tag][:name].split(/\s*,\s*/)
 	 tag_names.each do |tag_name|
-	   Tag.create(name: tag_name, tool: @tool)
+	 	 tag = Tag.find_by(name: tag_name)
+	 	 if tag.nil?
+		   tag = Tag.create(name: tag_name)
+		   ToolTag.create(tag: tag, tool: @tool)
+		 else
+		   ToolTag.create(tag: tag, tool: @tool)
+		 end
 	 end
 	 redirect_to(@tool) 
 	end

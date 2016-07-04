@@ -29,8 +29,11 @@ class ToolsController < ApplicationController
     @tool = Tool.find(params[:id])
     @abstract_tools_options = AbstractTool.all.map { |ab_tool| [ab_tool.name, ab_tool.id]}
 
-    @tags = Tag.where(tool: @tool)
-    p @tags
+    @tool_tag = ToolTag.where(tool: @tool)
+    @tags = []
+    @tool_tag.each do |tt|
+      @tags << tt.tag
+    end
     @tag = Tag.new
   end
 

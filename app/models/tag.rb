@@ -1,3 +1,4 @@
 class Tag < ActiveRecord::Base
-	belongs_to :tool
+	has_many :tool_tags
+	has_many :tools, through: :tool_tags
 end
