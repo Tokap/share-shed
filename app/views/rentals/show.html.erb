@@ -33,7 +33,7 @@
     <tr>
       <th>Tool</th>
       <th>Daily price * <%= @rental.duration %></th>
-    <tr>
+    </tr>
     <% if @rental.pending? || @rental.draft? %> <!-- Data hasn't been saved yet -->
       <% @rental.line_items.each do |line_item| %>
         <tr>
