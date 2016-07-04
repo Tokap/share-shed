@@ -43,6 +43,74 @@ main.dashboard {
   section, article {
       flex: 1 1em;
   }
+  ul.tab {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+  }
+  ul.tab li {
+    float: left;
+  }
+  ul.tab li a {
+    display: inline-block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 17px;
+  }
+  ul.tab li a:hover {
+    background-color: #ddd;
+  }
+  ul.tab li a:focus, .active {
+    background-color: #ccc;
+  }
+  .tabContent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+  }
+  #toolshed {
+    display: block;
+  }
+  .flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify: space-between;
+  }
+  .tile {
+    border: solid black 1px;
+    height: 150px;
+    width: 150px;
+    display: inline-block;
+    margin: 10px;
+    box-shadow: -3px 3px 3px gray;
+    z-index: 50
+  }
+  .tile p {
+    padding: 10px;
+  }
+  .tile h4 {
+    z-index: 100;
+  }
+  .tile-pic {
+    z-index: 10;
+    height: 150px;
+    width: 150px;
+    position: absolute;
+  }
+  .unavailable {
+    opacity: 0.6;
+  }
+  .horiz-line {
+    border: solid gray 1px;
+    margin: auto;
+  }
   aside {}
 }
 
