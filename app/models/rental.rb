@@ -14,6 +14,7 @@ class Rental < ActiveRecord::Base
   def log_line_items
     line_items.each do |li|
       LineItemLog.create(name: li.tool.abstract_tool.name, price: (li.tool.base_price * li.rental.duration), rental: li.rental)
+      puts "THIS METHOD HAS BEEN CALLED!"
     end
   end
 
