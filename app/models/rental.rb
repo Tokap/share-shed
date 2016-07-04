@@ -95,4 +95,6 @@ class Rental < ActiveRecord::Base
     status == "closed"
   end
 
+
+
 end

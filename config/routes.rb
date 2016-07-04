@@ -34,6 +34,9 @@ resources :abstract_tools
 resources :tools
 resources :rentals
 resources :line_items
+resources :users, only: [:show] do
+  resources :reviews, only: [:new,:create]
+end
 
 # This is a placeholder. Devise requires a root path as an option.
 # Update to proper static homepage when available.

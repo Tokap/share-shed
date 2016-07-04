@@ -1,0 +1,7 @@
+<%= form_for @review, url: user_reviews_path do |f|%>
+  <%= f.label "rating" %>
+  <%= f.select(:rating, options_for_select([['1', 1],['2',2],['3',3],['4',4],['5',5]])) %>
+  <%= f.label :content %>
+  <%= f.text_area :content %>
+  <%= f.submit %>
+<% end %>

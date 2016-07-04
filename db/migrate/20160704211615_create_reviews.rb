@@ -4,7 +4,7 @@ class CreateReviews < ActiveRecord::Migration
       t.integer :reviewer_id, null: false
       t.integer :reviewee_id, null: false
       t.integer :rating, null: false
-      t.text :content
+      t.text :content, null: false
 
       t.timestamps(null: false)
     end
