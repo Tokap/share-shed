@@ -19,6 +19,10 @@ class ChargesController < ApplicationController
 	    :currency    => 'usd'
 	  )
 
+	  # if we update the status before redirecting,
+	  # the page will update with options. This would
+	  # have to make sense with the flow of the status changes,
+	  # so this should certainly be discussed.
 	  redirect_to(:back)
 
 	rescue Stripe::CardError => e
