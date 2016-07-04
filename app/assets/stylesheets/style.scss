@@ -217,6 +217,15 @@ main.aside-hidden {
   section, article { background-color: #efefef; }
 }
 
+//
+// PATRICK CSS FOR TOOL TAGS TO FLOAT AND NOT LOOK STUPID
+// --------------------------------------------------
 
+.tags-display {
+  display: inline-block;
+  padding: 3px;
+  margin: -5px 0px;
+  border: solid black 1px; 
+}
 
 
