@@ -170,13 +170,13 @@ demo_user_tool_5 = Tool.create!(abstract_tool_id:  rand(1..20),
 demo_user_borrowing_1 = Rental.create!(renter:          demo_user,
                owner:           user_2,
                status:          'pending',
-               checkout_date:   Faker::Date.forward(1),
+               checkout_date:   Date.today,
                return_date:     Faker::Date.forward(15))
 
 demo_user_borrowing_2 = Rental.create!(renter:          demo_user,
                owner:           user_3,
                status:          'scheduled',
-               checkout_date:   Faker::Date.forward(1),
+               checkout_date:   Date.today,
                return_date:     Faker::Date.forward(15))
 
 demo_user_borrowing_3 = Rental.create!(renter:          demo_user,
@@ -191,19 +191,19 @@ demo_user_borrowing_4 = Rental.create!(renter:          demo_user,
                owner:           user_5,
                status:          'closed',
                checkout_date:   Faker::Date.backward(30),
-               return_date:     Faker::Date.backward(2))
+               return_date:     Date.today)
 
 # demo user lends his tools
 demo_user_renting_out_1 = Rental.create!(renter:          user_2,
                owner:           demo_user,
                status:          'pending',
-               checkout_date:   Faker::Date.forward(1),
+               checkout_date:   Date.today,
                return_date:     Faker::Date.forward(15))
 
 demo_user_renting_out_2 = Rental.create!(renter:          user_3,
                owner:           demo_user,
                status:          'scheduled',
-               checkout_date:   Faker::Date.forward(1),
+               checkout_date:   Date.today,
                return_date:     Faker::Date.forward(15))
 
 demo_user_renting_out_3 = Rental.create!(renter:          user_4,
@@ -218,7 +218,7 @@ demo_user_renting_out_4 = Rental.create!(renter:          user_5,
                owner:           demo_user,
                status:          'closed',
                checkout_date:   Faker::Date.backward(30),
-               return_date:     Faker::Date.backward(2))
+               return_date:     Date.today)
 
 ################################### line items #########################################
 # create next four line_items for other users to lend tools to demo user
