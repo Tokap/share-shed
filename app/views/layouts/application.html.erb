@@ -18,7 +18,7 @@
         <li><%= link_to "Find a Tool to Rent", abstract_tools_path %></li>
       <% if user_signed_in? %>
         <li>Hello, <%= current_user.username %></li>
-        <li><%= link_to "Dashboard", dashboard_path(current_user) %></li>
+        <li><%= link_to "Dashboard", dashboard_path(current_user), method: :get %></li>
         <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
       <% else %>
         <li><%= link_to "Log in", new_user_session_path %></li>
