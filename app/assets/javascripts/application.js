@@ -53,7 +53,7 @@ $(document).ready(function(){
       tabLinks[i].className = tabLinks[i].className.replace(" active", "");
     }
 
-    var tabName = $(this).attr('href');
+    tabName = $(this).attr('class').split(" ")[0]
     $('#'+tabName)[0].style.display = "block";
     $(this).className += " active";
   });
