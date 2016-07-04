@@ -6,8 +6,27 @@ class Rental < ActiveRecord::Base
 
   belongs_to :renter, class_name: "User"
   belongs_to :owner, class_name: "User"
-  has_many :line_items
+  has_many :line_items, dependent: :destroy
   has_many :tools, through: :line_items
+
+  has_many :line_item_logs
+
+  def log_line_items
+    line_items.each do |li|
+      LineItemLog.create(name: li.tool.abstract_tool.name, price: (li.tool.base_price * li.rental.duration), rental: li.rental)
+      puts "THIS METHOD HAS BEEN CALLED!"
+    end
+  end
+
+  def sum_logs
+    if line_item_logs.empty?
+      return 0
+    elsif line_item_logs.length == 1
+      return line_item_logs.first.price
+    else
+      line_item_logs.sum(:price)
+    end
+  end
 
   def total_tool_price
     #figure out date-time logic and add multiplyer
@@ -15,6 +34,7 @@ class Rental < ActiveRecord::Base
     tools.each do |tool|
       tool_prices << tool.base_price
     end
+    tool_prices << 0
     tool_prices.reduce(:+)
   end
 
@@ -37,7 +57,6 @@ class Rental < ActiveRecord::Base
     status == 'draft'
   end
 
-  #add boolean producing verifications for rest of status possibilities if group approves
   def scheduled?
     status == "scheduled"
   end

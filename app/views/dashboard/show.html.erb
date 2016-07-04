@@ -12,16 +12,10 @@
 <main class="dashboard">
 
   <section>
-    <h2>The Tools you Own</h2>
-    <% @user.tools.each do |tool| %>
-      <a href="<%= tool_path(tool) %>"><p> <%= tool.abstract_tool.name.split.map(&:capitalize).join(' ') %></a> | $<%= tool.base_price %> <%= link_to 'Show', tool_path(tool) %> <%= link_to 'Edit', edit_tool_path(tool) %> <%= link_to 'Destroy', tool, method: :delete, data: { confirm: 'Are you sure?' } %> </p>
-    <% end %>
-    <p> Total: $<%= @user.owner_sum_all_tools || 0 %></p>
-
     <h2>Tools Not Currently Being Rented</h2>
     <% @user.tools.each do |tool| %>
       <% if tool.available == true %>
-        <p> <a href="<%= tool_path(tool) %>"><%= tool.abstract_tool.name.split.map(&:capitalize).join(' ')%></a> | $<%= tool.base_price %> <%= link_to 'Show', tool_path(tool) %> <%= link_to 'Edit', edit_tool_path(tool) %> <%= link_to 'Destroy', tool, method: :delete, data: { confirm: 'Are you sure?' } %> </p>
+        <p> <a href="<%= tool_path(tool) %>"><%= tool.abstract_tool.name.split.map(&:capitalize).join(' ')%></a> | $<%= tool.base_price %> <%= link_to 'Show', tool_path(tool) %> <%= link_to 'Edit', edit_tool_path(tool) %> </p>
       <% end %>
     <% end %>
     <p> Total: $<%= @user.owner_sum_inactive_tools || 0 %></p>
@@ -29,7 +23,7 @@
     <h2>Tools Actively Rented</h2>
     <% @user.tools.each do |tool| %>
       <% if tool.available == false %>
-        <p> <a href="<%= tool_path(tool) %>"><%= tool.abstract_tool.name.split.map(&:capitalize).join(' ') %></a> | $<%= tool.base_price %> <%= link_to 'Show', tool_path(tool) %> <%= link_to 'Edit', edit_tool_path(tool) %> <%= link_to 'Destroy', tool, method: :delete, data: { confirm: 'Are you sure?' } %> </p>
+        <p> <a href="<%= tool_path(tool) %>"><%= tool.abstract_tool.name.split.map(&:capitalize).join(' ') %></a> | $<%= tool.base_price %> <%= link_to 'Show', tool_path(tool) %> <%= link_to 'Edit', edit_tool_path(tool) %> </p>
       <% end %>
     <% end %>
     <p> Total: $<%= @user.owner_sum_rented_tools  || 0 %></p>

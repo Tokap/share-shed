@@ -3,39 +3,43 @@
   </section>
 
   <article>
-    <h2>Rent this <%= @tool.abstract_tool.name %></h2>
+    <% if @tool.owner == current_user %>
+      <h2>Your <%= @tool.abstract_tool.name %></h2>
+    <% else %>
+      <h2>Rent this <%= @tool.abstract_tool.name %></h2>
+    <% end %>
 
     <% if @tool.image.present? %>
       <%= link_to image_tag(@tool.image.url(:med)), @tool.image.url %>
     <% end %>
-
     <p>Price: $<%= @tool.base_price %></p>
     <p>Owner: <%= @tool.owner.username %></p>
     <p>Description: <%= @tool.description %></p>
     <p>Model number: <%= @tool.model_number %></p>
-
     <% if current_user %>
       <% if current_user.has_draft_rental? %>
         <% if current_user.rented_rentals.draft.first.owner == @tool.owner %>
           <% if current_user.rented_line_items.any?{ |item| item.tool == @tool }%>
             You have already requested to rent this item.
           <% else %>
-            <%= form_for @line_item do |f| %>
-              <%= f.hidden_field :tool_id, value: @tool.id %>
-              <%= f.submit "Add this tool to your rental from #{@tool.owner.username}" %>
-            <% end %>
+              <%= form_for @line_item do |f| %>
+                <%= f.hidden_field :tool_id, value: @tool.id %>
+                <%= f.submit "Add this tool to your rental from #{@tool.owner.username}" %>
+              <% end %>
           <% end %>
         <% else %>
-          You already have an open rental request with another owner. Please complete this transaction before renting this tool.
+          You already have an open rental request with another owner. Please complete this transaction through your dashboard before renting this tool.
         <% end %>
       <% else %>
-        <%= form_for @rental do |f|%>
-          <%= f.label "checkout_date" %>
-          <%= f.date_field "checkout_date" %><br>
-          <%= f.label "return date" %>
-          <%= f.date_field "return_date" %><br>
-          <%= f.hidden_field :tool_id, value: @tool.id %>
-          <%= f.submit "Rent this tool"%>
+        <% if @tool.owner != current_user%>
+          <%= form_for @rental do |f|%>
+            <%= f.label "checkout_date" %>
+            <%= f.date_field "checkout_date" %><br>
+            <%= f.label "return date" %>
+            <%= f.date_field "return_date" %><br>
+            <%= f.hidden_field :tool_id, value: @tool.id %>
+            <%= f.submit "Rent this tool"%>
+          <% end %>
         <% end %>
       <% end %>
     <% else %>
