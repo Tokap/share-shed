@@ -8,15 +8,28 @@
     <ul class="tab">
       <li><a href="toolshed" class="tabLinks active">Your Toolshed</a></li>
       <li><a href="rentals" class="tabLinks">Open Rentals</a></li>
+      <li><a href="feedback" class="tabLinks">Feedback</a></li>
       <li><a href="history" class="tabLinks">Rental History</a></li>
     </ul>
 
     <div id="toolshed" class="tabContent">
-      <p>Here will be a list of all the tools you own</p>
+      <div class='flex-container'>
+        <% @owned_tools.each do |tool| %>
+          <a href="/tools/<%= tool.id %>">
+            <div class='tool-card'>
+              <h4><%= tool.abstract_tool.name %></h4>
+            </div>
+          </a>
+        <% end %>
+      </div>
     </div>
 
     <div id="rentals" class="tabContent">
       <p>Here will be a list of the rentals you have, sectioned into two categories: as an owner and as a renter</p>
+    </div>
+
+    <div id="feedback" class="tabContent">
+      <p>Here will be feedback that has been submitted about you, and feedback that you have submitted about other people</p>
     </div>
 
     <div id="history" class="tabContent">

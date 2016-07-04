@@ -5,6 +5,7 @@ class DashboardController < ApplicationController
   def show
   	@user = User.find(params[:id])
     if @user == current_user
+      @owned_tools = @user.tools
       @owned_rentals = @user.owned_rentals
     	@rented_rentals = Rental.where(renter: @user).order('status DESC')
     	#rentals ordered by status
