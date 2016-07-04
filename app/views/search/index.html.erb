@@ -8,12 +8,16 @@
   </section>
 
   <article>
-  <h3>We found the following tools: </h3>
-<% if @tool_tags.nil? %>
-	<h3> Could no matching tags found! </h3>
-<% else %>
-	<% @tool_tags.each do |tt| %>
+  <h3>We found the following related tools: </h3>
+<% if @results.nil? %>
+	<h3> No matching results found! </h3>
+<% elsif @tag.class.to_s == "Tag" %>
+	<% @results.each do |tt| %>
 	<p><%= link_to "#{tt.tool.name}", tool_path(tt.tool)%> | $<%= tt.tool.base_price %> each day </p>
+	<% end %>
+<% elsif @results.first.class.to_s == "Tool" %>	
+	<% @results.each do |tool| %>
+		<p><%= link_to "#{tool.name}", tool_path(tool)%> | $<%= tool.base_price %> each day </p>
 	<% end %>
 <% end %>
   </article>
