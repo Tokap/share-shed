@@ -25,7 +25,9 @@
     <p>Model number: <%= @tool.model_number %></p>
     <% if current_user == @tool.owner %>
       <%= link_to 'Edit this tool\'s details', edit_tool_path(@tool) %>
-      <%= button_to 'Remove this tool from your Shed', @tool, action: "delete", method: :delete, data: { confirm: "Are you sure?" } %>
+      <% if @tool.available %>
+        <%= button_to 'Remove this tool from your Shed', @tool, action: "delete", method: :delete, data: { confirm: "Are you sure?" } %>
+      <% end %>
     <% end %>
     <% if current_user %>
       <% if current_user.has_draft_rental? %>
