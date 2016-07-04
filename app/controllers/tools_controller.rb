@@ -26,9 +26,12 @@ class ToolsController < ApplicationController
   end
 
   def edit
-    @tag = Tag.new
     @tool = Tool.find(params[:id])
     @abstract_tools_options = AbstractTool.all.map { |ab_tool| [ab_tool.name, ab_tool.id]}
+
+    @tags = Tag.where(tool: @tool)
+    p @tags
+    @tag = Tag.new
   end
 
   def update

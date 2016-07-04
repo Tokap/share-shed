@@ -21,5 +21,13 @@
 
   <aside>
     <%= render '/tags/form' %>
+
+    <h3>Existing Tags:</h3>
+    <div>
+    <% @tags.each do |tag| %>
+      <p class="tags-edit"><%= tag.name %></p>
+    <% end %>
+    </div>
+
   </aside>
 </main>

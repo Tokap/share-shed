@@ -224,8 +224,20 @@ main.aside-hidden {
 .tags-display {
   display: inline-block;
   padding: 3px;
-  margin: -5px 0px;
-  border: solid black 1px; 
+  margin: 0 0 3px 0;
+  border: solid #649DFF 1px;
+  color: #649DFF; 
 }
 
+.tags-edit {
+  display: inline-block;
+  margin: 2px 0;
+  padding: 2px;
+  border: solid #649DFF 1px;
+  color: #649DFF;
+}
+
+ .tags-options {
+  margin-bottom: -2px;
+ }
 
