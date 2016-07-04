@@ -83,6 +83,23 @@
                 <%= f.time_select "pickup_end_time", prompt: {hour: '13', minute: '00'} %><br>
                 <%= f.submit "Approve this rental", class: 'approve-btn rental-request-btn' %>
               <% end %>
+              <% if @rental.owner == current_user %>
+              <%= form_tag charges_path do %>
+                <div>
+                  <% if flash[:error].present? %>
+                    <div id="error_explanation">
+                      <p><%= flash[:error] %></p>
+                    </div>
+                  <% end %>
+                </div>
+
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="Tool Rental via Shed Sharing"
+          data-amount="<%= ((@rental.total_tool_price * @rental.duration).to_s + '00').to_f %>"
+          data-locale="auto"></script>
+<% end %>
+<% end %>
             </div>
           </div>
         <% end %>
