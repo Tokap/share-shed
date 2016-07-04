@@ -9,13 +9,13 @@
 
   <article>
   <h3>We found the following related tools: </h3>
-<% if @results.nil? %>
-	<h3> No matching results found! </h3>
+<% if @results.empty? %>
+	<p> No matching results found! </p>
 <% elsif @tag.class.to_s == "Tag" %>
 	<% @results.each do |tt| %>
 	<p><%= link_to "#{tt.tool.name}", tool_path(tt.tool)%> | $<%= tt.tool.base_price %> each day </p>
 	<% end %>
-<% elsif @results.first.class.to_s == "Tool" %>	
+<% else %>	
 	<% @results.each do |tool| %>
 		<p><%= link_to "#{tool.name}", tool_path(tool)%> | $<%= tool.base_price %> each day </p>
 	<% end %>
