@@ -8,9 +8,9 @@
 
   <article>
     <h2><%= @rental.owner.username.titleize %> (owner) sharing their shed with <%= @rental.renter.username.titleize %></h2>
-    <p>Current status: <span class='rental-status'><%= @rental.status %></span></p>
+    <p>Current status: <span class='rental-status'><%= 'In Progress' if @rental.status == 'in_progress' %><%= @rental.status if @rental.status != 'in_progress' %></span></p>
     <% if @rental.scheduled? || @rental.in_progress? %>
-    <p>Owner Address: <%= @rental.owner.address %></p>
+      <p>Owner Address: <%= @rental.owner.address %></p>
     <% end %>
     <p>Rental period: <%= @rental.checkout_date %> to <%= @rental.return_date %> (<%= pluralize(@rental.duration, 'day') %>)</p>
 

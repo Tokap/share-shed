@@ -121,49 +121,67 @@ end
 user_2_tool = Tool.create!(abstract_tool_id:  rand(1..20),
              base_price:        rand(5..50),
              available:         true,
-             owner:             user_2)
+             owner:             user_2,
+             model_number:      Faker::Company.ein,
+             description:       Faker::Hipster.paragraph)
 
 user_3_tool = Tool.create!(abstract_tool_id:  rand(1..20),
              base_price:        rand(5..50),
              available:         true,
-             owner:             user_3)
+             owner:             user_3,
+             model_number:      Faker::Company.ein,
+             description:       Faker::Hipster.paragraph)
 
 user_4_tool = Tool.create!(abstract_tool_id:  rand(1..20),
              base_price:        rand(5..50),
              available:         true,
-             owner:             user_4)
+             owner:             user_4,
+             model_number:      Faker::Company.ein,
+             description:       Faker::Hipster.paragraph)
 
 user_5_tool = Tool.create!(abstract_tool_id:  rand(1..20),
              base_price:        rand(5..50),
              available:         true,
-             owner:             user_5)
+             owner:             user_5,
+             model_number:      Faker::Company.ein,
+             description:       Faker::Hipster.paragraph)
 
 # create tools for demo user to own/lend
 demo_user_tool_1 = Tool.create!(abstract_tool_id:  rand(1..20),
                base_price:        rand(5..50),
                available:         true,
-               owner:             demo_user)
+               owner:             demo_user,
+               model_number:      Faker::Company.ein,
+               description:       Faker::Hipster.paragraph)
 
 demo_user_tool_2 = Tool.create!(abstract_tool_id:  rand(1..20),
                base_price:        rand(5..50),
                available:         true,
-               owner:             demo_user)
+               owner:             demo_user,
+               model_number:      Faker::Company.ein,
+               description:       Faker::Hipster.paragraph)
 
 demo_user_tool_3 = Tool.create!(abstract_tool_id:  rand(1..20),
                base_price:        rand(5..50),
                available:         true,
-               owner:             demo_user)
+               owner:             demo_user,
+               model_number:      Faker::Company.ein,
+               description:       Faker::Hipster.paragraph)
 
 demo_user_tool_4 = Tool.create!(abstract_tool_id:  rand(1..20),
                base_price:        rand(5..50),
                available:         true,
-               owner:             demo_user)
+               owner:             demo_user,
+               model_number:      Faker::Company.ein,
+               description:       Faker::Hipster.paragraph)
 
 # another tool to test double line item on a rental request
 demo_user_tool_5 = Tool.create!(abstract_tool_id:  rand(1..20),
                base_price:      rand(5..50),
                available:       true,
-               owner:           demo_user)
+               owner:           demo_user,
+               model_number:    Faker::Company.ein,
+               description:     Faker::Hipster.paragraph)
 
 ################################### rentals ################################################
 # demo_user rents tools
@@ -186,6 +204,7 @@ demo_user_borrowing_3 = Rental.create!(renter:          demo_user,
                return_date:     Faker::Date.forward(7))
 
 user_3_tool.available = false
+user_3_tool.save
 
 demo_user_borrowing_4 = Rental.create!(renter:          demo_user,
                owner:           user_5,
@@ -213,6 +232,7 @@ demo_user_renting_out_3 = Rental.create!(renter:          user_4,
                return_date:     Faker::Date.forward(7))
 
 demo_user_tool_3.available = false
+demo_user_tool_3.save
 
 demo_user_renting_out_4 = Rental.create!(renter:          user_5,
                owner:           demo_user,
@@ -258,7 +278,9 @@ dummmy_users.each do |user|
   Tool.create!(abstract_tool_id:  rand(1..20),
                base_price:        rand(5..50),
                available:         true,
-               owner:             user)
+               owner:             user,
+               model_number:      Faker::Company.ein,
+               description:       Faker::Hipster.paragraph)
 end
 
 Rental.all.each {|rental| rental.log_line_items if ( !rental.draft? && !rental.pending?) }
