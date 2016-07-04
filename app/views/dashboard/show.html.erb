@@ -14,35 +14,69 @@
 
     <div id="toolshed" class="tabContent">
       <div class='flex-container'>
-        <% @owned_tools.each do |tool| %>
-          <a href="/tools/<%= tool.id %>">
-          <% if tool.available %>
-            <div class='tool-card'>
-              <% if tool.image.file? %>
-                <img class='tool-pic' src="<%= tool.image.url %>">
-              <% else %>
-                <img class='tool-pic' src="/assets/shovel.png">
-              <% end %>
-              <h4><%= tool.abstract_tool.name %></h4>
-            </div>
-          <% else %>
-            <div class='tool-card unavailable'>
-              <% if tool.image.file? %>
-                <img class='tool-pic unavailable' src="<%= tool.image.url %>">
-              <% else %>
-                <img class='tool-pic unavailable' src="/assets/shovel.png">
-              <% end %>
-              <h4 class="unavailable"><%= tool.abstract_tool.name %></h4>
-            </div>
+        <% if @owned_tools.any? %>
+          <% @owned_tools.each do |tool| %>
+            <a href="/tools/<%= tool.id %>">
+            <% if tool.available %>
+              <div class='tile'>
+                <% if tool.image.file? %>
+                  <img class='tile-pic' src="<%= tool.image.url %>">
+                <% else %>
+                  <img class='tile-pic' src="/assets/shovel.png">
+                <% end %>
+                <h4><%= tool.abstract_tool.name %></h4>
+              </div>
+            <% else %>
+              <div class='tile unavailable'>
+                <% if tool.image.file? %>
+                  <img class='tile-pic unavailable' src="<%= tool.image.url %>">
+                <% else %>
+                  <img class='tile-pic unavailable' src="/assets/shovel.png">
+                <% end %>
+                <h4 class="unavailable"><%= tool.abstract_tool.name %></h4>
+              </div>
+            <% end %>
+            </a>
           <% end %>
-          </a>
         <% end %>
       </div>
-      <p><%= link_to "Add Tool to your Owner's Shed", new_tool_path  %> </p>
+      <p><%= link_to "Add a tool to your Shed", new_tool_path  %> </p>
     </div>
 
     <div id="rentals" class="tabContent">
-      <p>Here will be a list of the rentals you have, sectioned into two categories: as an owner and as a renter</p>
+      <div class="flex-container rentals-left">
+        <div class='tile p'>
+          <p>You are the renter --------></p>
+        </div>
+        <% if @open_rented_rentals.any? %>
+          <% @open_rented_rentals.each do |rental| %>
+            <a href="/rentals/<%= rental.id %>">
+              <div class='tile'>
+                <p>Owner: <%= rental.owner.username %></p>
+                <p>Total: $<%= rental.sum_logs %></p>
+              </div>
+            </a>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="horiz-line"></div>
+
+      <div class="flex-container rentals-right">
+      <div class='tile p'>
+        <p>You are the owner of the tool(s) --------></p>
+      </div>
+        <% if @open_owned_rentals.any? %>
+          <% @open_owned_rentals.each do |rental| %>
+            <a href="/rentals/<%= rental.id %>">
+              <div class='tile'>
+                <p>Renter: <%= rental.renter.username %></p>
+                <p>Total: $<%= rental.sum_logs %></p>
+              </div>
+            </a>
+          <% end %>
+        <% end %>
+      </div>
     </div>
 
     <div id="feedback" class="tabContent">
@@ -50,7 +84,17 @@
     </div>
 
     <div id="history" class="tabContent">
-      <p>Here will be a list of all your closed rental agreements</p>
+      <% if @all_closed_rentals.any? %>
+        <% @all_closed_rentals.each do |rental| %>
+          <a href="/rentals/<%= rental.id %>">
+            <div class='tile'>
+              <p>Owner: <%= rental.owner.username %></p>
+              <p>Renter: <%= rental.renter.username %></p>
+              <p>Total: $<%= rental.sum_logs %></p>
+            </div>
+          </a>
+        <% end %>
+      <% end %>
     </div>
   </section>
 
