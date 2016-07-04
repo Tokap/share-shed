@@ -83,7 +83,7 @@
                 <%= f.time_select "pickup_end_time", prompt: {hour: '13', minute: '00'} %><br>
                 <%= f.submit "Approve this rental", class: 'approve-btn rental-request-btn' %>
               <% end %>
-              <% if @rental.owner == current_user %>
+              <% if @rental.renter == current_user %>
               <%= form_tag charges_path do %>
               <%= hidden_field_tag "amount", "#{(@rental.total_tool_price * @rental.duration)}" %>
                 <div>
