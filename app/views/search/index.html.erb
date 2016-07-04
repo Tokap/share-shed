@@ -1,1 +1,26 @@
-<h2> Search Results </h2>
+<hgroup class="template">
+  <h2>Search Results</h2>
+</hgroup>
+
+<main class="template">
+
+  <section>
+  </section>
+
+  <article>
+  <h3>We found the following tools: </h3>
+<% if @tool_tags.nil? %>
+	<h3> Could no matching tags found! </h3>
+<% else %>
+	<% @tool_tags.each do |tt| %>
+	<p><%= link_to "#{tt.tool.name}", tool_path(tt.tool)%> | $<%= tt.tool.base_price %> each day </p>
+	<% end %>
+<% end %>
+  </article>
+
+  <aside>
+  	<%= render '/search/search' %>
+  </aside>
+
+</main>
+
