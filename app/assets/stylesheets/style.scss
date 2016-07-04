@@ -147,13 +147,23 @@ main.rental-show {
       background-color: red;
       margin-left: 60%;
       margin-top: -28px;
-      float: right;
+      // float: right;
+      // BREAKS BUTTON
+      // WHEN STRIPE ON SCREEN
+      display: inline-block;
     }
+
+    //PATRICK ADDED//
+    .stripe-form {
+      display: inline-block;
+    }
+
     .approve-btn {
       background-color: green;
       margin-top: 15px;
       float: left;
     }
+    //////////////////////
   }
   aside { }
 }
