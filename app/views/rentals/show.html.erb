@@ -115,7 +115,7 @@
       <% when "in_progress" %>
       <% if @rental.renter == current_user %>
                 <%= form_tag charges_path, :class => "stripe-form" do %>
-                  <%= hidden_field_tag "amount", "#{(@rental.total_tool_price * @rental.duration)}" %>
+                  <%= hidden_field_tag "amount", "#{(@rental.total_tool_price * @rental.duration)}", class: "hidden" %>
                   <div>
                     <% if flash[:error].present? %>
                       <div id="error_explanation">
@@ -126,12 +126,57 @@
 
                   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                   data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-                  data-description="Tool Rental via Shed Sharing"
+                  data-description="Tool Rental via Shed Sharing, Owner: <%= @rental.owner.id %>"
                   data-amount="<%= ((@rental.total_tool_price * @rental.duration).to_s + '00').to_f %>"
                   data-locale="auto"></script>
                 <% end %>
              <% end %>
+
+        <%=form_tag charges_path, :class => 'stripe-form-test' do %>
+          <div id="error_explanation">
+            <% if flash[:error].present? %>
+                <p><%=flash[:error] %></p>
+            <% end %>
+          </div>
+          <div>
+            <%=label_tag(:amount, 'Amount:') %>
+            <%=text_field_tag(:amount) %>
+          </div>      
+          <div>
+            <%=hidden_field_tag(:stripeToken) %>
+          </div>
+          <button id='donateButton'>Donate</button>
+      <% end %>     
     <% end %>
+    <script src="https://checkout.stripe.com/checkout.js"></script>
+    <script>
+      var handler = StripeCheckout.configure({
+        key: '<%=Rails.configuration.stripe[:publishable_key] %>',
+        locale: 'auto',
+        name: 'Shed Sharing',
+        description: 'One-time donation',
+        token: function(token) {
+          $('input#stripeToken').val(token.id);
+          $('form').submit();
+        }
+      });
+      $('#donateButton').on('click', function(e) {
+        e.preventDefault();
+        var amount = $('input#amount').val();
+        amount = amount.replace(/$/g, '').replace(/,/g, '')
+        amount = parseFloat(amount);
+
+        amount = amount * 100; // Needs to be an integer!
+        handler.open({
+          amount: Math.round(amount)
+        })
+      });  
+
+      // Close Checkout on page navigation
+      $(window).on('popstate', function() {
+        handler.close();
+      });
+    </script>
   </article>
 
   <aside>
