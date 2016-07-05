@@ -13,7 +13,7 @@ class TagsController < ApplicationController
 		 ToolTag.find_or_create_by(tag: tag, tool: @tool)
 		end
 
-	 redirect_to(@tool) 
+	 redirect_to(@tool)
 	end
 
 	def index

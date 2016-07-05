@@ -15,7 +15,7 @@
 	<% @results.each do |tt| %>
 	<p><%= link_to "#{tt.tool.name}", tool_path(tt.tool)%> | $<%= tt.tool.base_price %> each day </p>
 	<% end %>
-<% else %>	
+<% else %>
 	<% @results.each do |tool| %>
 		<p><%= link_to "#{tool.name}", tool_path(tool)%> | $<%= tool.base_price %> each day </p>
 	<% end %>
@@ -23,7 +23,7 @@
   </article>
 
   <aside>
-  	<%= render '/search/search' %>
+  	<%= render '/search/search', top_5_tags: @top_5_tags%>
   </aside>
 
 </main>

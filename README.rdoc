@@ -1,5 +1,5 @@
 ## README
-#### Shed Sharing 
+#### Shed Sharing
 ##### (Working Title - Share Shed)
 &nbsp;
 #### Configuration:
@@ -7,6 +7,7 @@
  * Built using Ruby on Rails 4
  * Styled with SCSS
  * This app relies on a number of Gems - run bundle install
+ * You'll need 'ImageMagick' to be able to add pictures of tools (on OSX, `$brew install imagemagick`)
  * Create and Migrate Database - uses Postgresql
  * Seed DB only if mock data is required
  * Mock data contains fake user login; refer to seed file for details
@@ -14,7 +15,7 @@
 #### Deployment instructions:
  * Optimized for Heroku deployment (Postgresql Database)
  * https://devcenter.heroku.com/articles/getting-started-with-rails4
- 
+
 #### Purpose:
  * This web app is designed to allow users to rent tools from other individuals in their local area and have users place tools they own up for rent.
 #### User Stories:
