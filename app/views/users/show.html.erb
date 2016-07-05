@@ -4,6 +4,8 @@
   <article>
     <h2><%= @user.username %>'s profile</h2>
 
+
+    <h3>Average rating: <%= @user.average_rating %></h3>
     <h3>Reviews:</h3>
 
     <% @user.received_reviews.each do |review| %>
@@ -27,3 +29,4 @@
       <% end %>
     <% end %>
   </aside>
+</main>

@@ -51,6 +51,10 @@ class User < ActiveRecord::Base
     rented_rentals.draft.any?
   end
 
+  def average_rating
+    received_reviews.average(:rating)
+  end
+
   def owner_sum_all_tools
     tool_prices = []
     tools.each do |tool|
