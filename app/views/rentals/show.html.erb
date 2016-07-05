@@ -7,7 +7,7 @@
   </section>
 
   <article>
-    <h2><%= @rental.owner.username.titleize %> (owner) sharing their shed with <%= @rental.renter.username.titleize %></h2>
+    <h2><%= link_to @rental.owner.username.titleize, user_path(@rental.owner) %> (owner) sharing their shed with <%= link_to @rental.renter.username.titleize, user_path(@rental.renter) %></h2>
     <p>Current status: <span class='rental-status'><%= 'In Progress' if @rental.status == 'in_progress' %><%= @rental.status if @rental.status != 'in_progress' %></span></p>
     <% if @rental.scheduled? || @rental.in_progress? %>
       <p>Owner Address: <%= @rental.owner.address %></p>
@@ -22,13 +22,13 @@
     <% if @rental.owner_return_confirmation %><p>Owner has confirmed return of tool.</p><% end %>
     <% if @rental.renter_return_confirmation %><p>Renter has confirmed return of tool.</p><% end %>
 
-    <% if @rental.status == "scheduled" %>
+    <% if @rental.status == "scheduled" && @rental.checkout_date == Date.today %>
       <% if current_user == @rental.owner && !@rental.owner_pick_up_confirmation %>
         <%= button_to "Confirm renter has picked up your tool(s)", @rental, method: :patch %>
       <% elsif current_user == @rental.renter && !@rental.renter_pick_up_confirmation %>
         <%= button_to "Confirm that you have picked up the tool(s)", @rental, method: :patch %>
       <% end %>
-    <% elsif @rental.status == "in_progress" %>
+    <% elsif @rental.status == "in_progress" && @rental.return_date == Date.today %>
       <% if current_user == @rental.owner && !@rental.owner_return_confirmation %>
         <%= button_to "Confirm that your tool(s) as been returned", @rental, method: :patch %>
       <% elsif current_user == @rental.renter && !@rental.renter_return_confirmation %>
@@ -105,7 +105,7 @@
                 <% end %>
               <% end %>
             <% end %>
-              
+
             </div>
           </div>
 
