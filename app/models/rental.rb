@@ -58,14 +58,14 @@ class Rental < ActiveRecord::Base
   end
 
   def return_date_follows_checkout_date
-    if checkout_date > return_date
+    if checkout_date >= return_date
       self.errors.add(:checkout_date, "must follow return date")
     end
   end
 
   def pickup_end_time_follows_pickup_time
     if pickup_time && pickup_end_time
-      if pickup_end_time < pickup_time
+      if pickup_end_time <= pickup_time
         self.errors.add(:pickup_end_time, "must follow pickup time")
       end
     end
