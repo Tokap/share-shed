@@ -20,6 +20,7 @@
     <p>Price: $<%= @tool.base_price %></p>
     <% if @tool.owner != current_user %>
       <p>Owner: <%= @tool.owner.username %></p>
+      <div id="googleMap" address='<%= 92103 %>'></div>
     <% end %>
     <p>Description: <%= @tool.description %></p>
     <p>Model number: <%= @tool.model_number %></p>

@@ -1,6 +1,3 @@
-
-
-
 $(document).ready(function(){
 
   var address = $('#googleMap').attr('address');

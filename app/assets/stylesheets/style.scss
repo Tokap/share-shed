@@ -337,7 +337,12 @@ main.landing-lower {
   }
 }
 
-
+main.section-hidden {
+  #googleMap {
+    width: 400px;
+    height:320px;
+  }
+}
 
 main.password-pages {
   section, aside {
