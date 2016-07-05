@@ -74,7 +74,22 @@ main.dashboard {
     padding: 6px 12px;
     border: 1px solid #ccc;
     border-top: none;
+    .current-users-received-reviews {
+      margin-top: 20px;
+      float: left;
+      width: 49%;
+
+      section {
+        border: 2px solid black;
+      }
+    }
+    .users-dealing-with-current-user {
+      margin-top: 20px;
+      float: right;
+      width: 49%;
+    }
   }
+
   #toolshed {
     display: block;
   }
@@ -115,6 +130,8 @@ main.dashboard {
     margin: auto;
   }
   aside {}
+
+
 }
 
 main.landing-page {
@@ -307,7 +324,7 @@ main.aside-hidden {
   padding: 3px;
   margin: 0 0 3px 0;
   border: solid #649DFF 1px;
-  color: #649DFF; 
+  color: #649DFF;
 }
 
 .tags-edit {
