@@ -1,7 +1,9 @@
 <% if @tool.errors.any? %>
-  <% @tool.errors.full_messages.each do |msg| %>
-    <%= msg %>
-  <% end %>
+  <ul>
+    <% @tool.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
 <% end %>
 <%= form_for @tool, html: { multipart: true } do |f| %>
   <%= f.file_field :image %><br>

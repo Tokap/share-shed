@@ -76,7 +76,7 @@
             <a href="/rentals/<%= rental.id %>">
               <div class='tile <%= rental.status %>'>
                 <p class='tile-info'>Renter: <%= rental.renter.username %></p>
-                <% if rental.status == "pending" || rental.status == "draft" %>
+              <% if rental.status == "pending" || rental.status == "draft" %>
                   <p class='tile-info'>Total: $<%= rental.sum_line_items %></p>
                 <% else %>
                   <p class='tile-info'>Total: $<%= rental.sum_logs %></p>
