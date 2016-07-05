@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title></title>
+  <title>Confirmation of Rental Request</title>
 </head>
 <body>
   <h1>Your rental with <%= @rental.owner.username %> has been confirmed!</h1>
 
   <p>Rental period: <%= @rental.checkout_date %> - <%= @rental.return_date %></p>
 
-  <p>Please plan to pick up your tool(s) between <%= @rental.pickup_time %> and <%= @rental.pickup_end_time %> on <%= @rental.checkout_date %>. The address is <%= @rental.owner.address %>.</p>
+  <p>Please plan to pick up your tool(s) between <%= @rental.pickup_time.strftime("%I:%M%p") %> and <%= @rental.pickup_end_time.strftime("%I:%M%p") %> on <%= @rental.checkout_date %>. The address is <%= @rental.owner.address %>.</p>
+
+  <form action="http://maps.google.com/maps" method="get" target="_blank">
+     <input type="hidden" name="saddr" value="<%= @rental.renter.address %>"/>
+     <input type="hidden" name="daddr" value="<%= @rental.owner.address %>" />
+     <input type="submit" value="Get directions" />
+  </form>
 
   <p>Rental summary:</p>
 
@@ -21,10 +27,11 @@
       <tr>
         <td><%= line_item_log.name %></td>
         <td class='align-right'>$<%= line_item_log.price %></td>
-      </tr
-      <tr><td colspan=2 class="bottom-line"></td></tr>>
+      </tr>
+      <tr><td colspan=2 class="bottom-line"></td></tr>
     <% end %>
       <tr>
+        <td><strong>Total: </strong></td>
         <td class='align-right'><strong>$<%= @rental.sum_logs %></strong></td>
       </tr>
   </table>

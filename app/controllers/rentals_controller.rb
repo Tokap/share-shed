@@ -13,6 +13,7 @@ class RentalsController < ApplicationController
       flash[:notice]= "This tool has been added to your rental request with #{@rental.owner.username}"
       redirect_to tool_path(@tool)
     else
+      flash[:errors]="Please select a valid date range to rent this tool"
       render "tools/show"
     end
   end
@@ -32,13 +33,17 @@ class RentalsController < ApplicationController
     if @rental.status == "draft"
       @rental.status = "pending"
       flash[:notice] = "Your request has been submitted for approval"
+      email = UserMailer.alert_owner_of_new_request(@rental)
+      email.deliver
     elsif @rental.status == "pending"
       @rental.update(rental_params)
-      @rental.status = "scheduled"
-      @rental.log_line_items #added to save line item data when info has become permanent
-      @rental.set_tools_availability(false)
-      email = UserMailer.schedule_tool_pickup(@rental)
-      email.deliver
+      if @rental.valid?
+        @rental.status = "scheduled"
+        @rental.log_line_items #added to save line item data when info has become permanent
+        @rental.set_tools_availability(false)
+        email = UserMailer.schedule_tool_pickup(@rental)
+        email.deliver
+      end
     elsif @rental.status == "scheduled"
       if current_user == @rental.owner
         @rental.update(owner_pick_up_confirmation: true)
@@ -61,12 +66,19 @@ class RentalsController < ApplicationController
         @rental.set_tools_availability(true)
       end
     end
-    @rental.save
-    redirect_to rental_path(@rental)
+    if @rental.save
+      redirect_to rental_path(@rental)
+    else
+      render "show"
+    end
   end
 
   def destroy
     @rental = Rental.find(params[:id])
+    @rental.tools.each do |tool|
+      tool.available = true
+      tool.save
+    end
     @rental.destroy
     redirect_to dashboard_path(current_user)
   end

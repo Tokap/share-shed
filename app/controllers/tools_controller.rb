@@ -28,9 +28,19 @@ class ToolsController < ApplicationController
   def edit
     @tool = Tool.find(params[:id])
     @abstract_tools_options = AbstractTool.all.map { |ab_tool| [ab_tool.name, ab_tool.id]}
+
+    @tool_tag = ToolTag.where(tool: @tool)
+    @tags = []
+    @tool_tag.each do |tt|
+      @tags << tt.tag
+    end
+    @tag = Tag.new
   end
 
   def update
+    p params
+    tag_names = params[:tags].split(/\s*,\s*/)
+
     @tool = Tool.find(params[:id])
     if @tool.update(tool_params)
       redirect_to(@tool)

@@ -1,0 +1,18 @@
+
+You have a new rental request from <%= @rental.renter.username %>
+
+They would like to rent your tools from <%= @rental.checkout_date %> through <%= @rental.return_date %>.
+
+Please either reject this request, or confirm it and set a pickup time range.
+
+Rental summary:
+
+  <% @rental.line_items.each do |li| %>
+  <%= li.tool.abstract_tool.name %> for $<%= li.tool.base_price * @rental.duration %>
+  <% end %>
+Total: $<%= @rental.sum_logs %>
+
+Thank you for using ShedSharing!
+
+</body>
+</html>
