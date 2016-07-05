@@ -218,13 +218,23 @@ main.rental-show {
       background-color: red;
       margin-left: 60%;
       margin-top: -28px;
-      float: right;
+      // float: right;
+      // BREAKS BUTTON
+      // WHEN STRIPE ON SCREEN
+      display: inline-block;
     }
+
+    //PATRICK ADDED//
+    .stripe-form {
+      display: inline-block;
+    }
+
     .approve-btn {
       background-color: green;
       margin-top: 15px;
       float: left;
     }
+    //////////////////////
   }
   aside { }
 }
@@ -288,6 +298,27 @@ main.aside-hidden {
   section, article { background-color: #efefef; }
 }
 
+//
+// PATRICK CSS FOR TOOL TAGS TO FLOAT AND NOT LOOK STUPID
+// --------------------------------------------------
 
+.tags-display {
+  display: inline-block;
+  padding: 3px;
+  margin: 0 0 3px 0;
+  border: solid #649DFF 1px;
+  color: #649DFF; 
+}
 
+.tags-edit {
+  display: inline-block;
+  margin: 2px 0;
+  padding: 2px;
+  border: solid #649DFF 1px;
+  color: #649DFF;
+}
+
+ .tags-options {
+  margin-bottom: -2px;
+ }
 

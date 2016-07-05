@@ -3,7 +3,7 @@
   <section>
     <div class='landing-page-div'>
       <% if user_signed_in? %>
-        <a href="/dashboard/<%= current_user.id %> "><button class='landing-page-btn btn-left'>Share your shed with others!</button></a>
+        <%= button_to "Share your shed with others!", dashboard_path(current_user), class: 'landing-page-btn btn-left', method: "get" %>
       <% else %>
         <a href="/users/sign_in"><button class='landing-page-btn btn-left'>Share your shed with others!</button></a>
       <% end %>

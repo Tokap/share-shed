@@ -76,7 +76,7 @@
         <%= button_to "Submit request", @rental, method: :patch %>
         <%= button_to "Cancel this Rental Request", @rental, method: :delete, data: { confirm: 'Are you sure?' }, class: 'cancel-btn rental-request-btn' %>
       <% when "pending" %>
-        <div class='flex-btn-box'>
+        <div class='flex-btn-box inline'>
           <% if current_user == @rental.owner %>
             <div>
               <%= form_for @rental do |f| %>
@@ -93,8 +93,16 @@
                 <% end %>
               <% end %>
             <% end %>
-              <% if @rental.renter == current_user %>
-                <%= form_tag charges_path do %>
+              
+            </div>
+          </div>
+
+            <%= button_to "Cancel this Rental Request", @rental, method: :delete, data: { confirm: 'Are you sure?' }, class: 'cancel-btn rental-request-btn', form_class: 'cancel-form' %>
+
+        </div>
+      <% when "in_progress" %>
+      <% if @rental.renter == current_user %>
+                <%= form_tag charges_path, :class => "stripe-form" do %>
                   <%= hidden_field_tag "amount", "#{(@rental.total_tool_price * @rental.duration)}" %>
                   <div>
                     <% if flash[:error].present? %>
@@ -111,13 +119,6 @@
                   data-locale="auto"></script>
                 <% end %>
              <% end %>
-            </div>
-          </div>
-
-            <%= button_to "Cancel this Rental Request", @rental, method: :delete, data: { confirm: 'Are you sure?' }, class: 'cancel-btn rental-request-btn' %>
-
-        </div>
-      <% when "scheduled" %>
     <% end %>
   </article>
 
