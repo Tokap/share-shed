@@ -283,4 +283,17 @@ dummmy_users.each do |user|
                description:       Faker::Hipster.paragraph)
 end
 
+# add a log at the appropriate interval
 Rental.all.each {|rental| rental.log_line_items if ( !rental.draft? && !rental.pending?) }
+
+############################ tags  & tag linking ################################################
+
+name_array = ["outdoor", "exciting", "concerning", "probably-dangerous", "garden", "lawn", "garage", "car-repair", "machine", "heavy", "durable", "easy"]
+
+30.times do 
+  ToolTag.create!(tag: Tag.create!(name: name_array.sample), tool: demo_user.tools.sample)
+  ToolTag.create!(tag: Tag.create!(name: name_array.sample), tool: Tool.all.sample)
+end
+
+
+
