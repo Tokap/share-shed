@@ -10,7 +10,7 @@ class RentalsController < ApplicationController
       line_item = LineItem.new(tool: @tool)
       @rental.line_items << line_item
       @rental.save
-      flash[:notice]= "This tool has been added to your rental request with #{@rental.owner.username}"
+      flash[:notice]= "This tool has been added to your rental request with #{@rental.owner.username}."
       redirect_to tool_path(@tool)
     else
       flash[:errors]="Please select a valid date range to rent this tool"

@@ -47,6 +47,8 @@ class ToolsController < ApplicationController
       redirect_to(@tool)
     else
       @abstract_tools_options = AbstractTool.all.map { |ab_tool| [ab_tool.name, ab_tool.id]}
+      @tags = @tool.tags
+      @tag = Tag.new
       render 'edit'
     end
   end
