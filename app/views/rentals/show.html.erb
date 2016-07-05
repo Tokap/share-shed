@@ -11,6 +11,12 @@
     <p>Current status: <span class='rental-status'><%= 'In Progress' if @rental.status == 'in_progress' %><%= @rental.status if @rental.status != 'in_progress' %></span></p>
     <% if @rental.scheduled? || @rental.in_progress? %>
       <p>Owner Address: <%= @rental.owner.address %></p>
+      <form action="http://maps.google.com/maps" method="get" target="_blank">
+        <input type="hidden" name="saddr" value="<%= @rental.renter.address %>"/>
+        <input type="hidden" name="daddr" value="<%= @rental.owner.address %>" />
+        <input type="submit" value="Get directions" />
+      </form>
+      <div id="googleMap" address='<%= @rental.owner.address %>'></div>
     <% end %>
     <p>Rental period: <%= @rental.checkout_date %> to <%= @rental.return_date %> (<%= pluralize(@rental.duration, 'day') %>)</p>
 
@@ -105,7 +111,7 @@
                 <% end %>
               <% end %>
             <% end %>
-              
+
             </div>
           </div>
 
