@@ -10,11 +10,7 @@
 
     <% @user.received_reviews.each do |review| %>
       <div class="review-box">
-      <p>Rating:
-       <% review.rating.times do |star| %>
-        &#9733
-       <% end %>
-       </p>
+      <p>Rating: <%= review.stars %></p>
        <p><%= review.content %></p>
       </div>
     <% end %>

@@ -52,7 +52,7 @@ class User < ActiveRecord::Base
   end
 
   def average_rating
-    received_reviews.average(:rating)
+    received_reviews.average(:rating) || "(no ratings)"
   end
 
   def owner_sum_all_tools
