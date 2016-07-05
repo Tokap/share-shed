@@ -22,7 +22,8 @@
       <% if !current_user.reviewed_user?(@user) %>
         <%= button_to "Review this user", new_user_review_path(@user), method: :get%>
       <% else %>
-        <%= button_to "Edit your review of this user",  %>
+        <% review = current_user.given_reviews.find_by(reviewee: @user) %>
+        <%= button_to "Edit your review for this user", edit_review_path(review), method: :get %>
       <% end %>
     <% end %>
   </aside>
