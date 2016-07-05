@@ -5,6 +5,7 @@ class SearchController < ApplicationController
 		if params[:type] == "tag"
 			@tag = Tag.find_by(name: params[:name])
 			@results = ToolTag.where(tag: @tag)
+			@results.map {|tt| tt if tt.tool.available}
 		else
 			@results = []
 			name = "%#{params[:name]}%"
