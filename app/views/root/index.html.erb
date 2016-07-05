@@ -1,11 +1,8 @@
 <main class="landing-page">
 
   <section>
-    <% if user_signed_in? %>
-      <%= link_to dashboard_path(current_user), method: "get" %>
-    <% else %>
-      <a href="/users/sign_in">
-    <% end %>
+  <% path = user_signed_in? ? dashboard_path(current_user) : new_user_session_path %>
+      <%= link_to path, method: "get" do %>
         <div class="sharing-div">
           <button class="landing-page-btn"><!--Share your shed with others!--></button>
         </div>
@@ -14,7 +11,7 @@
         <p>Don't let your tools go to waste... add them to your shed and earn some money instead.</p>
         <span class="btn btn-success">Share Your Tools!</span>
       </div>
-    </a>
+      <% end %>
   </section>
 
   <article>
