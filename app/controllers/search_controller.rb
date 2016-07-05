@@ -11,7 +11,7 @@ class SearchController < ApplicationController
 			if !@atools.nil?
 				@atools.each do |atool| 
 					atool.tools.each do |tool_object|
-						@results << tool_object
+						@results << tool_object if tool_object.available
 					end
 				end
 			else	
