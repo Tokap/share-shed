@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 20160704211615) do
     t.text     "content",     null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
 
   create_table "tags", force: :cascade do |t|
     t.string   "name"
