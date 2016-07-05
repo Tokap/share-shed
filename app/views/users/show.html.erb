@@ -1,0 +1,32 @@
+<main class = "user-show">
+  <section>
+  </section>
+  <article>
+    <h2><%= @user.username %>'s profile</h2>
+
+
+    <h3>Average rating: <%= @user.average_rating %></h3>
+    <h3>Reviews:</h3>
+
+    <% @user.received_reviews.each do |review| %>
+      <div class="review-box">
+      <p>Rating:
+       <% review.rating.times do |star| %>
+        &#9733
+       <% end %>
+       </p>
+       <p><%= review.content %></p>
+      </div>
+    <% end %>
+  </article>
+  <aside>
+    <% if current_user.has_rental_history_with?(@user) %>
+      <% if !current_user.reviewed_user?(@user) %>
+        <%= button_to "Review this user", new_user_review_path(@user), method: :get%>
+      <% else %>
+        <% review = current_user.given_reviews.find_by(reviewee: @user) %>
+        <%= button_to "Edit your review for this user", edit_review_path(review), method: :get %>
+      <% end %>
+    <% end %>
+  </aside>
+</main>
