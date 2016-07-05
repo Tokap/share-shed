@@ -1,5 +1,7 @@
-<main>
+<main class='template'>
   <section>
+  <h1>Remove Tool</h1>
+  <%= button_to 'Remove this tool from your Shed', @tool, action: "delete", method: :delete, data: { confirm: "Are you sure?" } %>
   </section>
 
   <article>
