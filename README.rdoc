@@ -34,3 +34,10 @@
 * A renter can confirm pickup of the tool.
 * A renter can schedule a time to return tool & confirm the action.
 * A renter can confirm return of the tool.
+
+
+##### The Team
+* Elliot Wolfe
+* Gabriel Bonner
+* Mike Laurel
+* Patrick Allen
