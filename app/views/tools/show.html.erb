@@ -33,7 +33,7 @@
       <% if current_user.has_draft_rental? %>
         <% if current_user.rented_rentals.draft.first.owner == @tool.owner %>
           <% if current_user.rented_line_items.any?{ |item| item.tool == @tool }%>
-            You have already requested to rent this item.
+            You have requested to rent this item.
           <% else %>
               <%= form_for @line_item do |f| %>
                 <%= f.hidden_field :tool_id, value: @tool.id %>

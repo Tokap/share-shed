@@ -5,3 +5,10 @@
   <input type="radio" name="type" value="tag"> Tag<br><br>
   <input type="submit" value="Find Tag">
 </form>
+
+<div class='top-5-tags-div'>
+  <h4>Here are the current top five most popular tags:</h4>
+    <% @top_5_tags.each do |tag| %>
+      <p class='tags-display'><%= tag.name %></p>
+    <% end %>
+</div>
