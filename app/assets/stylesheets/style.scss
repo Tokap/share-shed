@@ -98,6 +98,7 @@ main.dashboard {
     justify: space-between;
   }
   .tile {
+    border-radius: 5px;
     border: solid black 1px;
     height: 150px;
     width: 150px;
@@ -105,6 +106,21 @@ main.dashboard {
     margin: 10px;
     box-shadow: -3px 3px 3px gray;
     z-index: 50
+  }
+  .draft, .closed {
+    border: solid black 3px;
+  }
+  .pending {
+    border: solid yellow 3px;
+  }
+  .scheduled {
+    border: solid blue 3px;
+  }
+  .in_progress {
+    border: solid green 3px;
+  }
+  .returned {
+    border: solid red 3px;
   }
   .tile p {
     margin: 0px;
@@ -449,7 +465,7 @@ main.aside-hidden {
   padding: 3px;
   margin: 0 0 3px 0;
   border: solid #649DFF 1px;
-  color: #649DFF; 
+  color: #649DFF;
 }
 
 .tags-edit {
