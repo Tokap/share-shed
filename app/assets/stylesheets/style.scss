@@ -4,12 +4,26 @@
 // Global HEADER style for the entire application
 
 header {
+  background-color: #fff;
   .logo {
-    height: 100px;
-    width: 140px;
-    position: inline-block;
+    width: 240px;
   }
 }
+
+nav {
+  a {
+    font-weight: bold;
+    font-size: 1em;
+    color: #76A142;
+    text-decoration: none;
+  }
+}
+
+footer {
+  color: #555;
+  font-size: 1em;
+}
+
 
 
 //
@@ -84,6 +98,7 @@ main.dashboard {
     justify: space-between;
   }
   .tile {
+    border-radius: 5px;
     border: solid black 1px;
     height: 150px;
     width: 150px;
@@ -91,6 +106,21 @@ main.dashboard {
     margin: 10px;
     box-shadow: -3px 3px 3px gray;
     z-index: 50
+  }
+  .draft, .closed {
+    border: solid black 3px;
+  }
+  .pending {
+    border: solid yellow 3px;
+  }
+  .scheduled {
+    border: solid blue 3px;
+  }
+  .in_progress {
+    border: solid green 3px;
+  }
+  .returned {
+    border: solid red 3px;
   }
   .tile p {
     margin: 0px;
@@ -131,38 +161,166 @@ main.landing-page {
     }
   }
 
-  .landing-pic {
-    background-size: contain;
-    position: absolute;
-    top: 0px;
-    z-index: -100;
-    width: 100%;
-    height: 100%;
+  // Background in elements
+  //section, article {
+  //  border: 10px solid #efefef;
+  //  border-radius: 20px;
+  //  opacity: 1;
+  //}
+  //
+  //section:hover, article:hover {
+  //  opacity: 1;
+  //}
+  //
+  //section {
+  //  background: url('/assets/tool-drill.jpg') no-repeat center bottom;
+  //  background-size: 300%;
+  //}
+  //
+  //article  {
+  //  background: url('/assets/holding-drill.jpg') no-repeat right top;
+  //  background-size: 145%;
+  //  border: 10px solid #efefef;
+  //}
+  //
+  //article button, section button {
+  //  width: 100%;
+  //  height: 20vh;
+  //  background-color: rgba(0,0,0,0);
+  //  //background: url('/assets/tool-drill.jpg') no-repeat center bottom;
+  //  //background-size: 400%;
+  //  border: none;
+  //  color: #999;
+  //  padding: 15px 32px;
+  //  text-align: center;
+  //  vertical-align: bottom;
+  //  text-decoration: none;
+  //  font-size: 4em;
+  //  transition-duration: 0.4s;
+  //  border-radius: 25px;
+  //  opacity: .5;
+  //}
+  //
+  //.renting-text, .sharing-text {
+  //  background: #fff;
+  //  margin: 10px;
+  //  padding: 10px;
+  //  border-radius: 10px;
+  //  color: #777;
+  //  h3 {
+  //    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  //    font-weight: 800!important;
+  //  }
+  //}
+
+
+  // Background image moved to div
+  section, article {
+    opacity: 1;
   }
 
-  .landing-page-btn {
+  section a, article a {
+    text-decoration: none;
+    color: #999;
+    .btn { color: #fff;}
+  }
+
+  section:hover, article:hover {
+    opacity: 1;
+  }
+
+  .sharing-div, .renting-div {
+    border: 10px solid #efefef;
+    border-radius: 20px;
+    opacity: 1;
+  }
+
+  .sharing-div {
+    background: url('/assets/tool-drill.jpg') no-repeat center center;
+    background-size: 300%;
+  }
+
+  .renting-div {
+    background: url('/assets/holding-drill.jpg') no-repeat right top;
+    background-size: 145%;
+  }
+
+  .sharing-div button, .renting-div button {
     width: 100%;
-    height: 50vh;
-    background-color: rgba(85,196,115,.6);
+    height: 20vh;
+    background-color: rgba(0,0,0,0);
     border: none;
-    color: white;
+    color: #999;
     padding: 15px 32px;
     text-align: center;
+    vertical-align: bottom;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 4em;
     transition-duration: 0.4s;
-    border-radius: 5px;
+    border-radius: 25px;
+    opacity: 1;
   }
 
-  .btn-right {
-    background-color: rgba(78,183,205,.6);
+  .sharing-text, .renting-text {
+    background: #fff;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    color: #777;
+    h3 {
+      font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+      font-weight: 800!important;
+    }
+    .btn { float: right; }
   }
 
-  .landing-page-btn:hover {
-    background-color: white;
-    color: green;
+  @media (max-width: 768px) {
+
+    article a, section a {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sharing-div button, .renting-div button {
+      height: 10vh;
+      padding: 5px;
+    }
+
+    .sharing-text, .renting-text {
+      margin: 5px;
+      //padding: 5px;
+    }
+
+    //.sharing-div { flex: 1;  }
+    //.sharing-text { flex: 3; }
+    //
+    //.renting-div { flex: 1; background-size: 200%; }
+    //.renting-text { flex: 3; }
+
+    article button, section button {
+      margin: 0;
+      padding: 0;
+    }
   }
 }
+
+main.landing-lower {
+  h3 {
+    margin: 10px;
+    padding: 10px;
+    color: #777;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 800!important;
+  }
+
+  .thumbnail {
+    border: 10px solid #efefef;
+    border-radius: 20px;
+    opacity: 1;
+  }
+}
+
+
 
 main.password-pages {
   section, aside {
@@ -307,7 +465,7 @@ main.aside-hidden {
   padding: 3px;
   margin: 0 0 3px 0;
   border: solid #649DFF 1px;
-  color: #649DFF; 
+  color: #649DFF;
 }
 
 .tags-edit {
