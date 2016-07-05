@@ -44,6 +44,11 @@
           You already have an open rental request with another owner. Please complete this transaction through your dashboard before renting this tool.
         <% end %>
       <% else %>
+        <% if @rental.errors.any? %>
+          <% @rental.errors.full_messages.each do |msg| %>
+            <%= msg %>
+          <% end %>
+        <% end %>
         <% if @tool.owner != current_user%>
           <%= form_for @rental do |f|%>
             <%= f.label "checkout_date" %>

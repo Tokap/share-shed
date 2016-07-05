@@ -3,6 +3,7 @@ class Rental < ActiveRecord::Base
   validates_uniqueness_of :renter, conditions: -> { draft }
   validate :return_date_follows_checkout_date
   validate :pickup_end_time_follows_pickup_time
+  validate :checkout_date_is_not_in_past
 
   enum status: { draft: 0, pending: 1, scheduled: 2, in_progress: 3, returned: 4, closed: 5}
 
@@ -68,6 +69,12 @@ class Rental < ActiveRecord::Base
       if pickup_end_time <= pickup_time
         self.errors.add(:pickup_end_time, "must follow pickup time")
       end
+    end
+  end
+
+  def checkout_date_is_not_in_past
+    if checkout_date < Date.today
+      self.errors.add(:checkout_date, "cannot be in the past")
     end
   end
 

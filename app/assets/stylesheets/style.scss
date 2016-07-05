@@ -120,7 +120,8 @@ main.dashboard {
     display: inline-block;
     margin: 10px;
     box-shadow: -3px 3px 3px gray;
-    z-index: 50
+    z-index: 50;
+    word-wrap: break-word;
   }
   .draft, .closed {
     border: solid black 3px;
