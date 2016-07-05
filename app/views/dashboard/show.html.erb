@@ -51,7 +51,7 @@
         <% if @open_rented_rentals.any? %>
           <% @open_rented_rentals.each do |rental| %>
             <a href="/rentals/<%= rental.id %>">
-              <div class='tile'>
+              <div class='tile <%= rental.status %>'>
                 <p class='tile-info'>Owner: <%= rental.owner.username %></p>
                 <p class='tile-info'>Total: $<%= rental.sum_logs %></p>
                 <p class='tile-info'>Status: <%= rental.status %></p>
@@ -70,9 +70,10 @@
         <% if @open_owned_rentals.any? %>
           <% @open_owned_rentals.each do |rental| %>
             <a href="/rentals/<%= rental.id %>">
-              <div class='tile'>
+              <div class='tile <%= rental.status %>'>
                 <p class='tile-info'>Renter: <%= rental.renter.username %></p>
                 <p class='tile-info'>Total: $<%= rental.sum_logs %></p>
+                <p class='tile-info'>Status: <%= rental.status %></p>
               </div>
             </a>
           <% end %>
@@ -111,7 +112,7 @@
       <% if @all_closed_rentals.any? %>
         <% @all_closed_rentals.each do |rental| %>
           <a href="/rentals/<%= rental.id %>">
-            <div class='tile'>
+            <div class='tile <%= rental.status %>'>
               <p class='tile-info'>Owner: <%= rental.owner.username %></p>
               <p class='tile-info'>Renter: <%= rental.renter.username %></p>
               <p class='tile-info'>Total: $<%= rental.sum_logs %></p>
