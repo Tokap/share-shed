@@ -1,6 +1,8 @@
 class Rental < ActiveRecord::Base
   validates :renter, :owner, :return_date, :checkout_date, :status, presence: true
   validates_uniqueness_of :renter, conditions: -> { draft }
+  validate :return_date_follows_checkout_date
+  validate :pickup_end_time_follows_pickup_time
 
   enum status: { draft: 0, pending: 1, scheduled: 2, in_progress: 3, returned: 4, closed: 5}
 
@@ -14,7 +16,6 @@ class Rental < ActiveRecord::Base
   def log_line_items
     line_items.each do |li|
       LineItemLog.create(name: li.tool.abstract_tool.name, price: (li.tool.base_price * li.rental.duration), rental: li.rental)
-      puts "THIS METHOD HAS BEEN CALLED!"
     end
   end
 
@@ -56,6 +57,20 @@ class Rental < ActiveRecord::Base
     (return_date - checkout_date).to_i
   end
 
+  def return_date_follows_checkout_date
+    if checkout_date > return_date
+      self.errors.add(:checkout_date, "must follow return date")
+    end
+  end
+
+  def pickup_end_time_follows_pickup_time
+    if pickup_time && pickup_end_time
+      if pickup_end_time < pickup_time
+        self.errors.add(:pickup_end_time, "must follow pickup time")
+      end
+    end
+  end
+
   def pending?
     status == "pending"
   end
@@ -79,5 +94,7 @@ class Rental < ActiveRecord::Base
   def closed?
     status == "closed"
   end
+
+
 
 end

@@ -1,0 +1,30 @@
+<hgroup class="template">
+  <h2>Search Results</h2>
+</hgroup>
+
+<main class="template">
+
+  <section>
+  </section>
+
+  <article>
+  <h3>We found the following related tools: </h3>
+<% if @results.empty? %>
+	<p> No matching results found! </p>
+<% elsif @tag.class.to_s == "Tag" %>
+	<% @results.each do |tt| %>
+	<p><%= link_to "#{tt.tool.name}", tool_path(tt.tool)%> | $<%= tt.tool.base_price %> each day </p>
+	<% end %>
+<% else %>	
+	<% @results.each do |tool| %>
+		<p><%= link_to "#{tool.name}", tool_path(tool)%> | $<%= tool.base_price %> each day </p>
+	<% end %>
+<% end %>
+  </article>
+
+  <aside>
+  	<%= render '/search/search' %>
+  </aside>
+
+</main>
+

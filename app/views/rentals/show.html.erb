@@ -2,7 +2,7 @@
   <script type="text/javascript">
     Stripe.setPublishableKey('pk_test_eNf41km4qob9JPZmiA9C6iyt');
   </script>
-  
+
   <section>
   </section>
 
@@ -40,12 +40,20 @@
       <tr>
         <th>Tool</th>
         <th>Price</th>
+        <th></th>
+        <th>Days</th>
+        <th></th>
+        <th>Cost</th>
       </tr>
       <% if @rental.pending? || @rental.draft? %> <!-- Data hasn't been saved yet -->
         <% @rental.line_items.each do |line_item| %>
           <tr>
             <td><%= line_item.tool.abstract_tool.name %></td>
-            <td class='align-right'>$<%= line_item.tool.base_price * @rental.duration %></td>
+            <td class='align-right'>$<%= line_item.tool.base_price %></td>
+            <td>*</td>
+            <td class='align-right'><%= @rental.duration %></td>
+            <td>=</td>
+            <td class='align-right'><%= line_item.tool.base_price * @rental.duration %></td>
             <% if line_item.rental.draft? %>
               <td><%= button_to "Destroy", line_item, method: :delete, data: { confirm: 'Are you sure?'}  %></td>
             <% end %>
@@ -56,18 +64,22 @@
         <tr>
           <td><%= line_item_log.name %></td>
           <td class='align-right'>$<%= line_item_log.price %></td>
+          <td>*</td>
+          <td class='align-right'><%= @rental.duration %></td>
+          <td>=</td>
+          <td class='align-right'><%= line_item_log.price * @rental.duration %></td>
         </tr>
         <% end %>
       <% end %>
           </td>
         </tr>
-      <tr><td colspan=2 class="bottom-line"></td></tr>
+      <tr><td colspan='6' class="bottom-line"></td></tr>
       <tr>
-        <td><strong>Total:</strong></td>
+        <td colspan='5'><strong>Total:</strong></td>
           <% if @rental.pending? || @rental.draft? %> <!-- Data hasn't been saved yet -->
             <td class='align-right'><strong>$<%= @rental.total_tool_price * @rental.duration %></strong></td>
           <% else %> <!-- Transaction is permanent and LI info is logged -->
-            <td class='align-right'><strong>$<%= @rental.sum_logs %></strong></td>
+            <td class='align-right'><strong>$<%= @rental.sum_logs * @rental.duration %></strong></td>
           <% end %>
       </tr>
     </table>
@@ -76,7 +88,7 @@
         <%= button_to "Submit request", @rental, method: :patch %>
         <%= button_to "Cancel this Rental Request", @rental, method: :delete, data: { confirm: 'Are you sure?' }, class: 'cancel-btn rental-request-btn' %>
       <% when "pending" %>
-        <div class='flex-btn-box'>
+        <div class='flex-btn-box inline'>
           <% if current_user == @rental.owner %>
             <div>
               <%= form_for @rental do |f| %>
@@ -87,9 +99,22 @@
                 <%= f.time_select "pickup_end_time", prompt: {hour: '13', minute: '00'} %><br>
                 <%= f.submit "Approve this rental", class: 'approve-btn rental-request-btn' %>
               <% end %>
+              <% if @rental.errors.any? %>
+                <% @rental.errors.full_messages.each do |msg| %>
+                  <%= msg %>
+                <% end %>
+              <% end %>
             <% end %>
-              <% if @rental.renter == current_user %>
-                <%= form_tag charges_path do %>
+              
+            </div>
+          </div>
+
+            <%= button_to "Cancel this Rental Request", @rental, method: :delete, data: { confirm: 'Are you sure?' }, class: 'cancel-btn rental-request-btn', form_class: 'cancel-form' %>
+
+        </div>
+      <% when "in_progress" %>
+      <% if @rental.renter == current_user %>
+                <%= form_tag charges_path, :class => "stripe-form" do %>
                   <%= hidden_field_tag "amount", "#{(@rental.total_tool_price * @rental.duration)}" %>
                   <div>
                     <% if flash[:error].present? %>
@@ -106,14 +131,6 @@
                   data-locale="auto"></script>
                 <% end %>
              <% end %>
-            </div>
-          </div>
-    
-
-            <%= button_to "Cancel this Rental Request", @rental, method: :delete, data: { confirm: 'Are you sure?' }, class: 'cancel-btn rental-request-btn' %>
-
-        </div>
-      <% when "scheduled" %>
     <% end %>
   </article>
 

@@ -15,6 +15,9 @@ class User < ActiveRecord::Base
   has_many :rented_line_items, through: :rented_rentals, source: :line_items
   has_many :rented_tools, through: :rented_line_items, source: :tool
 
+  has_many :received_reviews, foreign_key: :reviewee_id, class_name: "Review"
+  has_many :given_reviews, foreign_key: :reviewer_id, class_name: "Review"
+
 
 # These sums currently work as if the base_price is a flat rate.
 # Once logic is implimented to determine the duration of the rental,
@@ -30,8 +33,26 @@ class User < ActiveRecord::Base
     # turn it into an integer
   end
 
+  def reviewed_user?(user)
+    given_reviews.any? {|review| review.reviewee == user}
+  end
+
+  def has_rental_history_with?(user)
+    rented_from = rented_rentals.any? do |rental|
+      (["scheduled", "in_progress", "returned", "closed"].include?(rental.status)) && rental.owner == user
+    end
+    rented_to = owned_rentals.any? do |rental|
+      (["scheduled", "in_progress", "returned", "closed"].include?(rental.status)) && rental.renter == user
+    end
+    rented_from || rented_to
+  end
+
   def has_draft_rental?
     rented_rentals.draft.any?
+  end
+
+  def average_rating
+    received_reviews.average(:rating)
   end
 
   def owner_sum_all_tools

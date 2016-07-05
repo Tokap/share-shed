@@ -2,7 +2,7 @@
 
   <section>
     <% if user_signed_in? %>
-      <a href="/dashboard/<%= current_user.id %> ">
+      <%= link_to dashboard_path(current_user), method: "get" %>
     <% else %>
       <a href="/users/sign_in">
     <% end %>
