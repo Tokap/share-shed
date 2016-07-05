@@ -81,8 +81,31 @@
       </div>
     </div>
 
-    <div id="feedback" class="tabContent">
-      <p>Here will be feedback that has been submitted about you, and feedback that you have submitted about other people</p>
+    <div id="feedback" class="tabContent feedback-content">
+      <div class="current-users-received-reviews">
+      <h4>Your average rating is <%= @user.average_rating %></h4>
+      <h4>Reviews:</h4>
+      <% @received_reviews.each do |review| %>
+        <section>
+          <p><%= review.reviewer.username %> rated you: <%= review.stars %></p>
+          <p>They wrote:</p>
+          <blockquote>
+            <%= review.content %>
+          </blockquote>
+
+
+        </section>
+      <% end %>
+      </div>
+      <div class="users-dealing-with-current-user">
+        <h4>Users you have shared tools with:</h4>
+        <ul>
+          <% @users_shared_with.each do |user| %>
+            <li><%= user.username %> - <%= user.average_rating %> average rating<%= button_to "View/give feedback", user_url(user), method: :get %></li>
+            <br>
+          <% end %>
+        </ul>
+      </div>
     </div>
 
     <div id="history" class="tabContent">
