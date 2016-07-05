@@ -19,7 +19,7 @@ class ChargesController < ApplicationController
 		  if send_stripe_charge
 		  	redirect_to(:back)
 		  else
-		  	#render 'you changed the DOM' page
+		  	redirect_to root_path
 		  end
 		else
 			#render 'you changed the DOM' page
