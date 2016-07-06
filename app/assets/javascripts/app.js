@@ -1,6 +1,8 @@
-$(document).ready(function(){
+$(document).on('turbolinks:load', function(){
+
 
   var address = $('#googleMap').attr('address');
+  console.log(address)
 
   $.ajax({
     url: 'https://maps.googleapis.com/maps/api/geocode/json?address='+address,

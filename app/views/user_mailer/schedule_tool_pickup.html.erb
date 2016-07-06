@@ -14,11 +14,8 @@
       $.ajax({
         url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + address,
         success: function(response){
-          console.log(response);
           lat = response.results[0].geometry.location.lat;
           lng = response.results[0].geometry.location.lng;
-          console.log(response.results[0].geometry.location.lat);
-          console.log(response.results[0].geometry.location.lng);
         }
       });
 

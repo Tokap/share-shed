@@ -50,13 +50,13 @@
         </div>
         <% if @open_rented_rentals.any? %>
           <% @open_rented_rentals.each do |rental| %>
-            <a href="/rentals/<%= rental.id %>">
+            <%= link_to rental_path(rental), data: {turbolinks: false} do %>
               <div class='tile <%= rental.status %>'>
                 <p class='tile-info'>Owner: <%= rental.owner.username %></p>
                 <p class='tile-info'>Total: $<%= rental.sum_logs %></p>
                 <p class='tile-info'>Status: <%= rental.status %></p>
               </div>
-            </a>
+            <% end %>
           <% end %>
         <% end %>
       </div>
