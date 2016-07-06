@@ -216,6 +216,7 @@ demo_user_borrowing_4 = Rental.new(renter:          demo_user,
                owner:           user_5,
                status:          'closed',
                checkout_date:   Faker::Date.backward(30),
+               paid:            true,
                return_date:     Date.today)
 
 demo_user_borrowing_4.save(validate: false)
@@ -251,6 +252,7 @@ demo_user_tool_3.save
 demo_user_renting_out_4 = Rental.new(renter:          user_5,
                owner:           demo_user,
                status:          'closed',
+               paid:            true,
                checkout_date:   Faker::Date.backward(30),
                return_date:     Date.today)
 
