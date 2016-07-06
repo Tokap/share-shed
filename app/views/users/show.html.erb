@@ -34,7 +34,7 @@
     </div>
   </article>
   <aside>
-    <% if current_user.has_rental_history_with?(@user) %>
+    <% if user_signed_in? && current_user.has_rental_history_with?(@user) %>
       <% if !current_user.reviewed_user?(@user) %>
         <%= button_to "Review this user", new_user_review_path(@user), method: :get%>
       <% else %>
