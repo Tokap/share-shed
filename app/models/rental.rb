@@ -106,6 +106,6 @@ class Rental < ActiveRecord::Base
 
   def paid?
     paid == true
-  end 
+  end
 
 end

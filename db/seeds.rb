@@ -5,7 +5,7 @@ LineItem.destroy_all
 
 ################################### users ############################################
 # user 1 is demo user
-demo_user = User.create!(username:    'a',
+demo_user = User.create!(username:    'Demo User',
                          email:       'a@a.com',
                          password:    'aaaaaaaa',
                          address:     '707 Broadway, San Diego, CA 92101')
@@ -292,13 +292,15 @@ LineItem.create!(tool:    demo_user_tool_5,
 # create extra tools to populate search database
 dummmy_users = [user_2, user_3, user_4, user_5, user_6, user_7, user_8, user_9, user_10, user_11, user_12, user_13, user_14, user_15, user_16, user_17, user_18, user_19]
 
-dummmy_users.each do |user|
-  Tool.create!(abstract_tool_id:  rand(1..20),
-               base_price:        rand(5..50),
-               available:         true,
-               owner:             user,
-               model_number:      Faker::Company.ein,
-               description:       Faker::Hipster.paragraph)
+7.times do
+  dummmy_users.each do |user|
+    Tool.create!(abstract_tool_id:  rand(1..20),
+                 base_price:        rand(5..30),
+                 available:         true,
+                 owner:             user,
+                 model_number:      Faker::Company.ein,
+                 description:       Faker::Hipster.paragraph)
+  end
 end
 
 # add a log at the appropriate interval
@@ -307,8 +309,6 @@ Rental.all.each {|rental| rental.log_line_items if ( !rental.draft? && !rental.p
 ############################ tags  & tag linking ################################################
 
 name_array = ["outdoor", "exciting", "concerning", "probably-dangerous", "garden", "lawn", "garage", "car-repair", "machine", "heavy", "durable", "easy"]
-
-<<<<<<< Updated upstream
 
 ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[0]), tool: demo_user.tools[0])
 ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[0]), tool: demo_user.tools[1])
@@ -325,7 +325,6 @@ ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[1]), tool: demo_use
 ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[2]), tool: demo_user.tools[0])
 ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[2]), tool: demo_user.tools[1])
 ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[2]), tool: demo_user.tools[2])
-ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[3]), tool: demo_user.tools[3])
 ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[3]), tool: demo_user.tools[4])
 
 ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[4]), tool: demo_user.tools[0])
@@ -334,7 +333,6 @@ ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[4]), tool: demo_use
 ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[4]), tool: demo_user.tools[3])
 ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[4]), tool: demo_user.tools[4])
 
-ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[5]), tool: demo_user.tools[0])
 ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[5]), tool: demo_user.tools[1])
 ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[5]), tool: demo_user.tools[2])
 ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[5]), tool: demo_user.tools[3])
@@ -342,7 +340,6 @@ ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[5]), tool: demo_use
 
 ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[6]), tool: demo_user.tools[0])
 ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[6]), tool: demo_user.tools[1])
-ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[6]), tool: demo_user.tools[2])
 ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[6]), tool: demo_user.tools[3])
 ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[6]), tool: demo_user.tools[4])
 

@@ -11,7 +11,7 @@
         <p>Current Status: Unavailable, rented to <%= @tool.line_items.first.rental.renter.username.titleize %> until <%= @tool.line_items.first.rental.return_date %></p>
       <% end %>
     <% else %>
-      <h2>Rent this <%= @tool.abstract_tool.name %></h2>
+      <h2>Rent this <%= clean(@tool.name) %></h2>
     <% end %>
 
     <% if @tool.image.present? %>

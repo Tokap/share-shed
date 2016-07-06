@@ -13,11 +13,11 @@
 	<p> No matching results found! </p>
 <% elsif @tag.class.to_s == "Tag" %>
 	<% @results.each do |tt| %>
-	<p><%= link_to "#{tt.tool.name}", tool_path(tt.tool)%> | $<%= tt.tool.base_price %> each day </p>
+	<p><%= link_to "#{clean(tt.tool.name)}", tool_path(tt.tool)%> | $<%= tt.tool.base_price %> each day </p>
 	<% end %>
 <% else %>
 	<% @results.each do |tool| %>
-		<p><%= link_to "#{tool.name}", tool_path(tool)%> | $<%= tool.base_price %> each day </p>
+		<p><%= link_to "#{clean(tool.name)}", tool_path(tool)%> | $<%= tool.base_price %> each day </p>
 	<% end %>
 <% end %>
   </article>

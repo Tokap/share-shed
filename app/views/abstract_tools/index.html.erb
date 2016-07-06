@@ -9,7 +9,7 @@
     <ul>
       <% @available_abstract_tools.each do |ab_tool| %>
         <article>
-          <li><%= link_to ab_tool.name, abstract_tool_path(ab_tool) %></li>
+          <li><%= link_to ab_tool.name.split.map(&:capitalize).join(' '), abstract_tool_path(ab_tool) %></li>
         </article>
       <% end %>
     </ul>
