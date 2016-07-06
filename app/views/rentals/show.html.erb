@@ -101,10 +101,10 @@
             <div>
               <%= form_for @rental do |f| %>
                 <p class='time-range-p'>Time range you will be available for the <%= pluralize(@rental.line_items.count, 'tool') %> to be picked up:</p>
-                <span class='form-label'><%= f.label "From" %></span>
-                <%= f.time_select "pickup_time", prompt: {hour: '11', minute: '00'} %>
+                <span class='form-label'><%= f.label "From", select: '12:00' %></span>
+                <%= f.time_select "pickup_time" %>
                 <span class='form-label'><%= f.label :to, "to" %></span>
-                <%= f.time_select "pickup_end_time", prompt: {hour: '13', minute: '00'} %><br>
+                <%= f.time_select "pickup_end_time" %><br>
                 <%= f.submit "Approve this rental", class: 'approve-btn rental-request-btn' %>
               <% end %>
               <% if @rental.errors.any? %>
