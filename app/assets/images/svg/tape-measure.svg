@@ -1,0 +1,45 @@
+
+<svg width="258px" height="253px" viewBox="-3889 -3699 258 253" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="233.208955" height="233.208955"></rect>
+        <rect id="path-3" x="0" y="0" width="233.208955" height="233.208955"></rect>
+        <rect id="path-5" x="0" y="0" width="233.208955" height="233.208955"></rect>
+    </defs>
+    <g id="tape-measure" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-3882.000000, -3699.000000)">
+        <g id="duct-tape" transform="translate(16.791045, 0.000000)">
+            <g id="Layer_1">
+                <g id="Group">
+                    <g id="Clipped">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <g id="SVGID_1_"></g>
+                        <path class="shed-icon-color" d="M176.272655,124.916711 L219.657849,124.916711 L198.660714,146.430237 L212.036914,159.040179 L198.927239,171.400253 L212.036914,183.751999 L198.927239,196.120402 L210.795909,207.306103 C224.788446,197.019923 233.208955,184.434968 233.208955,170.725613 L233.208955,88.1446562 C222.572961,104.027852 202.383729,117.03758 176.272655,124.916711" id="Shape" fill="#231F20" mask="url(#mask-2)"></path>
+                    </g>
+                    <g id="Clipped">
+                        <mask id="mask-4" fill="white">
+                            <use xlink:href="#path-3"></use>
+                        </mask>
+                        <g id="SVGID_1_"></g>
+                        <path class="shed-icon-color" d="M186.783715,196.120402 L199.89339,183.760328 L186.783715,171.400253 L199.89339,159.040179 L186.783715,146.680104 L199.89339,133.245602 L116.604478,133.245602 C62.64992,133.245602 17.8154984,114.763793 0,88.1446562 L0,170.725613 C0,205.223881 52.2138193,233.192297 116.604478,233.192297 L199.89339,233.192297 L186.783715,220.832223 L199.89339,208.472148 L186.783715,196.120402 L186.783715,196.120402 Z" id="Shape" fill="#231F20" mask="url(#mask-4)"></path>
+                    </g>
+                    <g id="Clipped">
+                        <mask id="mask-6" fill="white">
+                            <use xlink:href="#path-5"></use>
+                        </mask>
+                        <g id="SVGID_1_"></g>
+                        <path class="shed-icon-color" d="M116.604478,124.916711 C180.995136,124.916711 233.208955,96.9399654 233.208955,62.4500267 C233.208955,27.9434302 180.995136,-0.0166577825 116.604478,-0.0166577825 C52.2138193,-0.0166577825 0,27.9434302 0,62.4583555 C0,96.9399654 52.2138193,124.916711 116.604478,124.916711 M116.604478,36.2723214 C143.590085,36.2723214 165.470083,47.9910714 165.470083,62.4500267 C165.470083,76.9089819 143.590085,88.619403 116.604478,88.619403 C89.6188699,88.619403 67.7388726,76.9173108 67.7388726,62.4583555 C67.7388726,47.9994003 89.6188699,36.2723214 116.604478,36.2723214" id="Shape" fill="#231F20" mask="url(#mask-6)"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+        <path d="M176.30597,162.779851 L176.30597,243.003731" id="Line" stroke="#FFFFFF" stroke-width="14" stroke-linecap="square"></path>
+        <path d="M142.723881,164.645522 L142.723881,244.869403" id="Line-Copy-8" stroke="#FFFFFF" stroke-width="14" stroke-linecap="square"></path>
+        <path d="M109.141791,162.779851 L109.141791,243.003731" id="Line-Copy-9" stroke="#FFFFFF" stroke-width="14" stroke-linecap="square"></path>
+        <path d="M70.8955224,152.518657 L70.8955224,232.742537" id="Line-Copy-10" stroke="#FFFFFF" stroke-width="14" stroke-linecap="square"></path>
+        <path d="M34.5149254,134.794776 L34.5149254,215.018657" id="Line-Copy-12" stroke="#FFFFFF" stroke-width="14" stroke-linecap="square"></path>
+        <path d="M6.52985075,162.779851 L6.52985075,243.003731" id="Line-Copy-13" stroke="#FFFFFF" stroke-width="14" stroke-linecap="square"></path>
+    </g>
+</svg>

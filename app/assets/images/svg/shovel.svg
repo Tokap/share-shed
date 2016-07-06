@@ -1,0 +1,19 @@
+
+<svg width="250px" height="250px" viewBox="-3652 -5764 250 250" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="250" height="250"></rect>
+    </defs>
+    <g id="shovel" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-3652.000000, -5764.000000)">
+        <g id="Layer_1">
+            <g id="Clipped">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="SVGID_1_"></g>
+                <path class="shed-icon-color" d="M16.5625,150.544643 L64.1517857,102.955357 L85.1875,132.428571 L42.4910714,175.116071 C40.75,176.857143 40.75,179.6875 42.4910714,181.428571 C43.3660714,182.303571 44.5089286,182.732143 45.6517857,182.732143 C46.7946429,182.732143 47.9375,182.303571 48.8035714,181.428571 L225.830357,3.92857143 C231.053571,-1.30357143 239.544643,-1.30357143 244.767857,3.92857143 C249.991071,9.15178571 249.991071,17.6339286 244.767857,22.8660714 L109.1875,158.446429 L145.741071,184.544643 L98.1428571,232.142857 C76.0625,254.214286 38.6428571,254.214286 16.5535714,232.142857 C-5.51785714,210.0625 -5.51785714,172.616071 16.5625,150.544643" id="Shape" fill="#231F20" mask="url(#mask-2)"></path>
+            </g>
+        </g>
+    </g>
+</svg>
