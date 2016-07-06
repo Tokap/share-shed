@@ -10,6 +10,7 @@
 // Copy and page the template below, along with the template.html.erb file.
 
 hgroup.template { }
+
 main.template {
   hgroup  { }
   section { }
@@ -264,9 +265,6 @@ main.landing-lower {
 
 }
 
-
-
-
 main.password-pages {
   section, aside {
     display: none;
@@ -397,11 +395,34 @@ main.section-aside-hidden {
 main.section-hidden {
   section { display: none; }
   article, aside { background-color: #efefef; }
+  #googleMap {
+    width: 400px;
+    height:320px;
+  }
 }
 
 main.aside-hidden {
   aside { display: none; }
   section, article { background-color: #efefef; }
+}
+
+main.abstract-tools {
+  article, aside {
+    flex: 1 1em;
+    background-color: #efefef;
+    .top-5-tags-div {
+      margin-top: 100px;
+    }
+  }
+  section { display: none; }
+
+  article {
+    .tool-div {
+      svg { fill: $brand-green; }
+    }
+    .shed-icon-color { fill: $brand-green; }
+  }
+
 }
 
 //
