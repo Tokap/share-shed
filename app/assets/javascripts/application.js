@@ -40,6 +40,15 @@ $(document).ready(function(){
     $(this).className += " active";
   });
 
+  $("html").on('click', "#cost-button", function(event){
+    $("#tools-by-cost").show();
+    $("#tools-by-distance").hide();
+  });
+  $("html").on('click', "#distance-button", function(event){
+    $("#tools-by-distance").show();
+    $("#tools-by-cost").hide();
+  });
+
   // STRIPE JS BELOW ///
   Stripe.setPublishableKey(' pk_test_eNf41km4qob9JPZmiA9C6iyt');
 

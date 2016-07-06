@@ -5,3 +5,28 @@
 .btn-success { background-color: $brand-color; }
 
 
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify: space-between;
+}
+.tile {
+  border-radius: 5px;
+  border: solid black 1px;
+  height: 150px;
+  width: 150px;
+  display: inline-block;
+  margin: 10px;
+  box-shadow: -3px 3px 3px gray;
+  z-index: 50;
+  word-wrap: break-word;
+}
+.tile-pic {
+  z-index: 10;
+  height: 150px;
+  width: 150px;
+  position: absolute;
+}
+
+
+

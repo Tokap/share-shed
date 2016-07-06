@@ -18,4 +18,8 @@ class Tool < ActiveRecord::Base
   	abstract_tool.name
   end
 
+  def distance_from_address(address)
+    GoogleDirections.new(address, owner.address).distance_in_miles
+  end
+
 end

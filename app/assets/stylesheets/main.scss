@@ -80,12 +80,13 @@ main.dashboard {
   #toolshed {
     display: block;
   }
+
   .flex-container {
     display: flex;
     flex-wrap: wrap;
     justify: space-between;
   }
-  .tile {
+  .tile-svg {
     border-radius: 5px;
     //border: 2px solid #efefef;
     height: 100px;
@@ -130,12 +131,12 @@ main.dashboard {
   .tile h4 {
     z-index: 100;
   }
-  .tile-pic {
-    z-index: 10;
-    height: 150px;
-    width: 150px;
-    position: absolute;
-  }
+  // .tile-pic {
+  //   z-index: 10;
+  //   height: 150px;
+  //   width: 150px;
+  //   position: absolute;
+  // }
   .unavailable {
     opacity: 0.6;
   }
@@ -387,6 +388,23 @@ main.abstract-tools {
 
 }
 
+main.user-show {
+  h2 { text-align: center; }
+  .shown-users-received-reviews {
+    margin-top: 20px;
+    float: left;
+    width: 49%;
+
+    section {
+      border: 2px solid black;
+    }
+  }
+  .shown-users-tools {
+    margin-top: 20px;
+    float: right;
+    width: 49%;
+  }
+}
 
 //
 // GLOBAL HELPER STYLES
