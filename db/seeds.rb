@@ -323,7 +323,6 @@ ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[1]), tool: demo_use
 ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[2]), tool: demo_user.tools[0])
 ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[2]), tool: demo_user.tools[1])
 ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[2]), tool: demo_user.tools[2])
-ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[3]), tool: demo_user.tools[3])
 ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[3]), tool: demo_user.tools[4])
 
 ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[4]), tool: demo_user.tools[0])
@@ -332,7 +331,6 @@ ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[4]), tool: demo_use
 ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[4]), tool: demo_user.tools[3])
 ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[4]), tool: demo_user.tools[4])
 
-ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[5]), tool: demo_user.tools[0])
 ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[5]), tool: demo_user.tools[1])
 ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[5]), tool: demo_user.tools[2])
 ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[5]), tool: demo_user.tools[3])
@@ -340,7 +338,6 @@ ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[5]), tool: demo_use
 
 ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[6]), tool: demo_user.tools[0])
 ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[6]), tool: demo_user.tools[1])
-ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[6]), tool: demo_user.tools[2])
 ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[6]), tool: demo_user.tools[3])
 ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[6]), tool: demo_user.tools[4])
 
