@@ -104,6 +104,8 @@ class Rental < ActiveRecord::Base
     status == "closed"
   end
 
-
+  def paid?
+    paid == true
+  end 
 
 end

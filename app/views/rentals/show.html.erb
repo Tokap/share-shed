@@ -112,7 +112,7 @@
 
       <% when "in_progress" %>
 
-        <% if @rental.renter == current_user %>
+        <% if @rental.renter == current_user && !@rental.paid?%>
 
           <%=form_tag charges_path, :class => 'stripe-form-test' do %>
             <div id="error_explanation">
