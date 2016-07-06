@@ -1,0 +1,29 @@
+
+<svg width="251px" height="251px" viewBox="-4105 -5764 251 251" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="250" height="250"></rect>
+        <rect id="path-3" x="0" y="0" width="250" height="250"></rect>
+    </defs>
+    <g id="hammer" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-4105.000000, -5764.000000)">
+        <g id="Layer_1">
+            <g id="Group">
+                <g id="Clipped">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="SVGID_1_"></g>
+                    <path class="shed-icon-color" d="M245.875,78.4285714 L229.732143,66.8125 C225.285714,63.6160714 219.044643,64.6339286 215.848214,69.0714286 L212.946429,73.1160714 L200.830357,64.4017857 L203.383929,60.8482143 C206.776786,56.1428571 205.696429,49.5178571 200.982143,46.125 L136.892857,0.0178571429 L38.5892857,8.91964286 L163.232143,98.5982143 C167.9375,101.991071 174.5625,100.910714 177.955357,96.1964286 L180.508929,92.6517857 L192.616071,101.366071 L189.705357,105.401786 C186.517857,109.839286 187.535714,116.089286 191.973214,119.285714 L208.116071,130.901786 C212.5625,134.098214 218.803571,133.080357 222,128.633929 L248.142857,92.3125 C251.330357,87.8660714 250.3125,81.625 245.875,78.4285714" id="Shape" fill="#231F20" mask="url(#mask-2)"></path>
+                </g>
+                <g id="Clipped">
+                    <mask id="mask-4" fill="white">
+                        <use xlink:href="#path-3"></use>
+                    </mask>
+                    <g id="SVGID_1_"></g>
+                    <path class="shed-icon-color" d="M4.65178571,210.651786 C-3.33035714,221.75 -0.785714286,237.366071 10.3125,245.357143 C21.4107143,253.339286 37.0267857,250.794643 45.0178571,239.696429 L147.044643,97.9553571 L106.678571,68.9107143 L4.65178571,210.651786 L4.65178571,210.651786 Z" id="Shape" fill="#231F20" mask="url(#mask-4)"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
