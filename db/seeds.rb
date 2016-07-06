@@ -306,9 +306,75 @@ Rental.all.each {|rental| rental.log_line_items if ( !rental.draft? && !rental.p
 
 name_array = ["outdoor", "exciting", "concerning", "probably-dangerous", "garden", "lawn", "garage", "car-repair", "machine", "heavy", "durable", "easy"]
 
-30.times do 
-  ToolTag.create!(tag: Tag.create!(name: name_array.sample), tool: demo_user.tools.sample)
-  ToolTag.create!(tag: Tag.create!(name: name_array.sample), tool: Tool.all.sample)
+
+ToolTag.create!(tag: Tag.create!(name: name_array[0]), tool: demo_user.tools[0])
+ToolTag.create!(tag: Tag.create!(name: name_array[0]), tool: demo_user.tools[1])
+ToolTag.create!(tag: Tag.create!(name: name_array[0]), tool: demo_user.tools[2])
+ToolTag.create!(tag: Tag.create!(name: name_array[0]), tool: demo_user.tools[3])
+ToolTag.create!(tag: Tag.create!(name: name_array[0]), tool: demo_user.tools[4])
+
+ToolTag.create!(tag: Tag.create!(name: name_array[1]), tool: demo_user.tools[0])
+ToolTag.create!(tag: Tag.create!(name: name_array[1]), tool: demo_user.tools[1])
+ToolTag.create!(tag: Tag.create!(name: name_array[1]), tool: demo_user.tools[2])
+ToolTag.create!(tag: Tag.create!(name: name_array[1]), tool: demo_user.tools[3])
+ToolTag.create!(tag: Tag.create!(name: name_array[1]), tool: demo_user.tools[4])
+
+ToolTag.create!(tag: Tag.create!(name: name_array[2]), tool: demo_user.tools[0])
+ToolTag.create!(tag: Tag.create!(name: name_array[2]), tool: demo_user.tools[1])
+ToolTag.create!(tag: Tag.create!(name: name_array[2]), tool: demo_user.tools[2])
+ToolTag.create!(tag: Tag.create!(name: name_array[3]), tool: demo_user.tools[3])
+ToolTag.create!(tag: Tag.create!(name: name_array[3]), tool: demo_user.tools[4])
+
+ToolTag.create!(tag: Tag.create!(name: name_array[4]), tool: demo_user.tools[0])
+ToolTag.create!(tag: Tag.create!(name: name_array[4]), tool: demo_user.tools[1])
+ToolTag.create!(tag: Tag.create!(name: name_array[4]), tool: demo_user.tools[2])
+ToolTag.create!(tag: Tag.create!(name: name_array[4]), tool: demo_user.tools[3])
+ToolTag.create!(tag: Tag.create!(name: name_array[4]), tool: demo_user.tools[4])
+
+ToolTag.create!(tag: Tag.create!(name: name_array[5]), tool: demo_user.tools[0])
+ToolTag.create!(tag: Tag.create!(name: name_array[5]), tool: demo_user.tools[1])
+ToolTag.create!(tag: Tag.create!(name: name_array[5]), tool: demo_user.tools[2])
+ToolTag.create!(tag: Tag.create!(name: name_array[5]), tool: demo_user.tools[3])
+ToolTag.create!(tag: Tag.create!(name: name_array[5]), tool: demo_user.tools[4])
+
+ToolTag.create!(tag: Tag.create!(name: name_array[6]), tool: demo_user.tools[0])
+ToolTag.create!(tag: Tag.create!(name: name_array[6]), tool: demo_user.tools[1])
+ToolTag.create!(tag: Tag.create!(name: name_array[6]), tool: demo_user.tools[2])
+ToolTag.create!(tag: Tag.create!(name: name_array[6]), tool: demo_user.tools[3])
+ToolTag.create!(tag: Tag.create!(name: name_array[6]), tool: demo_user.tools[4])
+
+ToolTag.create!(tag: Tag.create!(name: name_array[7]), tool: demo_user.tools[0])
+ToolTag.create!(tag: Tag.create!(name: name_array[7]), tool: demo_user.tools[1])
+ToolTag.create!(tag: Tag.create!(name: name_array[7]), tool: demo_user.tools[2])
+ToolTag.create!(tag: Tag.create!(name: name_array[7]), tool: demo_user.tools[3])
+ToolTag.create!(tag: Tag.create!(name: name_array[7]), tool: demo_user.tools[4])
+
+ToolTag.create!(tag: Tag.create!(name: name_array[8]), tool: demo_user.tools[0])
+ToolTag.create!(tag: Tag.create!(name: name_array[8]), tool: demo_user.tools[1])
+ToolTag.create!(tag: Tag.create!(name: name_array[9]), tool: demo_user.tools[2])
+ToolTag.create!(tag: Tag.create!(name: name_array[9]), tool: demo_user.tools[3])
+ToolTag.create!(tag: Tag.create!(name: name_array[9]), tool: demo_user.tools[4])
+
+ToolTag.create!(tag: Tag.create!(name: name_array[8]), tool: demo_user.tools[0])
+ToolTag.create!(tag: Tag.create!(name: name_array[8]), tool: demo_user.tools[1])
+ToolTag.create!(tag: Tag.create!(name: name_array[9]), tool: demo_user.tools[2])
+ToolTag.create!(tag: Tag.create!(name: name_array[9]), tool: demo_user.tools[3])
+ToolTag.create!(tag: Tag.create!(name: name_array[9]), tool: demo_user.tools[4])
+
+ToolTag.create!(tag: Tag.create!(name: name_array[10]), tool: demo_user.tools[0])
+ToolTag.create!(tag: Tag.create!(name: name_array[10]), tool: demo_user.tools[1])
+ToolTag.create!(tag: Tag.create!(name: name_array[10]), tool: demo_user.tools[2])
+ToolTag.create!(tag: Tag.create!(name: name_array[11]), tool: demo_user.tools[3])
+ToolTag.create!(tag: Tag.create!(name: name_array[11]), tool: demo_user.tools[4])
+
+ToolTag.create!(tag: Tag.create!(name: name_array[8]), tool: demo_user.tools[0])
+ToolTag.create!(tag: Tag.create!(name: name_array[8]), tool: demo_user.tools[1])
+ToolTag.create!(tag: Tag.create!(name: name_array[9]), tool: demo_user.tools[2])
+ToolTag.create!(tag: Tag.create!(name: name_array[9]), tool: demo_user.tools[3])
+ToolTag.create!(tag: Tag.create!(name: name_array[9]), tool: demo_user.tools[4])
+
+10.times do
+  ToolTag.create!(tag: Tag.create!(name: name_array.sample), tool: Tool.where.not(owner: demo_user))
 end
 
 
