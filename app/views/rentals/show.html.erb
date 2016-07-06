@@ -8,7 +8,7 @@
 
   <article>
     <h2><%= link_to @rental.owner.username.titleize, user_path(@rental.owner) %> (owner) sharing their shed with <%= link_to @rental.renter.username.titleize, user_path(@rental.renter) %></h2>
-    <p>Current status: <span class='rental-status'><%= 'In Progress' if @rental.status == 'in_progress' %><%= @rental.status if @rental.status != 'in_progress' %></span></p>
+    <p>Current status: <span class='rental-status'><%= 'In Progress' if @rental.status == 'in_progress' %><%= @rental.status.capitalize if @rental.status != 'in_progress' %></span></p>
     <% if @rental.scheduled? || @rental.in_progress? %>
       <% if current_user != @rental.owner  %>
         <p>Owner Address: <%= @rental.owner.address %></p>
@@ -118,7 +118,7 @@
           <%= button_to "Cancel this Rental Request", @rental, method: :delete, data: { confirm: 'Are you sure?' }, class: 'cancel-btn rental-request-btn', form_class: 'cancel-form' %>
         </div>
 
-      <% when "in_progress" %>
+      <% when "in_progress", "returned" %>
 
         <% if @rental.renter == current_user && !@rental.paid?%>
 
