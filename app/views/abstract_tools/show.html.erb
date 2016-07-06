@@ -4,7 +4,7 @@
   <button id="distance-button">Sort by distance</button>
   </section>
   <article>
-  <h2>Select a <%= @abstract_tool.name %> to view its details</h2>
+  <h2>Select a <%= clean(@abstract_tool.name) %> to view its details</h2>
     <div id="tools-by-cost">
       <ul>
         <% @tools.each do |tool| %>
