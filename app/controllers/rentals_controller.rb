@@ -65,6 +65,7 @@ class RentalsController < ApplicationController
       end
       if @rental.owner_return_confirmation && @rental.renter_return_confirmation
         @rental.status = "returned"
+        @rental.status = "closed" if @rental.paid == true
         @rental.set_tools_availability(true)
       end
     end
