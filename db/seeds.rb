@@ -189,19 +189,25 @@ demo_user_borrowing_1 = Rental.new(renter:          demo_user,
                owner:           user_2,
                status:          'pending',
                checkout_date:   Date.today,
-               return_date:     Faker::Date.forward(15)).save(validate: false)
+               return_date:     Faker::Date.forward(15))
+demo_user_borrowing_1.save(validate: false)
+
 
 demo_user_borrowing_2 = Rental.new(renter:          demo_user,
                owner:           user_3,
                status:          'scheduled',
                checkout_date:   Date.today,
-               return_date:     Faker::Date.forward(15)).save(validate: false)
+               return_date:     Faker::Date.forward(15))
+
+demo_user_borrowing_2.save(validate: false)
 
 demo_user_borrowing_3 = Rental.new(renter:          demo_user,
                owner:           user_4,
                status:          'in_progress',
                checkout_date:   Faker::Date.backward(7),
-               return_date:     Faker::Date.forward(7)).save(validate: false)
+               return_date:     Faker::Date.forward(7))
+
+demo_user_borrowing_3.save(validate: false)
 
 user_3_tool.available = false
 user_3_tool.save
@@ -210,26 +216,34 @@ demo_user_borrowing_4 = Rental.new(renter:          demo_user,
                owner:           user_5,
                status:          'closed',
                checkout_date:   Faker::Date.backward(30),
-               return_date:     Date.today).save(validate: false)
+               return_date:     Date.today)
+
+demo_user_borrowing_4.save(validate: false)
 
 # demo user lends his tools
 demo_user_renting_out_1 = Rental.new(renter:          user_2,
                owner:           demo_user,
                status:          'pending',
                checkout_date:   Date.today,
-               return_date:     Faker::Date.forward(15)).save(validate: false)
+               return_date:     Faker::Date.forward(15))
+
+demo_user_renting_out_1.save(validate: false)
 
 demo_user_renting_out_2 = Rental.new(renter:          user_3,
                owner:           demo_user,
                status:          'scheduled',
                checkout_date:   Date.today,
-               return_date:     Faker::Date.forward(15)).save(validate: false)
+               return_date:     Faker::Date.forward(15))
+
+demo_user_renting_out_2.save(validate: false)
 
 demo_user_renting_out_3 = Rental.new(renter:          user_4,
                owner:           demo_user,
                status:          'in_progress',
                checkout_date:   Faker::Date.backward(7),
-               return_date:     Faker::Date.forward(7)).save(validate: false)
+               return_date:     Faker::Date.forward(7))
+
+demo_user_renting_out_3.save(validate: false)
 
 demo_user_tool_3.available = false
 demo_user_tool_3.save
@@ -238,7 +252,9 @@ demo_user_renting_out_4 = Rental.new(renter:          user_5,
                owner:           demo_user,
                status:          'closed',
                checkout_date:   Faker::Date.backward(30),
-               return_date:     Date.today).save(validate: false)
+               return_date:     Date.today)
+
+demo_user_renting_out_4.save(validate: false)
 
 ################################### line items #########################################
 # create next four line_items for other users to lend tools to demo user
