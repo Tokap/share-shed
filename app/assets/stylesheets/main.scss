@@ -1,33 +1,5 @@
 //
-// HEADER STYLES
-// --------------------------------------------------
-// Global HEADER style for the entire application
-
-header {
-  background-color: #fff;
-  .logo {
-    width: 240px;
-  }
-}
-
-nav {
-  a {
-    font-weight: bold;
-    font-size: 1em;
-    color: #76A142;
-    text-decoration: none;
-  }
-}
-
-footer {
-  color: #555;
-  font-size: 1em;
-}
-
-
-
-//
-// MAIN PAGE STYLES
+// MAIN PAGE CSS
 // --------------------------------------------------
 // Each page has an HGROUP and MAIN element, for page specific styling.
 // MAIN is required!
@@ -179,60 +151,6 @@ main.landing-page {
     }
   }
 
-  // Background in elements
-  //section, article {
-  //  border: 10px solid #efefef;
-  //  border-radius: 20px;
-  //  opacity: 1;
-  //}
-  //
-  //section:hover, article:hover {
-  //  opacity: 1;
-  //}
-  //
-  //section {
-  //  background: url('/assets/tool-drill.jpg') no-repeat center bottom;
-  //  background-size: 300%;
-  //}
-  //
-  //article  {
-  //  background: url('/assets/holding-drill.jpg') no-repeat right top;
-  //  background-size: 145%;
-  //  border: 10px solid #efefef;
-  //}
-  //
-  //article button, section button {
-  //  width: 100%;
-  //  height: 20vh;
-  //  background-color: rgba(0,0,0,0);
-  //  //background: url('/assets/tool-drill.jpg') no-repeat center bottom;
-  //  //background-size: 400%;
-  //  border: none;
-  //  color: #999;
-  //  padding: 15px 32px;
-  //  text-align: center;
-  //  vertical-align: bottom;
-  //  text-decoration: none;
-  //  font-size: 4em;
-  //  transition-duration: 0.4s;
-  //  border-radius: 25px;
-  //  opacity: .5;
-  //}
-  //
-  //.renting-text, .sharing-text {
-  //  background: #fff;
-  //  margin: 10px;
-  //  padding: 10px;
-  //  border-radius: 10px;
-  //  color: #777;
-  //  h3 {
-  //    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-  //    font-weight: 800!important;
-  //  }
-  //}
-
-
-  // Background image moved to div
   section, article {
     opacity: 1;
   }
@@ -336,14 +254,18 @@ main.landing-lower {
     border-radius: 20px;
     opacity: 1;
   }
+
+  .shed-icon-landing {
+    width: 45px;
+    .shed-icon-color {
+      fill: $brand-color;
+    }
+  }
+
 }
 
-main.section-hidden {
-  #googleMap {
-    width: 400px;
-    height:320px;
-  }
-}
+
+
 
 main.password-pages {
   section, aside {
@@ -386,10 +308,6 @@ main.rental-show {
       th {
       text-align: left;
       }
-    }
-    #googleMap {
-      width: 400px;
-      height:320px;
     }
     p.time-range-p {
       margin-bottom: 0px;

@@ -7,7 +7,7 @@
   </section>
 
   <article>
-    <h2><%= @rental.owner.username.titleize %> (owner) sharing their shed with <%= @rental.renter.username.titleize %></h2>
+    <h2><%= link_to @rental.owner.username.titleize, user_path(@rental.owner) %> (owner) sharing their shed with <%= link_to @rental.renter.username.titleize, user_path(@rental.renter) %></h2>
     <p>Current status: <span class='rental-status'><%= 'In Progress' if @rental.status == 'in_progress' %><%= @rental.status if @rental.status != 'in_progress' %></span></p>
     <% if @rental.scheduled? || @rental.in_progress? %>
       <p>Owner Address: <%= @rental.owner.address %></p>
@@ -28,13 +28,13 @@
     <% if @rental.owner_return_confirmation %><p>Owner has confirmed return of tool.</p><% end %>
     <% if @rental.renter_return_confirmation %><p>Renter has confirmed return of tool.</p><% end %>
 
-    <% if @rental.status == "scheduled" %>
+    <% if @rental.status == "scheduled" && @rental.checkout_date == Date.today %>
       <% if current_user == @rental.owner && !@rental.owner_pick_up_confirmation %>
         <%= button_to "Confirm renter has picked up your tool(s)", @rental, method: :patch %>
       <% elsif current_user == @rental.renter && !@rental.renter_pick_up_confirmation %>
         <%= button_to "Confirm that you have picked up the tool(s)", @rental, method: :patch %>
       <% end %>
-    <% elsif @rental.status == "in_progress" %>
+    <% elsif @rental.status == "in_progress" && @rental.return_date == Date.today %>
       <% if current_user == @rental.owner && !@rental.owner_return_confirmation %>
         <%= button_to "Confirm that your tool(s) as been returned", @rental, method: :patch %>
       <% elsif current_user == @rental.renter && !@rental.renter_return_confirmation %>
@@ -85,7 +85,7 @@
           <% if @rental.pending? || @rental.draft? %> <!-- Data hasn't been saved yet -->
             <td class='align-right'><strong>$<%= @rental.total_tool_price * @rental.duration %></strong></td>
           <% else %> <!-- Transaction is permanent and LI info is logged -->
-            <td class='align-right'><strong>$<%= @rental.sum_logs * @rental.duration %></strong></td>
+            <td class='align-right sum-total'><strong>$<%= @rental.sum_logs * @rental.duration %></strong></td>
           <% end %>
       </tr>
     </table>
@@ -111,33 +111,64 @@
                 <% end %>
               <% end %>
             <% end %>
+<<<<<<< HEAD
 
+=======
+>>>>>>> b287f21bb4aa440fdff2dbef3cd39f41407b8751
             </div>
           </div>
-
-            <%= button_to "Cancel this Rental Request", @rental, method: :delete, data: { confirm: 'Are you sure?' }, class: 'cancel-btn rental-request-btn', form_class: 'cancel-form' %>
-
+          <%= button_to "Cancel this Rental Request", @rental, method: :delete, data: { confirm: 'Are you sure?' }, class: 'cancel-btn rental-request-btn', form_class: 'cancel-form' %>
         </div>
-      <% when "in_progress" %>
-      <% if @rental.renter == current_user %>
-                <%= form_tag charges_path, :class => "stripe-form" do %>
-                  <%= hidden_field_tag "amount", "#{(@rental.total_tool_price * @rental.duration)}" %>
-                  <div>
-                    <% if flash[:error].present? %>
-                      <div id="error_explanation">
-                        <p><%= flash[:error] %></p>
-                      </div>
-                    <% end %>
-                  </div>
 
-                  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                  data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-                  data-description="Tool Rental via Shed Sharing"
-                  data-amount="<%= ((@rental.total_tool_price * @rental.duration).to_s + '00').to_f %>"
-                  data-locale="auto"></script>
-                <% end %>
-             <% end %>
+      <% when "in_progress" %>
+
+        <% if @rental.renter == current_user %>
+
+          <%=form_tag charges_path, :class => 'stripe-form-test' do %>
+            <div id="error_explanation">
+              <% if flash[:error].present? %>
+                  <p><%=flash[:error] %></p>
+              <% end %>
+            </div>
+            <div>
+              <%=hidden_field_tag(:amount) %>
+              <%=hidden_field_tag "rental_id", "#{@rental.id}" %>
+            </div>      
+            <div>
+              <%=hidden_field_tag(:stripeToken) %>
+            </div>
+            <button id='payButton'>Pay for Rental</button>
+          <% end %>
+        <% end %>     
     <% end %>
+    <script src="https://checkout.stripe.com/checkout.js"></script>
+    <script>
+      var handler = StripeCheckout.configure({
+        key: '<%=Rails.configuration.stripe[:publishable_key] %>',
+        locale: 'auto',
+        name: 'Shed Sharing',
+        description: 'One-time donation',
+        token: function(token) {
+          $('input#stripeToken').val(token.id);
+          var amount = $('.sum-total').text().substring(1);
+          $('input#amount').val(amount); //adds the calculated amount to the DOM.
+          $('form').submit();
+        }
+      });
+      $('#payButton').on('click', function(e) {
+        e.preventDefault();
+        var amount = $('.sum-total').text().substring(1); 
+        //This amount tells the popup how much the user is paying
+        handler.open({
+          amount: Math.round(amount*100)
+        })
+      });  
+
+      // Close Checkout on page navigation
+      $(window).on('popstate', function() {
+        handler.close();
+      });
+    </script>
   </article>
 
   <aside>

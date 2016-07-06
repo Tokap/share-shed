@@ -1,3 +1,8 @@
+<% if @review.errors.any? %>
+  <% @review.errors.full_messages.each do |msg| %>
+    <%= msg %>
+  <% end %>
+<% end %>
 <% path = @review.persisted? ? review_path(@review) : user_reviews_path %>
 <%= form_for @review, url: path do |f|%>
   <%= f.label "rating" %>

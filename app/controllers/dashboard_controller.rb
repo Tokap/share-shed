@@ -9,7 +9,7 @@ class DashboardController < ApplicationController
       @owned_rentals = @user.owned_rentals
       @rented_rentals = @user.rented_rentals
       # select only open rental requests
-      @open_owned_rentals = @owned_rentals.reject { |rental| rental.closed? }
+      @open_owned_rentals = @owned_rentals.reject { |rental| rental.closed? || rental.draft? }
       @open_rented_rentals = @rented_rentals.reject { |rental| rental.closed? }
       # select only closed rental requests
       @all_closed_rentals = []

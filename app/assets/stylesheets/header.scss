@@ -1,0 +1,26 @@
+//
+// HEADER STYLES
+// --------------------------------------------------
+// Global HEADER style for the entire application
+
+header {
+  background-color: #fff;
+  .logo {
+    width: 240px;
+  }
+}
+
+nav {
+  a {
+    font-weight: bold;
+    font-size: 1em;
+    color: $brand-color;
+    text-decoration: none;
+  }
+}
+
+footer {
+  color: #555;
+  font-size: 1em;
+}
+
