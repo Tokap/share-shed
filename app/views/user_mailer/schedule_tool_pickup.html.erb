@@ -2,6 +2,40 @@
 <html>
 <head>
   <title>Confirmation of Rental Request</title>
+  <script   src="https://code.jquery.com/jquery-3.0.0.min.js"   integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0="   crossorigin="anonymous"></script>
+  <script src="http://maps.googleapis.com/maps/api/js"></script>
+
+  <script>
+    $(document).ready(function(){
+
+      var address = $('#googleMap').attr('address');
+      console.log('Address =====> ' + address)
+
+      $.ajax({
+        url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + address,
+        success: function(response){
+          lat = response.results[0].geometry.location.lat;
+          lng = response.results[0].geometry.location.lng;
+        }
+      });
+
+      function initialize() {
+        var mapProp = {center:new google.maps.LatLng(lat,lng),
+                       zoom:16,
+                       mapTypeId:google.maps.MapTypeId.ROADMAP
+                       }
+        var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+        var owner_address = new google.maps.LatLng(lat, lng);
+        var marker = new google.maps.Marker({
+                     position: owner_address,
+                     map: map
+                     });
+      };
+
+      google.maps.event.addDomListener(window, 'load', initialize);
+    });
+  </script>
+
 </head>
 <body>
   <h1>Your rental with <%= @rental.owner.username %> has been confirmed!</h1>
@@ -15,6 +49,8 @@
      <input type="hidden" name="daddr" value="<%= @rental.owner.address %>" />
      <input type="submit" value="Get directions" />
   </form>
+
+  <div id="googleMap" address='<%= @rental.owner.address %>' style="width:500px;height:380px;"></div>
 
   <p>Rental summary:</p>
 

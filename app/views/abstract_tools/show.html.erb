@@ -9,9 +9,9 @@
         <article>
           <% if tool.available %>
             <% if current_user %>
-              <li><%= link_to "$#{tool.base_price} per day, only #{pluralize(GoogleDirections.new(current_user.address, tool.owner.address).distance_in_miles, 'mile')} away", tool_path(tool) %> </li>
+              <li><%= link_to "$#{tool.base_price} per day, only #{pluralize(GoogleDirections.new(current_user.address, tool.owner.address).distance_in_miles, 'mile')} away", tool_path(tool), data: {turbolinks: false} %> </li>
             <% else %>
-              <li><%= link_to "$#{tool.base_price} per day, located in #{tool.owner.address.split(',')[1]}", tool_path(tool) %></li>
+              <li><%= link_to "$#{tool.base_price} per day, located in #{tool.owner.address.split(',')[1]}", tool_path(tool), data: {turbolinks: false} %></li>
             <% end %>
           <% end %>
         </article>

@@ -10,7 +10,15 @@
     <h2><%= link_to @rental.owner.username.titleize, user_path(@rental.owner) %> (owner) sharing their shed with <%= link_to @rental.renter.username.titleize, user_path(@rental.renter) %></h2>
     <p>Current status: <span class='rental-status'><%= 'In Progress' if @rental.status == 'in_progress' %><%= @rental.status if @rental.status != 'in_progress' %></span></p>
     <% if @rental.scheduled? || @rental.in_progress? %>
-      <p>Owner Address: <%= @rental.owner.address %></p>
+      <% if current_user != @rental.owner  %>
+        <p>Owner Address: <%= @rental.owner.address %></p>
+        <form action="http://maps.google.com/maps" method="get" target="_blank">
+          <input type="hidden" name="saddr" value="<%= @rental.renter.address %>"/>
+          <input type="hidden" name="daddr" value="<%= @rental.owner.address %>" />
+          <input type="submit" value="Get directions" />
+        </form>
+        <div id="googleMap" address='<%= @rental.owner.address %>'></div>
+      <% end %>
     <% end %>
     <p>Rental period: <%= @rental.checkout_date %> to <%= @rental.return_date %> (<%= pluralize(@rental.duration, 'day') %>)</p>
 
@@ -93,10 +101,10 @@
             <div>
               <%= form_for @rental do |f| %>
                 <p class='time-range-p'>Time range you will be available for the <%= pluralize(@rental.line_items.count, 'tool') %> to be picked up:</p>
-                <span class='form-label'><%= f.label "From" %></span>
-                <%= f.time_select "pickup_time", prompt: {hour: '11', minute: '00'} %>
+                <span class='form-label'><%= f.label "From", select: '12:00' %></span>
+                <%= f.time_select "pickup_time" %>
                 <span class='form-label'><%= f.label :to, "to" %></span>
-                <%= f.time_select "pickup_end_time", prompt: {hour: '13', minute: '00'} %><br>
+                <%= f.time_select "pickup_end_time" %><br>
                 <%= f.submit "Approve this rental", class: 'approve-btn rental-request-btn' %>
               <% end %>
               <% if @rental.errors.any? %>
@@ -112,7 +120,7 @@
 
       <% when "in_progress" %>
 
-        <% if @rental.renter == current_user %>
+        <% if @rental.renter == current_user && !@rental.paid?%>
 
           <%=form_tag charges_path, :class => 'stripe-form-test' do %>
             <div id="error_explanation">
@@ -123,13 +131,15 @@
             <div>
               <%=hidden_field_tag(:amount) %>
               <%=hidden_field_tag "rental_id", "#{@rental.id}" %>
-            </div>      
+            </div>
             <div>
               <%=hidden_field_tag(:stripeToken) %>
             </div>
             <button id='payButton'>Pay for Rental</button>
           <% end %>
-        <% end %>     
+        <% else %>
+          <p>You've Paid!</p>
+        <% end %>
     <% end %>
     <script src="https://checkout.stripe.com/checkout.js"></script>
     <script>
@@ -147,12 +157,12 @@
       });
       $('#payButton').on('click', function(e) {
         e.preventDefault();
-        var amount = $('.sum-total').text().substring(1); 
+        var amount = $('.sum-total').text().substring(1);
         //This amount tells the popup how much the user is paying
         handler.open({
           amount: Math.round(amount*100)
         })
-      });  
+      });
 
       // Close Checkout on page navigation
       $(window).on('popstate', function() {

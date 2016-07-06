@@ -8,103 +8,103 @@ LineItem.destroy_all
 demo_user = User.create!(username:    'a',
                          email:       'a@a.com',
                          password:    'aaaaaaaa',
-                         address:     '707 Broadway, San Diego, CA')
+                         address:     '707 Broadway, San Diego, CA 92101')
 
 user_2 = User.create!(username:  Faker::Internet.user_name,
                       email:     Faker::Internet.email,
                       password:  'password',
-                      address:   '1048 Seventh Ave, San Diego, CA')
+                      address:   '1048 Seventh Ave, San Diego, CA 92101')
 
 user_3 = User.create!(username:  Faker::Internet.user_name,
                       email:     Faker::Internet.email,
                       password:  'password',
-                      address:   '2920 Zoo Dr, San Diego, CA')
+                      address:   '2920 Zoo Dr, San Diego, CA 92101')
 
 user_4 = User.create!(username:  Faker::Internet.user_name,
                       email:     Faker::Internet.email,
                       password:  'password',
-                      address:   '222 Island Ave, San Diego, CA')
+                      address:   '222 Island Ave, San Diego, CA 92101')
 
 user_5 = User.create!(username:  Faker::Internet.user_name,
                       email:     Faker::Internet.email,
                       password:  'password',
-                      address:   '100 Park Blvd, San Diego, CA')
+                      address:   '100 Park Blvd, San Diego, CA 92101')
 
 user_6 = User.create!(username:  Faker::Internet.user_name,
                       email:     Faker::Internet.email,
                       password:  'password',
-                      address:   '1788 El Prado, San Diego, CA')
+                      address:   '1788 El Prado, San Diego, CA 92101')
 
 user_7 = User.create!(username:  Faker::Internet.user_name,
                       email:     Faker::Internet.email,
                       password:  'password',
-                      address:   '1492 N Harbor Dr, San Diego, CA')
+                      address:   '1492 N Harbor Dr, San Diego, CA 92101')
 
 user_8 = User.create!(username:  Faker::Internet.user_name,
                       email:     Faker::Internet.email,
                       password:  'password',
-                      address:   '1451 Washington St, San Diego, CA')
+                      address:   '1451 Washington St, San Diego, CA 92101')
 
 user_9 = User.create!(username:  Faker::Internet.user_name,
                       email:     Faker::Internet.email,
                       password:  'password',
-                      address:   '950 Sixth Ave, San Diego, CA')
+                      address:   '950 Sixth Ave, San Diego, CA 92101')
 
 user_10 = User.create!(username:  Faker::Internet.user_name,
                        email:     Faker::Internet.email,
                        password:  'password',
-                       address:   '880 Harbor Island Dr, San Diego, CA')
+                       address:   '880 Harbor Island Dr, San Diego, CA 92101')
 
 user_11 = User.create!(username:  Faker::Internet.user_name,
                        email:     Faker::Internet.email,
                        password:  'password',
-                       address:   '1717 University Ave, San Diego, CA')
+                       address:   '1717 University Ave, San Diego, CA 92101')
 
 user_12 = User.create!(username:  Faker::Internet.user_name,
                        email:     Faker::Internet.email,
                        password:  'password',
-                       address:   '5680 Mission Center Rd, San Diego, CA')
+                       address:   '5680 Mission Center Rd, San Diego, CA 92101')
 
 user_13 = User.create!(username:  Faker::Internet.user_name,
                        email:     Faker::Internet.email,
                        password:  'password',
-                       address:   '500 Sea World Dr, San Diego, CA')
+                       address:   '500 Sea World Dr, San Diego, CA 92101')
 
 user_14 = User.create!(username:  Faker::Internet.user_name,
                        email:     Faker::Internet.email,
                        password:  'password',
-                       address:   '2345 Fenton Pkwy, San Diego, CA')
+                       address:   '2345 Fenton Pkwy, San Diego, CA 92101')
 
 user_15 = User.create!(username:  Faker::Internet.user_name,
                        email:     Faker::Internet.email,
                        password:  'password',
-                       address:   '650 Gateway Center Dr, San Diego, CA')
+                       address:   '650 Gateway Center Dr, San Diego, CA 92101')
 
 user_16 = User.create!(username:  Faker::Internet.user_name,
                        email:     Faker::Internet.email,
                        password:  'password',
-                       address:   '2100 Costa Del Mar Rd, Carlsbad, CA')
+                       address:   '2100 Costa Del Mar Rd, Carlsbad, CA 92009')
 
 user_17 = User.create!(username:  Faker::Internet.user_name,
                        email:     Faker::Internet.email,
                        password:  'password',
-                       address:   '425 Santa Fe Dr, Encinitas, CA')
+                       address:   '425 Santa Fe Dr, Encinitas, CA 92024')
 
 user_18 = User.create!(username:  Faker::Internet.user_name,
                        email:     Faker::Internet.email,
                        password:  'password',
-                       address:   '2260 Jimmy Durante Blvd, Del Mar, CA')
+                       address:   '2260 Jimmy Durante Blvd, Del Mar, CA 92014')
 
 user_19 = User.create!(username:  Faker::Internet.user_name,
                        email:     Faker::Internet.email,
                        password:  'password',
-                       address:   '8302 Camino Del Oro, La Jolla, CA')
+                       address:   '8302 Camino Del Oro, La Jolla, CA 92037')
 
 # user 20 will only have a basic profile to test UX of a new user
 last_user = User.create!(username:   'z',
                          email:      'z@z.com',
                          password:   'zzzzzzzzz',
-                         address:    '3966 Cleveland Ave, San Diego, CA')
+                         address:    '3966 Cleveland Ave, San Diego, CA 92103')
 
 
 ################################### abstract tools ###################################
@@ -216,6 +216,7 @@ demo_user_borrowing_4 = Rental.new(renter:          demo_user,
                owner:           user_5,
                status:          'closed',
                checkout_date:   Faker::Date.backward(30),
+               paid:            true,
                return_date:     Date.today)
 
 demo_user_borrowing_4.save(validate: false)
@@ -251,6 +252,7 @@ demo_user_tool_3.save
 demo_user_renting_out_4 = Rental.new(renter:          user_5,
                owner:           demo_user,
                status:          'closed',
+               paid:            true,
                checkout_date:   Faker::Date.backward(30),
                return_date:     Date.today)
 
@@ -306,6 +308,7 @@ Rental.all.each {|rental| rental.log_line_items if ( !rental.draft? && !rental.p
 
 name_array = ["outdoor", "exciting", "concerning", "probably-dangerous", "garden", "lawn", "garage", "car-repair", "machine", "heavy", "durable", "easy"]
 
+<<<<<<< Updated upstream
 
 ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[0]), tool: demo_user.tools[0])
 ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[0]), tool: demo_user.tools[1])

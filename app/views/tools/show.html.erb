@@ -19,7 +19,13 @@
     <% end %>
     <p>Price: $<%= @tool.base_price %></p>
     <% if @tool.owner != current_user %>
+
+
       <p>Owner: <%= link_to @tool.owner.username, user_url(@tool.owner) %></p>
+
+      <div id="googleMap" address='<%= @tool.owner.zip_code %>'></div>
+      <h4>(This map is centered on the tool owner's zip code, not their actual address)</h4>
+
     <% end %>
     <p>Description: <%= @tool.description %></p>
     <p>Model number: <%= @tool.model_number %></p>
