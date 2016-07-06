@@ -1,24 +1,25 @@
 <main>
   <section>
+  <button id="cost-button">Sort by cost</button>
+  <button id="distance-button">Sort by distance</button>
   </section>
-
   <article>
   <h2>Select a <%= @abstract_tool.name %> to view its details</h2>
-    <ul>
-      <% @tools.each do |tool| %>
-        <article>
-          <% if tool.available %>
-            <% if current_user %>
-              <li><%= link_to "$#{tool.base_price} per day, only #{pluralize(GoogleDirections.new(current_user.address, tool.owner.address).distance_in_miles, 'mile')} away", tool_path(tool), data: {turbolinks: false} %> </li>
-            <% else %>
-              <li><%= link_to "$#{tool.base_price} per day, located in #{tool.owner.address.split(',')[1]}", tool_path(tool), data: {turbolinks: false} %></li>
-            <% end %>
-          <% end %>
-        </article>
-      <% end %>
-    </ul>
+    <div id="tools-by-cost">
+      <ul>
+        <% @tools.each do |tool| %>
+         <%= render partial: "tools/tool_details", locals: {tool: tool}  %>
+        <% end %>
+      </ul>
+    </div>
+    <div id="tools-by-distance" style="display: none;">
+      <ul>
+        <% @tools_ordered_by_distance.each do |tool| %>
+         <%= render partial: "tools/tool_details", locals: {tool: tool} %>
+        <% end %>
+      </ul>
+    </div>
   </article>
-
   <aside>
   </aside>
 
