@@ -15,12 +15,12 @@ $(document).on('turbolinks:load', function(){
   function initialize() {
     var mapProp = {
       center:new google.maps.LatLng(lat,lng),
-      zoom:16,
+      zoom:14,
       mapTypeId:google.maps.MapTypeId.ROADMAP
     }
-
+console.log(mapProp)
     var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-
+console.log(map)
     var owner_address = new google.maps.LatLng(lat, lng);
 
     var marker = new google.maps.Marker({

@@ -10,13 +10,15 @@
     <h2><%= link_to @rental.owner.username.titleize, user_path(@rental.owner) %> (owner) sharing their shed with <%= link_to @rental.renter.username.titleize, user_path(@rental.renter) %></h2>
     <p>Current status: <span class='rental-status'><%= 'In Progress' if @rental.status == 'in_progress' %><%= @rental.status if @rental.status != 'in_progress' %></span></p>
     <% if @rental.scheduled? || @rental.in_progress? %>
-      <p>Owner Address: <%= @rental.owner.address %></p>
-      <form action="http://maps.google.com/maps" method="get" target="_blank">
-        <input type="hidden" name="saddr" value="<%= @rental.renter.address %>"/>
-        <input type="hidden" name="daddr" value="<%= @rental.owner.address %>" />
-        <input type="submit" value="Get directions" />
-      </form>
-      <div id="googleMap" address='<%= @rental.owner.address %>'></div>
+      <% if current_user != @rental.owner  %>
+        <p>Owner Address: <%= @rental.owner.address %></p>
+        <form action="http://maps.google.com/maps" method="get" target="_blank">
+          <input type="hidden" name="saddr" value="<%= @rental.renter.address %>"/>
+          <input type="hidden" name="daddr" value="<%= @rental.owner.address %>" />
+          <input type="submit" value="Get directions" />
+        </form>
+        <div id="googleMap" address='<%= @rental.owner.address %>'></div>
+      <% end %>
     <% end %>
     <p>Rental period: <%= @rental.checkout_date %> to <%= @rental.return_date %> (<%= pluralize(@rental.duration, 'day') %>)</p>
 
@@ -111,10 +113,6 @@
                 <% end %>
               <% end %>
             <% end %>
-<<<<<<< HEAD
-
-=======
->>>>>>> b287f21bb4aa440fdff2dbef3cd39f41407b8751
             </div>
           </div>
           <%= button_to "Cancel this Rental Request", @rental, method: :delete, data: { confirm: 'Are you sure?' }, class: 'cancel-btn rental-request-btn', form_class: 'cancel-form' %>
@@ -133,13 +131,13 @@
             <div>
               <%=hidden_field_tag(:amount) %>
               <%=hidden_field_tag "rental_id", "#{@rental.id}" %>
-            </div>      
+            </div>
             <div>
               <%=hidden_field_tag(:stripeToken) %>
             </div>
             <button id='payButton'>Pay for Rental</button>
           <% end %>
-        <% end %>     
+        <% end %>
     <% end %>
     <script src="https://checkout.stripe.com/checkout.js"></script>
     <script>
@@ -157,12 +155,12 @@
       });
       $('#payButton').on('click', function(e) {
         e.preventDefault();
-        var amount = $('.sum-total').text().substring(1); 
+        var amount = $('.sum-total').text().substring(1);
         //This amount tells the popup how much the user is paying
         handler.open({
           amount: Math.round(amount*100)
         })
-      });  
+      });
 
       // Close Checkout on page navigation
       $(window).on('popstate', function() {

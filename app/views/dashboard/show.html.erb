@@ -16,27 +16,27 @@
       <div class='flex-container'>
         <% if @owned_tools.any? %>
           <% @owned_tools.each do |tool| %>
-            <a href="/tools/<%= tool.id %>">
-            <% if tool.available %>
-              <div class='tile'>
-                <% if tool.image.file? %>
-                  <img class='tile-pic' src="<%= tool.image.url %>">
-                <% else %>
-                  <img class='tile-pic' src="/assets/shovel.png">
-                <% end %>
-                <h4><%= tool.abstract_tool.name %></h4>
-              </div>
-            <% else %>
-              <div class='tile unavailable'>
-                <% if tool.image.file? %>
-                  <img class='tile-pic unavailable' src="<%= tool.image.url %>">
-                <% else %>
-                  <img class='tile-pic unavailable' src="/assets/shovel.png">
-                <% end %>
-                <h4 class="unavailable"><%= tool.abstract_tool.name %></h4>
-              </div>
+            <%= link_to tool_path(tool), data: {turbolinks: false} do %>
+              <% if tool.available %>
+                <div class='tile'>
+                  <% if tool.image.file? %>
+                    <img class='tile-pic' src="<%= tool.image.url %>">
+                  <% else %>
+                    <img class='tile-pic' src="/assets/shovel.png">
+                  <% end %>
+                  <h4><%= tool.abstract_tool.name %></h4>
+                </div>
+              <% else %>
+                <div class='tile unavailable'>
+                  <% if tool.image.file? %>
+                    <img class='tile-pic unavailable' src="<%= tool.image.url %>">
+                  <% else %>
+                    <img class='tile-pic unavailable' src="/assets/shovel.png">
+                  <% end %>
+                  <h4 class="unavailable"><%= tool.abstract_tool.name %></h4>
+                </div>
+              <% end %>
             <% end %>
-            </a>
           <% end %>
         <% end %>
       </div>
@@ -73,7 +73,7 @@
       </div>
         <% if @open_owned_rentals.any? %>
           <% @open_owned_rentals.each do |rental| %>
-            <a href="/rentals/<%= rental.id %>">
+            <%= link_to rental_path(rental), data: {turbolinks: false} do %>
               <div class='tile <%= rental.status %>'>
                 <p class='tile-info'>Renter: <%= rental.renter.username %></p>
               <% if rental.status == "pending" || rental.status == "draft" %>
@@ -83,7 +83,7 @@
                 <% end %>
                 <p class='tile-info'>Status: <%= rental.status %></p>
               </div>
-            </a>
+            <% end %>
           <% end %>
         <% end %>
       </div>
@@ -101,7 +101,6 @@
             <%= review.content %>
           </blockquote>
 
-
         </section>
       <% end %>
       </div>
@@ -109,7 +108,7 @@
         <h4>Users you have shared tools with:</h4>
         <ul>
           <% @users_shared_with.each do |user| %>
-            <li><%= user.username %> - <%= user.average_rating %> average rating<%= button_to "View/give feedback", user_url(user), method: :get %></li>
+            <li><%= user.username %> - <%= user.average_rating %> average rating<%= button_to "View/give feedback", user_url(user), data: {turbolinks: false} %></li>
             <br>
           <% end %>
         </ul>
@@ -119,28 +118,24 @@
     <div id="history" class="tabContent">
       <% if @all_closed_rentals.any? %>
         <% @all_closed_rentals.each do |rental| %>
-          <a href="/rentals/<%= rental.id %>">
+          <%= link_to rental_path(rental), data: {turbolinks: false} do %>
             <div class='tile <%= rental.status %>'>
               <p class='tile-info'>Owner: <%= rental.owner.username %></p>
               <p class='tile-info'>Renter: <%= rental.renter.username %></p>
               <p class='tile-info'>Total: $<%= rental.sum_logs %></p>
             </div>
-          </a>
+          <% end %>
         <% end %>
       <% end %>
     </div>
   </section>
 
-<<<<<<< HEAD
-=======
-
->>>>>>> b287f21bb4aa440fdff2dbef3cd39f41407b8751
   <aside>
      <h3>You have a rental request from:</h3>
      <% if @owned_rentals.any? %>
       <ul>
       <% @owned_rentals.each do |o_rental|  %>
-        <% unless o_rental.status == "draft" %><li><%= link_to "#{o_rental.renter.username} -- #{o_rental.status}", rental_path(o_rental), method: :get %></li><% end %>
+        <% unless o_rental.status == "draft" %><li><%= link_to "#{o_rental.renter.username} -- #{o_rental.status}", rental_path(o_rental), data: {turbolinks: false} %></li><% end %>
       <% end %>
     </ul>
     <% end %>
