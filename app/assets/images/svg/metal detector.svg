@@ -1,0 +1,21 @@
+
+<svg width="250px" height="214px" viewBox="-5127 -2234 250 214" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="209.750567" height="209.750567"></rect>
+    </defs>
+    <g id="metal-detector" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-5127.000000, -2234.000000)">
+        <g id="Clipped" transform="translate(20.408163, 0.000000)">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <g id="SVGID_1_"></g>
+            <path class="shed-icon-color" d="M58.4251488,8.29019753 C54.7257363,0.896950293 45.7467979,-2.12177173 38.3255069,1.58608783 C30.9266819,5.29394739 27.9312062,14.2901885 31.6306187,21.6909263 L127.403465,209.750567 L172.335601,209.750567 L172.335601,164.806815 L136.659485,164.806815 L58.4251488,8.29019753 L58.4251488,8.29019753 Z" id="Shape" fill="#000000" mask="url(#mask-2)"></path>
+        </g>
+        <ellipse class="shed-icon-color" id="Oval-3" fill="#000000" cx="179.138322" cy="188.77551" rx="70.861678" ry="24.3764172"></ellipse>
+        <ellipse id="Oval-3-Copy" fill="#FFFFFF" cx="178.854875" cy="187.92517" rx="45.0680272" ry="15.5895692"></ellipse>
+        <ellipse class="shed-icon-color" id="Oval-3-Copy-2" fill="#000000" cx="178.571429" cy="188.492063" rx="28.9115646" ry="9.92063492"></ellipse>
+        <rect class="shed-icon-color" id="Rectangle-81" fill="#000000" x="0" y="0" width="74.2630385" height="24.9433107" rx="12.4716553"></rect>
+    </g>
+</svg>

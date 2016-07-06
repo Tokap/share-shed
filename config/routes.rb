@@ -3,6 +3,9 @@ Rails.application.routes.draw do
 # devise_for :users
 devise_for :users, :controllers => { registrations: 'registrations'}
 
+resources :charges
+resources :tags
+
 resources :dashboard, only: [:show, :index]
 # Run rake routes to see what this added.
 # DEVISE HELPERS WORTH NOTING:
@@ -32,6 +35,11 @@ resources :abstract_tools
 resources :tools
 resources :rentals
 resources :line_items
+resources :users, only: [:show] do
+  resources :reviews, only: [:new,:create]
+end
+resources :reviews, only: [:edit, :update]
+resources :search, only: [:index]
 
 # This is a placeholder. Devise requires a root path as an option.
 # Update to proper static homepage when available.

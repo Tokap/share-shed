@@ -28,14 +28,27 @@ class ToolsController < ApplicationController
   def edit
     @tool = Tool.find(params[:id])
     @abstract_tools_options = AbstractTool.all.map { |ab_tool| [ab_tool.name, ab_tool.id]}
+
+    @tool_tag = ToolTag.where(tool: @tool)
+    @tags = []
+    @tool_tag.each do |tt|
+      @tags << tt.tag
+    end
+    @tag = Tag.new
   end
 
   def update
+    if params[:tags]
+      tag_names = params[:tags].split(/\s*,\s*/)
+    end
+
     @tool = Tool.find(params[:id])
     if @tool.update(tool_params)
       redirect_to(@tool)
     else
       @abstract_tools_options = AbstractTool.all.map { |ab_tool| [ab_tool.name, ab_tool.id]}
+      @tags = @tool.tags
+      @tag = Tag.new
       render 'edit'
     end
   end
@@ -43,15 +56,15 @@ class ToolsController < ApplicationController
   def destroy
     target_tool = Tool.find(params[:id])
     related_line_items = LineItem.where(tool: target_tool)
-    
+
     related_line_items.each do |li|
       li.rental.destroy if (li.rental.pending? || li.rental.draft?) && li.rental.line_items.length == 1
-      # Destroy the Rental as well if the Tool being destroyed is part of a Rental with a pending or draft 
+      # Destroy the Rental as well if the Tool being destroyed is part of a Rental with a pending or draft
       # status and the Tool being destroyed is the last Line Item on that Rental.
 
       #li.destroy #should we be killing the LI as well?
     end
- 
+
     target_tool.destroy
     redirect_to "/dashboard/#{current_user.id}"
   end

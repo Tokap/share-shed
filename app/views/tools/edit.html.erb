@@ -1,10 +1,12 @@
-<main>
+<main class='template'>
   <section>
+  <h1>Remove Tool</h1>
+  <%= button_to 'Remove this tool from your Shed', @tool, action: "delete", method: :delete, data: { confirm: "Are you sure?" } %>
   </section>
 
   <article>
     <div class='new-tool white-div'>
-      <h1>Edit a tool</h1>
+      <h1>Edit tool</h1>
       <% if @tool.errors.any? %>
         <% @tool.errors.full_messages.each do |error| %>
           <ul>
@@ -13,12 +15,18 @@
         <% end %>
       <% end  %>
       <%= render 'form' %>
-      <% if @tool.available %>
-        <%= button_to 'Destroy', @tool, method: :delete, data: { confirm: 'Are you sure?'} %>
-      <% end %>
     </div>
   </article>
 
   <aside>
+    <%= render '/tags/form' %>
+
+    <h3>Existing Tags:</h3>
+    <div>
+    <% @tags.each do |tag| %>
+      <p class="tags-edit"><%= tag.name %></p>
+    <% end %>
+    </div>
+
   </aside>
 </main>

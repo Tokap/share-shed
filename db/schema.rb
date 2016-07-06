@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160703070916) do
+ActiveRecord::Schema.define(version: 20160706023300) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,29 @@ ActiveRecord::Schema.define(version: 20160703070916) do
     t.boolean  "renter_pick_up_confirmation", default: false
     t.boolean  "owner_return_confirmation",   default: false
     t.boolean  "renter_return_confirmation",  default: false
+    t.boolean  "paid",                        default: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer  "reviewer_id", null: false
+    t.integer  "reviewee_id", null: false
+    t.integer  "rating",      null: false
+    t.text     "content",     null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tool_tags", force: :cascade do |t|
+    t.integer  "tool_id"
+    t.integer  "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tools", force: :cascade do |t|

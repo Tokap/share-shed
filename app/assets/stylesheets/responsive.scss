@@ -1,0 +1,57 @@
+//
+// RESPONSIVE CSS
+// --------------------------------------------------
+
+@media (max-width: 768px) {
+
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  main {
+    flex-direction: column;
+    flex: 0;
+  }
+
+  section, aside {
+    flex: 0 0 0em;
+  }
+
+  hgroup, header, footer, article, section, aside {
+    border-radius: 0px;
+    margin: 5px;
+    padding: 5px;
+    //background-color: #efefef;
+  }
+
+  footer {
+
+  }
+
+
+  //
+  // RESPONSIVE GLOBAL HELPER STYLES
+  // --------------------------------------------------
+
+  /*
+  main.template {
+    section { background-color: #efefef;}
+    article { background-color: #efefef;}
+    aside   { background-color: #efefef;}
+  }
+  */
+
+  main.section-article-fifty,
+  main.section-aside-fifty,
+  main.article-aside-fifty,
+  main.section-hidden,
+  main.aside-hidden {
+    flex-direction: column;
+  }
+
+  main.section-aside-hidden {
+    section, aside { display: none; }
+  }
+
+}

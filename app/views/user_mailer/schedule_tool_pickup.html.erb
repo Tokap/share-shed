@@ -1,14 +1,56 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title></title>
+  <title>Confirmation of Rental Request</title>
+  <script   src="https://code.jquery.com/jquery-3.0.0.min.js"   integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0="   crossorigin="anonymous"></script>
+  <script src="http://maps.googleapis.com/maps/api/js"></script>
+
+  <script>
+    $(document).ready(function(){
+
+      var address = $('#googleMap').attr('address');
+      console.log('Address =====> ' + address)
+
+      $.ajax({
+        url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + address,
+        success: function(response){
+          lat = response.results[0].geometry.location.lat;
+          lng = response.results[0].geometry.location.lng;
+        }
+      });
+
+      function initialize() {
+        var mapProp = {center:new google.maps.LatLng(lat,lng),
+                       zoom:16,
+                       mapTypeId:google.maps.MapTypeId.ROADMAP
+                       }
+        var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+        var owner_address = new google.maps.LatLng(lat, lng);
+        var marker = new google.maps.Marker({
+                     position: owner_address,
+                     map: map
+                     });
+      };
+
+      google.maps.event.addDomListener(window, 'load', initialize);
+    });
+  </script>
+
 </head>
 <body>
   <h1>Your rental with <%= @rental.owner.username %> has been confirmed!</h1>
 
   <p>Rental period: <%= @rental.checkout_date %> - <%= @rental.return_date %></p>
 
-  <p>Please plan to pick up your tool(s) between <%= @rental.pickup_time %> and <%= @rental.pickup_end_time %> on <%= @rental.checkout_date %>. The address is <%= @rental.owner.address %>.</p>
+  <p>Please plan to pick up your tool(s) between <%= @rental.pickup_time.strftime("%I:%M%p") %> and <%= @rental.pickup_end_time.strftime("%I:%M%p") %> on <%= @rental.checkout_date %>. The address is <%= @rental.owner.address %>.</p>
+
+  <form action="http://maps.google.com/maps" method="get" target="_blank">
+     <input type="hidden" name="saddr" value="<%= @rental.renter.address %>"/>
+     <input type="hidden" name="daddr" value="<%= @rental.owner.address %>" />
+     <input type="submit" value="Get directions" />
+  </form>
+
+  <div id="googleMap" address='<%= @rental.owner.address %>' style="width:500px;height:380px;"></div>
 
   <p>Rental summary:</p>
 
@@ -21,10 +63,11 @@
       <tr>
         <td><%= line_item_log.name %></td>
         <td class='align-right'>$<%= line_item_log.price %></td>
-      </tr
-      <tr><td colspan=2 class="bottom-line"></td></tr>>
+      </tr>
+      <tr><td colspan=2 class="bottom-line"></td></tr>
     <% end %>
       <tr>
+        <td><strong>Total: </strong></td>
         <td class='align-right'><strong>$<%= @rental.sum_logs %></strong></td>
       </tr>
   </table>

@@ -1,6 +1,9 @@
 class Rental < ActiveRecord::Base
   validates :renter, :owner, :return_date, :checkout_date, :status, presence: true
   validates_uniqueness_of :renter, conditions: -> { draft }
+  validate :return_date_follows_checkout_date
+  validate :pickup_end_time_follows_pickup_time
+  validate :checkout_date_is_not_in_past, on: :create
 
   enum status: { draft: 0, pending: 1, scheduled: 2, in_progress: 3, returned: 4, closed: 5}
 
@@ -14,7 +17,6 @@ class Rental < ActiveRecord::Base
   def log_line_items
     line_items.each do |li|
       LineItemLog.create(name: li.tool.abstract_tool.name, price: (li.tool.base_price * li.rental.duration), rental: li.rental)
-      puts "THIS METHOD HAS BEEN CALLED!"
     end
   end
 
@@ -26,6 +28,13 @@ class Rental < ActiveRecord::Base
     else
       line_item_logs.sum(:price)
     end
+  end
+
+  def sum_line_items
+    total_prices = line_items.map do |li|
+      li.tool.base_price * duration
+    end
+    total_prices.inject(:+)
   end
 
   def total_tool_price
@@ -47,6 +56,28 @@ class Rental < ActiveRecord::Base
 
   def duration
     (return_date - checkout_date).to_i
+  end
+
+  def return_date_follows_checkout_date
+    if checkout_date && return_date
+      if checkout_date >= return_date
+        self.errors.add(:checkout_date, "must follow return date")
+      end
+    end
+  end
+
+  def pickup_end_time_follows_pickup_time
+    if pickup_time && pickup_end_time
+      if pickup_end_time <= pickup_time
+        self.errors.add(:pickup_end_time, "must follow pickup time")
+      end
+    end
+  end
+
+  def checkout_date_is_not_in_past
+    if checkout_date && checkout_date < Date.today
+      self.errors.add(:checkout_date, "cannot be in the past")
+    end
   end
 
   def pending?
@@ -72,5 +103,9 @@ class Rental < ActiveRecord::Base
   def closed?
     status == "closed"
   end
+
+  def paid?
+    paid == true
+  end 
 
 end

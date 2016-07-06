@@ -1,23 +1,36 @@
 <main class="landing-page">
 
   <section>
-    <div class='landing-page-div'>
-      <% if user_signed_in? %>
-        <a href="/dashboard/<%= current_user.id %> "><button class='landing-page-btn btn-left'>Share your shed with others!</button></a>
-      <% else %>
-        <a href="/users/sign_in"><button class='landing-page-btn btn-left'>Share your shed with others!</button></a>
+  <% path = user_signed_in? ? dashboard_path(current_user) : new_user_session_path %>
+      <%= link_to path, method: "get" do %>
+        <div class="sharing-div">
+          <button class="landing-page-btn"><!--Share your shed with others!--></button>
+        </div>
+      <div class="sharing-text">
+        <h3>Share your shed with others!</h3>
+        <p>Don't let your tools go to waste... add them to your shed and earn some money instead.</p>
+        <span class="btn btn-success">Share Your Tools!</span>
+      </div>
       <% end %>
-    </div>
   </section>
 
   <article>
-    <div class='landing-page-div'>
-      <a href="/abstract_tools"><button class='landing-page-btn btn-right'>Need tools to finish a project?</button></a>
-    </div>
+    <a href="/abstract_tools">
+      <div class="renting-div">
+          <button class="landing-page-btn"><!--Need tools to finish a project?--></button>
+      </div>
+      <div class="renting-text">
+        <h3>Need tools to finish a project?</h3>
+        <p>Search for the right tool and see how easy it is to rent it out. Get that home project finished! </p>
+        <span class="btn btn-success text-center">Rent Some Tools!</span>
+      </div>
+    </a>
   </article>
 
   <aside>
   </aside>
 
 </main>
+
+<main class="landing-lower">
 

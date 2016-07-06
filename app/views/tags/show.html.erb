@@ -1,0 +1,24 @@
+<hgroup class="template">
+  <h2><%= @tag.name %></h2>
+</hgroup>
+
+<main class="template">
+
+  <section>
+
+  </section>
+
+  <article>
+  <h3>Tools Related to this tag: </h3>
+    <% @tag.tool_tags.each do |tt| %>
+      <p> <%= link_to "#{tt.tool.name}", tool_path(tt.tool), method: :get %> | $<%=tt.tool.base_price %> per day</p>
+    <% end %>
+  </article>
+
+  <aside>
+   <% @top_5_tags.each do |tag| %>
+    <p class='tags-display'><%=link_to "#{tag.name}", tag_path(tag) %></p>
+   <% end %>
+  </aside>
+
+</main>

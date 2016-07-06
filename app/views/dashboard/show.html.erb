@@ -1,70 +1,170 @@
 <hgroup class="dashboard">
 
-  <h2>User Dashboard</h2>
-  <div class="owner-renter-toggle">
-    <button id="dashboard_button_summary">Summary</button>
-    <button id="dashboard_button_owner">Owner</button>
-    <button id="dashboard_button_renter">Renter</button>
-  </div>
-
 </hgroup>
 
 <main class="dashboard">
 
   <section>
-    <h2>Tools Not Currently Being Rented</h2>
-    <% @user.tools.each do |tool| %>
-      <% if tool.available == true %>
-        <p> <a href="<%= tool_path(tool) %>"><%= tool.abstract_tool.name.split.map(&:capitalize).join(' ')%></a> | $<%= tool.base_price %> <%= link_to 'Show', tool_path(tool) %> <%= link_to 'Edit', edit_tool_path(tool) %> </p>
+    <ul class="tab">
+      <li><a href="#" class="toolshed tabLinks active">Your Toolshed</a></li>
+      <li><a href="#" class="rentals tabLinks">Open Rentals</a></li>
+      <li><a href="#" class="feedback tabLinks">Feedback</a></li>
+      <li><a href="#" class="history tabLinks">Rental History</a></li>
+    </ul>
+
+    <div id="toolshed" class="tabContent">
+      <div class='flex-container'>
+        <% if @owned_tools.any? %>
+          <% @owned_tools.each do |tool| %>
+            <%= link_to tool_path(tool), data: {turbolinks: false} do %>
+              <% if tool.available %>
+                <div class='tile'>
+                  <% if tool.image.file? %>
+                    <img class='tile-pic' src="<%= tool.image.url %>">
+                  <% else %>
+                    <%= svg tool.name %>
+                  <% end %>
+                  <h4><%= tool.abstract_tool.name %></h4>
+                </div>
+              <% else %>
+                <div class='tile unavailable'>
+                  <% if tool.image.file? %>
+                    <img class='unavailable' src="<%= tool.image.url %>">
+                  <% else %>
+                    <%= svg tool.name %>
+                    <!--<img class='unavailable' src="/assets/svg/<%= tool.name %>">-->
+                  <% end %>
+                  <h4 class="unavailable"><%= tool.abstract_tool.name %></h4>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="row top-pad-50 bottom-pad-50">
+        <div class="col-xs-12 text-center padding-top">
+          <%= button_to "Add a tool to your Shed", new_tool_path, method: :get, class: "btn btn-primary"  %>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="rentals" class="tabContent">
+      <div class="flex-container rentals-left">
+        <div class='tile p'>
+          <p>You are the renter --------></p>
+        </div>
+        <% if @open_rented_rentals.any? %>
+          <% @open_rented_rentals.each do |rental| %>
+            <%= link_to rental_path(rental), data: {turbolinks: false} do %>
+              <div class='tile <%= rental.status %>'>
+                <p class='tile-info'>Owner: <%= rental.owner.username %></p>
+                <% if rental.status == "pending" || rental.status == "draft" %>
+                  <p class='tile-info'>Total: $<%= rental.sum_line_items %></p>
+                <% else %>
+                  <p class='tile-info'>Total: $<%= rental.sum_logs %></p>
+                <% end %>
+                <p class='tile-info'>Status: <%= rental.status %></p>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="horiz-line"></div>
+
+      <div class="flex-container rentals-right">
+      <div class='tile p'>
+        <p>You are the owner of the tool(s) --------></p>
+      </div>
+        <% if @open_owned_rentals.any? %>
+          <% @open_owned_rentals.each do |rental| %>
+            <%= link_to rental_path(rental), data: {turbolinks: false} do %>
+              <div class='tile <%= rental.status %>'>
+                <p class='tile-info'>Renter: <%= rental.renter.username %></p>
+              <% if rental.status == "pending" || rental.status == "draft" %>
+                  <p class='tile-info'>Total: $<%= rental.sum_line_items %></p>
+                <% else %>
+                  <p class='tile-info'>Total: $<%= rental.sum_logs %></p>
+                <% end %>
+                <p class='tile-info'>Status: <%= rental.status %></p>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <div id="feedback" class="tabContent feedback-content">
+      <div class="current-users-received-reviews">
+      <h4>Your average rating is <%= @user.average_rating %></h4>
+      <h4>Reviews:</h4>
+      <% @received_reviews.each do |review| %>
+        <section>
+          <p><%= review.reviewer.username %> rated you: <%= review.stars %></p>
+          <p>They wrote:</p>
+          <blockquote>
+            <%= review.content %>
+          </blockquote>
+
+        </section>
       <% end %>
-    <% end %>
-    <p> Total: $<%= @user.owner_sum_inactive_tools || 0 %></p>
+      </div>
+      <div class="users-dealing-with-current-user">
+        <h4>Users you have shared tools with:</h4>
+        <ul>
+          <% @users_shared_with.each do |user| %>
+            <li><%= user.username %> - <%= user.average_rating %> average rating<%= button_to "View/give feedback", user_url(user), data: {turbolinks: false} %></li>
+            <br>
+          <% end %>
+        </ul>
+      </div>
+    </div>
 
-    <h2>Tools Actively Rented</h2>
-    <% @user.tools.each do |tool| %>
-      <% if tool.available == false %>
-        <p> <a href="<%= tool_path(tool) %>"><%= tool.abstract_tool.name.split.map(&:capitalize).join(' ') %></a> | $<%= tool.base_price %> <%= link_to 'Show', tool_path(tool) %> <%= link_to 'Edit', edit_tool_path(tool) %> </p>
-      <% end %>
-    <% end %>
-    <p> Total: $<%= @user.owner_sum_rented_tools  || 0 %></p>
-    <p><%= link_to "Add Tool to your Owner's Shed", new_tool_path  %> </p>
-  </section>
-
-  <article>
-    <!-- Or logic for the idea we discussed: -->
-    <h2>Rental Agreements</h2>
-    <% @rented_rentals.each do |rental| %>
-      <p> <a href="<%= rental_path(rental) %>">Transaction ID: <%= rental.id %></a> | with User: <%= rental.owner.username %> </p>
-      <p> Status: <%= rental.status.capitalize %></p>
-      <p> Picked Up: <%= rental.checkout_date.strftime("%m/%d/%y") %> | Due Back: <%= rental.return_date.strftime("%m/%d/%y") %> </p>
-     <% end %>
-
-    <h2 id="dashboard_all_tools">Tools You're Renting</h2>
-    <div class="hidden">
-      <% @user.rented_line_items.each do |li| %>
-        <p> <a href="<%= tool_path(li.tool) %>"><%= li.tool.abstract_tool.name.split.map(&:capitalize).join(' ')%></a> | $<%= li.tool.base_price %> | Status: <%= li.rental.status %> </p>
-        <p> Picked Up: <%= li.checkout_date.strftime("%m/%d/%y") %> | Due Back: <%= li.return_date.strftime("%m/%d/%y") %> </p>
+    <div id="history" class="tabContent">
+      <% if @all_closed_rentals.any? %>
+        <% @all_closed_rentals.each do |rental| %>
+          <%= link_to rental_path(rental), data: {turbolinks: false} do %>
+            <div class='tile <%= rental.status %>'>
+              <p class='tile-info'>Owner: <%= rental.owner.username %></p>
+              <p class='tile-info'>Renter: <%= rental.renter.username %></p>
+              <p class='tile-info'>Total: $<%= rental.sum_logs %></p>
+            </div>
+          <% end %>
+        <% end %>
       <% end %>
     </div>
-  </article>
+  </section>
 
   <aside>
-     <h3>You have a rental request from:</h3>
-     <% if @owned_rentals.any? %>
-      <ul>
-      <% @owned_rentals.each do |o_rental|  %>
-        <% unless o_rental.status == "draft" %><li><%= link_to "#{o_rental.renter.username} -- #{o_rental.status}", rental_path(o_rental) %></li><% end %>
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">Rental Request From</div>
+      <% if @owned_rentals.any? %>
+          <ul class="list-group">
+            <% @owned_rentals.each do |o_rental|  %>
+                <% unless o_rental.status == "draft" %><li class="list-group-item"><%= link_to "#{o_rental.renter.username} -- #{o_rental.status}", rental_path(o_rental), method: :get %></li><% end %>
+            <% end %>
+          </ul>
+      <% else %>
+        <div class="panel-body">
+          <p>You currently have no rental requests from anyone.</p>
+        </div>
       <% end %>
-    </ul>
-    <% end %>
-    <h3>You have open rental requests with:</h3>
-    <% if @rented_rentals.any? %>
-    <ul>
-      <% @rented_rentals.each do |r_rental|  %>
-        <li><%= link_to "#{r_rental.owner.username} -- #{r_rental.status}", rental_path(r_rental) %></li>
-      <% end %>
-    </ul>
-    <% end %>
+    </div>
+
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">Open Rental Requests</div>
+        <% if @rented_rentals.any? %>
+            <ul class="list-group">
+              <% @rented_rentals.each do |r_rental|  %>
+                  <li class="list-group-item"><%= link_to "#{r_rental.owner.username} -- #{r_rental.status}", rental_path(r_rental), method: :get %></li>
+              <% end %>
+            </ul>
+        <% end %>
+    </div>
+
   </aside>
 
 </main>

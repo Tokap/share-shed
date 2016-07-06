@@ -1,26 +1,33 @@
+$(document).on('turbolinks:load', function(){
 
 
+  var address = $('#googleMap').attr('address');
+  console.log(address)
 
-$(document).ready(function(){
-
-  // Dashboard owner renter buttons
-  $("hgroup.dashboard").on("click", "#dashboard_button_owner", function() {
-    $("main.dashboard").find("article").addClass('hidden');
-    $("main.dashboard").find("section").removeClass('hidden');
+  $.ajax({
+    url: 'https://maps.googleapis.com/maps/api/geocode/json?address='+address,
+    success: function(response){
+      lat = response.results[0].geometry.location.lat;
+      lng = response.results[0].geometry.location.lng;
+    }
   });
 
-  $("hgroup.dashboard").on("click", "#dashboard_button_renter", function() {
-    $("main.dashboard").find("section").addClass('hidden');
-    $("main.dashboard").find("article").removeClass('hidden');
-  });
+  function initialize() {
+    var mapProp = {
+      center:new google.maps.LatLng(lat,lng),
+      zoom:14,
+      mapTypeId:google.maps.MapTypeId.ROADMAP
+    }
+console.log(mapProp)
+    var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+console.log(map)
+    var owner_address = new google.maps.LatLng(lat, lng);
 
-  $("hgroup.dashboard").on("click", "#dashboard_button_summary", function() {
-    $("main.dashboard").find("section").removeClass('hidden');
-    $("main.dashboard").find("article").removeClass('hidden');
-  });
+    var marker = new google.maps.Marker({
+        position: owner_address,
+        map: map
+      });
+  };
 
-  $("main.dashboard").on("click", "#dashboard_all_tools", function() {
-    $(this).next().toggleClass('hidden');
-  });
-
+  google.maps.event.addDomListener(window, 'load', initialize);
 });

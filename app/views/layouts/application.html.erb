@@ -2,21 +2,25 @@
 <html>
 <head>
   <title>ShareShed</title>
+  <meta name=viewport content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
   <%= stylesheet_link_tag    '//cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css'%>
   <%= stylesheet_link_tag    '//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'%>
+  <%= stylesheet_link_tag    '//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'%>
+  <%= stylesheet_link_tag    '//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css'%>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <meta name=viewport content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+  <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB3jz_ouPa0EXevlF9_CXEIZ17ItVmCOWk"></script>
+  <!--<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
 </head>
 <body>
 
 <header>
-  <a href="/"><img class='logo' src="/assets/logo.jpg"></a>
+  <a href="/"><img class='logo' src="/assets/shedsharing-logo.png"></a>
   <nav>
     <ul>
-        <li><%= link_to "Find a Tool to Rent", abstract_tools_path %></li>
+      <li><%= link_to "Rent a Tool", abstract_tools_path %></li>
       <% if user_signed_in? %>
         <li>Hello, <%= current_user.username %></li>
         <li><%= link_to "Dashboard", dashboard_path(current_user), method: :get %></li>
@@ -28,9 +32,15 @@
     </ul>
   </nav>
 </header>
-<% flash.each do |name, msg| %>
-  <%= content_tag :div, msg, :class => "flash_#{name}" %>
-<% end %>
+
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  <span aria-hidden="true">
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg.html_safe, :class => "flash_#{name}" %>
+    <% end %>
+  </span>
+</button>
+
 <%= yield %>
 
 <footer>
