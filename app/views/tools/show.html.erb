@@ -72,7 +72,7 @@
     <p><%= link_to "Add a tag", edit_tool_path(@tool) if @tool.owner == current_user %></p>
 
     <% @tool.tags.each do |tag| %>
-      <p class="tags-display"><%= tag.name %></p>
+      <p class='tags-display'><%=link_to "#{tag.name}", tag_path(tag) %></p>
     <% end %>
   </aside>
 </main>

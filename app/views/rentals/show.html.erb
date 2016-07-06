@@ -79,7 +79,7 @@
           <% if @rental.pending? || @rental.draft? %> <!-- Data hasn't been saved yet -->
             <td class='align-right'><strong>$<%= @rental.total_tool_price * @rental.duration %></strong></td>
           <% else %> <!-- Transaction is permanent and LI info is logged -->
-            <td class='align-right'><strong>$<%= @rental.sum_logs * @rental.duration %></strong></td>
+            <td class='align-right sum-total'><strong>$<%= @rental.sum_logs * @rental.duration %></strong></td>
           <% end %>
       </tr>
     </table>
@@ -111,25 +111,54 @@
         </div>
 
       <% when "in_progress" %>
-      <% if @rental.renter == current_user %>
-        <%= form_tag charges_path, :class => "stripe-form" do %>
-          <%= hidden_field_tag "amount", "#{(@rental.total_tool_price * @rental.duration)}" %>
-          <%= hidden_field_tag "rental", @rental.id %>
-            <div>
+
+        <% if @rental.renter == current_user %>
+
+          <%=form_tag charges_path, :class => 'stripe-form-test' do %>
+            <div id="error_explanation">
               <% if flash[:error].present? %>
-                <div id="error_explanation">
-                  <p><%= flash[:error] %></p>
-                </div>
+                  <p><%=flash[:error] %></p>
               <% end %>
             </div>
-            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-              data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-              data-description="Tool Rental via Shed Sharing"
-              data-amount="<%= ((@rental.total_tool_price * @rental.duration).to_s + '00').to_f %>"
-              data-locale="auto"></script>
-        <% end %>
-      <% end %>
+            <div>
+              <%=hidden_field_tag(:amount) %>
+              <%=hidden_field_tag "rental_id", "#{@rental.id}" %>
+            </div>      
+            <div>
+              <%=hidden_field_tag(:stripeToken) %>
+            </div>
+            <button id='payButton'>Pay for Rental</button>
+          <% end %>
+        <% end %>     
     <% end %>
+    <script src="https://checkout.stripe.com/checkout.js"></script>
+    <script>
+      var handler = StripeCheckout.configure({
+        key: '<%=Rails.configuration.stripe[:publishable_key] %>',
+        locale: 'auto',
+        name: 'Shed Sharing',
+        description: 'One-time donation',
+        token: function(token) {
+          $('input#stripeToken').val(token.id);
+          var amount = $('.sum-total').text().substring(1);
+          $('input#amount').val(amount); //adds the calculated amount to the DOM.
+          $('form').submit();
+        }
+      });
+      $('#payButton').on('click', function(e) {
+        e.preventDefault();
+        var amount = $('.sum-total').text().substring(1); 
+        //This amount tells the popup how much the user is paying
+        handler.open({
+          amount: Math.round(amount*100)
+        })
+      });  
+
+      // Close Checkout on page navigation
+      $(window).on('popstate', function() {
+        handler.close();
+      });
+    </script>
   </article>
 
   <aside>
