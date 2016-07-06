@@ -105,32 +105,30 @@
                 <% end %>
               <% end %>
             <% end %>
-              
             </div>
           </div>
-
-            <%= button_to "Cancel this Rental Request", @rental, method: :delete, data: { confirm: 'Are you sure?' }, class: 'cancel-btn rental-request-btn', form_class: 'cancel-form' %>
-
+          <%= button_to "Cancel this Rental Request", @rental, method: :delete, data: { confirm: 'Are you sure?' }, class: 'cancel-btn rental-request-btn', form_class: 'cancel-form' %>
         </div>
+
       <% when "in_progress" %>
       <% if @rental.renter == current_user %>
-                <%= form_tag charges_path, :class => "stripe-form" do %>
-                  <%= hidden_field_tag "amount", "#{(@rental.total_tool_price * @rental.duration)}" %>
-                  <div>
-                    <% if flash[:error].present? %>
-                      <div id="error_explanation">
-                        <p><%= flash[:error] %></p>
-                      </div>
-                    <% end %>
-                  </div>
-
-                  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                  data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-                  data-description="Tool Rental via Shed Sharing"
-                  data-amount="<%= ((@rental.total_tool_price * @rental.duration).to_s + '00').to_f %>"
-                  data-locale="auto"></script>
-                <% end %>
-             <% end %>
+        <%= form_tag charges_path, :class => "stripe-form" do %>
+          <%= hidden_field_tag "amount", "#{(@rental.total_tool_price * @rental.duration)}" %>
+          <%= hidden_field_tag "rental", @rental.id %>
+            <div>
+              <% if flash[:error].present? %>
+                <div id="error_explanation">
+                  <p><%= flash[:error] %></p>
+                </div>
+              <% end %>
+            </div>
+            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+              data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+              data-description="Tool Rental via Shed Sharing"
+              data-amount="<%= ((@rental.total_tool_price * @rental.duration).to_s + '00').to_f %>"
+              data-locale="auto"></script>
+        <% end %>
+      <% end %>
     <% end %>
   </article>
 

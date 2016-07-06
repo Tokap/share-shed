@@ -19,11 +19,12 @@ class ChargesController < ApplicationController
 	    :currency    => 'usd'
 	  )
 
-	  # if we update the status before redirecting,
-	  # the page will update with options. This would
-	  # have to make sense with the flow of the status changes,
-	  # so this should certainly be discussed.
-	  redirect_to(:back)
+	  if charge
+	  	rental = Rental.find(params[:rental])
+	  	rental.status = 'closed'
+	  	rental.save
+	  	redirect_to(:back)
+	  end
 
 	rescue Stripe::CardError => e
 	  flash[:error] = e.message
