@@ -87,14 +87,24 @@ main.dashboard {
   }
   .tile {
     border-radius: 5px;
-    border: solid black 1px;
+    //border: 2px solid #efefef;
     height: 150px;
     width: 150px;
     display: inline-block;
     margin: 10px;
-    box-shadow: -3px 3px 3px gray;
+    margin: 20px;
+    //box-shadow: -3px 3px 3px gray;
     z-index: 50;
     word-wrap: break-word;
+    svg {
+      width: 100px;
+      height: 100px;
+      .shed-icon-color {
+        fill: $brand-color-icon;
+        opacity: .85;
+      }
+    }
+    h4 { color: $brand-color-icon; }
   }
   .draft, .closed {
     border: solid black 3px;
@@ -346,6 +356,26 @@ main.sign-up {
   }
 }
 
+main.abstract-tools {
+  article, aside {
+    flex: 1 1em;
+    background-color: #efefef;
+    .top-5-tags-div {
+      margin-top: 100px;
+    }
+  }
+  section { display: none; }
+
+  article {
+    .tool-div {
+      svg { fill: $brand-green; }
+    }
+    .shed-icon-color { fill: $brand-green; }
+  }
+
+}
+
+
 //
 // GLOBAL HELPER STYLES
 // --------------------------------------------------
@@ -400,25 +430,6 @@ main.section-hidden {
 main.aside-hidden {
   aside { display: none; }
   section, article { background-color: #efefef; }
-}
-
-main.abstract-tools {
-  article, aside {
-    flex: 1 1em;
-    background-color: #efefef;
-    .top-5-tags-div {
-      margin-top: 100px;
-    }
-  }
-  section { display: none; }
-
-  article {
-    .tool-div {
-      svg { fill: $brand-green; }
-    }
-    .shed-icon-color { fill: $brand-green; }
-  }
-
 }
 
 //

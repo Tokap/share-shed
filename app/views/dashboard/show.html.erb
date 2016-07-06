@@ -22,7 +22,7 @@
                 <% if tool.image.file? %>
                   <img class='tile-pic' src="<%= tool.image.url %>">
                 <% else %>
-                  <img class='tile-pic' src="/assets/shovel.png">
+                  <%= svg tool.name %>
                 <% end %>
                 <h4><%= tool.abstract_tool.name %></h4>
               </div>
@@ -31,7 +31,7 @@
                 <% if tool.image.file? %>
                   <img class='tile-pic unavailable' src="<%= tool.image.url %>">
                 <% else %>
-                  <img class='tile-pic unavailable' src="/assets/shovel.png">
+                    <img class='tile-pic unavailable' src="/assets/svg/<%= tool.name %>">
                 <% end %>
                 <h4 class="unavailable"><%= tool.abstract_tool.name %></h4>
               </div>
