@@ -45,9 +45,11 @@
         <% end %>
       <% else %>
         <% if @rental.errors.any? %>
-          <% @rental.errors.full_messages.each do |msg| %>
-            <%= msg %>
-          <% end %>
+          <ul class="error">
+            <% @rental.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
         <% end %>
         <% if @tool.owner != current_user%>
           <%= form_for @rental do |f|%>

@@ -59,8 +59,10 @@ class Rental < ActiveRecord::Base
   end
 
   def return_date_follows_checkout_date
-    if checkout_date >= return_date
-      self.errors.add(:checkout_date, "must follow return date")
+    if checkout_date && return_date
+      if checkout_date >= return_date
+        self.errors.add(:checkout_date, "must follow return date")
+      end
     end
   end
 
@@ -73,7 +75,7 @@ class Rental < ActiveRecord::Base
   end
 
   def checkout_date_is_not_in_past
-    if checkout_date < Date.today
+    if checkout_date && checkout_date < Date.today
       self.errors.add(:checkout_date, "cannot be in the past")
     end
   end

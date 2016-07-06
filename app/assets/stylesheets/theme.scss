@@ -9,6 +9,11 @@ body {
   max-width: 1200px;
 }
 
+ul.error {
+  font-size: 1.5em;
+  color: red;
+}
+
 header, hgroup, footer, article, section, aside {
   border-radius: 10px;
   margin: 10px;
