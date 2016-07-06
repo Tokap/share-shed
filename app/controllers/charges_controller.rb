@@ -17,7 +17,9 @@ class ChargesController < ApplicationController
 		  @amount = (params[:amount].to_i * 100) #custom amount converted to cents
 
 		  if send_stripe_charge
+		  	p @rental
 		  	@rental.paid = true
+		  	p @rental.paid
 		  	@rental.save
 		  	redirect_to(:back)
 		  else
