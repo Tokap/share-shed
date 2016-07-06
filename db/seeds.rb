@@ -308,7 +308,7 @@ Rental.all.each {|rental| rental.log_line_items if ( !rental.draft? && !rental.p
 
 name_array = ["outdoor", "exciting", "concerning", "probably-dangerous", "garden", "lawn", "garage", "car-repair", "machine", "heavy", "durable", "easy"]
 
-<<<<<<< Updated upstream
+# Updated upstream
 
 ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[0]), tool: demo_user.tools[0])
 ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[0]), tool: demo_user.tools[1])
