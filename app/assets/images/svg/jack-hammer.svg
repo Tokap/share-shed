@@ -1,0 +1,56 @@
+
+<svg width="354px" height="354px" viewBox="-5915 -1900 354 354" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="250" height="250"></rect>
+        <rect id="path-3" x="0" y="0" width="250" height="250"></rect>
+        <rect id="path-5" x="0" y="0" width="250" height="250"></rect>
+        <rect id="path-7" x="0" y="0" width="250" height="250"></rect>
+        <rect id="path-9" x="0" y="0" width="250" height="250"></rect>
+    </defs>
+    <g id="jack-hammer-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-5738.223305, -1723.223305) rotate(-45.000000) translate(5738.223305, 1723.223305) translate(-5863.223305, -1848.223305)">
+        <g id="Layer_1">
+            <g id="Group">
+                <polygon class="shed-icon-color" id="Shape" fill="#231F20" points="40.4821429 140.080357 68.8928571 168.491071 62.5803571 174.794643 75.2053571 187.428571 81.5178571 181.116071 109.928571 209.517857 122.553571 196.892857 53.1071429 127.455357"></polygon>
+                <g id="Clipped">
+                    <g>
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <g id="SVGID_1_"></g>
+                        <path class="shed-icon-color" d="M15.2321429,215.839286 L2.60714286,228.464286 C-0.866071429,231.9375 -0.866071429,237.625 2.60714286,241.089286 L8.91964286,247.410714 C12.3928571,250.875 18.0714286,250.875 21.5446429,247.410714 L34.1696429,234.776786 L15.2321429,215.839286 L15.2321429,215.839286 Z" id="Shape" fill="#231F20" mask="url(#mask-2)"></path>
+                    </g>
+                    <g>
+                        <mask id="mask-4" fill="white">
+                            <use xlink:href="#path-3"></use>
+                        </mask>
+                        <g id="SVGID_1_"></g>
+                        <rect class="shed-icon-color" id="Rectangle-path" fill="#231F20" mask="url(#mask-4)" transform="translate(59.431322, 190.580421) rotate(45.000000) translate(-59.431322, -190.580421) " x="50.5028365" y="186.116178" width="17.8569716" height="8.9284858"></rect>
+                    </g>
+                    <g>
+                        <mask id="mask-6" fill="white">
+                            <use xlink:href="#path-5"></use>
+                        </mask>
+                        <g id="SVGID_1_"></g>
+                        <rect class="shed-icon-color" id="Rectangle-path" fill="#231F20" mask="url(#mask-6)" transform="translate(46.800758, 203.211544) rotate(225.000000) translate(-46.800758, -203.211544) " x="37.8722722" y="198.747301" width="17.8569716" height="8.9284858"></rect>
+                    </g>
+                    <g>
+                        <mask id="mask-8" fill="white">
+                            <use xlink:href="#path-7"></use>
+                        </mask>
+                        <g id="SVGID_1_"></g>
+                        <rect class="shed-icon-color" id="Rectangle-path" fill="#231F20" mask="url(#mask-8)" transform="translate(34.171104, 215.838329) rotate(225.000000) translate(-34.171104, -215.838329) " x="25.2426187" y="211.374087" width="17.8569716" height="8.9284858"></rect>
+                    </g>
+                    <g>
+                        <mask id="mask-10" fill="white">
+                            <use xlink:href="#path-9"></use>
+                        </mask>
+                        <g id="SVGID_1_"></g>
+                        <path class="shed-icon-color" d="M248.696429,114.955357 L135.053571,1.3125 C133.321429,-0.419642857 130.473214,-0.419642857 128.741071,1.3125 L122.428571,7.625 C120.6875,9.36607143 120.6875,12.2053571 122.428571,13.9375 L138.214286,29.7232143 L166.625,45.5089286 L75.2053571,136.919643 L113.089286,174.803571 L204.5,83.3928571 L220.285714,111.794643 L236.071429,127.580357 C237.803571,129.321429 240.642857,129.321429 242.383929,127.580357 L248.696429,121.267857 C250.428571,119.535714 250.428571,116.6875 248.696429,114.955357" id="Shape" fill="#231F20" mask="url(#mask-10)"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

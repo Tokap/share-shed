@@ -1,0 +1,37 @@
+
+<svg width="250px" height="250px" viewBox="-4589 -5764 250 250" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="250" height="250"></rect>
+        <rect id="path-3" x="0" y="0" width="250" height="250"></rect>
+        <rect id="path-5" x="0" y="0" width="250" height="250"></rect>
+    </defs>
+    <g id="axe" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-4589.000000, -5764.000000)">
+        <g id="Layer_1">
+            <g id="Group">
+                <g id="Clipped">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="SVGID_1_"></g>
+                    <path class="shed-icon-color" d="M207.375,109.053571 C216.982143,92.4375 222.133929,73.9375 222.294643,55.9464286 L202.625,54.7678571 L163.910714,32.4464286 L168.973214,23.6785714 L130.258929,1.35714286 L125.1875,10.125 L109.696429,1.19642857 C105.4375,-1.25892857 99.9464286,0.214285714 97.4821429,4.46428571 L61.7142857,66.3214286 C59.2589286,70.5803571 60.7321429,76.0625 64.9910714,78.5178571 L157.919643,132.089286 L168.767857,148.508929 C184.294643,139.375 197.767857,125.669643 207.375,109.053571" id="Shape" fill="#efefef" mask="url(#mask-2)"></path>
+                </g>
+                <g id="Clipped">
+                    <mask id="mask-4" fill="white">
+                        <use xlink:href="#path-3"></use>
+                    </mask>
+                    <g id="SVGID_1_"></g>
+                    <path class="shed-icon-color" d="M249.401786,57.5714286 L231.133929,56.4732143 C230.883929,75.8660714 225.419643,95.7053571 215.116071,113.517857 C204.821429,131.330357 190.348214,145.973214 173.651786,155.892857 L183.741071,171.133929 C203.544643,162.473214 221.848214,146.535714 234.482143,124.678571 C247.116071,102.821429 251.785714,79.0357143 249.401786,57.5714286" id="Shape" fill="#231F20" mask="url(#mask-4)"></path>
+                </g>
+                <g id="Clipped">
+                    <mask id="mask-6" fill="white">
+                        <use xlink:href="#path-5"></use>
+                    </mask>
+                    <g id="SVGID_1_"></g>
+                    <polygon class="shed-icon-color" id="Shape" fill="#231F20" mask="url(#mask-6)" points="31.2946429 172.508929 0 226.633929 49.0089286 250.008929 70.0178571 194.830357 114.723214 117.508929 76 95.1875"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
