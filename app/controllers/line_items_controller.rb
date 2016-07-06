@@ -19,7 +19,12 @@ class LineItemsController < ApplicationController
     @line_item = LineItem.find(params[:id])
     @rental = @line_item.rental
     @line_item.destroy
-    redirect_to rental_path(@rental)
+    if @rental.line_items.empty?
+      @rental.destroy
+      redirect_to dashboard_path(current_user)
+    else
+      redirect_to rental_path(@rental)
+    end
   end
 
   def line_item_params
