@@ -16,7 +16,21 @@
       <% end %>
     </div>
     <div class="shown-users-tools">
-
+      <h3>Available tools</h3>
+      <div class="flex-container">
+        <% @user.tools.where(available: true).each do |tool| %>
+          <a href="/tools/<%= tool.id %>">
+            <div class="tile">
+              <% if tool.image.file? %>
+                <img class='tile-pic' src="<%= tool.image.url %>">
+              <% else %>
+                <img class='tile-pic' src='/assets/shovel.png'>
+              <% end %>
+              <h4><%= tool.abstract_tool.name %></h4>
+            </div>
+          </a>
+        <% end %>
+      </div>
     </div>
   </article>
   <aside>

@@ -79,22 +79,22 @@ main.dashboard {
   #toolshed {
     display: block;
   }
-  .flex-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify: space-between;
-  }
-  .tile {
-    border-radius: 5px;
-    border: solid black 1px;
-    height: 150px;
-    width: 150px;
-    display: inline-block;
-    margin: 10px;
-    box-shadow: -3px 3px 3px gray;
-    z-index: 50;
-    word-wrap: break-word;
-  }
+  // .flex-container {
+  //   display: flex;
+  //   flex-wrap: wrap;
+  //   justify: space-between;
+  // }
+  // .tile {
+  //   border-radius: 5px;
+  //   border: solid black 1px;
+  //   height: 150px;
+  //   width: 150px;
+  //   display: inline-block;
+  //   margin: 10px;
+  //   box-shadow: -3px 3px 3px gray;
+  //   z-index: 50;
+  //   word-wrap: break-word;
+  // }
   .draft, .closed {
     border: solid black 3px;
   }
@@ -119,12 +119,12 @@ main.dashboard {
   .tile h4 {
     z-index: 100;
   }
-  .tile-pic {
-    z-index: 10;
-    height: 150px;
-    width: 150px;
-    position: absolute;
-  }
+  // .tile-pic {
+  //   z-index: 10;
+  //   height: 150px;
+  //   width: 150px;
+  //   position: absolute;
+  // }
   .unavailable {
     opacity: 0.6;
   }
