@@ -383,25 +383,6 @@ main.sign-up {
   }
 }
 
-main.abstract-tools {
-  article, aside {
-    flex: 1 1em;
-    //background-color: #efefef;
-    .top-5-tags-div {
-      margin-top: 100px;
-    }
-  }
-  section { display: none; }
-
-  article {
-    .tool-div {
-      svg { fill: $brand-green; }
-    }
-    .shed-icon-color { fill: $brand-green; }
-  }
-
-}
-
 main.user-show {
   h2 { text-align: center; }
   .shown-users-received-reviews {
