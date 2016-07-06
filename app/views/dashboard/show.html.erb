@@ -87,7 +87,7 @@
                 <% else %>
                   <p class='tile-info'>Total: $<%= rental.sum_logs %></p>
                 <% end %>
-                <p class='tile-info'>Status: <%= rental.status %></p>
+                <p class='tile-info'>Status: <%= rental.status.humanize.split.map(&:capitalize).join(' ') %></p>
               </div>
             <% end %>
           <% end %>
