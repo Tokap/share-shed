@@ -5,7 +5,7 @@ LineItem.destroy_all
 
 ################################### users ############################################
 # user 1 is demo user
-demo_user = User.create!(username:    'a',
+demo_user = User.create!(username:    'Demo User',
                          email:       'a@a.com',
                          password:    'aaaaaaaa',
                          address:     '707 Broadway, San Diego, CA 92101')
