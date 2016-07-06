@@ -112,7 +112,7 @@
 
       <% when "in_progress" %>
 
-        <% if @rental.renter == current_user %>
+        <% if @rental.renter == current_user && !@rental.paid?%>
 
           <%=form_tag charges_path, :class => 'stripe-form-test' do %>
             <div id="error_explanation">
@@ -129,6 +129,8 @@
             </div>
             <button id='payButton'>Pay for Rental</button>
           <% end %>
+          <% else %>
+          <p>You've Paid!</p>
         <% end %>     
     <% end %>
     <script src="https://checkout.stripe.com/checkout.js"></script>
