@@ -31,9 +31,15 @@
     </ul>
   </nav>
 </header>
-<% flash.each do |name, msg| %>
-  <%= content_tag :div, msg, :class => "flash_#{name}" %>
-<% end %>
+
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  <span aria-hidden="true">
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, :class => "flash_#{name}" %>
+    <% end %>
+  </span>
+</button>
+
 <%= yield %>
 
 <footer>
