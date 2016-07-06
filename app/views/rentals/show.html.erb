@@ -137,7 +137,9 @@
             </div>
             <button id='payButton'>Pay for Rental</button>
           <% end %>
-        <% else %>
+        <% elsif @rental.paid? && @rental.user_owns? %>
+          <p>You've Received Payment!</p>
+        <% elsif @rental.paid? && !@rental.user_owns? %>
           <p>You've Paid!</p>
         <% end %>
     <% end %>

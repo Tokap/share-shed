@@ -92,4 +92,8 @@ class RentalsController < ApplicationController
     params.require(:rental).permit(:checkout_date, :return_date, :pickup_time, :pickup_end_time)
   end
 
+  def user_owns?
+    owner == current_user
+  end
+
 end
