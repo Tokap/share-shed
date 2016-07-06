@@ -5,7 +5,7 @@ class LineItemsController < ApplicationController
     @line_item = LineItem.new(line_item_params)
     if current_user.rented_rentals.draft.first.line_items << @line_item
       @tool = @line_item.tool
-      flash[:notice]= "This tool has been added to your rental request."
+      flash[:notice]= "<p>This tool has been added to your rental from #{@line_item.rental.owner.username}. Click <a href='/users/#{@line_item.rental.owner.id}'>here</a> to shop for more tools from them.</p>"
       redirect_to tool_path(@tool)
     else
       @rental = Rental.new

@@ -348,6 +348,24 @@ main.sign-up {
   }
 }
 
+main.user-show {
+  h2 { text-align: center; }
+  .shown-users-received-reviews {
+    margin-top: 20px;
+    float: left;
+    width: 49%;
+
+    section {
+      border: 2px solid black;
+    }
+  }
+  .shown-users-tools {
+    margin-top: 20px;
+    float: right;
+    width: 49%;
+  }
+}
+
 //
 // GLOBAL HELPER STYLES
 // --------------------------------------------------

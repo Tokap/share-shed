@@ -3,17 +3,21 @@
   </section>
   <article>
     <h2><%= @user.username %>'s profile</h2>
+    <div class="shown-users-received-reviews">
 
+      <h3>Average rating: <%= @user.average_rating %></h3>
+      <h3>Reviews:</h3>
 
-    <h3>Average rating: <%= @user.average_rating %></h3>
-    <h3>Reviews:</h3>
+      <% @user.received_reviews.each do |review| %>
+        <section class="review-box">
+        <p>Rating: <%= review.stars %></p>
+         <p><%= review.content %></p>
+        </section>
+      <% end %>
+    </div>
+    <div class="shown-users-tools">
 
-    <% @user.received_reviews.each do |review| %>
-      <div class="review-box">
-      <p>Rating: <%= review.stars %></p>
-       <p><%= review.content %></p>
-      </div>
-    <% end %>
+    </div>
   </article>
   <aside>
     <% if current_user.has_rental_history_with?(@user) %>
