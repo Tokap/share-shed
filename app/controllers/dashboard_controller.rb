@@ -19,6 +19,7 @@ class DashboardController < ApplicationController
       @rented_rentals.each do |rental|
         @all_closed_rentals << rental if rental.closed?
       end
+      @rentals_requiring_attention = @user.rentals_requiring_attention
       @received_reviews = @user.received_reviews
       @users_shared_with = User.all.select {|user| @user.has_rental_history_with?(user)}
     else

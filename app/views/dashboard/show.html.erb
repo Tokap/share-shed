@@ -139,11 +139,17 @@
   <aside>
     <div class="panel panel-default">
       <!-- Default panel contents -->
-      <div class="panel-heading">Rental Request From</div>
+      <div class="panel-heading">Rentals requiring action</div>
       <% if @owned_rentals.any? %>
           <ul class="list-group">
-            <% @owned_rentals.each do |o_rental|  %>
-                <% unless o_rental.status == "draft" %><li class="list-group-item"><%= link_to "#{o_rental.renter.username} -- #{clean(o_rental.status)}", rental_path(o_rental), method: :get %></li><% end %>
+            <% @rentals_requiring_attention.each do |rental|  %>
+                <<%= link_to rental_path(rental), data: {turbolinks: false} do %>
+            <div class='tile <%= rental.status %>'>
+              <p class='tile-info'>Owner: <%= rental.owner.username %></p>
+              <p class='tile-info'>Renter: <%= rental.renter.username %></p>
+              <p class='tile-info'>Total: $<%= rental.sum_logs %></p>
+            </div>
+          <% end %>
             <% end %>
           </ul>
       <% else %>
@@ -152,19 +158,6 @@
         </div>
       <% end %>
     </div>
-
-    <div class="panel panel-default">
-      <!-- Default panel contents -->
-      <div class="panel-heading">Open Rental Requests</div>
-        <% if @rented_rentals.any? %>
-            <ul class="list-group">
-              <% @rented_rentals.each do |r_rental|  %>
-                  <li class="list-group-item"><%= link_to "#{r_rental.owner.username} -- #{clean(r_rental.status)}", rental_path(r_rental), method: :get %></li>
-              <% end %>
-            </ul>
-        <% end %>
-    </div>
-
   </aside>
 
 </main>
