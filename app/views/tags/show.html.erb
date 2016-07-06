@@ -11,7 +11,7 @@
   <article>
   <h3>Tools Related to this tag: </h3>
     <% @tag.tool_tags.each do |tt| %>
-      <p> <%= link_to "#{tt.tool.name}", tool_path(tt.tool), method: :get %> | $<%=tt.tool.base_price %> per day</p>
+      <p> <%= link_to "#{tt.tool.name.split.map(&:capitalize).join(' ')}", tool_path(tt.tool), method: :get %> | $<%=tt.tool.base_price %> per day</p>
     <% end %>
   </article>
 

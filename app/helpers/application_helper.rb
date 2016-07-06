@@ -11,6 +11,10 @@ module ApplicationHelper
   #   @devise_mapping ||= Devise.mappings[:user]
   # end
 
+  def clean(string)
+    string.humanize.split.map(&:capitalize).join(' ')
+  end
+
   def svg(name)
     file_path = "#{Rails.root}/app/assets/images/svg/#{name}.svg"
     puts "\n\n\n\n\nfile path"

@@ -24,7 +24,7 @@
                   <% else %>
                     <%= svg tool.name %>
                   <% end %>
-                  <h4><%= tool.abstract_tool.name %></h4>
+                  <h4><%= tool.abstract_tool.name.split.map(&:capitalize).join(' ') %></h4>
                 </div>
               <% else %>
                 <div class='tile unavailable'>
@@ -34,7 +34,7 @@
                     <%= svg tool.name %>
                     <!--<img class='unavailable' src="/assets/svg/<%= tool.name %>">-->
                   <% end %>
-                  <h4 class="unavailable"><%= tool.abstract_tool.name %></h4>
+                  <h4 class="unavailable"><%= tool.abstract_tool.name.split.map(&:capitalize).join(' ') %></h4>
                 </div>
               <% end %>
             <% end %>
@@ -143,7 +143,7 @@
       <% if @owned_rentals.any? %>
           <ul class="list-group">
             <% @owned_rentals.each do |o_rental|  %>
-                <% unless o_rental.status == "draft" %><li class="list-group-item"><%= link_to "#{o_rental.renter.username} -- #{o_rental.status}", rental_path(o_rental), method: :get %></li><% end %>
+                <% unless o_rental.status == "draft" %><li class="list-group-item"><%= link_to "#{o_rental.renter.username} -- #{clean(o_rental.status)}", rental_path(o_rental), method: :get %></li><% end %>
             <% end %>
           </ul>
       <% else %>
