@@ -20,4 +20,9 @@ class TagsController < ApplicationController
 
 	end
 
+	def show
+		@tag = Tag.find(params[:id])
+		@top_5_tags = Tag.top5
+	end
+
 end
