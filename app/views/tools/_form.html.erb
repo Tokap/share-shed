@@ -1,3 +1,10 @@
+<% if @tool.errors.any? %>
+  <ul class="error">
+    <% @tool.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
 <%= form_for @tool, html: { multipart: true } do |f| %>
   <%= f.file_field :image %><br>
   <%= select_tag(:abstract_tool_id, options_for_select(@abstract_tools_options)) %>

@@ -19,7 +19,7 @@
     <% end %>
     <p>Price: $<%= @tool.base_price %></p>
     <% if @tool.owner != current_user %>
-      <p>Owner: <%= @tool.owner.username %></p>
+      <p>Owner: <%= link_to @tool.owner.username, user_url(@tool.owner) %></p>
     <% end %>
     <p>Description: <%= @tool.description %></p>
     <p>Model number: <%= @tool.model_number %></p>
@@ -44,6 +44,13 @@
           You already have an open rental request with another owner. Please complete this transaction through your dashboard before renting this tool.
         <% end %>
       <% else %>
+        <% if @rental.errors.any? %>
+          <ul class="error">
+            <% @rental.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        <% end %>
         <% if @tool.owner != current_user%>
           <%= form_for @rental do |f|%>
             <%= f.label "checkout_date" %>
