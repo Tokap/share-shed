@@ -18,7 +18,7 @@
           <% @owned_tools.each do |tool| %>
             <%= link_to tool_path(tool), data: {turbolinks: false} do %>
               <% if tool.available %>
-                <div class='tile-svg'>
+                <div class='tile'>
                   <% if tool.image.file? %>
                     <img class='tile-pic' src="<%= tool.image.url %>">
                   <% else %>
@@ -27,11 +27,12 @@
                   <h4><%= tool.abstract_tool.name %></h4>
                 </div>
               <% else %>
-                <div class='tile-svg unavailable'>
+                <div class='tile unavailable'>
                   <% if tool.image.file? %>
-                    <img class='tile-pic unavailable' src="<%= tool.image.url %>">
+                    <img class='unavailable' src="<%= tool.image.url %>">
                   <% else %>
-                    <img class='tile-pic unavailable' src="/assets/svg/<%= tool.name %>">
+                    <%= svg tool.name %>
+                    <!--<img class='unavailable' src="/assets/svg/<%= tool.name %>">-->
                   <% end %>
                   <h4 class="unavailable"><%= tool.abstract_tool.name %></h4>
                 </div>

@@ -86,7 +86,7 @@ main.dashboard {
     flex-wrap: wrap;
     justify: space-between;
   }
-  .tile-svg {
+  .tile {
     border-radius: 5px;
     //border: 2px solid #efefef;
     height: 100px;
@@ -102,10 +102,10 @@ main.dashboard {
       height: 100px;
       .shed-icon-color {
         fill: $brand-color-icon;
-        opacity: .85;
+        opacity: 1;
       }
     }
-    h4 { font-size: .75em; font-weight: 600; color: $brand-color-icon; }
+    h4 { font-size: 1em; font-weight: 600; color: $brand-color-icon; }
   }
   .draft, .closed {
     border: solid black 3px;
@@ -131,14 +131,24 @@ main.dashboard {
   .tile h4 {
     z-index: 100;
   }
-  // .tile-pic {
-  //   z-index: 10;
-  //   height: 150px;
-  //   width: 150px;
-  //   position: absolute;
-  // }
+   .tile-pic {
+     z-index: 10;
+     height: 150px;
+     width: 150px;
+     position: absolute;
+   }
   .unavailable {
-    opacity: 0.6;
+    opacity: 1;
+    width: 100px;
+    height: 100px;
+    svg {
+      width: 100px;
+      height: 100px;
+      .shed-icon-color {
+        fill: $brand-color-icon;
+        opacity: 1;
+      }
+    }
   }
   .horiz-line {
     border: solid gray 1px;
@@ -329,6 +339,10 @@ main.rental-show {
       th {
       text-align: left;
       }
+    }
+    #googleMap {
+      width: 400px;
+      height:320px;
     }
     p.time-range-p {
       margin-bottom: 0px;
