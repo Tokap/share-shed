@@ -2,6 +2,7 @@ class SearchController < ApplicationController
 
 	def index
 		 @top_5_tags = Tag.top5
+		 p params
 		if params[:type] == "tag"
 			@tag = Tag.find_by(name: params[:name])
 			@results = ToolTag.where(tag: @tag)
@@ -20,7 +21,8 @@ class SearchController < ApplicationController
 			end
 		elsif params[:type] == "user"
 			name = "%#{params[:name]}%"
-			@user_results = User.where("username like ?", name)
+			@results = true #gets past initial filter check.
+			@user_results = User.where("username ilike ?", "#{name}")
 		end
 	end
 
