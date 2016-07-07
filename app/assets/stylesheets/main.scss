@@ -303,6 +303,52 @@ main.about {
   section {
     display: none;
   }
+
+  article {
+    .quadrant {
+      border-radius: 10px;
+      margin: 20px;
+      width: 46%;
+      padding: 10px;
+      display: inline-block;
+    }
+    .mugshot {
+      width: 200px;
+      height: 200px;
+      float: left;
+      margin: 10px;
+      border-radius: 10px;
+    }
+  }
+  .tech-div {
+    width: 100px;
+    display: inline-block;
+    margin: 15px;
+    .tech-logo {
+
+    }
+  }
+  .tech-container {
+    display: flex;
+    justify-content: space-between;
+    .new-tech {
+      display: inline-block;
+      width: 48%;
+    }
+    .familiar-tech {
+      display: inline-block;
+      width: 48%;
+    }
+    .tech-div-container {
+      display: flex;
+      .tech-title {
+        text-align: center;
+      }
+      display: inline-block;
+      width: 48%;
+      border: 1px solid black;
+    }
+  }
 }
 
 main.terms {
