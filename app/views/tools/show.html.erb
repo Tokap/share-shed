@@ -11,7 +11,7 @@
             </div>
             <div class="col-xs-12 col-sm-6">
               <% if @tool.available %>
-                  <a href="#">Current Status <span class="badge">Current Status: Available</span></a>
+                  <a href="#"><span class="badge">Current Status: Available</span></a>
               <% else %>
                   <a href="#">Current Status <span class="badge">Unavailable, rented to <%= @tool.line_items.first.rental.renter.username.titleize %> until <%= @tool.line_items.first.rental.return_date %></span></a>
               <% end %>
