@@ -114,7 +114,7 @@
         <h4>Users you have shared tools with:</h4>
         <ul>
           <% @users_shared_with.each do |user| %>
-            <li><%= user.username %> - <%= user.average_rating %> average rating<%= button_to "View/give feedback", user_url(user), data: {turbolinks: false}, method: :get %></li>
+            <li><%= user.username %> - <%= user.average_rating %> average rating<%= button_to "View/give feedback", user_url(user), class: "btn btn-primary", data: {turbolinks: false}, method: :get %></li>
             <br>
           <% end %>
         </ul>
