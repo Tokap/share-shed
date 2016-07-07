@@ -12,7 +12,7 @@
   <%= csrf_meta_tags %>
   <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
   <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB3jz_ouPa0EXevlF9_CXEIZ17ItVmCOWk"></script>
-  <!--<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
+  <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body>
 
@@ -26,8 +26,8 @@
         <li><%= link_to "Dashboard", dashboard_path(current_user), method: :get %></li>
         <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
       <% else %>
-        <li><%= link_to "Log in", new_user_session_path %></li>
-        <li><%= link_to "Sign up", new_user_registration_path %></li>
+        <li><%= link_to "Login", "#login-modal", "data-toggle" => "modal" %></li>
+        <li><%= link_to "Sign up", "#signup-modal", "data-toggle" => "modal" %></li>
       <% end %>
     </ul>
   </nav>
@@ -36,7 +36,7 @@
 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
   <span aria-hidden="true">
     <% flash.each do |name, msg| %>
-      <%= content_tag :div, msg.html_safe, :class => "flash_#{name}" %>
+      <%= content_tag :div, msg.html_safe, :class => "flash_#{name} alert alert-success" if msg %>
     <% end %>
   </span>
 </button>
@@ -53,5 +53,7 @@
     </ul>
   </nav>
 </footer>
+<%= render 'layouts/login_modal' %>
+<%= render 'layouts/signup_modal' %>
 </body>
 </html>

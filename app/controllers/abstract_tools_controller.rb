@@ -15,7 +15,8 @@ class AbstractToolsController < ApplicationController
     @all_tools.each do |tool|
     	@tools << tool if tool.owner != current_user
     end
-    if current_user
+
+    if user_signed_in?
       @tools_ordered_by_distance = @tools.sort do |tool1, tool2|
         tool1.distance_from_address(current_user.address) <=> tool2.distance_from_address(current_user.address)
       end
