@@ -20,6 +20,7 @@
   <a href="/"><img class='logo' src="/assets/shedsharing-logo.png"></a>
   <nav>
     <ul>
+      <li><%= link_to '<< Back', :back, class: "back-button" %></li>
       <li><%= link_to "Rent a Tool", abstract_tools_path %></li>
       <% if user_signed_in? %>
         <li>Hello, <%= current_user.username %></li>
@@ -38,8 +39,6 @@
       <%= content_tag :div, msg.html_safe, :class => "flash_#{name} alert alert-success" if msg %>
     <% end %>
   </span>
-
-<%= link_to 'Back', :back, class: "back-button" %>
 
 <%= yield %>
 
