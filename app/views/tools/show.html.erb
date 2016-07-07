@@ -77,8 +77,12 @@
     <h3 class="tags-options">Tags: </h3>
     <p><%= link_to "Add a tag", edit_tool_path(@tool) if @tool.owner == current_user %></p>
 
+  <% if !@tool.tags.empty? %>
     <% @tool.tags.each do |tag| %>
       <p class='tags-display'><%=link_to "#{tag.name}", tag_path(tag) %></p>
+    <% end %>
+    <% else %>
+      <p>No Tags Available</p>
     <% end %>
   </aside>
 </main>
