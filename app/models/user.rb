@@ -52,7 +52,12 @@ class User < ActiveRecord::Base
   end
 
   def average_rating
-    received_reviews.average(:rating) || "( N/A )"
+    total = received_reviews.average(:rating)
+    if total == nil
+      return "N/A"
+    else
+      return total.round(2)
+    end
   end
 
   def owner_sum_all_tools
