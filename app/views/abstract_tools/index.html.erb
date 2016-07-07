@@ -11,7 +11,7 @@
         <li>
           <%= link_to abstract_tool_path(ab_tool) do %>
             <%= svg ab_tool.name %>
-            <h4><%= ab_tool.name %></h4>
+            <h4><%= clean(ab_tool.name) %></h4>
         <% end %>
         </li>
       <% end %>

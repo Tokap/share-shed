@@ -10,7 +10,9 @@
       <p> No matching results found! </p>
     <% elsif @tag.class.to_s == "Tag" %>
       <% @results.each do |tt| %>
+      <div class="tool-detail-div">
         <p><%= link_to "#{clean(tt.tool.name)}", tool_path(tt.tool), data: {turbolinks: false} %> | $<%= tt.tool.base_price %> each day </p>
+        </div>
       <% end %>
     <% elsif !@user_results.nil? %>
       <% @user_results.each do |user|%>
