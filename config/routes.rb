@@ -5,6 +5,7 @@ devise_for :users, :controllers => { registrations: 'registrations'}
 
 resources :charges
 resources :tags
+resources :landing
 
 resources :dashboard, only: [:show, :index]
 # Run rake routes to see what this added.
