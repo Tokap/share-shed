@@ -14,6 +14,13 @@
           </ul>
         <% end %>
       <% end  %>
+
+      <% if @tool.image.file? %>
+        <img src="<%= @tool.image.url %>">
+      <% else %>
+        <%= svg @tool.name %>
+      <% end %>
+
       <%= render 'form' %>
     </div>
   </article>
