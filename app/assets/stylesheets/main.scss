@@ -300,8 +300,24 @@ main.login {
 }
 
 main.about {
-  section {
+  section, aside {
     display: none;
+  }
+  article {
+    .quadrant {
+      border: solid green 3px;
+      border-radius: 10px;
+      margin: 15px;
+      width: 47%;
+      padding: 10px;
+      display: inline-block;
+    }
+    .mugshot {
+      width: 200px;
+      height: 200px;
+      float: left;
+      margin: 10px;
+    }
   }
 }
 
