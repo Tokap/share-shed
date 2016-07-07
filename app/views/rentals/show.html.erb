@@ -123,9 +123,11 @@
                 <%= f.submit "Approve this rental", class: 'approve-btn rental-request-btn' %>
               <% end %>
               <% if @rental.errors.any? %>
-                <% @rental.errors.full_messages.each do |msg| %>
-                  <%= msg %>
-                <% end %>
+                <ul class="error">
+                  <% @rental.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                  <% end %>
+                </ul>
               <% end %>
             <% end %>
             </div>
