@@ -87,4 +87,18 @@ class User < ActiveRecord::Base
     tool_prices.reduce(:+)
   end
 
+  def rentals_requiring_attention
+    total_rentals = rented_rentals + owned_rentals
+    total_rentals.select! do |rental|
+      (rental.renter == self && rental.status == "draft") ||
+      (rental.owner == self && rental.status == "pending") ||
+      (rental.owner == self && rental.status == "scheduled" && rental.checkout_date == Date.today && !rental.owner_pick_up_confirmation) ||
+      (rental.renter == self && rental.status == "scheduled" && rental.checkout_date == Date.today && !rental.renter_pick_up_confirmation) ||
+      (rental.owner == self && rental.status == "in_progress" && rental.return_date == Date.today && !rental.owner_return_confirmation) ||
+      (rental.renter == self && rental.status == "in_progress" && rental.return_date == Date.today && !rental.renter_return_confirmation) ||
+      (rental.renter == self && rental.status == "returned")
+    end
+    total_rentals
+  end
+
 end

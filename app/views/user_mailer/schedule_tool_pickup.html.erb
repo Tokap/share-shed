@@ -35,9 +35,30 @@
       google.maps.event.addDomListener(window, 'load', initialize);
     });
   </script>
-
+  <style type="text/css">
+    .rental-table {
+      padding: 15px;
+      margin: 20px 0px 20px 50px;
+      border: 1px solid black;
+      box-shadow: -2px 2px 2px black;
+    }
+    td {
+      margin: 0px;
+      padding: 5px 5px 5px 0px;
+    }
+    td.bottom-line {
+      border-top: 3px solid black;
+    }
+    td.align-right {
+      text-align: right;
+    }
+    th {
+    text-align: left;
+    }
+  </style>
 </head>
 <body>
+  <img src="https://s3.amazonaws.com/please-freaking-work-this-time/shedsharing-logo.png" style="width: 320px;">
   <h1>Your rental with <%= @rental.owner.username %> has been confirmed!</h1>
 
   <p>Rental period: <%= @rental.checkout_date %> - <%= @rental.return_date %></p>
@@ -55,20 +76,39 @@
   <p>Rental summary:</p>
 
   <table class="rental-table">
-    <tr>
+     <tr>
       <th>Tool</th>
-      <th>Daily price * <%= @rental.duration %></th>
-    <tr>
+      <th>Price</th>
+      <th></th>
+      <th>Days</th>
+      <th></th>
+      <th>Cost</th>
+    </tr>
+    <% @rental.line_items.each do |line_item| %>
+      <tr>
+        <td><%= line_item.tool.abstract_tool.name %></td>
+        <td class='align-right'>$<%= line_item.tool.base_price %></td>
+        <td>*</td>
+        <td class='align-right'><%= @rental.duration %></td>
+        <td>=</td>
+        <td class='align-right'><%= line_item.tool.base_price * @rental.duration %></td>
+      </tr>
+    <% end %>
     <% @rental.line_item_logs.each do |line_item_log| %>
       <tr>
         <td><%= line_item_log.name %></td>
         <td class='align-right'>$<%= line_item_log.price %></td>
+        <td>*</td>
+        <td class='align-right'><%= @rental.duration %></td>
+        <td>=</td>
+        <td class='align-right'><%= line_item_log.price * @rental.duration %></td>
       </tr>
-      <tr><td colspan=2 class="bottom-line"></td></tr>
     <% end %>
-      <tr>
-        <td><strong>Total: </strong></td>
-        <td class='align-right'><strong>$<%= @rental.sum_logs %></strong></td>
+    </tr>
+    <tr><td colspan='6' class="bottom-line"></td></tr>
+    <tr>
+      <td colspan='5'><strong>Total:</strong></td>
+      <td class='align-right sum-total'><strong>$<%= @rental.sum_logs * @rental.duration %></strong></td>
       </tr>
   </table>
 

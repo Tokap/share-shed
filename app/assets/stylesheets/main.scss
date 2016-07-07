@@ -18,13 +18,13 @@ main.template {
   aside   { }
 }
 
-hgroup.dashboard {
-  h2 { float: left; }
-  .owner-renter-toggle {
-    float: right;
-    margin-top: 20px;
-  }
-}
+//hgroup.dashboard {
+//  h2 { float: left; }
+//  .owner-renter-toggle {
+//    float: right;
+//    margin-top: 20px;
+//  }
+//}
 
 main.dashboard {
   section, article {
@@ -153,6 +153,7 @@ main.dashboard {
   .horiz-line {
     border: solid gray 1px;
     margin: auto;
+    width: 85%;
   }
   aside {}
 
@@ -292,15 +293,37 @@ main.password-pages {
   }
 }
 
-main.login {
+main.login, main.sign-up {
   section, aside {
     display: none;
+  }
+  article {
+    form.new_user {
+      width: 350px;
+
+    }
   }
 }
 
 main.about {
-  section {
+  section, aside {
     display: none;
+  }
+  article {
+    .quadrant {
+      border: solid green 3px;
+      border-radius: 10px;
+      margin: 15px;
+      width: 47%;
+      padding: 10px;
+      display: inline-block;
+    }
+    .mugshot {
+      width: 200px;
+      height: 200px;
+      float: left;
+      margin: 10px;
+    }
   }
 }
 
@@ -377,31 +400,6 @@ main.rental-show {
   aside { }
 }
 
-main.sign-up {
-  section {
-    display: none;
-  }
-}
-
-main.abstract-tools {
-  article, aside {
-    flex: 1 1em;
-    //background-color: #efefef;
-    .top-5-tags-div {
-      margin-top: 100px;
-    }
-  }
-  section { display: none; }
-
-  article {
-    .tool-div {
-      svg { fill: $brand-green; }
-    }
-    .shed-icon-color { fill: $brand-green; }
-  }
-
-}
-
 main.user-show {
   h2 { text-align: center; }
   .shown-users-received-reviews {
@@ -449,7 +447,7 @@ main.template {
 main.section-article-fifty {
   section, article {
     flex: 1 1em;
-    background-color: #efefef;
+    //background-color: #efefef;
   }
   aside { display: none; }
 }
@@ -457,7 +455,7 @@ main.section-article-fifty {
 main.article-aside-fifty {
   article, aside {
     flex: 1 1em;
-    background-color: #efefef;
+    //background-color: #efefef;
     .top-5-tags-div {
       margin-top: 100px;
     }
@@ -468,19 +466,27 @@ main.article-aside-fifty {
 main.section-aside-fifty {
   section, aside {
     flex: 1 1em;
-    background-color: #efefef;
+    //background-color: #efefef;
   }
   article { display: none; }
 }
 
 main.section-aside-hidden {
-  article { background-color: #efefef; }
-  section, aside { display: none; }
+  article {
+    //background-color: #efefef;
+  }
+  section, aside {
+    display: none;
+  }
 }
 
 main.section-hidden {
-  section { display: none; }
-  article, aside { background-color: #efefef; }
+  section {
+    display: none;
+  }
+  article, aside {
+    //background-color: #efefef;
+  }
   #googleMap {
     width: 400px;
     height:320px;
@@ -488,8 +494,32 @@ main.section-hidden {
 }
 
 main.aside-hidden {
-  aside { display: none; }
-  section, article { background-color: #efefef; }
+  aside {
+    display: none;
+  }
+  section, article {
+    //background-color: #efefef;
+  }
+}
+
+.rental-table {
+  padding: 15px;
+  margin: 5px auto 20px auto;
+  border: 1px solid black;
+  box-shadow: -2px 2px 2px black;
+  td {
+    margin: 0px;
+    padding: 5px;
+  }
+  td.bottom-line {
+    border-top: 3px solid black;
+  }
+  td.align-right {
+    text-align: right;
+  }
+  th {
+  text-align: left;
+  }
 }
 
 //

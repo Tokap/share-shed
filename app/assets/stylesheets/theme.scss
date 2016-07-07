@@ -14,6 +14,9 @@ ul.error {
   color: red;
 }
 
+h2, h3, h4 { color: #777; }
+
+
 header, hgroup, footer, article, section, aside {
   border-radius: 10px;
   margin: 10px;
@@ -46,6 +49,9 @@ header {
       }
     }
   }
+}
+
+main {
 }
 
 footer {

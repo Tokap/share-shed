@@ -5,6 +5,17 @@
 .btn-success { background-color: $brand-color; }
 
 
+// Change with and centering for sign up and login modal
+.modal-content { width: 300px; margin-left: 150px; }
+
+
+// Link color and size for tags on abstract page
+a.tag-link:hover {
+  text-decoration: none;
+  h4 {
+    display: inline;}
+}
+
 .flex-container {
   display: flex;
   flex-wrap: wrap;

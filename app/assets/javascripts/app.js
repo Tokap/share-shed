@@ -30,4 +30,44 @@ console.log(map)
   };
 
   google.maps.event.addDomListener(window, 'load', initialize);
+
+
+});
+
+$(document).ready(function(){
+
+  // Dashboard Tabs
+  $("html").on('click', 'a[href="#"]', function(e) {
+    e.preventDefault();
+    var i;
+
+    console.log("tab  alert");
+
+    var tabContent = $(".tabContent");
+    for (i = 0; i < tabContent.length; i++) {
+      tabContent[i].style.display = "none";
+    }
+
+    var tabLinks = $(".tabLinks");
+    for (i = 0; i < tabLinks.length; i++) {
+      tabLinks[i].className = tabLinks[i].className.replace(" active", "");
+    }
+
+    tabName = $(this).attr('class').split(" ")[0]
+    $('#'+tabName)[0].style.display = "block";
+    $(this).className += " active";
+  });
+
+  $("html").on('click', "#cost-button", function(event){
+    $("#tools-by-cost").show();
+    $("#tools-by-distance").hide();
+  });
+  $("html").on('click', "#distance-button", function(event){
+    $("#tools-by-distance").show();
+    $("#tools-by-cost").hide();
+  });
+
+  // STRIPE JS BELOW ///
+  Stripe.setPublishableKey(' pk_test_eNf41km4qob9JPZmiA9C6iyt');
+
 });

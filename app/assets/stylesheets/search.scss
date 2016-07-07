@@ -1,0 +1,16 @@
+//
+// SEARCH PAGE CSS
+// --------------------------------------------------
+
+main.search {
+  article, aside {
+    flex: 1 1em;
+  }
+  section { display: none; }
+  article {
+  }
+  aside {
+    flex: 0 18em;
+  }
+
+}

@@ -24,7 +24,7 @@
                   <% else %>
                     <%= svg tool.name %>
                   <% end %>
-                  <h4><%= tool.abstract_tool.name %></h4>
+                  <h4><%= clean(tool.name) %></h4>
                 </div>
               <% else %>
                 <div class='tile unavailable'>
@@ -34,7 +34,7 @@
                     <%= svg tool.name %>
                     <!--<img class='unavailable' src="/assets/svg/<%= tool.name %>">-->
                   <% end %>
-                  <h4 class="unavailable"><%= tool.abstract_tool.name %></h4>
+                  <h4 class="unavailable"><%= clean(tool.name) %></h4>
                 </div>
               <% end %>
             <% end %>
@@ -64,7 +64,7 @@
                 <% else %>
                   <p class='tile-info'>Total: $<%= rental.sum_logs %></p>
                 <% end %>
-                <p class='tile-info'>Status: <%= rental.status %></p>
+                <p class='tile-info'>Status: <%= rental.status.capitalize %></p>
               </div>
             <% end %>
           <% end %>
@@ -87,7 +87,7 @@
                 <% else %>
                   <p class='tile-info'>Total: $<%= rental.sum_logs %></p>
                 <% end %>
-                <p class='tile-info'>Status: <%= rental.status %></p>
+                <p class='tile-info'>Status: <%= rental.status.humanize.split.map(&:capitalize).join(' ') %></p>
               </div>
             <% end %>
           <% end %>
@@ -114,7 +114,7 @@
         <h4>Users you have shared tools with:</h4>
         <ul>
           <% @users_shared_with.each do |user| %>
-            <li><%= user.username %> - <%= user.average_rating %> average rating<%= button_to "View/give feedback", user_url(user), data: {turbolinks: false} %></li>
+            <li><%= user.username %> - <%= user.average_rating %> average rating<%= button_to "View/give feedback", user_url(user), data: {turbolinks: false}, method: :get %></li>
             <br>
           <% end %>
         </ul>
@@ -139,32 +139,25 @@
   <aside>
     <div class="panel panel-default">
       <!-- Default panel contents -->
-      <div class="panel-heading">Rental Request From</div>
-      <% if @owned_rentals.any? %>
+      <div class="panel-heading">Rentals requiring action</div>
+      <% if @rentals_requiring_attention.any? %>
           <ul class="list-group">
-            <% @owned_rentals.each do |o_rental|  %>
-                <% unless o_rental.status == "draft" %><li class="list-group-item"><%= link_to "#{o_rental.renter.username} -- #{o_rental.status}", rental_path(o_rental), method: :get %></li><% end %>
+            <% @rentals_requiring_attention.each do |rental|  %>
+                <<%= link_to rental_path(rental), data: {turbolinks: false} do %>
+            <div class='tile <%= rental.status %>'>
+              <p class='tile-info'>Owner: <%= rental.owner.username %></p>
+              <p class='tile-info'>Renter: <%= rental.renter.username %></p>
+              <p class='tile-info'>Total: $<%= rental.sum_logs %></p>
+            </div>
+          <% end %>
             <% end %>
           </ul>
       <% else %>
         <div class="panel-body">
-          <p>You currently have no rental requests from anyone.</p>
+          <p>You currently have no rentals requiring your attention.</p>
         </div>
       <% end %>
     </div>
-
-    <div class="panel panel-default">
-      <!-- Default panel contents -->
-      <div class="panel-heading">Open Rental Requests</div>
-        <% if @rented_rentals.any? %>
-            <ul class="list-group">
-              <% @rented_rentals.each do |r_rental|  %>
-                  <li class="list-group-item"><%= link_to "#{r_rental.owner.username} -- #{r_rental.status}", rental_path(r_rental), method: :get %></li>
-              <% end %>
-            </ul>
-        <% end %>
-    </div>
-
   </aside>
 
 </main>
