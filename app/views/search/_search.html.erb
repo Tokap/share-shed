@@ -1,14 +1,26 @@
-<h2 class="search-tags">Search Tags: </h2>
-<form action="/search">
-  <input type="text" name="name" placeholder="Name" class="search-tags"><br><br>
-  <input type="radio" name="type" value="tool" checked> Tool<br>
-  <input type="radio" name="type" value="tag"> Tag<br><br>
-  <input type="submit" value="Search">
-</form>
+<div class="panel panel-default">
+  <div class="panel-heading seach-tags">
+    Search Tags
+  </div>
+  <div class="panel-body">
+    <form action="/search">
+      <input type="text" name="name" placeholder="Name" class="search-tags"><br><br>
+      <input type="radio" name="type" value="tool" checked> Tool<br>
+      <input type="radio" name="type" value="tag"> Tag<br><br>
+      <input type="submit" value="Search">
+    </form>
+  </div>
+</div>
 
-<div class='top-5-tags-div'>
-  <h4>Here are the current top five most popular tags:</h4>
+<div class="panel panel-default">
+  <div class="panel-heading seach-tags">
+    Current Top 5 Tags
+  </div>
+  <div class="panel-body">
     <% @top_5_tags.each do |tag| %>
-      <p class='tags-display'><%=link_to "#{tag.name}", tag_path(tag) %></p>
+      <%=link_to tag_path(tag), :class => "tag-link" do %>
+        <span class="label label-default label-primary"><%= tag.name %></span>
+      <% end %>
     <% end %>
+  </div>
 </div>

@@ -5,18 +5,40 @@
 main.abstract-tools {
   article, aside {
     flex: 1 1em;
-    //background-color: #efefef;
-    .top-5-tags-div {
-      margin-top: 100px;
-    }
   }
   section { display: none; }
 
   article {
     .tool-div {
-      svg { fill: $brand-green; }
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      li {
+        float: left;
+        text-align: center;
+        border: 2px solid #efefef;
+        border-radius: 5px;
+        width: 150px;
+        height: 175px;
+        margin: 10px;
+        padding: 25px;
+        a {
+          text-decoration: none;
+          color: $brand-green;
+          h4 { font-size: 1em; }
+          svg {
+            fill: $brand-green;
+            width: 100px;
+            height: 100px;
+
+          }
+        }
+      }
     }
     .shed-icon-color { fill: $brand-green; }
+  }
+  aside {
+    flex: 0 18em;
   }
 
 }
