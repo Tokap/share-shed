@@ -2,10 +2,11 @@ class SearchController < ApplicationController
 
 	def index
 		 @top_5_tags = Tag.top5
+		 p params
 		if params[:type] == "tag"
 			@tag = Tag.find_by(name: params[:name])
 			@results = ToolTag.where(tag: @tag)
-		else
+		elsif params[:type] == "tool"
 			@results = []
 			name = "%#{params[:name]}%"
 			@atools = AbstractTool.where("name like ?", name)
@@ -18,6 +19,10 @@ class SearchController < ApplicationController
 			else
 				@results = nil
 			end
+		elsif params[:type] == "user"
+			name = "%#{params[:name]}%"
+			@results = true #gets past initial filter check.
+			@user_results = User.where("username ilike ?", "#{name}")
 		end
 	end
 

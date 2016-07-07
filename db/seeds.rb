@@ -10,92 +10,92 @@ demo_user = User.create!(username:    'Demo User',
                          password:    'aaaaaaaa',
                          address:     '707 Broadway, San Diego, CA 92101')
 
-user_2 = User.create!(username:  Faker::Internet.user_name,
+user_2 = User.create!(username:  "taylor.beck",
                       email:     Faker::Internet.email,
                       password:  'password',
                       address:   '1048 Seventh Ave, San Diego, CA 92101')
 
-user_3 = User.create!(username:  Faker::Internet.user_name,
+user_3 = User.create!(username:  "elliot.wolfe",
                       email:     Faker::Internet.email,
                       password:  'password',
                       address:   '2920 Zoo Dr, San Diego, CA 92101')
 
-user_4 = User.create!(username:  Faker::Internet.user_name,
+user_4 = User.create!(username:  "mike.laurel",
                       email:     Faker::Internet.email,
                       password:  'password',
                       address:   '222 Island Ave, San Diego, CA 92101')
 
-user_5 = User.create!(username:  Faker::Internet.user_name,
+user_5 = User.create!(username:  "gabe.bonner",
                       email:     Faker::Internet.email,
                       password:  'password',
                       address:   '100 Park Blvd, San Diego, CA 92101')
 
-user_6 = User.create!(username:  Faker::Internet.user_name,
+user_6 = User.create!(username:  "patrick.allen",
                       email:     Faker::Internet.email,
                       password:  'password',
                       address:   '1788 El Prado, San Diego, CA 92101')
 
-user_7 = User.create!(username:  Faker::Internet.user_name,
+user_7 = User.create!(username:  "martha.rodgers",
                       email:     Faker::Internet.email,
                       password:  'password',
                       address:   '1492 N Harbor Dr, San Diego, CA 92101')
 
-user_8 = User.create!(username:  Faker::Internet.user_name,
+user_8 = User.create!(username:  "mike.dumalag",
                       email:     Faker::Internet.email,
                       password:  'password',
                       address:   '1451 Washington St, San Diego, CA 92101')
 
-user_9 = User.create!(username:  Faker::Internet.user_name,
+user_9 = User.create!(username:  "maeve.tierney",
                       email:     Faker::Internet.email,
                       password:  'password',
                       address:   '950 Sixth Ave, San Diego, CA 92101')
 
-user_10 = User.create!(username:  Faker::Internet.user_name,
+user_10 = User.create!(username:  "jesse.kinser",
                        email:     Faker::Internet.email,
                        password:  'password',
                        address:   '880 Harbor Island Dr, San Diego, CA 92101')
 
-user_11 = User.create!(username:  Faker::Internet.user_name,
+user_11 = User.create!(username:  "jaq.phan",
                        email:     Faker::Internet.email,
                        password:  'password',
                        address:   '1717 University Ave, San Diego, CA 92101')
 
-user_12 = User.create!(username:  Faker::Internet.user_name,
+user_12 = User.create!(username:  "david.ruiz",
                        email:     Faker::Internet.email,
                        password:  'password',
                        address:   '5680 Mission Center Rd, San Diego, CA 92101')
 
-user_13 = User.create!(username:  Faker::Internet.user_name,
+user_13 = User.create!(username:  "danny.pham",
                        email:     Faker::Internet.email,
                        password:  'password',
                        address:   '500 Sea World Dr, San Diego, CA 92101')
 
-user_14 = User.create!(username:  Faker::Internet.user_name,
+user_14 = User.create!(username:  "daniel.nguyen",
                        email:     Faker::Internet.email,
                        password:  'password',
                        address:   '2345 Fenton Pkwy, San Diego, CA 92101')
 
-user_15 = User.create!(username:  Faker::Internet.user_name,
+user_15 = User.create!(username:  "noah.naamad",
                        email:     Faker::Internet.email,
                        password:  'password',
                        address:   '650 Gateway Center Dr, San Diego, CA 92101')
 
-user_16 = User.create!(username:  Faker::Internet.user_name,
+user_16 = User.create!(username:  "brad.harris",
                        email:     Faker::Internet.email,
                        password:  'password',
                        address:   '2100 Costa Del Mar Rd, Carlsbad, CA 92009')
 
-user_17 = User.create!(username:  Faker::Internet.user_name,
+user_17 = User.create!(username:  "mandy.mcdorman",
                        email:     Faker::Internet.email,
                        password:  'password',
                        address:   '425 Santa Fe Dr, Encinitas, CA 92024')
 
-user_18 = User.create!(username:  Faker::Internet.user_name,
+user_18 = User.create!(username:  "richie.yi",
                        email:     Faker::Internet.email,
                        password:  'password',
                        address:   '2260 Jimmy Durante Blvd, Del Mar, CA 92014')
 
-user_19 = User.create!(username:  Faker::Internet.user_name,
+user_19 = User.create!(username:  "tom.farr",
                        email:     Faker::Internet.email,
                        password:  'password',
                        address:   '8302 Camino Del Oro, La Jolla, CA 92037')
@@ -343,23 +343,23 @@ ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[6]), tool: demo_use
 ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[6]), tool: demo_user.tools[3])
 ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[6]), tool: demo_user.tools[4])
 
-ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[7]), tool: demo_user.tools[0])
-ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[7]), tool: demo_user.tools[1])
-ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[7]), tool: demo_user.tools[2])
-ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[7]), tool: demo_user.tools[3])
-ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[7]), tool: demo_user.tools[4])
+ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[7]), tool: dummmy_users[2].tools[0])
+ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[7]), tool: dummmy_users[2].tools[1])
+ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[7]), tool: dummmy_users[2].tools[2])
+ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[7]), tool: dummmy_users[2].tools[3])
+ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[7]), tool: dummmy_users[2].tools[4])
 
-ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[8]), tool: demo_user.tools[0])
-ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[8]), tool: demo_user.tools[1])
-ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[9]), tool: demo_user.tools[2])
-ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[9]), tool: demo_user.tools[3])
-ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[9]), tool: demo_user.tools[4])
+ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[8]), tool: dummmy_users[1].tools[0])
+ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[8]), tool: dummmy_users[1].tools[1])
+ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[9]), tool: dummmy_users[1].tools[2])
+ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[9]), tool: dummmy_users[1].tools[3])
+ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[9]), tool: dummmy_users[1].tools[4])
 
-ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[10]), tool: demo_user.tools[0])
-ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[10]), tool: demo_user.tools[1])
-ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[10]), tool: demo_user.tools[2])
-ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[11]), tool: demo_user.tools[3])
-ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[11]), tool: demo_user.tools[4])
+ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[10]), tool: dummmy_users[0].tools[0])
+ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[10]), tool: dummmy_users[0].tools[1])
+ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[10]), tool: dummmy_users[0].tools[2])
+ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[11]), tool: dummmy_users[0].tools[3])
+ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[11]), tool: dummmy_users[0].tools[4])
 
 ToolTag.find_or_create_by!(tag: Tag.find_or_create_by!(name: name_array[0]), tool: Tool.where.not(owner: demo_user).sample)
 ToolTag.find_or_create_by!(tag: Tag.find_or_create_by!(name: name_array[0]), tool: Tool.where.not(owner: demo_user).sample)
