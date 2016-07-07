@@ -1,0 +1,5 @@
+<span aria-hidden="true">
+  <% flash.each do |name, msg| %>
+    <%= content_tag :div, msg.html_safe, :class => "flash_#{name} alert alert-success" if msg %>
+  <% end %>
+</span>
