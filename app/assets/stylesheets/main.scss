@@ -293,9 +293,15 @@ main.password-pages {
   }
 }
 
-main.login {
+main.login, main.sign-up {
   section, aside {
     display: none;
+  }
+  article {
+    form.new_user {
+      width: 350px;
+
+    }
   }
 }
 
@@ -392,12 +398,6 @@ main.rental-show {
     //////////////////////
   }
   aside { }
-}
-
-main.sign-up {
-  section {
-    display: none;
-  }
 }
 
 main.user-show {
