@@ -144,11 +144,11 @@
       <% if @rentals_requiring_attention.any? %>
           <ul class="list-group">
             <% @rentals_requiring_attention.each do |rental|  %>
-                <<%= link_to rental_path(rental), data: {turbolinks: false} do %>
-            <div class='tile <%= rental.status %>'>
-              <p class='tile-info'>Owner: <%= rental.owner.username %></p>
-              <p class='tile-info'>Renter: <%= rental.renter.username %></p>
-              <p class='tile-info'>Total: $<%= rental.sum_logs %></p>
+                <%= link_to rental_path(rental), data: {turbolinks: false} do %>
+            <div class='panel panel-default rental-panel'>
+              <p class='badge rental-data'>Owner: <%= rental.owner.username %></p>
+              <p class='badge rental-data'>Renter: <%= rental.renter.username %></p>
+              <p class='badge rental-data'>Total: $<%= rental.sum_logs %></p>
             </div>
           <% end %>
             <% end %>
