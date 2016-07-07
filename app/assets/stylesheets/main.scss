@@ -18,14 +18,6 @@ main.template {
   aside   { }
 }
 
-//hgroup.dashboard {
-//  h2 { float: left; }
-//  .owner-renter-toggle {
-//    float: right;
-//    margin-top: 20px;
-//  }
-//}
-
 main.dashboard {
   section, article {
       flex: 1 1em;
@@ -417,6 +409,30 @@ main.user-show {
     width: 49%;
   }
 }
+
+main.tag-show, main.search {
+  section {
+    display: none;
+  }
+  article {
+    .shed-icon-color { fill: $brand-green; }
+
+    // This for Abstract tools show page
+    .list-group-item {
+      margin-top: 10px;
+      a { color: $brand-color; margin-left: 10px;}
+      svg {
+        fill: $brand-green;
+        width: 30px;
+        height: 30px;
+        float: left;
+        margin-top: 6px;
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
+
 
 //
 // GLOBAL HELPER STYLES
