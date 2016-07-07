@@ -1,24 +1,30 @@
-<hgroup class="template">
-  <h2><%= @tag.name %></h2>
-</hgroup>
-
-<main class="template">
+<main class="tag-show">
 
   <section>
-
   </section>
 
   <article>
-  <h3>Tools Related to this tag: </h3>
-    <% @tag.tool_tags.each do |tt| %>
-      <p> <%= link_to "#{clean(tt.tool.name)}", tool_path(tt.tool), method: :get %> | $<%=tt.tool.base_price %> per day</p>
-    <% end %>
+    <div class="row">
+      <div class="col-xs-12 col-sm-8">
+        <h2><%= @tag.name %></h2>
+        <h3>Tools Related to this tag: </h3>
+        <div>
+          <ul class="list-group">
+            <% @tag.tool_tags.each do |tt| %>
+                <li class="list-group-item">
+                  <%= svg(tt.tool.name) %><br>
+                  <%= link_to "#{clean(tt.tool.name)}", tool_path(tt.tool), method: :get %> | $<%=tt.tool.base_price %> per day
+                </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+
   </article>
 
   <aside>
-   <% @top_5_tags.each do |tag| %>
-    <p class='tags-display'><%=link_to "#{tag.name}", tag_path(tag) %></p>
-   <% end %>
+    <%= render '/search/search' %>
   </aside>
 
 </main>

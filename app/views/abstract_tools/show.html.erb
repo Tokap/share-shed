@@ -1,10 +1,5 @@
 <main class="abstract-tools">
   <section>
-
-  <% if user_signed_in? %>
-    <button class="btn btn-sm btn-success" id="cost-button">Sort by cost</button>
-    <button class="btn btn-sm btn-success" id="distance-button">Sort by distance</button>
-  <% end %>
   </section>
   <article>
 
@@ -38,6 +33,10 @@
   </article>
 
   <aside>
+    <% if user_signed_in? %>
+      <button class="btn btn-sm btn-success" id="cost-button">Sort by cost</button>
+      <button class="btn btn-sm btn-success" id="distance-button">Sort by distance</button>
+    <% end %>
   </aside>
 
 </main>
