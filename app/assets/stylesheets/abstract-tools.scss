@@ -36,6 +36,24 @@ main.abstract-tools {
       }
     }
     .shed-icon-color { fill: $brand-green; }
+
+    // This for Abstract tools show page
+    .list-group-item {
+      margin-top: 10px;
+      a { color: $brand-color; margin-left: 10px;}
+      svg {
+        fill: $brand-green;
+        width: 30px;
+        height: 30px;
+        float: left;
+        margin-top: 6px;
+        margin-bottom: 10px;
+      }
+    }
+    .tool-detail-div {
+
+
+    }
   }
   aside {
     flex: 0 18em;

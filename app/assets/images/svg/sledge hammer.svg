@@ -1,29 +1,10 @@
 
-<svg width="227px" height="251px" viewBox="-4437 -5094 227 251" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="243px" height="275px" viewBox="-4438 -5118 243 275" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
     <desc>Created with Sketch.</desc>
-    <defs>
-        <rect id="path-1" x="0" y="0" width="226.261128" height="226.261128"></rect>
-        <rect id="path-3" x="54.0585232" y="42.5099565" width="163.946588" height="59.347181" rx="8"></rect>
-        <mask id="mask-4" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="163.946588" height="59.347181" fill="white">
-            <use xlink:href="#path-3"></use>
-        </mask>
-    </defs>
-    <g id="Group-3" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-4437.000000, -5094.000000)">
-        <g id="sledge-hammer" transform="translate(0.000000, 23.738872)">
-            <g id="Layer_1">
-                <g id="Group">
-                    <g id="Clipped">
-                        <mask id="mask-2" fill="white">
-                            <use xlink:href="#path-1"></use>
-                        </mask>
-                        <g id="SVGID_1_"></g>
-                        <path class="shed-icon-color" d="M4.21007312,190.649242 C-3.01412145,200.69362 -0.711106401,214.82686 9.33327151,222.059135 C19.3776494,229.28333 33.5108891,226.980315 40.7431645,216.935937 L133.081947,88.6539582 L96.5488554,62.3672637 L4.21007312,190.649242 L4.21007312,190.649242 Z" id="Shape" fill="#231F20" mask="url(#mask-2)"></path>
-                    </g>
-                </g>
-            </g>
-        </g>
-        <use class="shed-icon-color" id="Rectangle-11" stroke="#979797" mask="url(#mask-4)" stroke-width="2" fill="#000000" transform="translate(136.031817, 72.183547) rotate(-325.000000) translate(-136.031817, -72.183547) " xlink:href="#path-3"></use>
-        <rect class="shed-icon-color" id="Rectangle-11-Copy" fill="#000000" transform="translate(135.818583, 71.109903) rotate(-325.000000) translate(-135.818583, -71.109903) " x="38.7125549" y="52.9375097" width="194.212056" height="36.3447867" rx="8"></rect>
+    <defs></defs>
+    <g id="Group-5" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-4438.000000, -5117.000000)">
+        <path class="shed-icon-color" d="M5.21007312,237.388115 C-2.01412145,247.432493 0.288893599,261.565732 10.3332715,268.798008 C20.3776494,276.022202 34.5108891,273.719187 41.7431645,263.674809 L134.081947,135.392831 L97.5488554,109.106136 L5.21007312,237.388115 L5.21007312,237.388115 Z" id="Shape" fill="#231F20"></path>
+        <path class="shed-icon-color" d="M42.899079,56.6110181 C42.899079,52.1954688 46.4845369,48.6159589 50.8971497,48.6159589 L56.8218438,48.6159589 L63.5627085,55.787266 L68.9300482,48.6159589 L209.544124,48.6159589 L218.431046,55.787266 L223.854404,48.6159589 L229.112856,48.6159589 C233.530184,48.6159589 237.111135,52.1974963 237.111135,56.6110181 L237.111135,118.938295 C237.111135,123.353845 233.536407,126.933355 229.108371,126.933355 L225.088188,126.933355 L218.431046,118.026962 L209.99401,126.933355 L71.7542932,126.933355 L66.3877665,121.183021 L60.9974695,126.933357 L50.8899792,126.933356 C46.4767269,126.933355 42.899079,123.351817 42.899079,118.938295 L42.899079,56.6110181 Z" id="Rectangle-11-Copy" fill="#000000" transform="translate(140.005107, 87.774658) rotate(-325.000000) translate(-140.005107, -87.774658) "></path>
     </g>
 </svg>
