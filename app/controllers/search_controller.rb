@@ -5,7 +5,7 @@ class SearchController < ApplicationController
 		if params[:type] == "tag"
 			@tag = Tag.find_by(name: params[:name])
 			@results = ToolTag.where(tag: @tag)
-		else
+		elsif params[:type] == "tool"
 			@results = []
 			name = "%#{params[:name]}%"
 			@atools = AbstractTool.where("name like ?", name)
@@ -18,6 +18,9 @@ class SearchController < ApplicationController
 			else
 				@results = nil
 			end
+		elsif params[:type] == "user"
+			name = "%#{params[:name]}%"
+			@user_results = User.where("username like ?", name)
 		end
 	end
 
