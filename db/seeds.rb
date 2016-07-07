@@ -5,7 +5,7 @@ LineItem.destroy_all
 
 ################################### users ############################################
 # user 1 is demo user
-demo_user = User.create!(username:    'Demo User',
+demo_user = User.create!(username:    'demo.user',
                          email:       'a@a.com',
                          password:    'aaaaaaaa',
                          address:     '707 Broadway, San Diego, CA 92101')
@@ -101,7 +101,7 @@ user_19 = User.create!(username:  "tom.farr",
                        address:   '8302 Camino Del Oro, La Jolla, CA 92037')
 
 # user 20 will only have a basic profile to test UX of a new user
-last_user = User.create!(username:   'z',
+last_user = User.create!(username:   'second.user',
                          email:      'z@z.com',
                          password:   'zzzzzzzzz',
                          address:    '3966 Cleveland Ave, San Diego, CA 92103')
@@ -308,7 +308,7 @@ Rental.all.each {|rental| rental.log_line_items if ( !rental.draft? && !rental.p
 
 ############################ tags  & tag linking ################################################
 
-name_array = ["outdoor", "exciting", "concerning", "probably-dangerous", "garden", "lawn", "garage", "car-repair", "machine", "heavy", "durable", "easy"]
+name_array = ["outdoor", "drywall", "concerning", "probably-dangerous", "garden", "lawn", "garage", "car-repair", "bathroom", "plumbing", "durable", "roofing"]
 
 ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[0]), tool: demo_user.tools[0])
 ToolTag.create!(tag: Tag.find_or_create_by!(name: name_array[0]), tool: demo_user.tools[1])
