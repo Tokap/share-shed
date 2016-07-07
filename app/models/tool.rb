@@ -12,11 +12,12 @@ class Tool < ActiveRecord::Base
   has_many :tags, through: :tool_tags
 
   has_attached_file :image,
-                    styles: { small: "64x64", med: "100x100", large: "200x200" },
-                    storage: :s3,
-                    s3_credentials: {access_key_id: ENV['AWS_KEY'],
-                    secret_access_key: ENV['AWS_SECRET']},
-                    bucket: "please-freaking-work-this-time"
+                    styles: { small: "64x64", med: "100x100", large: "200x200" }
+                    # ,
+                    # storage: :s3,
+                    # bucket: "please-freaking-work-this-time",
+                    # s3_credentials: {access_key_id: ENV['AWS_KEY'],
+                    # secret_access_key: ENV['AWS_SECRET']}
 
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
