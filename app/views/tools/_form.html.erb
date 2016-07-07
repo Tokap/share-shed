@@ -5,14 +5,28 @@
     <% end %>
   </ul>
 <% end %>
+
+<% if @tool.image.file? %>
+  <img class='tile-pic' src="<%= tool.image.url %>">
+<% else %>
+  <%= svg @tool.name %>
+<% end %>
+
 <%= form_for @tool, html: { multipart: true } do |f| %>
+  <%= f.label :image %>
   <%= f.file_field :image %><br>
-  <%= select_tag(:abstract_tool_id, options_for_select(@abstract_tools_options)) %>
+
+  <p>Tool Category:</p>
+  <%= select_tag(:abstract_tool_id, options_for_select(@abstract_tools_options)) %><br>
+
   <p>Model number (leave blank if you can't locate it on your tool):</p>
-  <%= f.text_field :model_number %>
+  <%= f.text_field :model_number %><br>
+
   <p>A brief description of the tool, be as specific as possible:</p>
-  <%= f.text_area :description %> <br>
+  <%= f.text_area :description %><br>
+
   <p>Price per day (put in '0' if you want it to be free!):</p>
   <%= f.number_field :base_price %><br>
+
   <%= f.submit %>
 <% end %>

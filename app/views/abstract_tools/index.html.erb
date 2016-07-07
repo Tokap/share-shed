@@ -3,14 +3,19 @@
   </section>
 
   <article>
-    <h2>Pick a Tool to Rent </h2>
-    <%= link_to "Sign Up to start renting tools", new_user_registration_path if !user_signed_in? %>
-
-    <ul>
+    <div class="row">
+      <div class="col-xs-12 col-sm-8"><h2>Pick a Tool to Rent </h2></div>
+      <div class="col-sm-4 text-right">
+        <%= button_to "Sign up to start renting tools!", new_user_registration_path if !user_signed_in? %></div>
+    </div>
+    <ul class="tool-div">
       <% @available_abstract_tools.each do |ab_tool| %>
-        <article>
-          <li><%= link_to clean(ab_tool.name.pluralize), abstract_tool_path(ab_tool) %></li>
-        </article>
+        <li>
+          <%= link_to abstract_tool_path(ab_tool) do %>
+            <%= svg ab_tool.name %>
+            <h4><%= ab_tool.name %></h4>
+        <% end %>
+        </li>
       <% end %>
     </ul>
 
