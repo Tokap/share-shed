@@ -1,5 +1,6 @@
 <main>
   <section>
+
   <% if user_signed_in? %>
     <button id="cost-button">Sort by cost</button>
     <button id="distance-button">Sort by distance</button>
@@ -14,6 +15,7 @@
         <% end %>
       </ul>
     </div>
+
     <% if user_signed_in? %>
       <div id="tools-by-distance" style="display: none;">
         <ul>
