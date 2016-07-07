@@ -115,9 +115,10 @@
                         <% end %>
                     <% end %>
                 <% else %>
-                    <%= link_to new_user_session_path do %>
-                        <button class="btn btn-success">Login to start renting tools</button>
-                    <% end %>
+                    <%= link_to "Login to start renting tools", "#login-modal", :class => "btn btn-success", "data-toggle" => "modal" %>
+                    <!--<%= link_to new_user_session_path do %>-->
+                        <!--<button class="btn btn-success">Login to start renting tools</button>-->
+                    <!--<% end %>-->
                 <% end %>
 
               </div>
