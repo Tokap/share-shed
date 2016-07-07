@@ -6,7 +6,6 @@
     <button class="btn btn-sm btn-success" id="distance-button">Sort by distance</button>
   <% end %>
   </section>
-
   <article>
 
     <div class="row">
@@ -15,7 +14,7 @@
     </div>
 
     <div id="tools-by-cost">
-      <ul class="well">
+      <ul class="tool-div">
         <% @tools.each do |tool| %>
          <%= render partial: "tools/tool_details", locals: {tool: tool}  %>
         <% end %>
