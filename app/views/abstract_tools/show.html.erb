@@ -1,4 +1,4 @@
-<main>
+<main class="abstract-tools">
   <section>
 
   <% if user_signed_in? %>
@@ -7,25 +7,36 @@
   <% end %>
   </section>
   <article>
-  <h2>Select a <%= clean(@abstract_tool.name) %> to view its details</h2>
-    <div id="tools-by-cost">
-      <ul>
-        <% @tools.each do |tool| %>
-         <%= render partial: "tools/tool_details", locals: {tool: tool}  %>
-        <% end %>
-      </ul>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-9"><h2>Select a <%= clean(@abstract_tool.name) %> to view its details</h2></div>
+      <div class="col-sm-4 text-right"></div>
     </div>
 
-    <% if user_signed_in? %>
-      <div id="tools-by-distance" style="display: none;">
-        <ul>
-          <% @tools_ordered_by_distance.each do |tool| %>
-           <%= render partial: "tools/tool_details", locals: {tool: tool} %>
-          <% end %>
-        </ul>
+    <div class="row">
+      <div class="col-xs-12 col-sm-9">
+
+        <div id="tools-by-cost">
+          <div class="tool-detail-div">
+            <% @tools.each do |tool| %>
+                 <%= render partial: "tools/tool_details", locals: {tool: tool}  %>
+            <% end %>
+          </div>
+        </div>
+
+        <% if user_signed_in? %>
+          <div id="tools-by-distance" style="display: none;">
+              <% @tools_ordered_by_distance.each do |tool| %>
+               <%= render partial: "tools/tool_details", locals: {tool: tool} %>
+              <% end %>
+          </div>
+        <% end %>
+
       </div>
-    <% end %>
+    </div>
+
   </article>
+
   <aside>
   </aside>
 
