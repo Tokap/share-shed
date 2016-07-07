@@ -2,7 +2,7 @@
   <h2><%= @tag.name %></h2>
 </hgroup>
 
-<main class="template">
+<main>
 
   <section>
 
@@ -16,9 +16,7 @@
   </article>
 
   <aside>
-   <% @top_5_tags.each do |tag| %>
-    <p class='tags-display'><%=link_to "#{tag.name}", tag_path(tag) %></p>
-   <% end %>
+    <%= render '/search/search' %>
   </aside>
 
 </main>

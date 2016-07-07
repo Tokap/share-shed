@@ -3,6 +3,6 @@
 <h3>Tags <i>(optional)</i>:</h3>
 <%= hidden_field_tag "tool", "#{@tool.id}" %>
 <%= f.text_field :name %><br><br>
-<%= f.submit %>
+<%= f.submit 'Add Tag', class: "btn btn-primary" %>
 
 <% end %>
