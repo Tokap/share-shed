@@ -87,7 +87,7 @@
                 <% else %>
                   <p class='tile-info'>Total: $<%= rental.sum_logs %></p>
                 <% end %>
-                <p class='tile-info'>Status: <%= rental.status.humanize.split.map(&:capitalize).join(' ') %></p>
+                <p class='tile-info'>Status: <%= clean(rental.status) %></p>
               </div>
             <% end %>
           <% end %>
@@ -114,7 +114,8 @@
         <h4>Users you have shared tools with:</h4>
         <ul>
           <% @users_shared_with.each do |user| %>
-            <li><%= user.username %> - <%= user.average_rating %> average rating<%= button_to "View/give feedback", user_url(user), class: "btn btn-primary", data: {turbolinks: false}, method: :get %></li>
+          <li> <%= user.username %> - <%= user.average_rating %> average rating </li>
+            <li><%= button_to "View/give feedback", user_url(user), class: "btn btn-primary", data: {turbolinks: false}, method: :get %></li>
             <br>
           <% end %>
         </ul>

@@ -105,12 +105,12 @@
                         <% end %>
                         <% if @tool.owner != current_user%>
                             <%= form_for @rental do |f|%>
-                                <%= f.label "checkout_date" %>
+                                <%= f.label "checkout_date", class: "checkout-date" %>
                                 <%= f.date_field "checkout_date" %><br>
                                 <%= f.label "return date", class: "return-date" %>
                                 <%= f.date_field "return_date" %><br>
                                 <%= f.hidden_field :tool_id, value: @tool.id %>
-                                <%= f.submit "Rent this tool", class: "btn btn-primary"%>
+                                <%= f.submit "Rent this tool", class: "btn btn-primary rental-button"%>
                             <% end %>
                         <% end %>
                     <% end %>
