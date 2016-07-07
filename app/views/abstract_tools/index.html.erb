@@ -20,15 +20,12 @@
   </article>
 
   <aside>
+  <% if !user_signed_in? %>
     <div class="panel panel-default">
-      <div class="panel-heading seach-tags">
-
-      </div>
-      <div class="panel-body">
-        <% if !user_signed_in? %>
-            <h4 class="text-center text-success"><%= link_to "Sign up now to start renting tools!", "#signup-modal", "data-toggle" => "modal" %></h4>
-        <% end %>
-      </div>
+        <div class="panel-body">
+              <h4 class="text-center text-success"><%= link_to "Sign up now to start renting tools!", "#signup-modal", "data-toggle" => "modal" %></h4>
+        </div>
+      <% end %>
     </div>
 
 
