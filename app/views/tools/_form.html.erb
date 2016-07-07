@@ -7,7 +7,7 @@
 <% end %>
 
 <% if @tool.image.file? %>
-  <img class='tile-pic' src="<%= tool.image.url %>">
+  <img src="<%= @tool.image.url %>">
 <% else %>
   <%= svg @tool.name %>
 <% end %>
