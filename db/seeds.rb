@@ -2,6 +2,7 @@ User.destroy_all
 Tool.destroy_all
 Rental.destroy_all
 LineItem.destroy_all
+Review.destroy_all
 
 ################################### users ############################################
 # user 1 is demo user
@@ -367,6 +368,11 @@ ToolTag.find_or_create_by!(tag: Tag.find_or_create_by!(name: name_array[0]), too
 ToolTag.find_or_create_by!(tag: Tag.find_or_create_by!(name: name_array[0]), tool: Tool.where.not(owner: demo_user).sample)
 ToolTag.find_or_create_by!(tag: Tag.find_or_create_by!(name: name_array[0]), tool: Tool.where.not(owner: demo_user).sample)
 
-
-
+Review.create!(reviewer: demo_user, reviewee: user_2, rating: (1..5).to_a.sample, content: Faker::Hipster.paragraph.truncate(320))
+Review.create!(reviewer: user_2, reviewee: demo_user, rating: (1..5).to_a.sample, content: Faker::Hipster.paragraph.truncate(320))
+Review.create!(reviewer: demo_user, reviewee: user_3, rating: (1..5).to_a.sample, content: Faker::Hipster.paragraph.truncate(320))
+Review.create!(reviewer: user_3, reviewee: demo_user, rating: (1..5).to_a.sample, content: Faker::Hipster.paragraph.truncate(320))
+Review.create!(reviewer: user_2, reviewee: user_3, rating: (1..5).to_a.sample, content: Faker::Hipster.paragraph.truncate(320))
+Review.create!(reviewer: user_4, reviewee: demo_user, rating: (1..5).to_a.sample, content: Faker::Hipster.paragraph.truncate(320))
+Review.create!(reviewer: demo_user, reviewee: user_4, rating: (1..5).to_a.sample, content: Faker::Hipster.paragraph.truncate(320))
 

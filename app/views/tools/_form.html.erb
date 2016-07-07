@@ -6,12 +6,6 @@
   </ul>
 <% end %>
 
-<% if @tool.image.file? %>
-  <img src="<%= @tool.image.url %>">
-<% else %>
-  <%= svg @tool.name %>
-<% end %>
-
 <%= form_for @tool, html: { multipart: true } do |f| %>
   <%= f.label :image %>
   <%= f.file_field :image %><br>
