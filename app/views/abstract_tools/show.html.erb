@@ -1,4 +1,4 @@
-<main>
+<main class="abstract-tools">
   <section>
 
   <% if user_signed_in? %>
@@ -7,9 +7,14 @@
   <% end %>
   </section>
   <article>
-  <h2>Select a <%= clean(@abstract_tool.name) %> to view its details</h2>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-8"><h2>Select a <%= clean(@abstract_tool.name) %> to view its details</h2></div>
+      <div class="col-sm-4 text-right"></div>
+    </div>
+
     <div id="tools-by-cost">
-      <ul>
+      <ul class="tool-div">
         <% @tools.each do |tool| %>
          <%= render partial: "tools/tool_details", locals: {tool: tool}  %>
         <% end %>
@@ -25,7 +30,9 @@
         </ul>
       </div>
     <% end %>
+
   </article>
+
   <aside>
   </aside>
 

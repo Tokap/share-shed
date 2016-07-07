@@ -1,29 +1,26 @@
-<hgroup class="template">
-  <h2>Search Results</h2>
-</hgroup>
-
-<main class="template">
+<main class="search">
 
   <section>
   </section>
 
   <article>
-  <h3>We found the following related results: </h3>
-<% if @results.nil? %>
-	<p> No matching results found! </p>
-<% elsif @tag.class.to_s == "Tag" %>
-	<% @results.each do |tt| %>
-	<p><%= link_to "#{clean(tt.tool.name.pluralize)}", tool_path(tt.tool), data: {turbolinks: false} %> | $<%= tt.tool.base_price %> each day </p>
-	<% end %>
-<% elsif !@user_results.nil? %>
-  <% @user_results.each do |user|%>  
-    <p><%= link_to user.username, user_path(user)%></p>  
-  <% end %>  
-<% else %>
-	<% @results.each do |tool| %>
-		<p><%= link_to "#{clean(tool.name)}", tool_path(tool), data: {turbolinks: false} %> | $<%= tool.base_price %> each day </p>
-	<% end %>
-<% end %>
+    <h2>Search Results</h2>
+    <h3>We found the following related results: </h3>
+    <% if @results.nil? %>
+      <p> No matching results found! </p>
+    <% elsif @tag.class.to_s == "Tag" %>
+      <% @results.each do |tt| %>
+        <p><%= link_to "#{clean(tt.tool.name.pluralize)}", tool_path(tt.tool), data: {turbolinks: false} %> | $<%= tt.tool.base_price %> each day </p>
+      <% end %>
+    <% elsif !@user_results.nil? %>
+      <% @user_results.each do |user|%>
+        <p><%= link_to user.username, user_path(user)%></p>
+      <% end %>
+    <% else %>
+      <% @results.each do |tool| %>
+        <p><%= link_to "#{clean(tool.name)}", tool_path(tool), data: {turbolinks: false} %> | $<%= tool.base_price %> each day </p>
+      <% end %>
+    <% end %>
   </article>
 
   <aside>
