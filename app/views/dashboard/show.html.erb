@@ -140,7 +140,7 @@
     <div class="panel panel-default">
       <!-- Default panel contents -->
       <div class="panel-heading">Rentals requiring action</div>
-      <% if @owned_rentals.any? %>
+      <% if @rentals_requiring_attention.any? %>
           <ul class="list-group">
             <% @rentals_requiring_attention.each do |rental|  %>
                 <<%= link_to rental_path(rental), data: {turbolinks: false} do %>
@@ -154,7 +154,7 @@
           </ul>
       <% else %>
         <div class="panel-body">
-          <p>You currently have no rental requests from anyone.</p>
+          <p>You currently have no rentals requiring your attention.</p>
         </div>
       <% end %>
     </div>

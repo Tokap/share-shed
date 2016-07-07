@@ -55,7 +55,7 @@
     <% end %>
     <% @rental.line_item_logs.each do |line_item_log| %>
       <tr>
-        <td><%= clean(line_item_log.name) %></td>
+        <td><%= line_item_log.name %></td>
         <td class='align-right'>$<%= line_item_log.price %></td>
         <td>*</td>
         <td class='align-right'><%= @rental.duration %></td>
