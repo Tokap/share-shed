@@ -49,12 +49,10 @@
     </div>
 
 
-
-
     <div id="rentals" class="tabContent">
-      <div class="flex-container rentals-left">
-        <div class="panel panel-default">
-          <div class="panel-heading">What you're borrowing from other</div>
+      <div class="pat-adjust">
+        <div class="panel panel-default ">
+          <div class="panel-heading">What you're borrowing from others</div>
         <% if @open_rented_rentals.any? %>
           <ul class="list-group">
           <% @open_rented_rentals.each do |rental| %>
@@ -75,30 +73,29 @@
       </div>
       </div>
 
-      <div class="horiz-line"></div>
-
       <div class="flex-container rentals-right">
       <div class="panel panel-default">
-        <p>What you're renting out</p>
-      </div>
+        <div class="panel-heading">What you're renting out</div>
         <% if @open_owned_rentals.any? %>
+        <ul class="list-group">
           <% @open_owned_rentals.each do |rental| %>
             <%= link_to rental_path(rental), data: {turbolinks: false} do %>
-              <div class='tile <%= rental.status %>'>
-                <p class='tile-info'>Renter: <%= rental.renter.username %></p>
+              <div class='panel panel-default rental-panel'>
+                <p class='badge rental-data'>Renter: <%= rental.renter.username %></p><br>
               <% if rental.status == "pending" || rental.status == "draft" %>
-                  <p class='tile-info'>Total: $<%= rental.sum_line_items %></p>
+                  <p class='badge rental-data'>Total: $<%= rental.sum_line_items %></p><br>
                 <% else %>
-                  <p class='tile-info'>Total: $<%= rental.sum_logs %></p>
+                  <p class='badge rental-data'>Total: $<%= rental.sum_logs %></p><br>
                 <% end %>
-                <p class='tile-info'>Status: <%= clean(rental.status) %></p>
+                <p class='badge rental-data'>Status: <%= clean(rental.status) %></p>
               </div>
             <% end %>
           <% end %>
+          </ul>
         <% end %>
       </div>
     </div>
-
+  </div>
     <div id="feedback" class="tabContent feedback-content">
       <div class="current-users-received-reviews">
       <h4>Your average rating is <%= @user.average_rating.round(2) %></h4>
@@ -126,17 +123,20 @@
       </div>
     </div>
 
+
     <div id="history" class="tabContent">
       <% if @all_closed_rentals.any? %>
+      <ul class="list-group">
         <% @all_closed_rentals.each do |rental| %>
           <%= link_to rental_path(rental), data: {turbolinks: false} do %>
-            <div class='tile <%= rental.status %>'>
-              <p class='tile-info'>Owner: <%= rental.owner.username %></p>
-              <p class='tile-info'>Renter: <%= rental.renter.username %></p>
-              <p class='tile-info'>Total: $<%= rental.sum_logs %></p>
+            <div class='panel panel-default rental-panel inline-block'>
+              <p class='badge rental-data'>Owner: <%= rental.owner.username %></p><br>
+              <p class='badge rental-data'>Renter: <%= rental.renter.username %></p><br>
+              <p class='badge rental-data'>Total: $<%= rental.sum_logs %></p>
             </div>
           <% end %>
         <% end %>
+        </ul>
       <% end %>
     </div>
   </section>
@@ -148,7 +148,7 @@
       <% if @rentals_requiring_attention.any? %>
           <ul class="list-group">
             <% @rentals_requiring_attention.each do |rental|  %>
-                <%= link_to rental_path(rental), data: {turbolinks: false} do %>
+              <%= link_to rental_path(rental), data: {turbolinks: false} do %>
             <div class='panel panel-default rental-panel'>
               <p class='badge rental-data'>Owner: <%= rental.owner.username %></p><br>
               <p class='badge rental-data'>Renter: <%= rental.renter.username %></p><br>
