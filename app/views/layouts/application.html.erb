@@ -1,38 +1,18 @@
 <!DOCTYPE html>
 <html>
-  <%= render 'layouts/head' %>
+
+<%= render 'layouts/head' %>
+
 <body class="<%= "controller__#{controller_name} action__#{action_name}" %>">
 
-<<<<<<< HEAD
-<header>
-  <a href="/"><img class='logo' src="/assets/shedsharing-logo.png"></a>
-  <nav>
-    <ul>
-      <li><%= link_to '<< Back', :back, class: "back-button" %></li>
-      <li><%= link_to "Rent a Tool", abstract_tools_path %></li>
-      <% if user_signed_in? %>
-        <li>Hello, <%= current_user.username %></li>
-        <li><%= link_to "Dashboard", dashboard_path(current_user), method: :get %></li>
-        <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
-      <% else %>
-        <li><%= link_to "Login", "#login-modal", "data-toggle" => "modal" %></li>
-        <li><%= link_to "Sign up", "#signup-modal", "data-toggle" => "modal" %></li>
-      <% end %>
-    </ul>
-  </nav>
-</header>
-=======
->>>>>>> a8c431c48d06420685a1182930de685e72345cfd
-
 <%= render 'layouts/header' %>
-
 <%= render 'layouts/flash' %>
 
 <%= yield %>
 
 <%= render 'layouts/footer' %>
-
 <%= render 'layouts/login_modal' %>
 <%= render 'layouts/signup_modal' %>
+
 </body>
 </html>
