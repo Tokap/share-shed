@@ -113,13 +113,15 @@
       </div>
       <div class="users-dealing-with-current-user">
         <h4>Users you have shared tools with:</h4>
-        <ul>
+        
           <% @users_shared_with.each do |user| %>
-          <li> <%= user.username %> - <%= user.average_rating %> average rating </li>
-            <li><%= button_to "View/give feedback", user_url(user), class: "btn btn-primary", data: {turbolinks: false}, method: :get %></li>
-            <br>
+          <div class="panel panel-default">
+          <p class="feedback-name-summary"> <%= user.username %> - <%= user.average_rating %> average rating </p>
+          <p><%= button_to "View or Give Feedback", user_url(user), class: "btn btn-primary", data: {turbolinks: false}, method: :get %></p>
+          </div>
+          <br>
           <% end %>
-        </ul>
+        
       </div>
     </div>
 
