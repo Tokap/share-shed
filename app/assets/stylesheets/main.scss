@@ -153,6 +153,7 @@ main.dashboard {
   .horiz-line {
     border: solid gray 1px;
     margin: auto;
+    width: 85%;
   }
   aside {}
 
@@ -471,6 +472,26 @@ main.section-hidden {
 main.aside-hidden {
   aside { display: none; }
   section, article { background-color: #efefef; }
+}
+
+.rental-table {
+  padding: 15px;
+  margin: 5px auto 20px auto;
+  border: 1px solid black;
+  box-shadow: -2px 2px 2px black;
+  td {
+    margin: 0px;
+    padding: 5px;
+  }
+  td.bottom-line {
+    border-top: 3px solid black;
+  }
+  td.align-right {
+    text-align: right;
+  }
+  th {
+  text-align: left;
+  }
 }
 
 //
