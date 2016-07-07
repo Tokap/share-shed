@@ -96,7 +96,7 @@
       </div>
     </div>
   </div>
-    <div id="feedback" class="tabContent feedback-content">
+    <div id="feedback" class="tabContent feedback-content clearfix">
       <div class="current-users-received-reviews">
       <h4>Your average rating is <%= @user.average_rating %></h4>
       <h4>Reviews:</h4>
@@ -113,7 +113,7 @@
       </div>
       <div class="users-dealing-with-current-user">
         <h4>Users you have shared tools with:</h4>
-        
+
           <% @users_shared_with.each do |user| %>
           <div class="panel panel-default">
           <p class="feedback-name-summary"> <%= user.username %> - <%= user.average_rating %> average rating </p>
@@ -121,7 +121,7 @@
           </div>
           <br>
           <% end %>
-        
+
       </div>
     </div>
 
