@@ -58,6 +58,16 @@ class Rental < ActiveRecord::Base
     (return_date - checkout_date).to_i
   end
 
+  def other_party(user)
+    if owner == user
+      renter
+    elsif renter == user
+      owner
+    else
+      nil
+    end
+  end
+
   def return_date_follows_checkout_date
     if checkout_date && return_date
       if checkout_date >= return_date
