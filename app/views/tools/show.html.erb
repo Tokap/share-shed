@@ -141,7 +141,9 @@
         </p>
         <% if !@tool.tags.empty? %>
             <% @tool.tags.each do |tag| %>
-                <p class='tags-display'><%=link_to "#{tag.name}", tag_path(tag) %></p>
+              <%=link_to tag_path(tag), :class => "tag-link" do %>
+                <span class="label label-default label-primary"><%= tag.name %></span>
+              <% end %>
             <% end %>
         <% else %>
             <p>No Tags Available</p>

@@ -97,7 +97,7 @@
 
     <div id="feedback" class="tabContent feedback-content">
       <div class="current-users-received-reviews">
-      <h4>Your average rating is <%= @user.average_rating %></h4>
+      <h4>Your average rating is <%= @user.average_rating.round(2) %></h4>
       <h4>Reviews:</h4>
       <% @received_reviews.each do |review| %>
         <section>

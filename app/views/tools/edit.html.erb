@@ -31,9 +31,11 @@
     <h3>Existing Tags:</h3>
     <div>
     <% if !@tags.empty? %>
-      <% @tags.each do |tag| %>
-        <p class="tags-edit"><%= tag.name %></p>
+    <% @tags.each do |tag| %>
+      <%=link_to tag_path(tag), :class => "tag-link" do %>
+        <span class="label label-default label-primary"><%= tag.name %></span>
       <% end %>
+    <% end %>
     </div>
     <% else %>
       <p>No Tags Available</p>
