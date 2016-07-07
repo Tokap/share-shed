@@ -26,7 +26,6 @@
         <li><%= link_to "Dashboard", dashboard_path(current_user), method: :get %></li>
         <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
       <% else %>
-        <li><!-- link_to "Log in", new_user_session_path --></li>
         <li><%= link_to "Login", "#login-modal", "data-toggle" => "modal" %></li>
         <li><%= link_to "Sign up", "#signup-modal", "data-toggle" => "modal" %></li>
       <% end %>
