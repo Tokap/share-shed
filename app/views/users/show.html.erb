@@ -19,7 +19,7 @@
       <h3>Available tools</h3>
       <div class="flex-container">
         <% @user.tools.where(available: true).each do |tool| %>
-          <a href="/tools/<%= tool.id %>">
+          <%= link_to tool_path(tool), data: {turbolinks: false} do %>
             <div class="tile">
               <% if tool.image.file? %>
                 <img class='tile-pic' src="<%= tool.image.url %>">
@@ -28,7 +28,7 @@
               <% end %>
               <h4><%= clean(tool.name) %></h4>
             </div>
-          </a>
+          <% end %>
         <% end %>
       </div>
     </div>
