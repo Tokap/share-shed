@@ -6,10 +6,15 @@ Review.destroy_all
 
 ################################### users ############################################
 # user 1 is demo user
-demo_user = User.create!(username:    'demo.user',
-                         email:       'a@a.com',
-                         password:    'aaaaaaaa',
+demo_user = User.create!(username:    'patrick.allen',
+                         email:       'allenpatrick86@gmail.com',
+                         password:    'password',
                          address:     '707 Broadway, San Diego, CA 92101')
+
+demo_other_user = User.create!(username: 'mark.siemers',
+                      email:     "Wolfy858@gmail.com",
+                      password:  'password',
+                      address:   '501 Broadway, San Diego, CA 92101')
 
 user_2 = User.create!(username:  "taylor.beck",
                       email:     Faker::Internet.email,
@@ -31,7 +36,7 @@ user_5 = User.create!(username:  "gabe.bonner",
                       password:  'password',
                       address:   '100 Park Blvd, San Diego, CA 92101')
 
-user_6 = User.create!(username:  "patrick.allen",
+user_6 = User.create!(username:  "kevin.solario",
                       email:     Faker::Internet.email,
                       password:  'password',
                       address:   '1788 El Prado, San Diego, CA 92101')
@@ -111,36 +116,37 @@ last_user = User.create!(username:   'second.user',
 ################################### abstract tools ###################################
 # create 20 abstract tools
 abstract_tools = ['metal detector', 'wheel barrow', 'shovel', 'pitchfork', 'post hole digger', 'rake', 'axe', 'table saw', 'pickaxe', 'wrench', 'broom', 'sledge hammer', 'tape measure', 'bolt cutters', 'screwdriver', 'hammer', 'hand grinder', 'ladder', 'paintbrush', 'jackhammer']
+abstract_array = []
 
 abstract_tools.each do |tool|
-  AbstractTool.create!(name: tool)
+  abstract_array << AbstractTool.create!(name: tool)
 end
 
 
 ################################### tools ############################################
 # create 5 tools for demo user to rent/borrow
-user_2_tool = Tool.create!(abstract_tool_id:  rand(1..20),
+user_2_tool = Tool.create!(abstract_tool:  abstract_array.sample,
              base_price:        rand(5..50),
              available:         true,
              owner:             user_2,
              model_number:      Faker::Company.ein,
              description:       Faker::Hipster.paragraph)
 
-user_3_tool = Tool.create!(abstract_tool_id:  rand(1..20),
+user_3_tool = Tool.create!(abstract_tool:  abstract_array.sample,
              base_price:        rand(5..50),
              available:         true,
              owner:             user_3,
              model_number:      Faker::Company.ein,
              description:       Faker::Hipster.paragraph)
 
-user_4_tool = Tool.create!(abstract_tool_id:  rand(1..20),
+user_4_tool = Tool.create!(abstract_tool:  abstract_array.sample,
              base_price:        rand(5..50),
              available:         true,
              owner:             user_4,
              model_number:      Faker::Company.ein,
              description:       Faker::Hipster.paragraph)
 
-user_5_tool = Tool.create!(abstract_tool_id:  rand(1..20),
+user_5_tool = Tool.create!(abstract_tool:  abstract_array.sample,
              base_price:        rand(5..50),
              available:         true,
              owner:             user_5,
@@ -148,28 +154,28 @@ user_5_tool = Tool.create!(abstract_tool_id:  rand(1..20),
              description:       Faker::Hipster.paragraph)
 
 # create tools for demo user to own/lend
-demo_user_tool_1 = Tool.create!(abstract_tool_id:  rand(1..20),
+demo_user_tool_1 = Tool.create!(abstract_tool:  abstract_array.sample,
                base_price:        rand(5..50),
                available:         true,
                owner:             demo_user,
                model_number:      Faker::Company.ein,
                description:       Faker::Hipster.paragraph)
 
-demo_user_tool_2 = Tool.create!(abstract_tool_id:  rand(1..20),
+demo_user_tool_2 = Tool.create!(abstract_tool:  abstract_array.sample,
                base_price:        rand(5..50),
                available:         true,
                owner:             demo_user,
                model_number:      Faker::Company.ein,
                description:       Faker::Hipster.paragraph)
 
-demo_user_tool_3 = Tool.create!(abstract_tool_id:  rand(1..20),
+demo_user_tool_3 = Tool.create!(abstract_tool:  abstract_array.sample,
                base_price:        rand(5..50),
                available:         true,
                owner:             demo_user,
                model_number:      Faker::Company.ein,
                description:       Faker::Hipster.paragraph)
 
-demo_user_tool_4 = Tool.create!(abstract_tool_id:  rand(1..20),
+demo_user_tool_4 = Tool.create!(abstract_tool:  abstract_array.sample,
                base_price:        rand(5..50),
                available:         true,
                owner:             demo_user,
@@ -177,15 +183,23 @@ demo_user_tool_4 = Tool.create!(abstract_tool_id:  rand(1..20),
                description:       Faker::Hipster.paragraph)
 
 # another tool to test double line item on a rental request
-demo_user_tool_5 = Tool.create!(abstract_tool_id:  rand(1..20),
+demo_user_tool_5 = Tool.create!(abstract_tool:  abstract_array.sample,
                base_price:      rand(5..50),
                available:       true,
                owner:           demo_user,
                model_number:    Faker::Company.ein,
                description:     Faker::Hipster.paragraph)
-
+###################################demo tool###############################################
+demo_user_rent_tool = Tool.create!(abstract_tool: AbstractTool.find_by(name: 'table saw'),
+                base_price:     5,
+                available:      true,
+                owner:          demo_other_user,
+                model_number:   Faker::Company.ein,
+                description:    "Great for smashing things!"  )
 ################################### rentals ################################################
 # demo_user rents tools
+
+
 demo_user_borrowing_1 = Rental.new(renter:          demo_user,
                owner:           user_2,
                status:          'pending',
@@ -375,4 +389,10 @@ Review.create!(reviewer: user_3, reviewee: demo_user, rating: (1..5).to_a.sample
 Review.create!(reviewer: user_2, reviewee: user_3, rating: (1..5).to_a.sample, content: Faker::Hipster.paragraph.truncate(320))
 Review.create!(reviewer: user_4, reviewee: demo_user, rating: (1..5).to_a.sample, content: Faker::Hipster.paragraph.truncate(320))
 Review.create!(reviewer: demo_user, reviewee: user_4, rating: (1..5).to_a.sample, content: Faker::Hipster.paragraph.truncate(320))
+
+###############Reviews#######################
+Review.create!(reviewer: user_2, reviewee: demo_other_user, rating: 5, content: "Great renter! He returned my tools on time and in good condition.")
+Review.create!(reviewer: user_3, reviewee: demo_other_user, rating: 4, content: "He was very knowledgeable about his tools and helped show me how to use them properly.")
+Review.create(reviewer: user_5, reviewee: demo_other_user, rating: 5, content: "He returned my tools in BETTER condition than when he rented them.")
+Review.create!(reviewer: user_6, reviewee: demo_other_user, rating: 4, content: "He has a lot of cool, high tech tools! Would definitely rent from him again.")
 
