@@ -66,9 +66,8 @@ main.dashboard {
       margin-top: 20px;
       float: left;
       width: 49%;
-
       section {
-        border: 2px solid black;
+        border: 4px solid #efefef;
       }
     }
     .users-dealing-with-current-user {
@@ -132,7 +131,7 @@ main.dashboard {
   .tile h4 {
     z-index: 100;
   }
-   .tile-pic {
+  .tile-pic {
      z-index: 10;
      height: 150px;
      width: 150px;
@@ -156,7 +155,8 @@ main.dashboard {
     margin: auto;
     width: 85%;
   }
-  aside {}
+
+  aside { }
 
 
 }
@@ -377,27 +377,29 @@ main.faq {
 
 main.rental-show {
   section {
+    display: none;
 
   }
   article {
     .rental-table {
-      padding: 15px;
-      margin: 5px auto 20px auto;
-      border: 1px solid black;
-      box-shadow: -2px 2px 2px black;
-      td {
-        margin: 0px;
-        padding: 5px;
-      }
-      td.bottom-line {
-        border-top: 3px solid black;
-      }
-      td.align-right {
-        text-align: right;
-      }
-      th {
-      text-align: left;
-      }
+      th { background-color: #efefef; color: #444; }
+      //padding: 15px;
+      //margin: 5px auto 20px auto;
+      //border: 1px solid black;
+      //box-shadow: -2px 2px 2px black;
+      //td {
+      //  margin: 0px;
+      //  padding: 5px;
+      //}
+      //td.bottom-line {
+      //  border-top: 3px solid black;
+      //}
+      //td.align-right {
+      //  text-align: right;
+      //}
+      //th {
+      //text-align: left;
+      //}
     }
     #googleMap {
       width: 400px;
@@ -421,7 +423,7 @@ main.rental-show {
       display: inline-block;
     }
 
-    //PATRICK ADDED//
+
     .stripe-form {
       display: inline-block;
     }
@@ -431,7 +433,6 @@ main.rental-show {
       margin-top: 15px;
       float: left;
     }
-    //////////////////////
   }
   aside { }
 }
@@ -443,10 +444,13 @@ main.user-show {
     margin-top: 20px;
     float: left;
     width: 49%;
-
-    section {
-      border: 2px solid black;
+    .review-box {
+      border: 2px solid #efefef;
+      margin: 20px 0;
+      padding: 15px;
+      border-radius: 10px;
     }
+
   }
   .shown-users-tools {
     margin-top: 20px;
@@ -515,6 +519,8 @@ main.tag-show, main.search {
 .top-pad-50   { padding-top: 50px; }
 .top-pad-75   { padding-top: 75px; }
 .top-pad-100  { padding-top: 100px; }
+
+.top-margin-50   { margin-top: 50px; }
 
 .bottom-pad-10   { padding-bottom: 10px; }
 .bottom-pad-20   { padding-bottom: 20px; }
