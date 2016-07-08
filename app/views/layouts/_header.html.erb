@@ -2,7 +2,7 @@
   <a href="/"><img class='logo' src="/assets/shedsharing-logo.png"></a>
   <nav>
     <ul>
-      <li><%= link_to '<< Back', :back, class: "back-button" %></li>
+      <li><%= link_to '<< Back', :back, class: "back-button", data: {turbolinks: false} %></li>
       <li><%= link_to "Rent a Tool", abstract_tools_path %></li>
       <% if user_signed_in? %>
         <li>Hello, <%= current_user.username %></li>
