@@ -22,5 +22,5 @@
   <p>Price per day (put in '0' if you want it to be free!):</p>
   <%= f.number_field :base_price %><br>
 
-  <%= f.submit class: "btn btn-warning update-button" %>
+  <%= f.submit class: "btn btn-warning update-button", data: {turbolinks: false} %>
 <% end %>
