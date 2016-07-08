@@ -395,7 +395,8 @@ main.rental-show {
 }
 
 main.user-show {
-  h2 { text-align: center; }
+  section { display: none; }
+  h2 {  }
   .shown-users-received-reviews {
     margin-top: 20px;
     float: left;
@@ -409,6 +410,13 @@ main.user-show {
     margin-top: 20px;
     float: right;
     width: 49%;
+  }
+  @media (max-width: 768px) {
+    .shown-users-received-reviews, .shown-users-tools {
+      float: none;
+      width: auto;
+
+    }
   }
 }
 
@@ -533,6 +541,23 @@ main.aside-hidden {
   }
   section, article {
     //background-color: #efefef;
+  }
+}
+
+main.tools-edit {
+  section {
+    flex: 0 .5em;
+  }
+  .tool-div {
+    svg {
+      .shed-icon-color { fill: $brand-color-icon; }
+      clear: both;
+      fill: $brand-color-icon;
+      width: 150px;
+      height: 150px;
+      float: left;
+      margin: 10px 30px;
+    }
   }
 }
 

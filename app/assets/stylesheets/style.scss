@@ -444,7 +444,7 @@ main.template {
 main.section-article-fifty {
   section, article {
     flex: 1 1em;
-    background-color: #efefef;
+    //background-color: #efefef;
   }
   aside { display: none; }
 }
@@ -452,7 +452,7 @@ main.section-article-fifty {
 main.article-aside-fifty {
   article, aside {
     flex: 1 1em;
-    background-color: #efefef;
+    //background-color: #efefef;
     .top-5-tags-div {
       margin-top: 100px;
     }
@@ -463,24 +463,30 @@ main.article-aside-fifty {
 main.section-aside-fifty {
   section, aside {
     flex: 1 1em;
-    background-color: #efefef;
+    //background-color: #efefef;
   }
   article { display: none; }
 }
 
 main.section-aside-hidden {
-  article { background-color: #efefef; }
+  article {
+    //background-color: #efefef;
+  }
   section, aside { display: none; }
 }
 
 main.section-hidden {
   section { display: none; }
-  article, aside { background-color: #efefef; }
+  article, aside {
+    //background-color: #efefef;
+  }
 }
 
 main.aside-hidden {
   aside { display: none; }
-  section, article { background-color: #efefef; }
+  section, article {
+    //background-color: #efefef;
+  }
 }
 
 //
