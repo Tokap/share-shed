@@ -50,8 +50,8 @@
 
 
     <div id="rentals" class="tabContent">
-      <div class="pat-adjust">
-        <div class="panel panel-default ">
+      <div class="pat-adjust ">
+        <div class="panel panel-default">
           <div class="panel-heading">What you're borrowing from others</div>
         <% if @open_rented_rentals.any? %>
           <ul class="list-group">
@@ -73,7 +73,8 @@
       </div>
       </div>
 
-      <div class="flex-container rentals-right">
+      <div class="flex-container rentals-right inline-block">
+  
       <div class="panel panel-default">
         <div class="panel-heading">What you're renting out</div>
         <% if @open_owned_rentals.any? %>
@@ -94,6 +95,7 @@
           </ul>
         <% end %>
       </div>
+
     </div>
   </div>
     <div id="feedback" class="tabContent feedback-content clearfix">
@@ -113,12 +115,9 @@
       </div>
       <div class="users-dealing-with-current-user">
         <h4>Users you have shared tools with:</h4>
-
           <% @users_shared_with.each do |user| %>
-          <div class="panel panel-default">
           <p class="feedback-name-summary"> <%= user.username %> - <%= user.average_rating %> average rating </p>
           <p><%= button_to "View or Give Feedback", user_url(user), class: "btn btn-primary", data: {turbolinks: false}, method: :get %></p>
-          </div>
           <br>
           <% end %>
 
@@ -154,6 +153,7 @@
             <div class='panel panel-default rental-panel'>
               <p class='badge rental-data'>Owner: <%= rental.owner.username %></p><br>
               <p class='badge rental-data'>Renter: <%= rental.renter.username %></p><br>
+              <p class='badge rental-data'>Status: <%= clean(rental.status) %></p>
               <p class='badge rental-data'>Total: $<%= rental.sum_logs %></p>
             </div>
           <% end %>

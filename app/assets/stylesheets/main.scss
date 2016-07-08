@@ -587,12 +587,12 @@ main.aside-hidden {
 }
 
 .pat-adjust {
-  float: left !important;
+  display: inline-block !important;
   margin-right: 20px;
 }
 
 .inline-block {
-  display: inline-block;
+  display: inline-block !important;
 }
 
 /* Strip list bullets */
