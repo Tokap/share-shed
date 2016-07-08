@@ -195,7 +195,7 @@ demo_user_rent_tool = Tool.create!(abstract_tool: AbstractTool.find_by(name: 'ta
                 available:      true,
                 owner:          demo_other_user,
                 model_number:   Faker::Company.ein,
-                description:    "Great for smashing things!"  )
+                description:    "It makes a funny clicking noise, but works fine!"  )
 ################################### rentals ################################################
 # demo_user rents tools
 
