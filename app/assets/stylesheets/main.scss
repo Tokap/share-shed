@@ -550,13 +550,13 @@ main.tools-edit {
   }
   .tool-div {
     svg {
+      .shed-icon-color { fill: $brand-color-icon; }
       clear: both;
-      fill: $brand-green;
+      fill: $brand-color-icon;
       width: 150px;
       height: 150px;
       float: left;
       margin: 10px 30px;
-
     }
   }
 }
