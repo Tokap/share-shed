@@ -1,44 +1,64 @@
-<main class='template'>
+<main class="tools-edit">
   <section>
-  <h1>Remove Tool</h1>
-  <%= button_to 'Remove this tool from your Shed', @tool, action: "delete", method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+  <h2>Remove Tool</h2>
+  <%= button_to 'Remove from your Shed', @tool, action: "delete", method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
   </section>
 
   <article>
-    <div class='new-tool white-div'>
-      <h1>Edit tool</h1>
-      <% if @tool.errors.any? %>
-        <% @tool.errors.full_messages.each do |error| %>
-          <ul>
-            <li class='error-msg'><%= error %></li>
-          </ul>
-        <% end %>
-      <% end  %>
-
-      <% if @tool.image.file? %>
-        <img src="<%= @tool.image.url %>">
-      <% else %>
-        <%= svg @tool.name %>
-      <% end %>
-
-      <%= render 'form' %>
+    <div class="row">
+      <div class="col-xs-12">
+        <h2>Edit tool</h2>
+      </div>
+      <div class="col-xs-12">
+        <% if @tool.errors.any? %>
+            <% @tool.errors.full_messages.each do |error| %>
+                <ul>
+                  <li class='error-msg'><%= error %></li>
+                </ul>
+            <% end %>
+        <% end  %>
+      </div>
     </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-7">
+        <%= render 'form' %>
+      </div>
+      <div class="col-xs-12 col-sm-4 text-left">
+        <% if @tool.image.file? %>
+            <img src="<%= @tool.image.url %>">
+        <% else %>
+            <div class="tool-div" style="fill: green;">
+              <%= svg @tool.name %>
+            </div>
+        <% end %>
+      </div>
+    </div>
+
   </article>
 
   <aside>
-    <%= render '/tags/form' %>
 
-    <h3>Existing Tags:</h3>
-    <div>
-    <% if !@tags.empty? %>
-    <% @tags.each do |tag| %>
-      <%=link_to tag_path(tag), :class => "tag-link" do %>
-        <span class="label label-default label-primary"><%= tag.name %></span>
-      <% end %>
-    <% end %>
+    <%= render '/tags/form' %>
+    <br><br>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">Existing Tags</div>
+        <div class="panel-body">
+          <% if !@tags.empty? %>
+              <% @tags.each do |tag| %>
+                  <%=link_to tag_path(tag), :class => "tag-link" do %>
+                      <span class="label label-default label-primary"><%= tag.name %></span>
+                  <% end %>
+              <% end %>
+              </div>
+          <% else %>
+              <p>No Tags Available</p>
+          <% end %>
+        </div>
+      </div>
     </div>
-    <% else %>
-      <p>No Tags Available</p>
-    <% end %>
+
+
+
   </aside>
 </main>
