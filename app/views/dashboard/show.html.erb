@@ -153,6 +153,7 @@
             <div class='panel panel-default rental-panel'>
               <p class='badge rental-data'>Owner: <%= rental.owner.username %></p><br>
               <p class='badge rental-data'>Renter: <%= rental.renter.username %></p><br>
+              <p class='badge rental-data'>Status: <%= clean(rental.status) %></p>
               <p class='badge rental-data'>Total: $<%= rental.sum_logs %></p>
             </div>
           <% end %>
