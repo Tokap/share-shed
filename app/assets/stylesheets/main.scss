@@ -188,12 +188,14 @@ main.landing-page {
 
   .sharing-div {
     background: url('/assets/tool-drill.png') no-repeat center center;
-    background-size: 300%;
+    //background-size: 100%;
+    background-size: cover;
   }
 
   .renting-div {
     background: url('/assets/holding-drill.png') no-repeat right top;
-    background-size: 145%;
+    //background-size: 100%;
+    background-size: cover;
   }
 
   .sharing-div button, .renting-div button {
