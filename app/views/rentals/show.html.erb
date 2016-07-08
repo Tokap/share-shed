@@ -38,9 +38,9 @@
       <% end %>
     <% elsif @rental.status == "in_progress" && @rental.return_date == Date.today %>
       <% if current_user == @rental.owner && !@rental.owner_return_confirmation %>
-        <%= button_to "Confirm that your tool(s) as been returned", @rental, method: :patch %>
+        <%= button_to "Confirm that your tool(s) as been returned", @rental, method: :patch, class: "btn btn-success text-center" %>
       <% elsif current_user == @rental.renter && !@rental.renter_return_confirmation %>
-        <%= button_to "Confirm that you have returned the tool(s)", @rental, method: :patch %>
+        <%= button_to "Confirm that you have returned the tool(s)", @rental, method: :patch, class: "btn btn-success text-center" %>
       <% end %>
     <% end %>
 
