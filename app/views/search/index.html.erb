@@ -7,7 +7,7 @@
 
 
     <div class="row">
-      <div class="col-xs-12 col-sm-8">
+      <div class="col-xs-12">
 
         <h2>Search Results</h2>
         <h3>We found the following related results: </h3>
@@ -19,8 +19,10 @@
           <ul class="list-group">
             <% @results.each do |tt| %>
               <li class="list-group-item">
-                <%= svg(tt.tool.name) %><br>
-                <%= link_to "#{clean(tt.tool.name)}", tool_path(tt.tool), data: {turbolinks: false} %> | $<%= tt.tool.base_price %> each day
+                <%= link_to tool_path(tt.tool), data: {turbolinks: false} do %>
+                  <%= svg(tt.tool.name) %><br>
+                  <%= "#{clean(tt.tool.name)}" %> | $<%= tt.tool.base_price %> each day
+                <% end %>
               </li>
             <% end %>
           </ul>
@@ -29,8 +31,10 @@
           <ul class="list-group">
             <% @user_results.each do |user|%>
               <li class="list-group-item">
-                <%= svg('user') %><br>
-                <%= link_to user.username, user_path(user)%>
+                <%= link_to user_path(user) do %>
+                  <%= svg('user') %><br>
+                  <%= user.username %>
+                <% end %>
               </li>
             <% end %>
           </ul>
@@ -38,8 +42,10 @@
           <ul class="list-group">
             <% @results.each do |tool| %>
               <li class="list-group-item">
-                <%= svg(tool.name) %><br>
-                <%= link_to "#{clean(tool.name)}", tool_path(tool), data: {turbolinks: false} %> | $<%= tool.base_price %> each day
+                <%= link_to tool_path(tool), data: {turbolinks: false} do %>
+                  <%= svg(tool.name) %><br>
+                  <%= "#{clean(tool.name)}" %> | $<%= tool.base_price %> each day
+                <% end %>
               </li>
             <% end %>
           </ul>
