@@ -3,13 +3,18 @@
       <% if current_user %>
 
           <li class="list-group-item">
-            <%= svg(tool.name) %><br>
-            <%= link_to "$#{tool.base_price} per day, only #{pluralize(tool.distance_from_address(current_user.address), 'mile')} away", tool_path(tool), data: {turbolinks: false} %>
+
+            <%= link_to tool_path(tool), data: {turbolinks: false} do %>
+              <%= svg(tool.name) %><br>
+              <span><%= "$#{tool.base_price} per day, only #{pluralize(tool.distance_from_address(current_user.address), 'mile')} away" %></span>
+            <% end %>
           </li>
       <% else %>
           <li class="list-group-item">
+            <%= link_to tool_path(tool), data: {turbolinks: false} do %>
             <%= svg(tool.name) %><br>
-            <%= link_to "$#{tool.base_price} per day, located in #{tool.owner.address.split(',')[1]}", tool_path(tool), data: {turbolinks: false} %>
+            <span><%= "$#{tool.base_price} per day, located in #{tool.owner.address.split(',')[1]}" %></span>
+            <% end %>
           </li>
       <% end %>
   <% end %>
