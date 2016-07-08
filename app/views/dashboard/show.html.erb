@@ -98,7 +98,7 @@
 
     </div>
   </div>
-    <div id="feedback" class="tabContent feedback-content">
+    <div id="feedback" class="tabContent feedback-content clearfix">
       <div class="current-users-received-reviews">
       <h4>Your average rating is <%= @user.average_rating %></h4>
       <h4>Reviews:</h4>
@@ -120,7 +120,7 @@
           <p><%= button_to "View or Give Feedback", user_url(user), class: "btn btn-primary", data: {turbolinks: false}, method: :get %></p>
           <br>
           <% end %>
-        
+
       </div>
     </div>
 
