@@ -10,11 +10,11 @@
         <h3>Tools Related to this tag: </h3>
         <div>
           <ul class="list-group">
-            <% @tag.tool_tags.each do |tt| %>
+            <% @tag.tools.each do |tool| %>
                 <li class="list-group-item">
-                  <% if !tt.tool.name.nil? %>
-                    <%= svg(tt.tool.name) %><br>
-                    <%= link_to "#{clean(tt.tool.name)}", tool_path(tt.tool), method: :get %> | $<%=tt.tool.base_price %> per day
+                  <% if !tool.name.nil? %>
+                    <%= svg(tool.name) %><br>
+                    <%= link_to "#{clean(tool.name)}", tool_path(tool), method: :get %> | $<%=tool.base_price %> per day
                   <% end %>
                 </li>
             <% end %>
