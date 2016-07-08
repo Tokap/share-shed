@@ -6,10 +6,15 @@ Review.destroy_all
 
 ################################### users ############################################
 # user 1 is demo user
-demo_user = User.create!(username:    'demo.user',
-                         email:       'a@a.com',
-                         password:    'aaaaaaaa',
+demo_user = User.create!(username:    'patrick.allen',
+                         email:       'allenpatrick86@gmail.com',
+                         password:    'password',
                          address:     '707 Broadway, San Diego, CA 92101')
+
+demo_other_user = User.create!(username: 'mark.siemers',
+                      email:     "Wolfy858@gmail.com",
+                      password:  'password',
+                      address:   '501 Broadway, San Diego, CA 92101')
 
 user_2 = User.create!(username:  "taylor.beck",
                       email:     Faker::Internet.email,
@@ -31,7 +36,7 @@ user_5 = User.create!(username:  "gabe.bonner",
                       password:  'password',
                       address:   '100 Park Blvd, San Diego, CA 92101')
 
-user_6 = User.create!(username:  "patrick.allen",
+user_6 = User.create!(username:  "kevin.solario",
                       email:     Faker::Internet.email,
                       password:  'password',
                       address:   '1788 El Prado, San Diego, CA 92101')
@@ -183,9 +188,17 @@ demo_user_tool_5 = Tool.create!(abstract_tool_id:  rand(1..20),
                owner:           demo_user,
                model_number:    Faker::Company.ein,
                description:     Faker::Hipster.paragraph)
-
+###################################demo tool###############################################
+demo_user_rent_tool = Tool.create!(abstract_tool: AbstractTool.find_by(name: 'sledge hammer'),
+                base_price:     5,
+                available:      true,
+                owner:          demo_other_user,
+                model_number:   Faker::Company.ein,
+                description:    "Great for smashing things!"  )
 ################################### rentals ################################################
 # demo_user rents tools
+
+
 demo_user_borrowing_1 = Rental.new(renter:          demo_user,
                owner:           user_2,
                status:          'pending',
@@ -375,4 +388,10 @@ Review.create!(reviewer: user_3, reviewee: demo_user, rating: (1..5).to_a.sample
 Review.create!(reviewer: user_2, reviewee: user_3, rating: (1..5).to_a.sample, content: Faker::Hipster.paragraph.truncate(320))
 Review.create!(reviewer: user_4, reviewee: demo_user, rating: (1..5).to_a.sample, content: Faker::Hipster.paragraph.truncate(320))
 Review.create!(reviewer: demo_user, reviewee: user_4, rating: (1..5).to_a.sample, content: Faker::Hipster.paragraph.truncate(320))
+
+###############Reviews#######################
+Review.create!(reviewer: user_2, reviewee: demo_other_user, rating: 5, content: "Great renter! He returned my tools on time and in good condition.")
+Review.create!(reviewer: user_3, reviewee: demo_other_user, rating: 4, content: "He was very knowledgeable about his tools and helped show me how to use them properly.")
+Review.create(reviewer: user_5, reviewee: demo_other_user, rating: 5, content: "He returned my tools in BETTER condition than when he rented them.")
+Review.create!(reviewer: user_6, reviewee: demo_other_user, rating: 4, content: "He has a lot of cool, high tech tools! Would definitely rent from him again.")
 
