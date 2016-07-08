@@ -27,7 +27,7 @@
         <% if @tool.image.file? %>
             <img src="<%= @tool.image.url %>">
         <% else %>
-            <div class="tool-div" style="fill: green;">
+            <div class="tool-div">
               <%= svg @tool.name %>
             </div>
         <% end %>

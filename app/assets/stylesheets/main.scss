@@ -550,13 +550,13 @@ main.tools-edit {
   }
   .tool-div {
     svg {
+      .shed-icon-color { fill: $brand-color-icon; }
       clear: both;
-      fill: $brand-green;
+      fill: $brand-color-icon;
       width: 150px;
       height: 150px;
       float: left;
       margin: 10px 30px;
-
     }
   }
 }
@@ -627,4 +627,12 @@ div.users-dealing-with-current-user ul {
 
 .feedback-name-summary {
   margin-bottom: 10px;
+}
+
+.directions {
+  margin-bottom: 10px;
+}
+
+.update-button {
+  margin-top: 10px;
 }
