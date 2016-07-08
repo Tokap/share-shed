@@ -18,7 +18,6 @@ main.template {
   aside   { }
 }
 
-
 //hgroup.dashboard {
 //  h2 { float: left; }
 //  .owner-renter-toggle {
@@ -66,8 +65,9 @@ main.dashboard {
       margin-top: 20px;
       float: left;
       width: 49%;
+
       section {
-        border: 4px solid #efefef;
+        border: 2px solid black;
       }
     }
     .users-dealing-with-current-user {
@@ -131,7 +131,7 @@ main.dashboard {
   .tile h4 {
     z-index: 100;
   }
-  .tile-pic {
+   .tile-pic {
      z-index: 10;
      height: 150px;
      width: 150px;
@@ -155,8 +155,7 @@ main.dashboard {
     margin: auto;
     width: 85%;
   }
-
-  aside { }
+  aside {}
 
 
 }
@@ -196,15 +195,13 @@ main.landing-page {
   }
 
   .sharing-div {
-    background: url('/assets/tool-drill.png') no-repeat center center;
-    //background-size: 100%;
-    background-size: cover;
+    background: url('/assets/tool-drill.jpg') no-repeat center center;
+    background-size: 300%;
   }
 
   .renting-div {
-    background: url('/assets/holding-drill.png') no-repeat right top;
-    //background-size: 100%;
-    background-size: cover;
+    background: url('/assets/holding-drill.jpg') no-repeat right top;
+    background-size: 145%;
   }
 
   .sharing-div button, .renting-div button {
@@ -296,15 +293,9 @@ main.password-pages {
   }
 }
 
-main.login, main.sign-up {
+main.login {
   section, aside {
     display: none;
-  }
-  article {
-    form.new_user {
-      width: 350px;
-
-    }
   }
 }
 
@@ -314,10 +305,9 @@ main.about {
   }
   article {
     .quadrant {
-      border: solid green 3px;
       border-radius: 10px;
-      margin: 15px;
-      width: 47%;
+      margin: 20px;
+      width: 46%;
       padding: 10px;
       display: inline-block;
     }
@@ -328,36 +318,28 @@ main.about {
       margin: 10px;
       border-radius: 10px;
     }
-    .tech-container {
-      .familiar-tech {
-      }
-      .new-tech {
-      }
-      .tech-div-container {
-        border: solid gray 6px;
-        border-radius: 10px;
-        padding: 20px;
-        display: inline-block;
-        width: 47%;
-        .tech-title {
-          text-align: center;
-        }
-      }
-    }
-    .tech-div {
-      width: 100px;
+  }
+  .tech-div {
+    width: 100px;
+    display: inline-block;
+    margin: 15px;
+  }
+  .tech-logo {
+    max-width: 120px;
+    .new-tech {
       display: inline-block;
-      margin: 15px;
+      width: 48%;
     }
-    .tech-logo {
-      max-width: 120px;
-      .new-tech {
-        display: inline-block;
-        width: 48%;
-      }
-      .familiar-tech {
-        display: inline-block;
-        width: 48%;
+    .familiar-tech {
+      display: inline-block;
+      width: 48%;
+    }
+    .tech-div-container {
+      display: inline-block;
+      width: 48%;
+      border: 1px solid black;
+      .tech-title {
+        text-align: center;
       }
     }
   }
@@ -377,29 +359,27 @@ main.faq {
 
 main.rental-show {
   section {
-    display: none;
 
   }
   article {
     .rental-table {
-      th { background-color: #efefef; color: #444; }
-      //padding: 15px;
-      //margin: 5px auto 20px auto;
-      //border: 1px solid black;
-      //box-shadow: -2px 2px 2px black;
-      //td {
-      //  margin: 0px;
-      //  padding: 5px;
-      //}
-      //td.bottom-line {
-      //  border-top: 3px solid black;
-      //}
-      //td.align-right {
-      //  text-align: right;
-      //}
-      //th {
-      //text-align: left;
-      //}
+      padding: 15px;
+      margin: 5px auto 20px auto;
+      border: 1px solid black;
+      box-shadow: -2px 2px 2px black;
+      td {
+        margin: 0px;
+        padding: 5px;
+      }
+      td.bottom-line {
+        border-top: 3px solid black;
+      }
+      td.align-right {
+        text-align: right;
+      }
+      th {
+      text-align: left;
+      }
     }
     #googleMap {
       width: 400px;
@@ -423,7 +403,7 @@ main.rental-show {
       display: inline-block;
     }
 
-
+    //PATRICK ADDED//
     .stripe-form {
       display: inline-block;
     }
@@ -433,13 +413,19 @@ main.rental-show {
       margin-top: 15px;
       float: left;
     }
+    //////////////////////
   }
   aside { }
 }
 
+main.sign-up {
+  section {
+    display: none;
+  }
+}
+
 main.user-show {
-  section { display: none; }
-  h2 {  }
+  h2 { text-align: center; }
   .shown-users-received-reviews {
     margin-top: 20px;
     float: left;
@@ -454,54 +440,7 @@ main.user-show {
     float: right;
     width: 49%;
   }
-  @media (max-width: 768px) {
-    .shown-users-received-reviews, .shown-users-tools {
-      float: none;
-      width: auto;
-
-    }
-  }
 }
-
-main.tag-show, main.search {
-  section {
-    display: none;
-  }
-  article {
-    .shed-icon-color { fill: $brand-green; }
-
-    .list-group-item {
-      float: left;
-      margin: 10px;
-      width: 160px;
-      height: 160px;
-      text-align: center;
-      span { clear: both; }
-      a { color: $brand-color; margin-left: 10px; clear: both; }
-      svg {
-        clear: both;
-        fill: $brand-green;
-        width: 80px;
-        height: 80px;
-        float: left;
-        margin: 10px 30px;
-      }
-      @media (max-width: 768px) {
-        float: none;
-        margin-top: 10px;
-        width: auto;
-        height: auto;
-        text-align: left;
-        svg {
-          width: 30px;
-          height: 30px;
-          margin: 6px 10px 10px 10px;
-        }
-      }
-    }
-  }
-}
-
 
 //
 // GLOBAL HELPER STYLES
@@ -516,8 +455,6 @@ main.tag-show, main.search {
 .top-pad-50   { padding-top: 50px; }
 .top-pad-75   { padding-top: 75px; }
 .top-pad-100  { padding-top: 100px; }
-
-.top-margin-50   { margin-top: 50px; }
 
 .bottom-pad-10   { padding-bottom: 10px; }
 .bottom-pad-20   { padding-bottom: 20px; }
@@ -589,23 +526,6 @@ main.aside-hidden {
   }
 }
 
-main.tools-edit {
-  section {
-    flex: 0 .5em;
-  }
-  .tool-div {
-    svg {
-      .shed-icon-color { fill: $brand-color-icon; }
-      clear: both;
-      fill: $brand-color-icon;
-      width: 150px;
-      height: 150px;
-      float: left;
-      margin: 10px 30px;
-    }
-  }
-}
-
 .rental-table {
   padding: 15px;
   margin: 5px auto 20px auto;
@@ -649,39 +569,3 @@ main.tools-edit {
  .tags-options {
   margin-bottom: -2px;
  }
-
-/* Dashboard work */
-.rental-panel {
-  margin: 5px;
-  padding: 10px;
-}
-
-.pat-adjust {
-  display: inline-block !important;
-  margin-right: 20px;
-}
-
-.inline-block {
-  display: inline-block !important;
-}
-
-/* Strip list bullets */
-div.users-dealing-with-current-user ul {
-  list-style: none;
-}
-
-.feedback-name-summary {
-  margin-bottom: 10px;
-}
-
-.directions {
-  margin-bottom: 10px;
-}
-
-.update-button {
-  margin-top: 10px;
-}
-
-.update-review {
-
-}
