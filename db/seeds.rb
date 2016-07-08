@@ -190,7 +190,7 @@ demo_user_tool_5 = Tool.create!(abstract_tool:  abstract_array.sample,
                model_number:    Faker::Company.ein,
                description:     Faker::Hipster.paragraph)
 ###################################demo tool###############################################
-demo_user_rent_tool = Tool.create!(abstract_tool: AbstractTool.find_by(name: 'sledge hammer'),
+demo_user_rent_tool = Tool.create!(abstract_tool: AbstractTool.find_by(name: 'table saw'),
                 base_price:     5,
                 available:      true,
                 owner:          demo_other_user,
