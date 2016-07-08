@@ -116,36 +116,37 @@ last_user = User.create!(username:   'second.user',
 ################################### abstract tools ###################################
 # create 20 abstract tools
 abstract_tools = ['metal detector', 'wheel barrow', 'shovel', 'pitchfork', 'post hole digger', 'rake', 'axe', 'table saw', 'pickaxe', 'wrench', 'broom', 'sledge hammer', 'tape measure', 'bolt cutters', 'screwdriver', 'hammer', 'hand grinder', 'ladder', 'paintbrush', 'jackhammer']
+abstract_array = []
 
 abstract_tools.each do |tool|
-  AbstractTool.create!(name: tool)
+  abstract_array << AbstractTool.create!(name: tool)
 end
 
 
 ################################### tools ############################################
 # create 5 tools for demo user to rent/borrow
-user_2_tool = Tool.create!(abstract_tool_id:  rand(1..20),
+user_2_tool = Tool.create!(abstract_tool:  abstract_array.sample,
              base_price:        rand(5..50),
              available:         true,
              owner:             user_2,
              model_number:      Faker::Company.ein,
              description:       Faker::Hipster.paragraph)
 
-user_3_tool = Tool.create!(abstract_tool_id:  rand(1..20),
+user_3_tool = Tool.create!(abstract_tool:  abstract_array.sample,
              base_price:        rand(5..50),
              available:         true,
              owner:             user_3,
              model_number:      Faker::Company.ein,
              description:       Faker::Hipster.paragraph)
 
-user_4_tool = Tool.create!(abstract_tool_id:  rand(1..20),
+user_4_tool = Tool.create!(abstract_tool:  abstract_array.sample,
              base_price:        rand(5..50),
              available:         true,
              owner:             user_4,
              model_number:      Faker::Company.ein,
              description:       Faker::Hipster.paragraph)
 
-user_5_tool = Tool.create!(abstract_tool_id:  rand(1..20),
+user_5_tool = Tool.create!(abstract_tool:  abstract_array.sample,
              base_price:        rand(5..50),
              available:         true,
              owner:             user_5,
@@ -153,28 +154,28 @@ user_5_tool = Tool.create!(abstract_tool_id:  rand(1..20),
              description:       Faker::Hipster.paragraph)
 
 # create tools for demo user to own/lend
-demo_user_tool_1 = Tool.create!(abstract_tool_id:  rand(1..20),
+demo_user_tool_1 = Tool.create!(abstract_tool:  abstract_array.sample,
                base_price:        rand(5..50),
                available:         true,
                owner:             demo_user,
                model_number:      Faker::Company.ein,
                description:       Faker::Hipster.paragraph)
 
-demo_user_tool_2 = Tool.create!(abstract_tool_id:  rand(1..20),
+demo_user_tool_2 = Tool.create!(abstract_tool:  abstract_array.sample,
                base_price:        rand(5..50),
                available:         true,
                owner:             demo_user,
                model_number:      Faker::Company.ein,
                description:       Faker::Hipster.paragraph)
 
-demo_user_tool_3 = Tool.create!(abstract_tool_id:  rand(1..20),
+demo_user_tool_3 = Tool.create!(abstract_tool:  abstract_array.sample,
                base_price:        rand(5..50),
                available:         true,
                owner:             demo_user,
                model_number:      Faker::Company.ein,
                description:       Faker::Hipster.paragraph)
 
-demo_user_tool_4 = Tool.create!(abstract_tool_id:  rand(1..20),
+demo_user_tool_4 = Tool.create!(abstract_tool:  abstract_array.sample,
                base_price:        rand(5..50),
                available:         true,
                owner:             demo_user,
@@ -182,7 +183,7 @@ demo_user_tool_4 = Tool.create!(abstract_tool_id:  rand(1..20),
                description:       Faker::Hipster.paragraph)
 
 # another tool to test double line item on a rental request
-demo_user_tool_5 = Tool.create!(abstract_tool_id:  rand(1..20),
+demo_user_tool_5 = Tool.create!(abstract_tool:  abstract_array.sample,
                base_price:      rand(5..50),
                available:       true,
                owner:           demo_user,
