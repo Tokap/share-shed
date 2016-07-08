@@ -444,10 +444,13 @@ main.user-show {
     margin-top: 20px;
     float: left;
     width: 49%;
-
-    section {
-      border: 2px solid black;
+    .review-box {
+      border: 2px solid #efefef;
+      margin: 20px 0;
+      padding: 15px;
+      border-radius: 10px;
     }
+
   }
   .shown-users-tools {
     margin-top: 20px;
