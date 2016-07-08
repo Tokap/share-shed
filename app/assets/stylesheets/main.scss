@@ -389,7 +389,9 @@ main.about {
     }
     .panel-tech {
       height: 45em;
+      border: 0;
     }
+    h3 { border-bottom: 4px solid #efefef; padding: 5px; background-color: $brand-color; color: #fff; text-align: center; border-radius: 5px; }
     @media (max-width: 768px) {
       .panel, .panel-tech {
         height: auto;
