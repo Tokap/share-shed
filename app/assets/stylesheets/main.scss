@@ -18,6 +18,7 @@ main.template {
   aside   { }
 }
 
+
 //hgroup.dashboard {
 //  h2 { float: left; }
 //  .owner-renter-toggle {
@@ -195,13 +196,15 @@ main.landing-page {
   }
 
   .sharing-div {
-    background: url('/assets/tool-drill.jpg') no-repeat center center;
-    background-size: 300%;
+    background: url('/assets/tool-drill.png') no-repeat center center;
+    //background-size: 100%;
+    background-size: cover;
   }
 
   .renting-div {
-    background: url('/assets/holding-drill.jpg') no-repeat right top;
-    background-size: 145%;
+    background: url('/assets/holding-drill.png') no-repeat right top;
+    //background-size: 100%;
+    background-size: cover;
   }
 
   .sharing-div button, .renting-div button {
@@ -293,9 +296,15 @@ main.password-pages {
   }
 }
 
-main.login {
+main.login, main.sign-up {
   section, aside {
     display: none;
+  }
+  article {
+    form.new_user {
+      width: 350px;
+
+    }
   }
 }
 
@@ -305,9 +314,10 @@ main.about {
   }
   article {
     .quadrant {
+      border: solid green 3px;
       border-radius: 10px;
-      margin: 20px;
-      width: 46%;
+      margin: 15px;
+      width: 47%;
       padding: 10px;
       display: inline-block;
     }
@@ -316,6 +326,7 @@ main.about {
       height: 200px;
       float: left;
       margin: 10px;
+<<<<<<< HEAD
       border-radius: 10px;
     }
     .tech-container {
@@ -426,14 +437,9 @@ main.rental-show {
   aside { }
 }
 
-main.sign-up {
-  section {
-    display: none;
-  }
-}
-
 main.user-show {
-  h2 { text-align: center; }
+  section { display: none; }
+  h2 {  }
   .shown-users-received-reviews {
     margin-top: 20px;
     float: left;
@@ -448,7 +454,54 @@ main.user-show {
     float: right;
     width: 49%;
   }
+  @media (max-width: 768px) {
+    .shown-users-received-reviews, .shown-users-tools {
+      float: none;
+      width: auto;
+
+    }
+  }
 }
+
+main.tag-show, main.search {
+  section {
+    display: none;
+  }
+  article {
+    .shed-icon-color { fill: $brand-green; }
+
+    .list-group-item {
+      float: left;
+      margin: 10px;
+      width: 160px;
+      height: 160px;
+      text-align: center;
+      span { clear: both; }
+      a { color: $brand-color; margin-left: 10px; clear: both; }
+      svg {
+        clear: both;
+        fill: $brand-green;
+        width: 80px;
+        height: 80px;
+        float: left;
+        margin: 10px 30px;
+      }
+      @media (max-width: 768px) {
+        float: none;
+        margin-top: 10px;
+        width: auto;
+        height: auto;
+        text-align: left;
+        svg {
+          width: 30px;
+          height: 30px;
+          margin: 6px 10px 10px 10px;
+        }
+      }
+    }
+  }
+}
+
 
 //
 // GLOBAL HELPER STYLES
@@ -532,6 +585,26 @@ main.aside-hidden {
   section, article {
     //background-color: #efefef;
   }
+<<<<<<< HEAD
+=======
+}
+
+main.tools-edit {
+  section {
+    flex: 0 .5em;
+  }
+  .tool-div {
+    svg {
+      .shed-icon-color { fill: $brand-color-icon; }
+      clear: both;
+      fill: $brand-color-icon;
+      width: 150px;
+      height: 150px;
+      float: left;
+      margin: 10px 30px;
+    }
+  }
+>>>>>>> 691778cb0bab0a397329d87f93e14a560b409831
 }
 
 .rental-table {
@@ -578,3 +651,34 @@ main.aside-hidden {
   margin-bottom: -2px;
  }
 
+/* Dashboard work */
+.rental-panel {
+  margin: 5px;
+  padding: 10px;
+}
+
+.pat-adjust {
+  display: inline-block !important;
+  margin-right: 20px;
+}
+
+.inline-block {
+  display: inline-block !important;
+}
+
+/* Strip list bullets */
+div.users-dealing-with-current-user ul {
+  list-style: none;
+}
+
+.feedback-name-summary {
+  margin-bottom: 10px;
+}
+
+.directions {
+  margin-bottom: 10px;
+}
+
+.update-button {
+  margin-top: 10px;
+}

@@ -5,15 +5,13 @@
   <article>
     <div class="row">
       <div class="col-xs-12 col-sm-8"><h2>Pick a Tool to Rent </h2></div>
-      <div class="col-sm-4 text-right">
-        <%= button_to "Sign up to start renting tools!", new_user_registration_path if !user_signed_in? %></div>
     </div>
     <ul class="tool-div">
       <% @available_abstract_tools.each do |ab_tool| %>
         <li>
           <%= link_to abstract_tool_path(ab_tool) do %>
             <%= svg ab_tool.name %>
-            <h4><%= ab_tool.name %></h4>
+            <h4><%= clean(ab_tool.name) %></h4>
         <% end %>
         </li>
       <% end %>
@@ -22,6 +20,15 @@
   </article>
 
   <aside>
+  <% if !user_signed_in? %>
+    <div class="panel panel-default">
+        <div class="panel-body">
+              <h4 class="text-center text-success"><%= link_to "Sign up now to start renting tools!", "#signup-modal", "data-toggle" => "modal" %></h4>
+        </div>
+      <% end %>
+    </div>
+
+
     <%= render '/search/search' %>
   </aside>
 </main>

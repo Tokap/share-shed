@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html>
-  <%= render 'layouts/head' %>
+
+<%= render 'layouts/head' %>
+
 <body class="<%= "controller__#{controller_name} action__#{action_name}" %>">
 
-
 <%= render 'layouts/header' %>
-
 <%= render 'layouts/flash' %>
-
-<%= link_to 'Back', :back, class: "back-button" %>
 
 <%= yield %>
 
 <%= render 'layouts/footer' %>
-
 <%= render 'layouts/login_modal' %>
 <%= render 'layouts/signup_modal' %>
+
 </body>
 </html>

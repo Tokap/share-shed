@@ -18,28 +18,34 @@
 
 ### Development branch deployment
  * For deployment of the development branch on the staging server, run the following tasks.
- * Note: Beforehand, you will need to set staging as heroku git remote repositories.
+ * Note: Beforehand, you will need to set staging as heroku git remote repositories.  Use the following command to add staging remote to your repo
+ * git remote add staging https://git.heroku.com/share-shed-stage.git
+
  * Note: Optional tasks for dropping and recreating the database are noted below.
  1. git pull origin development
  2. git push staging development:master
- 3. (optional) heroku pg:reset DATABASE --app shedsharing-stage --confirm shedsharing-stage
+ 3. (optional) heroku pg:reset DATABASE --app share-shed-stage --confirm share-shed-stage
  4. (optional) heroku run rake db:migrate --remote staging
  5. (optional) heroku run rake db:seed --remote staging
  6. http://stage.shedsharing.com
 
 ### Master Branch
  * For deployment of the master branch on the production server, run the following tasks.
- * Note: Beforehand, you will need to set prod as heroku git remote repositories.
+ * Note: Beforehand, you will need to set prod as heroku git remote repositories.  Use the following command to add prod remote to your repo
+ * git remote add prod https://git.heroku.com/share-shed.git
+
  * Note: Optional tasks for dropping and recreating the database are noted below.
- 1. git pull origin development
- 2. git push prod master
- 3. (optional) heroku pg:reset DATABASE --app shedsharing --confirm shedsharing
- 4. (optional) heroku run rake db:migrate --remote prod
- 5. (optional) heroku run rake db:seed --remote prod
- 6. http://www.shedsharing.com
+ 1. Create a pull request to merge the development branch into master
+ 2. git pull origin master
+ 3. git push prod master
+ 4. (optional) heroku pg:reset DATABASE --app share-shed --confirm share-shed
+ 5. (optional) heroku run rake db:migrate --remote prod
+ 6. (optional) heroku run rake db:seed --remote prod
+ 7. http://www.shedsharing.com
 
 #### Purpose:
  * This web app is designed to allow users to rent tools from other individuals in their local area and have users place tools they own up for rent.
+
 #### User Stories:
 ##### Owner
 * An owner can register a tool to be rented.

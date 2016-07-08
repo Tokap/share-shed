@@ -1,0 +1,44 @@
+//
+// TOOLS-SHOW PAGE CSS
+// --------------------------------------------------
+
+main.tools-show {
+  article, aside {
+    flex: 1 1em;
+  }
+  section { display: none; }
+
+  article {
+    #googleMap {
+      max-width: 100%;
+      height:320px;
+    }
+    .well { margin: 0; padding: 0;}
+    .alert-sm { padding: 2px; }
+    form.form-horizontal {
+      margin-bottom: 10px;
+      .col-sm-3 {
+        padding-top: 0;
+        margin-top: -4px;
+      }
+    }
+    h2, h3 { margin: 0; }
+  }
+  aside {
+    flex: 0 18em;
+  }
+
+  label.return-date {
+    margin-right: 29px;
+  }
+
+  label.checkout-date {
+    margin-right: 10px;
+  }
+
+  .rental-button {
+    margin-top: 20px;
+    margin-left: 90px;
+  }
+
+}

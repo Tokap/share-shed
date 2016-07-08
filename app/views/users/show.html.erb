@@ -5,7 +5,7 @@
     <h2><%= @user.username %>'s profile</h2>
     <div class="shown-users-received-reviews">
 
-      <h3>Average rating: <%= @user.average_rating %></h3>
+      <h2>Average rating: <%= @user.average_rating %></h2>
       <h3>Reviews:</h3>
 
       <% @user.received_reviews.each do |review| %>
@@ -20,14 +20,17 @@
       <div class="flex-container">
         <% @user.tools.where(available: true).each do |tool| %>
           <%= link_to tool_path(tool), data: {turbolinks: false} do %>
-            <div class="tile">
+
+           <div class="tile">
               <% if tool.image.file? %>
                 <img class='tile-pic' src="<%= tool.image.url %>">
               <% else %>
-                <img class='tile-pic' src='/assets/shovel.png'>
+                <%= svg tool.name %>
+                <!--<img class='tile-pic' src='/assets/shovel.png'>-->
               <% end %>
               <h4><%= clean(tool.name) %></h4>
             </div>
+
           <% end %>
         <% end %>
       </div>
