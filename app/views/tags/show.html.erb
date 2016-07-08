@@ -12,8 +12,10 @@
           <ul class="list-group">
             <% @tag.tool_tags.each do |tt| %>
                 <li class="list-group-item">
-                  <%= svg(tt.tool.name) %><br>
-                  <%= link_to "#{clean(tt.tool.name)}", tool_path(tt.tool), method: :get %> | $<%=tt.tool.base_price %> per day
+                  <% if !tt.tool.name.nil? %>
+                    <%= svg(tt.tool.name) %><br>
+                    <%= link_to "#{clean(tt.tool.name)}", tool_path(tt.tool), method: :get %> | $<%=tt.tool.base_price %> per day
+                  <% end %>
                 </li>
             <% end %>
           </ul>
