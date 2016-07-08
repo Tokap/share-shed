@@ -28,6 +28,7 @@ main.template {
 //}
 
 main.dashboard {
+  height: 750px;
   section, article {
       flex: 1 1em;
   }
@@ -59,6 +60,7 @@ main.dashboard {
   }
   .tabContent {
     display: none;
+    height: 650px;
     padding: 6px 12px;
     border: 1px solid #ccc;
     border-top: none;
@@ -88,7 +90,7 @@ main.dashboard {
     justify: space-between;
   }
   .tile {
-    border-radius: 5px;
+    border-radius: 10px;
     //border: 2px solid #efefef;
     height: 100px;
     width: 100px;
@@ -109,19 +111,19 @@ main.dashboard {
     h4 { font-size: 1em; font-weight: 600; color: $brand-color-icon; }
   }
   .draft, .closed {
-    border: solid black 3px;
+    border: solid gray 6px;
   }
   .pending {
-    border: solid yellow 3px;
+    border: solid yellow 6px;
   }
   .scheduled {
-    border: solid blue 3px;
+    border: solid blue 6px;
   }
   .in_progress {
-    border: solid green 3px;
+    border: solid green 6px;
   }
   .returned {
-    border: solid red 3px;
+    border: solid red 6px;
   }
   .tile p {
     margin: 0px;
@@ -326,23 +328,28 @@ main.about {
       height: 200px;
       float: left;
       margin: 10px;
-<<<<<<< HEAD
       border-radius: 10px;
     }
     .tech-container {
+      box-sizing: border-box;
+      .tech-flexbox {
+        flex-wrap: wrap;
+        display: flex;
+        justify-content: space-between;
+      }
       .familiar-tech {
       }
-      .new-tech {
-      }
       .tech-div-container {
-        border: solid gray 6px;
-        border-radius: 10px;
         padding: 20px;
         display: inline-block;
-        width: 47%;
+        width: 49%;
         .tech-title {
           text-align: center;
         }
+      }
+      .new-tech {
+        border-right: solid gray 1px;
+        margin-left: 8px;
       }
     }
     .tech-div {
@@ -352,6 +359,7 @@ main.about {
     }
     .tech-logo {
       max-width: 120px;
+      max-width: 120px;
       .new-tech {
         display: inline-block;
         width: 48%;
@@ -360,6 +368,12 @@ main.about {
         display: inline-block;
         width: 48%;
       }
+    }
+    .smaller {
+      max-width: 90px;
+    }
+    .marg-left {
+      margin-left: 25px;
     }
   }
 }
@@ -585,8 +599,6 @@ main.aside-hidden {
   section, article {
     //background-color: #efefef;
   }
-<<<<<<< HEAD
-=======
 }
 
 main.tools-edit {
@@ -604,7 +616,6 @@ main.tools-edit {
       margin: 10px 30px;
     }
   }
->>>>>>> 691778cb0bab0a397329d87f93e14a560b409831
 }
 
 .rental-table {
@@ -684,5 +695,5 @@ div.users-dealing-with-current-user ul {
 }
 
 .update-review {
-  
+
 }
