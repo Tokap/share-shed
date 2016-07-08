@@ -245,8 +245,14 @@ main.landing-page {
       font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
       font-weight: 800!important;
     }
-    .btn { float: right; }
+    .btn {
+      font-size: 2em;
+      text-align: center;
+      margin: 0 auto;
+      width: 100%;
+    }
   }
+
 
   @media (max-width: 768px) {
 
@@ -263,6 +269,13 @@ main.landing-page {
     .sharing-text, .renting-text {
       margin: 5px;
       //padding: 5px;
+      .btn {
+        font-size: 1em;
+        text-align: center;
+        margin: 0 auto;
+        width: 100%;
+      }
+
     }
 
     //.sharing-div { flex: 1;  }
