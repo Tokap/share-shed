@@ -188,12 +188,14 @@ main.landing-page {
 
   .sharing-div {
     background: url('/assets/tool-drill.png') no-repeat center center;
-    background-size: 300%;
+    //background-size: 100%;
+    background-size: cover;
   }
 
   .renting-div {
     background: url('/assets/holding-drill.png') no-repeat right top;
-    background-size: 145%;
+    //background-size: 100%;
+    background-size: cover;
   }
 
   .sharing-div button, .renting-div button {
@@ -419,15 +421,32 @@ main.tag-show, main.search {
 
     // This for Abstract tools show page
     .list-group-item {
-      margin-top: 10px;
-      a { color: $brand-color; margin-left: 10px;}
+      float: left;
+      margin: 10px;
+      width: 160px;
+      height: 160px;
+      text-align: center;
+      span { clear: both; }
+      a { color: $brand-color; margin-left: 10px; clear: both; }
       svg {
+        clear: both;
         fill: $brand-green;
-        width: 30px;
-        height: 30px;
+        width: 80px;
+        height: 80px;
         float: left;
-        margin-top: 6px;
-        margin-bottom: 10px;
+        margin: 10px 30px;
+      }
+      @media (max-width: 768px) {
+        float: none;
+        margin-top: 10px;
+        width: auto;
+        height: auto;
+        text-align: left;
+        svg {
+          width: 30px;
+          height: 30px;
+          margin: 6px 10px 10px 10px;
+        }
       }
     }
   }
