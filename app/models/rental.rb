@@ -38,7 +38,6 @@ class Rental < ActiveRecord::Base
   end
 
   def total_tool_price
-    #figure out date-time logic and add multiplyer
     tool_prices = []
     tools.each do |tool|
       tool_prices << tool.base_price

@@ -19,18 +19,12 @@ class User < ActiveRecord::Base
   has_many :given_reviews, foreign_key: :reviewer_id, class_name: "Review"
 
 
-# These sums currently work as if the base_price is a flat rate.
-# Once logic is implimented to determine the duration of the rental,
-# a multiplyer should be added
-
   def zip_code
     regex = /\d{5}/i
     regex2 = /\s\d{5}/i #looks for leading whitespace followed by 5 digits
     zip = regex2.match(address)
     return zip.to_s.to_i
-    # believe it or not, you need to turn
-    # the match data to a string before you can
-    # turn it into an integer
+    # need to turn match data to a string before into an integer
   end
 
   def reviewed_user?(user)
