@@ -22,12 +22,6 @@ class RentalsController < ApplicationController
   def show
     @rental = Rental.find(params[:id])
     redirect_to root_path unless (@rental.owner == current_user && @rental.status != "draft") || @rental.renter == current_user
-
-    # if @rental.owner == current_user || @rental.renter == current_user
-    #   #will populate normally with nothing here
-    # else
-    #   redirect_to root_path #if you're not involved in the rental, go to root
-    # end
   end
 
   def update
